@@ -853,3 +853,63 @@ footer i{
       font-size: 16px;
     }
   }
+
+  /* Projects Section */
+.projects {
+    padding: 10rem 9% 2rem;
+    min-height: 100vh;
+    background: #0f0a0a;
+  }
+  
+  .projects .title {
+    font-size: 5rem;
+    margin-bottom: 3rem;
+    font-weight: 600;
+    text-align: center;
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  section.start-animation .projects .title {
+    animation: top 1s ease forwards;
+    animation-delay: 1.2s;
+  }
+  
+  .projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .project {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0.2rem solid #ff00ee;
+    border-radius: 1rem;
+    padding: 2rem;
+    flex: 1 1 30rem;
+    max-width: 30rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(100px);
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 1.4s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  
+  .project:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 1rem rgba(255, 0, 238, 0.9);
+    cursor: pointer;
+  }
+
+  .project h3 {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+    color: #ff00ee;
+  }
+  
+  .project p {
+    font-size: 1.6rem;
+  }
+  
