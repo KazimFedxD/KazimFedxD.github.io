@@ -757,62 +757,55 @@ footer i{
     }
 }
 
-/* Messages Container */
-#messages-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 120px;
+/* Fade-in Animation for a smooth entrance */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
-  /* Individual Message */
+  /* Messages Container */
+  #messages-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 12rem; /* Adjusts for your header height */
+  }
+  
+  /* Base Message Style */
   .message {
-    width: 500px;  
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 50px;
-    font-weight: bold;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative; 
-    border: 2px solid gold; /* Gold border for a premium look */
-    box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5); /* Gold glow */
-    font-size: 18px;
+      width: 50rem;           /* 500px at 1rem = 10px */
+      padding: 1rem 2rem;      /* 10px 20px */
+      margin: 1rem;
+      border-radius: 2rem;
+      font-weight: bold;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 0.2rem solid #ff00ee; /* Accent color to match website */
+      box-shadow: 0 0 1rem rgba(255, 0, 238, 0.5); /* Subtle magenta glow */
+      font-size: 1.8rem;
+      font-family: "Poppins", sans-serif; /* Consistent with your website */
+      background-color: rgba(15, 10, 10, 0.9); /* Dark base that blends with #0f0a0a */
   }
-  
-  /* Variant Styles */
-  .message.error {
-    background-color: rgba(255, 0, 25, 0.3); 
-    color: gold;
-    backdrop-filter: blur(10px);
-  }
-  
-  .message.success {
-    background-color: rgba(0, 255, 25, 0.3);
-    color: gold;
-    backdrop-filter: blur(10px);
-  }
-  
-  .message.info {
-    background-color: rgba(0, 0, 255, 0.3);
-    color: gold;
-    backdrop-filter: blur(10px);
-  }
-  
-  /* Close Button inside a message */
   .message button {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: gold;
+    color: #ff00ee;
     position: absolute;
     right: 15px;
     top: 50%;
