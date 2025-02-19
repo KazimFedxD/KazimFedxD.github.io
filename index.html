@@ -189,21 +189,22 @@
     <!-- *************************Contact Section************************* -->
     <section class="contact" id="contact">
         <h2 class="title">Contact<span>Me</span></h2>
-        <form action="#" id="contact-form">
+        <div id="contact-form" class="form">
             <div class="input-box">
     <input type="text" required placeholder="Full Name" id="name">
     <input type="email" required placeholder="Email" id="email">
             </div>
             <div class="input-box">
     <input type="tel" required placeholder="Mobile Number", id="phone">
-    <input type="email" required placeholder="Subject For", id="subject">
+    <input type="text" required placeholder="Subject For", id="subject">
             </div>
     <textarea name="" id="message" cols="30" rows="10" placeholder="Message" required></textarea>
     <input type="submit" value="Send Message" class="btn" id="contact-submit">
-        </form>
+        </div>
 
     </section>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="message.js"></script>
     <script src="script.js"></script>
     <script src="contact.js"></script>

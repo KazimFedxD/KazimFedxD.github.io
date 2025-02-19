@@ -580,12 +580,13 @@ section.start-animation .skill-box2{
     width: 70%;
 }
 /* contact section */
-section form{
+section .form{
     max-width: 70rem;
     text-align: center;
     margin: 1rem auto;
     margin-bottom: 3rem;
 }
+
 .input-box{
     display: flex;
     justify-content: space-between;
