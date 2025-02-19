@@ -579,6 +579,33 @@ section.start-animation .skill-box2{
 .bar-3{
     width: 70%;
 }
+
+.bar-4{
+    width: 60%;
+}
+
+.bar-5{
+    width: 50%;
+}
+
+.bar-6{
+    width: 40%;
+}
+
+.bar-7{
+    width: 30%;
+}
+
+.bar-8{
+    width: 20%;
+}
+
+.bar-9{
+    width: 10%;
+}
+
+
+
 /* contact section */
 section .form{
     max-width: 70rem;
