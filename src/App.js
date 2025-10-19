@@ -10,6 +10,17 @@ import Experience from './pages/Experience';
 import Education from './pages/Education';
 import Contact from './pages/Contact';
 
+// Scroll to top component
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -102,6 +113,7 @@ function Navigation() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen">
         <Navigation />
         <AnimatePresence mode="wait">

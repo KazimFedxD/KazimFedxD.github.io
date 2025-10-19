@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const Contact = () => {
   });
 
   const [status, setStatus] = useState({ type: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -18,7 +20,7 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Simple validation
@@ -34,11 +36,47 @@ const Contact = () => {
       return;
     }
 
-    // For demo purposes - in production, you'd send this to a backend
-    setStatus({ type: 'success', message: 'Thank you for your message! I\'ll get back to you soon.' });
+    setIsSubmitting(true);
     
-    // Reset form
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    try {
+      const timestamp = new Date().toLocaleString();
+      
+      // Send email to you (the site owner)
+      await emailjs.send(
+        'service_quay1th',
+        'template_4fsca3d',
+        {
+          user_name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'Portfolio Contact',
+          message: formData.message,
+          timestamp: timestamp,
+        },
+        'Si2AYHuddQeZRlp7G'
+      );
+
+      // Send confirmation email to the user
+      await emailjs.send(
+        'service_quay1th',
+        'template_i0a3otb',
+        {
+          user_name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'Portfolio Contact',
+          message: formData.message,
+          timestamp: timestamp,
+        },
+        'Si2AYHuddQeZRlp7G'
+      );
+
+      setStatus({ type: 'success', message: 'Thank you for your message! I\'ll get back to you soon. Check your email for a confirmation.' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setStatus({ type: 'error', message: 'Failed to send message. Please email me directly at abbaskazim135@gmail.com' });
+    } finally {
+      setIsSubmitting(false);
+    }
     
     // Clear status after 5 seconds
     setTimeout(() => setStatus({ type: '', message: '' }), 5000);
@@ -286,11 +324,24 @@ const Contact = () => {
 
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
+                  disabled={isSubmitting}
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  className={`w-full px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 ${
+                    isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                  }`}
                 >
-                  Send Message
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    'Send Message'
+                  )}
                 </motion.button>
               </form>
             </motion.div>

@@ -156,9 +156,9 @@ const Achievements = () => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
                   { icon: '🏆', number: '1', label: 'Hackathon Win' },
-                  { icon: '💻', number: '10+', label: 'Projects Built' },
-                  { icon: '📚', number: '5+', label: 'Tech Stacks' },
-                  { icon: '⭐', number: '100+', label: 'Hours Learning' }
+                  { icon: '💻', number: '50+', label: 'Projects Built' },
+                  { icon: '📚', number: '15+', label: 'Tech Stacks' },
+                  { icon: '⭐', number: '1000+', label: 'Hours Learning' }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}

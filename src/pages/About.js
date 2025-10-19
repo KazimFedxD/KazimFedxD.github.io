@@ -101,9 +101,9 @@ const About = () => {
           {/* Stats Section */}
           <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { number: '10+', label: 'Projects Completed' },
-              { number: '5+', label: 'Technologies' },
-              { number: '2+', label: 'Years Coding' },
+              { number: '50+', label: 'Projects Completed' },
+              { number: '15+', label: 'Technologies' },
+              { number: '3+', label: 'Years Coding' },
               { number: '1', label: 'Hackathon Win' }
             ].map((stat, index) => (
               <motion.div
