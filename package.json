@@ -1,0 +1,60 @@
+{
+  "name": "kazimfedxd.github.io",
+  "version": "1.0.0",
+  "description": "A modern, professional portfolio website showcasing my work as a Backend Developer and Software Engineer.",
+  "private": true,
+  "homepage": "https://kazimfedxd.github.io",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KazimFedxD/KazimFedxD.github.io.git"
+  },
+  "keywords": [
+    "portfolio",
+    "react",
+    "tailwind",
+    "developer"
+  ],
+  "author": "Kazim Abbas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KazimFedxD/KazimFedxD.github.io/issues"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "framer-motion": "^12.23.24",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.4",
+    "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}
