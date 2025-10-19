@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A modern, professional portfolio website showcasing my work as a Backend Developer and Software Engineer.",
   "private": true,
-  "homepage": "https://kazimfedxd.github.io",
+  "homepage": "https://fedxd.net",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
