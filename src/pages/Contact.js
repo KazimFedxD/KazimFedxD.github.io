@@ -52,8 +52,8 @@ const Contact = () => {
         </svg>
       ),
       title: 'Email',
-      value: 'your.email@example.com',
-      link: 'mailto:your.email@example.com',
+      value: 'abbaskazim135@gmail.com',
+      link: 'mailto:abbaskazim135@gmail.com',
       color: 'from-purple-600 to-pink-600'
     },
     {
@@ -299,9 +299,19 @@ const Contact = () => {
           {/* Availability Notice */}
           <motion.div variants={itemVariants} className="mt-16 text-center">
             <div className="card-gradient p-8 rounded-2xl">
-              <h2 className="text-2xl font-bold mb-4 gradient-text">Available for Projects</h2>
-              <p className="text-slate-400 mb-2">
-                I'm currently available for freelance work and exciting project opportunities.
+              <h2 className="text-2xl font-bold mb-4 gradient-text">Available for Remote Opportunities</h2>
+              <p className="text-slate-300 mb-3 text-lg">
+                <span className="inline-flex items-center gap-2">
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                  </span>
+                  <strong>Actively seeking remote Backend Development positions</strong>
+                </span>
+              </p>
+              <p className="text-slate-400 mb-4">
+                Specializing in <span className="text-purple-300 font-semibold">Django REST Framework</span> and <span className="text-purple-300 font-semibold">Python</span> | 
+                Open to freelance work and full-time opportunities
               </p>
               <p className="text-purple-300 font-medium">
                 Typical response time: Within 24 hours

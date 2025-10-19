@@ -35,7 +35,7 @@ const Home = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          {/* Profile Image Placeholder */}
+          {/* Profile Image */}
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -43,9 +43,11 @@ const Home = () => {
             className="mb-8 inline-block"
           >
             <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-br from-purple-600 to-pink-600 p-1 animate-glow">
-              <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-6xl font-bold gradient-text">
-                KA
-              </div>
+              <img 
+                src="/dp.jpg" 
+                alt="Kazim Abbas" 
+                className="w-full h-full rounded-full object-cover"
+              />
             </div>
           </motion.div>
 
@@ -75,11 +77,30 @@ const Home = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="text-lg md:text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"
           >
-            Passionate backend developer specializing in Python, Django, and modern web technologies. 
-            Building scalable applications with a focus on clean code, automation, and innovative solutions.
+            🏆 NASA Space Apps Challenge 2025 Winner | Building scalable applications with Python, Django, 
+            and modern web technologies. From award-winning weather apps to Discord bots and e-commerce platforms.
           </motion.p>
+
+          {/* Looking for opportunities badge */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9 }}
+            className="mb-12"
+          >
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-500/50 rounded-full">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </span>
+              <span className="text-green-300 font-medium">Open to Remote Backend Development Opportunities</span>
+            </div>
+            <p className="text-slate-400 text-sm mt-3">
+              Specializing in Django REST Framework & Python
+            </p>
+          </motion.div>
 
           {/* CTA Buttons */}
           <motion.div

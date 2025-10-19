@@ -4,52 +4,36 @@ import { motion } from 'framer-motion';
 const Experience = () => {
   const experiences = [
     {
-      period: '2023 - Present',
-      role: 'Independent Developer',
-      type: 'Freelance',
+      period: 'July 2024 - Present',
+      role: 'Manager',
+      type: 'KayzBlog',
       location: 'Karachi, Pakistan',
-      description: 'Building custom software solutions for clients, focusing on backend development, automation, and full-stack applications.',
+      description: 'Managed and maintained a medical blog platform with features like search, likes, comments, and video embedding.',
       responsibilities: [
-        'Developing scalable backend systems using Django and PostgreSQL',
-        'Creating automation tools to streamline business processes',
-        'Building RESTful APIs for mobile and web applications',
-        'Implementing Docker containerization for consistent deployment',
-        'Database design and optimization for high-performance applications'
+        'Edited 6-8 videos per month and produced 12-15 research-based articles monthly',
+        'Grew social media page to 4,000+ followers with strategic content planning',
+        'Achieved over 40,000+ views and 1,200+ likes on top-performing videos',
+        'Developed custom admin panels and handled website updates',
+        'Improved SEO visibility and content optimization'
       ],
-      tech: ['Python', 'Django', 'React', 'PostgreSQL', 'Docker', 'Git'],
-      icon: '💼'
+      tech: ['Content Management', 'SEO', 'Video Editing', 'Social Media', 'Admin Panels'],
+      icon: '�'
     },
     {
-      period: '2022 - 2023',
-      role: 'Backend Developer',
-      type: 'Project-Based',
+      period: 'Nov 2024 - Jan 2025',
+      role: 'Lead Developer',
+      type: 'Disutils',
       location: 'Remote',
-      description: 'Contributed to various projects focusing on backend architecture, API development, and database management.',
+      description: 'Built a Discord gaming bot with advanced features like card games, gambling mechanics, and virtual banking systems.',
       responsibilities: [
-        'Designed and implemented RESTful APIs using Django REST Framework',
-        'Optimized database queries for improved application performance',
-        'Integrated third-party services and APIs',
-        'Implemented user authentication and authorization systems',
-        'Collaborated with frontend developers for seamless integration'
+        'Designed database-backed user management and currency systems',
+        'Implemented asynchronous task handling for efficient command processing',
+        'Bot deployed in 10+ servers, executing hundreds of commands daily',
+        'Achieved minimal downtime with robust error handling',
+        'Created engaging game mechanics and virtual economy features'
       ],
-      tech: ['Django', 'DRF', 'PostgreSQL', 'Celery', 'MinIO'],
-      icon: '⚙️'
-    },
-    {
-      period: '2021 - 2022',
-      role: 'Self-Taught Developer',
-      type: 'Learning Journey',
-      location: 'Karachi, Pakistan',
-      description: 'Intensive self-learning period focused on mastering modern web development technologies and best practices.',
-      responsibilities: [
-        'Completed comprehensive Python and Django courses',
-        'Built multiple personal projects to apply learned concepts',
-        'Studied data structures, algorithms, and design patterns',
-        'Contributed to open-source projects on GitHub',
-        'Developed problem-solving skills through coding challenges'
-      ],
-      tech: ['Python', 'C', 'C++', 'SQL', 'Git', 'Linux'],
-      icon: '📚'
+      tech: ['Python', 'Discord.py', 'Database Management', 'Async Programming', 'Game Logic'],
+      icon: '🎮'
     }
   ];
 

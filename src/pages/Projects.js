@@ -4,40 +4,59 @@ import { motion } from 'framer-motion';
 const Projects = () => {
   const projects = [
     {
-      title: 'FxDC Parser',
-      description: 'A robust and efficient parser designed for processing and analyzing complex data structures. Built with performance and accuracy in mind.',
-      tech: ['Python', 'Data Processing', 'Algorithms'],
+      title: 'Skyntel',
+      badge: '🏆 2nd Place - NASA Space Apps Challenge 2025',
+      description: 'Interactive weather app with AI query support, personalized alerts, daily email subscriptions, and live weather reports from users.',
+      tech: ['Django REST Framework', 'Celery', 'PostgreSQL', 'Redis', 'Docker', 'Nginx', 'Groq AI'],
       github: 'https://github.com/KazimFedxD',
       features: [
-        'High-performance parsing engine',
-        'Flexible data structure handling',
-        'Comprehensive error handling',
-        'Extensive test coverage'
+        'AI-powered weather queries using Groq AI',
+        'Personalized weather alerts and notifications',
+        'Daily email subscriptions with weather updates',
+        'Live weather reports from community users',
+        'Backend powered by Django REST Framework with Celery automation',
+        'Deployed using Docker and Nginx reverse proxy'
       ]
     },
     {
-      title: 'FinCore',
-      description: 'A comprehensive finance management system built with Django and React. Features include budget tracking, expense categorization, and financial analytics.',
-      tech: ['Django', 'React', 'PostgreSQL', 'Django REST Framework'],
+      title: 'FedxD Data Container (FxDC)',
+      description: 'Open-source Python library that converts Python objects into a readable .fxdc format and restores them to their original classes.',
+      tech: ['Python', 'Lexer', 'Parser', 'Custom Object System', 'Decorators'],
       github: 'https://github.com/KazimFedxD',
       features: [
-        'Real-time expense tracking',
-        'Budget management',
-        'Financial reports & analytics',
-        'Secure authentication',
-        'RESTful API architecture'
+        'Custom lexer and parser implementation',
+        'Converts Python objects to .fxdc format',
+        'Restores objects to original classes',
+        'Support for user-defined classes with decorators',
+        'Built entirely with core Python'
       ]
     },
     {
-      title: 'Doctor Vlog Automation',
-      description: 'An intelligent automation tool for content creators in the medical field. Streamlines video processing, editing, and publishing workflows.',
-      tech: ['Python', 'Automation', 'Video Processing', 'APIs'],
+      title: 'FxChange',
+      description: 'Demo stock and crypto exchange where users can trade with virtual currency, track portfolios, and grow their profiles.',
+      tech: ['Django', 'SQLite', 'JavaScript', 'External APIs', 'Email Verification'],
       github: 'https://github.com/KazimFedxD',
       features: [
-        'Automated video processing',
-        'Content scheduling',
-        'Workflow optimization',
-        'Integration with publishing platforms'
+        'Virtual currency trading for stocks and crypto',
+        'Portfolio tracking and profile growth system',
+        'Custom admin panels for management',
+        'Live graphs with real-time data',
+        'Secure email verification',
+        'API integrations for market data'
+      ]
+    },
+    {
+      title: 'Webstore',
+      description: 'Complete e-commerce platform featuring inventory control, discounts, carts, and checkout systems with real-time calculations.',
+      tech: ['Django', 'SQLite', 'JavaScript', 'Admin Panels', 'Email Verification'],
+      github: 'https://github.com/KazimFedxD',
+      features: [
+        'Inventory control and management',
+        'Discount system and cart functionality',
+        'Checkout with real-time calculations',
+        'Custom admin panels',
+        'Email verification for security',
+        'Search system for smooth UX'
       ]
     }
   ];
@@ -90,6 +109,13 @@ const Projects = () => {
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
                   <div className="flex-1">
                     <h2 className="text-3xl font-bold mb-3 gradient-text">{project.title}</h2>
+                    {project.badge && (
+                      <div className="mb-3">
+                        <span className="inline-block px-4 py-2 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-full text-sm font-semibold text-white">
+                          {project.badge}
+                        </span>
+                      </div>
+                    )}
                     <p className="text-slate-300 text-lg leading-relaxed mb-4">
                       {project.description}
                     </p>

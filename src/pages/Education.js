@@ -4,22 +4,40 @@ import { motion } from 'framer-motion';
 const Education = () => {
   const education = [
     {
-      degree: "Bachelor's in Software/Computer Science",
-      institution: 'University',
+      degree: "Intermediate (11-12), Computer Science",
+      institution: 'Fatimiyah Boys College',
       location: 'Karachi, Pakistan',
-      period: 'In Progress',
-      status: 'Currently Pursuing',
-      description: 'Comprehensive study of computer science fundamentals, software engineering principles, and modern development practices.',
+      period: '2024 - Present',
+      status: 'Currently in 12th Grade',
+      description: 'Advanced study in Computer Science with focus on programming fundamentals, algorithms, and software development principles.',
       courses: [
-        'Data Structures & Algorithms',
-        'Object-Oriented Programming',
-        'Database Management Systems',
-        'Software Engineering',
-        'Web Development',
-        'Operating Systems'
+        'Computer Science',
+        'Mathematics',
+        'Physics',
+        'Programming Fundamentals',
+        'Data Structures',
+        'Web Development'
       ],
       icon: '🎓',
       color: 'from-blue-600 to-cyan-600'
+    },
+    {
+      degree: "Matriculation, Computer Science",
+      institution: 'Happy Home High School (HHS)',
+      location: 'Karachi, Pakistan',
+      period: '2016 - 2024',
+      status: 'Completed',
+      description: 'Foundation in Computer Science with comprehensive coverage of basic programming concepts and computer fundamentals.',
+      courses: [
+        'Computer Science',
+        'Mathematics',
+        'Science',
+        'Basic Programming',
+        'Computer Fundamentals',
+        'English'
+      ],
+      icon: '📚',
+      color: 'from-green-600 to-emerald-600'
     }
   ];
 

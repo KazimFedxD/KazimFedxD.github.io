@@ -50,18 +50,28 @@ const About = () => {
                 <h2 className="text-3xl font-bold mb-6 text-purple-300">Who I Am</h2>
                 <p className="text-slate-300 leading-relaxed mb-4">
                   I'm a passionate Software Developer from Karachi, Pakistan, specializing in backend engineering 
-                  and full-stack development. Currently pursuing my bachelor's degree in Software/Computer Science, 
+                  and full-stack development. Currently in 12th grade at Fatimiyah Boys College studying Computer Science, 
                   I combine academic knowledge with hands-on experience in building real-world applications.
                 </p>
                 <p className="text-slate-300 leading-relaxed mb-4">
                   My journey in tech is driven by curiosity and a desire to create solutions that make a difference. 
-                  Whether it's developing automation tools, building finance management systems, or working on 
-                  innovative projects, I thrive on challenges that push me to learn and grow.
+                  From winning 2nd place at NASA Space Apps Challenge 2025 with Skyntel, to managing KayzBlog with 
+                  40,000+ views, to building Discord bots deployed across 10+ servers - I thrive on challenges that 
+                  push me to learn and grow.
                 </p>
-                <p className="text-slate-300 leading-relaxed">
+                <p className="text-slate-300 leading-relaxed mb-4">
                   As a self-taught developer supplementing my formal education, I've developed a strong foundation 
-                  in modern web technologies, with a particular focus on Python, Django, and React ecosystems.
+                  in modern web technologies, with a particular focus on Python, Django, and building scalable systems.
                 </p>
+                <div className="mt-6 p-4 bg-green-900/20 border border-green-500/30 rounded-lg">
+                  <p className="text-green-300 font-medium flex items-center gap-2">
+                    <span className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    Currently seeking remote Backend Development opportunities in Django REST Framework & Python
+                  </p>
+                </div>
               </div>
             </motion.div>
 

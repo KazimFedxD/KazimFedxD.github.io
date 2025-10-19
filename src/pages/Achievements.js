@@ -5,14 +5,15 @@ const Achievements = () => {
   const achievements = [
     {
       year: '2025',
-      title: 'NASA Space Apps Challenge',
+      title: 'NASA Space Apps Challenge - Karachi',
       position: '2nd Place',
-      description: 'Secured second place in the prestigious NASA Space Apps Challenge, competing against teams from around the globe. Developed an innovative solution addressing real-world space exploration challenges.',
+      description: 'Secured second place in the NASA Space Apps Challenge 2025 Karachi Local Event with Skyntel - an interactive weather app featuring AI query support, personalized alerts, email subscriptions, and live community reports.',
       highlights: [
-        'Collaborated with a diverse team on a space-themed project',
-        'Developed innovative technical solutions under time constraints',
-        'Presented to judges and received recognition for creativity and execution',
-        'Gained experience in rapid prototyping and teamwork'
+        'Built full-stack weather application with Django REST Framework backend',
+        'Integrated Groq AI for intelligent weather queries',
+        'Implemented Celery automation and Redis caching for performance',
+        'Deployed using Docker and Nginx reverse proxy',
+        'Presented innovative solution to judges and competed against local teams'
       ],
       icon: '🏆',
       color: 'from-yellow-600 to-orange-600'
