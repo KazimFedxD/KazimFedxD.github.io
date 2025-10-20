@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { getSortedProjects, getFeaturedLabel } from '../data/projectsData';
+import TechIcon from '../components/TechIcon';
 
 const Projects = () => {
   // Get projects sorted by order number
@@ -55,36 +56,31 @@ const Projects = () => {
                 whileHover={{ scale: 1.02 }}
                 className="card-gradient p-6 rounded-2xl hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 flex flex-col"
               >
-                {/* Header */}
-                <div className="mb-4">
-                  <h2 className="text-2xl font-bold mb-2 gradient-text">{project.title}</h2>
-                  {project.badge && (
-                    <div className="mb-3">
-                      <span className="inline-block px-3 py-1 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-full text-xs font-semibold text-white">
-                        {project.badge}
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Description */}
-                <p className="text-slate-300 leading-relaxed mb-4 flex-grow">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="mb-4">
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-purple-900/50 border border-purple-500/30 rounded-full text-purple-200 text-xs font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  {/* Header */}
+                  <div className="mb-4">
+                    <h2 className="text-2xl font-bold mb-2 gradient-text">{project.title}</h2>
+                    {project.badge && (
+                      <div className="mb-3">
+                        <span className="inline-block px-3 py-1 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-full text-xs font-semibold text-white">
+                          {project.badge}
+                        </span>
+                      </div>
+                    )}
                   </div>
-                </div>
+
+                  {/* Description */}
+                  <p className="text-slate-300 leading-relaxed mb-4 flex-grow">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Stack with Icons */}
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech, techIndex) => (
+                        <TechIcon key={techIndex} name={tech} />
+                      ))}
+                    </div>
+                  </div>
 
                 {/* Features */}
                 <div className="mb-4">

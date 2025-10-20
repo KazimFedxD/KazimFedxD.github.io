@@ -1,5 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import GitHubStats from '../components/GitHubStats';
+import ResumeDownload from '../components/ResumeDownload';
+import HireMeCTA from '../components/HireMeCTA';
 
 const About = () => {
   const containerVariants = {
@@ -99,7 +102,7 @@ const About = () => {
           </div>
 
           {/* Stats Section */}
-          <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             {[
               { number: '50+', label: 'Projects Completed' },
               { number: '15+', label: 'Technologies' },
@@ -115,6 +118,22 @@ const About = () => {
                 <div className="text-slate-400 text-sm">{stat.label}</div>
               </motion.div>
             ))}
+          </motion.div>
+
+          {/* GitHub Stats */}
+          <motion.div variants={itemVariants} className="mb-16">
+            <h2 className="text-3xl font-bold mb-6 text-center gradient-text">GitHub Activity</h2>
+            <GitHubStats />
+          </motion.div>
+
+          {/* Hire Me CTA */}
+          <motion.div variants={itemVariants} className="mb-16">
+            <HireMeCTA inline={true} />
+          </motion.div>
+
+          {/* Resume Download */}
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <ResumeDownload />
           </motion.div>
 
           {/* Philosophy */}

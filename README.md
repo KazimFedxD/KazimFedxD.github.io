@@ -1,6 +1,55 @@
 # Kazim Abbas - Portfolio Website
 
-> 🏆 NASA Space Apps Challenge 2025 Winner | Backend Developer | Python & Django Specialist
+> 🏆 NASA Space Apps Challenge 2025 Winner | Backend Developer | ## 📱 Responsive Design
+
+- **Mobile First** - Optimized for mobile devices
+- **Tablet Support** - Adjusted layouts for medium screens
+- **Desktop Enhanced** - Full-featured experience on large screens
+- **Swipe Navigation** - Swipe left/right to navigate between pages on mobile
+
+## 🎯 Custom Tailwind Configuration
+
+The site uses a custom Tailwind configuration with:
+- Extended purple color palette (50-950 shades)
+- Custom animations (fade-in, slide variants, glow, float)
+- Gradient utilities
+- Custom spacing and typography
+
+## ✨ Features Implemented
+
+- ✅ **Project Screenshots/GIFs** - Visual previews of projects (coming soon)
+- ✅ **Tech Stack Icons** - Visual tech stack with React Icons
+- ✅ **Hire Me CTA** - Floating call-to-action button + inline banner
+- ✅ **GitHub Stats Integration** - Live GitHub statistics on About page
+- ✅ **Resume Download Button** - Easy access to resume
+- ✅ **Skeleton Loaders** - Loading animations for better UX
+- ✅ **Swipe Navigation** - Mobile swipe gestures to switch pages
+
+## 📋 TODO - Planned Features
+
+### High Priority
+- [ ] **#5: Interactive Timeline** - Visual journey of coding experience with animated milestones
+- [ ] **#6: GitHub Stats Integration** - Expand to include contribution graph and language stats
+- [ ] **#7: Blog Section** - Share coding journey, tutorials, and project breakdowns
+- [ ] **#8: Live Project Status** - Real-time status indicators for active/deployed projects
+- [ ] **#9: Code Snippets Showcase** - Highlight interesting code implementations
+
+### Medium Priority
+- [ ] **#10: Technology Radar** - Visual representation of skill proficiency levels
+- [ ] **#11: Search & Filter Projects** - Filter projects by tech stack, category, or status
+- [ ] **#12: Project Tags/Categories** - Organize projects (Backend, Frontend, Discord Bots, Tools)
+- [ ] **#13: Live Demo Links** - Add "View Live" buttons alongside GitHub links
+- [ ] **#15: Terminal-Style Command Prompt** - Interactive terminal easter egg on homepage (Maybe)
+- [ ] **#16: View Counter** - Display project view counts or site visits
+- [ ] **#17: Social Share Buttons** - Easy sharing of projects on Twitter/LinkedIn
+- [ ] **#18: Newsletter Signup** - Collect emails for project updates
+
+### Fun & Experimental
+- [ ] **#26: Easter Eggs** - Hidden Konami code or secret pages
+- [ ] **#27: Music Player** - Lofi music while browsing (toggle on/off)
+- [ ] **#30: Interactive 3D Elements** - Three.js animations for visual impact
+
+## 📧 Contact Specialist
 
 A modern, responsive portfolio website built with React, Tailwind CSS, and Framer Motion. Showcasing my journey as a software developer from Karachi, Pakistan - from winning hackathons to building production applications.
 

@@ -4,7 +4,16 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white min-h-screen;
+    @apply bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white min-h-screen transition-colors duration-300;
+  }
+  
+  /* Light Mode */
+  html.light body {
+    @apply bg-gradient-to-br from-slate-50 via-purple-50 to-slate-100 text-slate-900;
+  }
+  
+  html.light {
+    color-scheme: light;
   }
 }
 
@@ -13,12 +22,37 @@
     @apply bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent;
   }
   
+  html.light .gradient-text {
+    @apply bg-gradient-to-r from-purple-600 via-pink-600 to-purple-800 bg-clip-text text-transparent;
+  }
+  
   .card-gradient {
     @apply bg-gradient-to-br from-purple-900/50 to-slate-900/50 backdrop-blur-sm;
   }
   
+  html.light .card-gradient {
+    @apply bg-gradient-to-br from-white/80 to-purple-50/80 backdrop-blur-sm border border-purple-200;
+  }
+  
   .hover-glow {
     @apply transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50;
+  }
+  
+  /* Light mode text colors */
+  html.light .text-slate-400 {
+    @apply text-slate-600;
+  }
+  
+  html.light .text-slate-300 {
+    @apply text-slate-700;
+  }
+  
+  html.light .text-purple-200 {
+    @apply text-purple-700;
+  }
+  
+  html.light .text-purple-300 {
+    @apply text-purple-800;
   }
 }
 

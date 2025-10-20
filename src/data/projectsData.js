@@ -24,7 +24,7 @@ export const projectsData = [
   // ORDER 1: TOP PROJECT - NASA WINNER
   // ============================================================
   {
-    order: 1,
+    order: 2,
     title: 'Skyntel',
     badge: '🏆 2nd Place - NASA Space Apps Challenge 2025',
     description: 'Interactive weather app with AI query support, personalized alerts, daily email subscriptions, and live weather reports from users.',
@@ -44,7 +44,7 @@ export const projectsData = [
   // ORDER 2: CURRENT WORKING PROJECT
   // ============================================================
   {
-    order: 2,
+    order: 1,
     title: 'FinCore',
     badge: '🚧 In Development',
     description: 'Personal finance and Islamic wealth management system for tracking income, expenses, and assets with Khums and Zakat calculations.',
