@@ -1,65 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { getSortedProjects, getFeaturedLabel } from '../data/projectsData';
 
 const Projects = () => {
-  const projects = [
-    {
-      title: 'Skyntel',
-      badge: '🏆 2nd Place - NASA Space Apps Challenge 2025',
-      description: 'Interactive weather app with AI query support, personalized alerts, daily email subscriptions, and live weather reports from users.',
-      tech: ['Django REST Framework', 'Celery', 'PostgreSQL', 'Redis', 'Docker', 'Nginx', 'Groq AI'],
-      github: 'https://github.com/KazimFedxD/Skyntel',
-      features: [
-        'AI-powered weather queries using Groq AI',
-        'Personalized weather alerts and notifications',
-        'Daily email subscriptions with weather updates',
-        'Live weather reports from community users',
-        'Backend powered by Django REST Framework with Celery automation',
-        'Deployed using Docker and Nginx reverse proxy'
-      ]
-    },
-    {
-      title: 'FedxD Data Container (FxDC)',
-      description: 'Open-source Python library that converts Python objects into a readable .fxdc format and restores them to their original classes.',
-      tech: ['Python', 'Lexer', 'Parser', 'Custom Object System', 'Decorators'],
-      github: 'https://github.com/KazimFedxD/FedxD-Data-Container',
-      features: [
-        'Custom lexer and parser implementation',
-        'Converts Python objects to .fxdc format',
-        'Restores objects to original classes',
-        'Support for user-defined classes with decorators',
-        'Built entirely with core Python'
-      ]
-    },
-    {
-      title: 'FxChange',
-      description: 'Demo stock and crypto exchange where users can trade with virtual currency, track portfolios, and grow their profiles.',
-      tech: ['Django', 'SQLite', 'JavaScript', 'External APIs', 'Email Verification'],
-      github: 'https://github.com/KazimFedxD',
-      features: [
-        'Virtual currency trading for stocks and crypto',
-        'Portfolio tracking and profile growth system',
-        'Custom admin panels for management',
-        'Live graphs with real-time data',
-        'Secure email verification',
-        'API integrations for market data'
-      ]
-    },
-    {
-      title: 'Webstore',
-      description: 'Complete e-commerce platform featuring inventory control, discounts, carts, and checkout systems with real-time calculations.',
-      tech: ['Django', 'SQLite', 'JavaScript', 'Admin Panels', 'Email Verification'],
-      github: 'https://github.com/KazimFedxD',
-      features: [
-        'Inventory control and management',
-        'Discount system and cart functionality',
-        'Checkout with real-time calculations',
-        'Custom admin panels',
-        'Email verification for security',
-        'Search system for smooth UX'
-      ]
-    }
-  ];
+  // Get projects sorted by order number
+  const projects = getSortedProjects();
+  const featuredLabel = getFeaturedLabel();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -92,8 +38,11 @@ const Projects = () => {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">Projects</h1>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-2">
               Transforming ideas into functional, impactful solutions
+            </p>
+            <p className="text-sm text-purple-400 font-medium">
+              {featuredLabel}
             </p>
           </motion.div>
 

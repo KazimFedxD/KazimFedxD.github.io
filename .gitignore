@@ -21,7 +21,6 @@ npm-debug.log*
 # Personal Files (if any)
 *.personal
 notes.txt
-projects/
 
 #OLD
 old_site/
