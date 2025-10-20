@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function MobileSwipeNavigation() {
@@ -11,7 +11,7 @@ function MobileSwipeNavigation() {
   const [swipeOffset, setSwipeOffset] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
 
-  const routes = [
+  const routes = useMemo(() => [
     '/',
     '/about',
     '/skills',
@@ -20,7 +20,7 @@ function MobileSwipeNavigation() {
     '/experience',
     '/education',
     '/contact'
-  ];
+  ], []);
 
   const currentIndex = routes.indexOf(location.pathname);
 
