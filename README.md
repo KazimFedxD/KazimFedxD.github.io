@@ -40,9 +40,7 @@ The site uses a custom Tailwind configuration with:
 - [ ] **#12: Project Tags/Categories** - Organize projects (Backend, Frontend, Discord Bots, Tools)
 - [ ] **#13: Live Demo Links** - Add "View Live" buttons alongside GitHub links
 - [ ] **#15: Terminal-Style Command Prompt** - Interactive terminal easter egg on homepage (Maybe)
-- [ ] **#16: View Counter** - Display project view counts or site visits
 - [ ] **#17: Social Share Buttons** - Easy sharing of projects on Twitter/LinkedIn
-- [ ] **#18: Newsletter Signup** - Collect emails for project updates
 
 ### Fun & Experimental
 - [ ] **#26: Easter Eggs** - Hidden Konami code or secret pages
