@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import TechIcon from '../components/TechIcon';
 
 const Achievements = () => {
   const achievements = [
@@ -15,6 +16,7 @@ const Achievements = () => {
         'Deployed using Docker and Nginx reverse proxy',
         'Presented innovative solution to judges and competed against local teams'
       ],
+      tech: ['Django', 'React', 'PostgreSQL', 'Redis', 'Celery', 'Docker', 'Nginx'],
       icon: '🏆',
       color: 'from-yellow-600 to-orange-600'
     }
@@ -78,12 +80,14 @@ const Achievements = () => {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-600/10 to-pink-600/10 rounded-full blur-3xl"></div>
                 
                 <div className="relative z-10">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex items-center gap-4">
-                      <span className="text-6xl">{achievement.icon}</span>
-                      <div>
+                  <div className="flex flex-col sm:flex-row items-start justify-between mb-6 gap-4">
+                    <div className="flex items-start gap-4 w-full">
+                      <span className="text-5xl sm:text-6xl flex-shrink-0">{achievement.icon}</span>
+                      <div className="flex-1 min-w-0">
                         <div className="text-purple-400 font-semibold mb-1">{achievement.year}</div>
-                        <h2 className="text-4xl font-bold gradient-text mb-2">{achievement.title}</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-2 break-words">
+                          {achievement.title}
+                        </h2>
                         <div className={`inline-block px-4 py-2 bg-gradient-to-r ${achievement.color} rounded-full font-bold text-white`}>
                           {achievement.position}
                         </div>
@@ -112,6 +116,17 @@ const Achievements = () => {
                       ))}
                     </div>
                   </div>
+
+                  {achievement.tech && (
+                    <div className="mt-6">
+                      <h3 className="text-xl font-semibold text-purple-300 mb-3">Technologies Used</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {achievement.tech.map((tech, techIndex) => (
+                          <TechIcon key={techIndex} tech={tech} />
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -136,12 +151,7 @@ const Achievements = () => {
                   <p className="text-slate-300 mb-4">{cert.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {cert.skills.map((skill, skillIndex) => (
-                      <span
-                        key={skillIndex}
-                        className="px-3 py-1 bg-purple-900/40 border border-purple-500/30 rounded-full text-purple-200 text-sm"
-                      >
-                        {skill}
-                      </span>
+                      <TechIcon key={skillIndex} tech={skill} />
                     ))}
                   </div>
                 </motion.div>

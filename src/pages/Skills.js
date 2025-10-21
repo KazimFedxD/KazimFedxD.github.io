@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import TechIcon from '../components/TechIcon';
 
 const Skills = () => {
   const skillCategories = [
@@ -54,7 +55,7 @@ const Skills = () => {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">Skills & Technologies</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text pb-2 leading-tight">Skills & Technologies</h1>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full mb-6"></div>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
               A comprehensive toolkit for building modern, scalable applications
@@ -75,14 +76,7 @@ const Skills = () => {
                 </div>
                 <div className="flex flex-wrap gap-3">
                   {category.skills.map((skill, skillIndex) => (
-                    <motion.span
-                      key={skillIndex}
-                      whileHover={{ scale: 1.1, rotate: 2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-4 py-2 bg-purple-900/40 border border-purple-500/30 rounded-full text-purple-200 font-medium hover:bg-purple-800/50 hover:border-purple-400/50 transition-all duration-300 cursor-pointer hover-glow"
-                    >
-                      {skill}
-                    </motion.span>
+                    <TechIcon key={skillIndex} tech={skill} />
                   ))}
                 </div>
               </motion.div>

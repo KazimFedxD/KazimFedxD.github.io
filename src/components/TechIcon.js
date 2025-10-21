@@ -46,22 +46,33 @@ const techIconMap = {
   'GitHub': SiGithub
 };
 
-const TechIcon = ({ name, className = '' }) => {
-  const Icon = techIconMap[name];
+const TechIcon = ({ tech, name, size = 'md', className = '' }) => {
+  const techName = tech || name;
+  const Icon = techIconMap[techName];
+  
+  const sizeClasses = {
+    sm: 'px-3 py-1 text-xs',
+    md: 'px-4 py-2 text-sm'
+  };
+  
+  const iconSizes = {
+    sm: 'w-3 h-3',
+    md: 'w-4 h-4'
+  };
   
   if (!Icon) {
     // Fallback to text if no icon found
     return (
-      <span className={`px-3 py-1 bg-purple-900/50 border border-purple-500/30 rounded-full text-purple-200 text-xs font-medium ${className}`}>
-        {name}
+      <span className={`bg-purple-900/40 border border-purple-500/30 rounded-full text-purple-200 font-medium hover:bg-purple-800/50 hover:border-purple-400/50 transition-all duration-300 ${sizeClasses[size]} ${className}`}>
+        {techName}
       </span>
     );
   }
   
   return (
-    <span className={`inline-flex items-center gap-1.5 px-3 py-1 bg-purple-900/50 border border-purple-500/30 rounded-full text-purple-200 text-xs font-medium ${className}`}>
-      <Icon className="w-3.5 h-3.5" />
-      {name}
+    <span className={`inline-flex items-center gap-2 bg-purple-900/40 border border-purple-500/30 rounded-full text-purple-200 font-medium hover:bg-purple-800/50 hover:border-purple-400/50 transition-all duration-300 ${sizeClasses[size]} ${className}`}>
+      <Icon className={iconSizes[size]} />
+      {techName}
     </span>
   );
 };

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [text, setText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
   const fullText = 'Software Developer | Backend Engineer | Tech Enthusiast';
   
   useEffect(() => {
@@ -14,6 +15,7 @@ const Home = () => {
         index++;
       } else {
         clearInterval(timer);
+        setIsTyping(false);
       }
     }, 50);
     
@@ -42,7 +44,7 @@ const Home = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring', stiffness: 260, damping: 20 }}
-            className="mb-8 inline-block"
+            className="mb-6 inline-block"
           >
             <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-br from-purple-600 to-pink-600 p-1 animate-glow">
               <img 
@@ -58,9 +60,11 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-6xl md:text-7xl font-bold mb-6"
+            className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 px-4"
           >
-            <span className="gradient-text">Kazim Abbas</span>
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
+              Kazim Abbas
+            </span>
           </motion.h1>
 
           {/* Typing effect title */}
@@ -71,7 +75,7 @@ const Home = () => {
             className="text-2xl md:text-3xl text-purple-300 mb-8 h-10 font-light"
           >
             {text}
-            <span className="animate-pulse">|</span>
+            {isTyping && <span className="animate-pulse">|</span>}
           </motion.div>
 
           {/* Summary */}
@@ -130,7 +134,7 @@ const Home = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className="flex gap-6 justify-center"
+            className="flex gap-6 justify-center mt-8"
           >
             <a
               href="https://github.com/KazimFedxD"
@@ -155,19 +159,7 @@ const Home = () => {
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="animate-bounce">
-            <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
-        </motion.div>
+        
       </div>
     </div>
   );

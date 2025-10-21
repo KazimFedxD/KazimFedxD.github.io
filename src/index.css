@@ -26,6 +26,14 @@
     @apply bg-gradient-to-r from-purple-600 via-pink-600 to-purple-800 bg-clip-text text-transparent;
   }
   
+  /* Ensure navbar stays fixed */
+  nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+  
   .card-gradient {
     @apply bg-gradient-to-br from-purple-900/50 to-slate-900/50 backdrop-blur-sm;
   }

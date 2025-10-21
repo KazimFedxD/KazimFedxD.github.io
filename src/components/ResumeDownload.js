@@ -4,8 +4,13 @@ import { HiDownload } from 'react-icons/hi';
 
 const ResumeDownload = ({ className = '' }) => {
   const handleDownload = () => {
-    // For now, this will link to GitHub. You can add actual resume PDF later
-    window.open('https://github.com/KazimFedxD', '_blank');
+    // Create a link to download the resume PDF from the public folder
+    const link = document.createElement('a');
+    link.href = '/Kazim Abbas CV.pdf';
+    link.download = 'Kazim_Abbas_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (

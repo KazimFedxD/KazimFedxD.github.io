@@ -37,7 +37,7 @@ const Projects = () => {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">Projects</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text pb-2 leading-tight">Projects</h1>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full mb-6"></div>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-2">
               Transforming ideas into functional, impactful solutions

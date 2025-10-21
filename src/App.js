@@ -43,10 +43,10 @@ function Navigation() {
   ];
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-purple-500/20">
+    <nav className="fixed w-full top-0 z-[100] bg-slate-900/95 backdrop-blur-md border-b border-purple-500/20 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="text-2xl font-bold gradient-text">
+          <Link to="/" className="text-xl sm:text-2xl font-bold whitespace-nowrap bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
             Kazim Abbas
           </Link>
 

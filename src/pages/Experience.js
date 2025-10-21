@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import TechIcon from '../components/TechIcon';
 
 const Experience = () => {
   const experiences = [
@@ -66,7 +67,7 @@ const Experience = () => {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">Experience</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text pb-2 leading-tight">Experience</h1>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full mb-6"></div>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
               My professional journey and growth as a developer
@@ -125,12 +126,7 @@ const Experience = () => {
 
                     <div className="flex flex-wrap gap-2 justify-start">
                       {exp.tech.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-3 py-1 bg-purple-900/50 border border-purple-500/30 rounded-full text-purple-200 text-xs font-medium"
-                        >
-                          {tech}
-                        </span>
+                        <TechIcon key={techIndex} tech={tech} size="sm" />
                       ))}
                     </div>
                   </motion.div>
