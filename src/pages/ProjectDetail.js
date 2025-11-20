@@ -10,6 +10,8 @@ import PerformanceMetrics from '../components/project-detail/PerformanceMetrics'
 import KnownIssuesPanel from '../components/project-detail/KnownIssuesPanel';
 import FutureRoadmap from '../components/project-detail/FutureRoadmap';
 import ScreenshotGallery from '../components/project-detail/ScreenshotGallery';
+import ArchitectureDiagram from '../components/project-detail/ArchitectureDiagram';
+import ApiReference from '../components/project-detail/ApiReference';
 
 const ProjectDetail = () => {
   const { projectName } = useParams();
@@ -25,6 +27,8 @@ const ProjectDetail = () => {
     { id: 'overview', label: 'Overview' },
     { id: 'features', label: 'Features' },
     { id: 'architecture', label: 'Architecture' },
+    { id: 'api', label: 'API Reference' },
+    { id: 'setup', label: 'Setup Guide' },
     { id: 'screenshots', label: 'Screenshots' },
     { id: 'performance', label: 'Performance' },
     { id: 'requirements', label: 'Requirements' },
@@ -174,6 +178,8 @@ const ProjectDetail = () => {
               </p>
             </div>
 
+            <ArchitectureDiagram />
+
             <TechStackTable techStack={projectData.techStack} />
 
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
@@ -194,6 +200,60 @@ const ProjectDetail = () => {
                 ))}
               </div>
             </div>
+          </div>
+        );
+
+      case 'api':
+        return (
+          <div className="space-y-6">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-white mb-3">API Reference</h2>
+              <p className="text-gray-300">
+                Complete REST API documentation with request/response examples.
+              </p>
+            </div>
+            
+            <ApiReference endpoints={projectData.apiEndpoints || []} />
+          </div>
+        );
+
+      case 'setup':
+        return (
+          <div className="space-y-8">
+            <div className="mb-6">
+              <h2 className="text-3xl font-bold text-white mb-3">Setup & Installation Guide</h2>
+              <p className="text-gray-300">
+                Step-by-step guide to get the project running on your machine.
+              </p>
+            </div>
+
+            {projectData.setupSteps?.map((step, idx) => (
+              <div key={idx} className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="flex-shrink-0 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                    {idx + 1}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                    <p className="text-gray-300 mb-4">{step.description}</p>
+                    
+                    {step.code && (
+                      <CodeSnippet 
+                        title={step.codeTitle || "Code"}
+                        code={step.code}
+                        language={step.language || "bash"}
+                      />
+                    )}
+
+                    {step.notes && (
+                      <div className="mt-4 bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+                        <p className="text-sm text-blue-300">{step.notes}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         );
 
