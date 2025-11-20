@@ -1,0 +1,50 @@
+{
+  "title": "Full-Stack Web Application Template",
+  "shortDescription": "A production-ready, containerized full-stack template featuring React 19, Django REST Framework, PostgreSQL, Redis, and comprehensive JWT authentication with email verification.",
+  "techStack": [
+    "React 19",
+    "Django 5.2",
+    "Django REST Framework",
+    "PostgreSQL 16",
+    "Redis 7",
+    "Celery",
+    "Docker",
+    "Nginx",
+    "JWT Authentication",
+    "Tailwind CSS",
+    "Framer Motion"
+  ],
+  "features": [
+    "🔐 Secure JWT Authentication",
+    "📧 Email Verification System",
+    "🎨 Modern UI/UX",
+    "🐳 Full Docker Integration",
+    "⚡ Async Task Processing",
+    "🔄 State Management"
+  ],
+  "badges": [
+    "🚀 Production-Ready",
+    "📦 Fully Containerized",
+    "🔧 Developer-Friendly"
+  ],
+  "github": "https://github.com/KazimFedxD/FullStack-Template",
+  "liveDemo": "N/A (Template Project)",
+  "performance": {
+    "pageLoadTime": "< 2s",
+    "apiResponseTime": "< 150ms avg",
+    "bundleSize": "Optimized with code splitting",
+    "dockerBuildTime": "< 3 minutes"
+  },
+  "awards": [],
+  "requirements": {
+    "os": ["Windows", "macOS", "Linux"],
+    "browsers": ["Chrome 90+", "Firefox 88+", "Safari 14+", "Edge 90+"],
+    "minRAM": "4GB (8GB recommended)",
+    "dependencies": [
+      "Docker & Docker Compose",
+      "Git",
+      "Python 3.11+ (for local dev)",
+      "Node.js 18+ (for local dev)"
+    ]
+  }
+}

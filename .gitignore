@@ -22,6 +22,9 @@ npm-debug.log*
 *.personal
 notes.txt
 
+# Implementation Documentation (internal use only)
+.implementation-docs/
+
 #OLD
 old_site/
 
