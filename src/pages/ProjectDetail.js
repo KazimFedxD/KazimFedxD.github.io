@@ -1,187 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { FiGithub, FiExternalLink, FiArrowLeft } from 'react-icons/fi';
+import { Github, ExternalLink, ArrowLeft } from 'lucide-react';
+import { fullStackTemplateData } from '../data/fullstack-template-data';
+import FeatureCard from '../components/project-detail/FeatureCard';
+import TechStackTable from '../components/project-detail/TechStackTable';
+import CodeSnippet from '../components/project-detail/CodeSnippet';
+import PerformanceMetrics from '../components/project-detail/PerformanceMetrics';
+import KnownIssuesPanel from '../components/project-detail/KnownIssuesPanel';
+import FutureRoadmap from '../components/project-detail/FutureRoadmap';
+import ScreenshotGallery from '../components/project-detail/ScreenshotGallery';
 
 const ProjectDetail = () => {
   const { projectName } = useParams();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
-  const [projectData, setProjectData] = useState(null);
-  const [markdownContent, setMarkdownContent] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
+  // For now, we only have Full-Stack-Template data
+  const projectData = projectName === 'Full-Stack-Template' 
+    ? fullStackTemplateData 
+    : null;
 
   const tabs = [
-    { id: 'overview', label: 'Overview', file: 'overview.md' },
-    { id: 'features', label: 'Features', file: 'features.md' },
-    { id: 'architecture', label: 'Architecture', file: 'architecture.md' },
-    { id: 'setup', label: 'Setup & Config', file: 'setup.md' },
-    { id: 'performance', label: 'Performance', file: 'performance.md' },
-    { id: 'requirements', label: 'Requirements', file: 'requirements.md' },
-    { id: 'env-vars', label: 'Environment', file: 'environment-variables.md' },
-    { id: 'issues', label: 'Known Issues', file: 'known-issues.md' },
-    { id: 'awards', label: 'Awards', file: 'awards.md' },
-    { id: 'future', label: 'Roadmap', file: 'future.md' },
-    { id: 'media', label: 'Media', file: 'media.md' },
+    { id: 'overview', label: 'Overview' },
+    { id: 'features', label: 'Features' },
+    { id: 'architecture', label: 'Architecture' },
+    { id: 'screenshots', label: 'Screenshots' },
+    { id: 'performance', label: 'Performance' },
+    { id: 'requirements', label: 'Requirements' },
+    { id: 'issues', label: 'Known Issues' },
+    { id: 'future', label: 'Roadmap' },
   ];
 
-  useEffect(() => {
-    const loadProjectData = async () => {
-      try {
-        setLoading(true);
-        
-        // Load metadata.json
-        const metadataResponse = await fetch(`/projects/${projectName}/metadata.json`);
-        if (!metadataResponse.ok) {
-          throw new Error('Project not found');
-        }
-        const metadata = await metadataResponse.json();
-        setProjectData(metadata);
-
-        // Load all markdown files
-        const markdownPromises = tabs.map(async (tab) => {
-          try {
-            const response = await fetch(`/projects/${projectName}/${tab.file}`);
-            if (response.ok) {
-              const text = await response.text();
-              return { [tab.id]: text };
-            }
-            return { [tab.id]: null };
-          } catch (err) {
-            return { [tab.id]: null };
-          }
-        });
-
-        const markdownResults = await Promise.all(markdownPromises);
-        const markdownData = Object.assign({}, ...markdownResults);
-        setMarkdownContent(markdownData);
-
-        setLoading(false);
-      } catch (err) {
-        console.error('Error loading project:', err);
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-
-    loadProjectData();
-  }, [projectName]);
-
-  // Custom markdown components for better rendering
-  const markdownComponents = {
-    code({ node, inline, className, children, ...props }) {
-      const match = /language-(\w+)/.exec(className || '');
-      return !inline && match ? (
-        <SyntaxHighlighter
-          style={vscDarkPlus}
-          language={match[1]}
-          PreTag="div"
-          className="rounded-lg my-4"
-          {...props}
-        >
-          {String(children).replace(/\n$/, '')}
-        </SyntaxHighlighter>
-      ) : (
-        <code className="bg-purple-900/30 px-2 py-1 rounded text-purple-300" {...props}>
-          {children}
-        </code>
-      );
-    },
-    h1: ({ children }) => (
-      <h1 className="text-4xl font-bold mb-6 gradient-text">{children}</h1>
-    ),
-    h2: ({ children }) => (
-      <h2 className="text-3xl font-bold mt-8 mb-4 text-purple-300">{children}</h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="text-2xl font-semibold mt-6 mb-3 text-purple-400">{children}</h3>
-    ),
-    h4: ({ children }) => (
-      <h4 className="text-xl font-semibold mt-4 mb-2 text-purple-500">{children}</h4>
-    ),
-    p: ({ children }) => (
-      <p className="mb-4 text-gray-300 leading-relaxed">{children}</p>
-    ),
-    ul: ({ children }) => (
-      <ul className="list-disc list-inside mb-4 space-y-2 text-gray-300">{children}</ul>
-    ),
-    ol: ({ children }) => (
-      <ol className="list-decimal list-inside mb-4 space-y-2 text-gray-300">{children}</ol>
-    ),
-    li: ({ children }) => (
-      <li className="ml-4">{children}</li>
-    ),
-    a: ({ href, children }) => (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-purple-400 hover:text-purple-300 underline"
-      >
-        {children}
-      </a>
-    ),
-    img: ({ src, alt }) => (
-      <img
-        src={`/projects/${projectName}/${src}`}
-        alt={alt}
-        className="rounded-lg my-6 max-w-full h-auto shadow-2xl"
-        loading="lazy"
-      />
-    ),
-    blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-purple-500 pl-4 italic my-4 text-gray-400">
-        {children}
-      </blockquote>
-    ),
-    table: ({ children }) => (
-      <div className="overflow-x-auto my-6">
-        <table className="min-w-full border-collapse border border-purple-800">
-          {children}
-        </table>
-      </div>
-    ),
-    thead: ({ children }) => (
-      <thead className="bg-purple-900/50">{children}</thead>
-    ),
-    tbody: ({ children }) => (
-      <tbody>{children}</tbody>
-    ),
-    tr: ({ children }) => (
-      <tr className="border-b border-purple-800">{children}</tr>
-    ),
-    th: ({ children }) => (
-      <th className="px-4 py-2 text-left text-purple-300 font-semibold">{children}</th>
-    ),
-    td: ({ children }) => (
-      <td className="px-4 py-2 text-gray-300">{children}</td>
-    ),
-  };
-
-  if (loading) {
+  if (!projectData) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-500 mx-auto mb-4"></div>
-          <p className="text-purple-300 text-xl">Loading project details...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-red-400 mb-4">Error Loading Project</h1>
-          <p className="text-gray-300 mb-6">{error}</p>
+          <h1 className="text-3xl font-bold text-white mb-4">Project Not Found</h1>
+          <p className="text-gray-400 mb-6">The project you're looking for doesn't exist.</p>
           <button
             onClick={() => navigate('/projects')}
-            className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
+            className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
           >
             Back to Projects
           </button>
@@ -190,14 +49,335 @@ const ProjectDetail = () => {
     );
   }
 
-  if (!projectData) {
-    return null;
-  }
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'overview':
+        return (
+          <div className="space-y-8">
+            <div className="prose prose-invert max-w-none">
+              <p className="text-lg text-gray-300 leading-relaxed">
+                {projectData.overview.description}
+              </p>
+            </div>
+
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+              <h3 className="text-2xl font-bold text-white mb-4">Problem Statement</h3>
+              <p className="text-gray-300 mb-4">
+                Starting a new full-stack web application involves significant overhead:
+              </p>
+              <ul className="space-y-3">
+                {projectData.overview.problemStatement.map((problem, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <span className="text-purple-400 mt-1">•</span>
+                    <span className="text-gray-300">{problem}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-6">What Makes This Project Unique</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {projectData.overview.uniqueFeatures.map((feature, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700"
+                  >
+                    <div className="text-4xl mb-3">{feature.icon}</div>
+                    <h4 className="text-xl font-bold text-white mb-3">{feature.title}</h4>
+                    <ul className="space-y-2">
+                      {feature.points.map((point, pointIdx) => (
+                        <li key={pointIdx} className="flex items-start gap-2 text-sm">
+                          <span className="text-purple-400 mt-1">✓</span>
+                          <span className="text-gray-300">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+              <h3 className="text-2xl font-bold text-white mb-4">Target Audience</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {projectData.overview.targetAudience.map((audience, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-gray-300">
+                    <span className="text-purple-400">→</span>
+                    <span>{audience}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+              <h3 className="text-2xl font-bold text-white mb-4">Use Cases</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {projectData.overview.useCases.map((useCase, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-gray-900/50 px-4 py-3 rounded-lg border border-gray-700 text-gray-300"
+                  >
+                    {useCase}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'features':
+        return (
+          <div className="space-y-8">
+            <div className="mb-6">
+              <h2 className="text-3xl font-bold text-white mb-3">
+                {projectData.features.length} Production-Ready Features
+              </h2>
+              <p className="text-gray-300">
+                Each feature represents a core architectural decision that makes this template enterprise-ready.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {projectData.features.map((feature, idx) => (
+                <FeatureCard key={feature.id} feature={feature} index={idx} />
+              ))}
+            </div>
+
+            {projectData.features
+              .filter(f => f.codeSnippets)
+              .map((feature) => (
+                <div key={feature.id} className="mt-12">
+                  <h3 className="text-2xl font-bold text-white mb-6">
+                    {feature.title} - Implementation
+                  </h3>
+                  {feature.codeSnippets.map((snippet, idx) => (
+                    <CodeSnippet
+                      key={idx}
+                      title={snippet.title}
+                      code={snippet.code}
+                      language={snippet.language}
+                    />
+                  ))}
+                </div>
+              ))}
+          </div>
+        );
+
+      case 'architecture':
+        return (
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-3">System Architecture</h2>
+              <p className="text-gray-300 text-lg">
+                This full-stack application follows a modern microservices-inspired architecture.
+              </p>
+            </div>
+
+            <TechStackTable techStack={projectData.techStack} />
+
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+              <h3 className="text-2xl font-bold text-white mb-4">Service Architecture</h3>
+              <p className="text-gray-300 mb-4">The application consists of 7 containerized services:</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {projectData.features.find(f => f.id === 4)?.services?.map((service, idx) => (
+                  <div key={idx} className="bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="font-bold text-white">{service.name}</h4>
+                      {service.port !== '-' && (
+                        <span className="text-sm text-purple-400">Port {service.port}</span>
+                      )}
+                    </div>
+                    <p className="text-sm text-gray-400">{service.purpose}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'screenshots':
+        return (
+          <div className="space-y-6">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-white mb-3">Project Screenshots</h2>
+              <p className="text-gray-300">
+                Browse through screenshots showcasing the modern design and features.
+              </p>
+            </div>
+            
+            <ScreenshotGallery 
+              screenshots={projectData.screenshots} 
+              projectName="FullStack-Template"
+            />
+          </div>
+        );
+
+      case 'performance':
+        return (
+          <div className="space-y-6">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-white mb-3">Performance Metrics</h2>
+              <p className="text-gray-300">
+                Detailed performance characteristics including load times and API response times.
+              </p>
+            </div>
+            
+            <PerformanceMetrics performance={projectData.performance} />
+          </div>
+        );
+
+      case 'requirements':
+        return (
+          <div className="space-y-8">
+            <div className="mb-6">
+              <h2 className="text-3xl font-bold text-white mb-3">System Requirements</h2>
+              <p className="text-gray-300">
+                Hardware and software requirements for running this project.
+              </p>
+            </div>
+
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-bold text-white mb-4">Operating Systems</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-gray-700">
+                      <th className="text-left text-purple-400 font-semibold py-3 px-4">OS</th>
+                      <th className="text-left text-purple-400 font-semibold py-3 px-4">Minimum Version</th>
+                      <th className="text-left text-purple-400 font-semibold py-3 px-4">Support</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {projectData.requirements.os.map((os, idx) => (
+                      <tr key={idx} className="border-b border-gray-800">
+                        <td className="py-3 px-4 text-white font-medium">{os.name}</td>
+                        <td className="py-3 px-4 text-gray-300">{os.version}</td>
+                        <td className="py-3 px-4 text-green-400">{os.support}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+                <h3 className="text-xl font-bold text-white mb-4">Minimum Hardware</h3>
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-purple-400 font-semibold">CPU:</span>
+                    <span className="text-gray-300 ml-2">{projectData.requirements.hardware.minimum.cpu}</span>
+                  </div>
+                  <div>
+                    <span className="text-purple-400 font-semibold">RAM:</span>
+                    <span className="text-gray-300 ml-2">{projectData.requirements.hardware.minimum.ram}</span>
+                  </div>
+                  <div>
+                    <span className="text-purple-400 font-semibold">Disk:</span>
+                    <span className="text-gray-300 ml-2">{projectData.requirements.hardware.minimum.disk}</span>
+                  </div>
+                  <p className="text-sm text-gray-400 italic mt-3">{projectData.requirements.hardware.minimum.note}</p>
+                </div>
+              </div>
+
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-700">
+                <h3 className="text-xl font-bold text-white mb-4">Recommended Hardware</h3>
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-green-400 font-semibold">CPU:</span>
+                    <span className="text-gray-300 ml-2">{projectData.requirements.hardware.recommended.cpu}</span>
+                  </div>
+                  <div>
+                    <span className="text-green-400 font-semibold">RAM:</span>
+                    <span className="text-gray-300 ml-2">{projectData.requirements.hardware.recommended.ram}</span>
+                  </div>
+                  <div>
+                    <span className="text-green-400 font-semibold">Disk:</span>
+                    <span className="text-gray-300 ml-2">{projectData.requirements.hardware.recommended.disk}</span>
+                  </div>
+                  <p className="text-sm text-gray-400 italic mt-3">{projectData.requirements.hardware.recommended.note}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-bold text-white mb-4">Software Dependencies</h3>
+              <div className="space-y-3">
+                {projectData.requirements.software.map((software, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between bg-gray-900/50 px-4 py-3 rounded-lg border border-gray-700"
+                  >
+                    <div>
+                      <span className="text-white font-medium">{software.name}</span>
+                      {software.note && (
+                        <span className="text-sm text-gray-400 ml-2">({software.note})</span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <span className="text-sm text-purple-400">{software.version}</span>
+                      <span className={`text-xs px-2 py-1 rounded ${software.required ? 'bg-red-900/30 text-red-400' : 'bg-blue-900/30 text-blue-400'}`}>
+                        {software.required ? 'Required' : 'Optional'}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-bold text-white mb-4">Browser Compatibility</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {projectData.requirements.browsers.map((browser, idx) => (
+                  <div key={idx} className="bg-gray-900/50 rounded-lg p-4 text-center border border-gray-700">
+                    <div className="text-white font-semibold mb-1">{browser.name}</div>
+                    <div className="text-sm text-gray-400">{browser.version}</div>
+                    <div className="text-xs text-green-400 mt-2">{browser.status}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'issues':
+        return (
+          <div className="space-y-6">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-white mb-3">Known Issues & Limitations</h2>
+              <p className="text-gray-300">
+                Current limitations and workarounds for known issues.
+              </p>
+            </div>
+            
+            <KnownIssuesPanel issues={projectData.knownIssues} />
+          </div>
+        );
+
+      case 'future':
+        return (
+          <div className="space-y-6">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-white mb-3">Future Enhancements & Roadmap</h2>
+              <p className="text-gray-300">
+                Planned features and improvements for upcoming versions.
+              </p>
+            </div>
+            
+            <FutureRoadmap enhancements={projectData.futureEnhancements} />
+          </div>
+        );
+
+      default:
+        return <div className="text-gray-400">Select a tab to view content.</div>;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 pt-24 pb-12">
       <div className="container mx-auto px-4 max-w-7xl">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -208,13 +388,13 @@ const ProjectDetail = () => {
             onClick={() => navigate('/projects')}
             className="flex items-center gap-2 text-purple-400 hover:text-purple-300 mb-4 transition-colors"
           >
-            <FiArrowLeft /> Back to Projects
+            <ArrowLeft size={20} /> Back to Projects
           </button>
 
           <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-purple-800/30">
             <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
-              <div>
-                <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-3">
+              <div className="flex-1">
+                <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-3">
                   {projectData.title}
                 </h1>
                 <p className="text-xl text-gray-300 max-w-3xl">
@@ -227,9 +407,9 @@ const ProjectDetail = () => {
                     href={projectData.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors flex items-center gap-2"
+                    className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors flex items-center gap-2 text-white"
                   >
-                    <FiGithub /> GitHub
+                    <Github size={20} /> GitHub
                   </a>
                 )}
                 {projectData.liveDemo && projectData.liveDemo !== 'N/A (Template Project)' && (
@@ -237,108 +417,62 @@ const ProjectDetail = () => {
                     href={projectData.liveDemo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center gap-2"
+                    className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center gap-2 text-white"
                   >
-                    <FiExternalLink /> Live Demo
+                    <ExternalLink size={20} /> Live Demo
                   </a>
                 )}
               </div>
             </div>
 
-            {/* Badges */}
             {projectData.badges && projectData.badges.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2">
                 {projectData.badges.map((badge, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-purple-800/50 text-purple-300 rounded-full text-sm"
+                    className="px-4 py-2 bg-purple-800/50 text-purple-300 rounded-full text-sm flex items-center gap-2"
                   >
-                    {badge}
+                    <span>{badge.icon}</span>
+                    <span>{badge.text}</span>
                   </span>
                 ))}
               </div>
             )}
-
-            {/* Tech Stack */}
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-purple-300 mb-3">Tech Stack</h3>
-              <div className="flex flex-wrap gap-2">
-                {projectData.techStack.map((tech, index) => (
-                  <span
-                    key={index}
-                    className="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg text-sm border border-purple-800/30"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Quick Features */}
-            <div>
-              <h3 className="text-lg font-semibold text-purple-300 mb-3">Key Features</h3>
-              <div className="grid md:grid-cols-2 gap-3">
-                {projectData.features.map((feature, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-2 text-gray-300"
-                  >
-                    <span className="text-purple-400 mt-1">•</span>
-                    <span>{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </motion.div>
 
-        {/* Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-purple-800/30 overflow-hidden">
-            {/* Tab Navigation */}
             <div className="border-b border-purple-800/30 overflow-x-auto">
               <div className="flex min-w-max">
-                {tabs.map((tab) => {
-                  // Only show tab if content exists
-                  if (!markdownContent[tab.id]) return null;
-                  
-                  return (
-                    <button
-                      key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      className={`px-6 py-4 font-semibold transition-colors whitespace-nowrap ${
-                        activeTab === tab.id
-                          ? 'text-purple-300 border-b-2 border-purple-500 bg-purple-900/30'
-                          : 'text-gray-400 hover:text-purple-400 hover:bg-purple-900/10'
-                      }`}
-                    >
-                      {tab.label}
-                    </button>
-                  );
-                })}
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`px-6 py-4 font-semibold transition-colors whitespace-nowrap ${
+                      activeTab === tab.id
+                        ? 'text-purple-300 border-b-2 border-purple-500 bg-purple-900/30'
+                        : 'text-gray-400 hover:text-purple-400 hover:bg-purple-900/10'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* Tab Content */}
             <div className="p-8">
               <motion.div
                 key={activeTab}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3 }}
-                className="prose prose-invert max-w-none"
               >
-                {markdownContent[activeTab] ? (
-                  <ReactMarkdown components={markdownComponents}>
-                    {markdownContent[activeTab]}
-                  </ReactMarkdown>
-                ) : (
-                  <p className="text-gray-400 italic">No content available for this section.</p>
-                )}
+                {renderTabContent()}
               </motion.div>
             </div>
           </div>
