@@ -46,6 +46,16 @@
     @apply transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50;
   }
   
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
+  }
+  
   /* Light mode text colors */
   html.light .text-slate-400 {
     @apply text-slate-600;

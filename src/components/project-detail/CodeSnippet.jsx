@@ -20,24 +20,25 @@ const CodeSnippet = ({ title, code, language = 'javascript' }) => {
       className="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 mb-6"
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-gray-900 border-b border-gray-700">
+      <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 bg-gray-900 border-b border-gray-700">
         <div className="flex items-center gap-2 text-purple-400">
-          <Code2 size={18} />
-          <span className="font-semibold text-sm">{title}</span>
+          <Code2 size={16} className="sm:w-[18px] sm:h-[18px]" />
+          <span className="font-semibold text-xs sm:text-sm">{title}</span>
         </div>
         <button
           onClick={handleCopy}
-          className="flex items-center gap-2 px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded text-sm text-gray-300 transition-colors"
+          className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded text-xs sm:text-sm text-gray-300 transition-colors"
         >
           {copied ? (
             <>
-              <Check size={16} className="text-green-400" />
-              <span className="text-green-400">Copied!</span>
+              <Check size={14} className="sm:w-4 sm:h-4 text-green-400" />
+              <span className="text-green-400 hidden sm:inline">Copied!</span>
+              <span className="text-green-400 sm:hidden">✓</span>
             </>
           ) : (
             <>
-              <Copy size={16} />
-              <span>Copy</span>
+              <Copy size={14} className="sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Copy</span>
             </>
           )}
         </button>
@@ -50,11 +51,12 @@ const CodeSnippet = ({ title, code, language = 'javascript' }) => {
           style={vscDarkPlus}
           customStyle={{
             margin: 0,
-            padding: '1.5rem',
+            padding: '1rem',
             background: 'transparent',
-            fontSize: '0.875rem',
+            fontSize: '0.75rem',
             lineHeight: '1.5'
           }}
+          className="sm:text-sm"
           showLineNumbers
         >
           {code}

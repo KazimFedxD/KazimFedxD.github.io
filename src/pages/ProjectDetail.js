@@ -436,40 +436,41 @@ const ProjectDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 pt-24 pb-12">
-      <div className="container mx-auto px-4 max-w-7xl">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 pt-20 sm:pt-24 pb-12">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl space-y-6">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-8"
         >
           <button
             onClick={() => navigate('/projects')}
-            className="flex items-center gap-2 text-purple-400 hover:text-purple-300 mb-4 transition-colors"
+            className="flex items-center gap-2 text-purple-400 hover:text-purple-300 mb-4 transition-colors text-sm sm:text-base"
           >
             <ArrowLeft size={20} /> Back to Projects
           </button>
 
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-purple-800/30">
-            <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl border border-purple-800/30">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
               <div className="flex-1">
-                <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-3">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-3">
                   {projectData.title}
                 </h1>
-                <p className="text-xl text-gray-300 max-w-3xl">
+                <p className="text-base sm:text-lg lg:text-xl text-gray-300">
                   {projectData.shortDescription}
                 </p>
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 {projectData.github && (
                   <a
                     href={projectData.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors flex items-center gap-2 text-white"
+                    className="px-4 sm:px-6 py-2 sm:py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors flex items-center gap-2 text-white text-sm sm:text-base"
                   >
-                    <Github size={20} /> GitHub
+                    <Github size={18} className="sm:w-5 sm:h-5" /> 
+                    <span className="hidden sm:inline">GitHub</span>
+                    <span className="sm:hidden">Code</span>
                   </a>
                 )}
                 {projectData.liveDemo && projectData.liveDemo !== 'N/A (Template Project)' && (
@@ -477,9 +478,11 @@ const ProjectDetail = () => {
                     href={projectData.liveDemo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center gap-2 text-white"
+                    className="px-4 sm:px-6 py-2 sm:py-3 bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center gap-2 text-white text-sm sm:text-base"
                   >
-                    <ExternalLink size={20} /> Live Demo
+                    <ExternalLink size={18} className="sm:w-5 sm:h-5" /> 
+                    <span className="hidden sm:inline">Live Demo</span>
+                    <span className="sm:hidden">Demo</span>
                   </a>
                 )}
               </div>
@@ -505,15 +508,17 @@ const ProjectDetail = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
+          className="min-h-[60vh]"
         >
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-purple-800/30 overflow-hidden">
-            <div className="border-b border-purple-800/30 overflow-x-auto">
-              <div className="flex min-w-max">
+          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl border border-purple-800/30 overflow-hidden">
+            {/* Mobile-friendly tabs */}
+            <div className="border-b border-purple-800/30 overflow-x-auto scrollbar-hide">
+              <div className="flex min-w-max px-2 sm:px-0">
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`px-6 py-4 font-semibold transition-colors whitespace-nowrap ${
+                    className={`px-3 sm:px-6 py-3 sm:py-4 font-semibold transition-colors whitespace-nowrap text-sm sm:text-base ${
                       activeTab === tab.id
                         ? 'text-purple-300 border-b-2 border-purple-500 bg-purple-900/30'
                         : 'text-gray-400 hover:text-purple-400 hover:bg-purple-900/10'
@@ -525,7 +530,7 @@ const ProjectDetail = () => {
               </div>
             </div>
 
-            <div className="p-8">
+            <div className="p-4 sm:p-6 lg:p-8 min-h-[50vh]">
               <motion.div
                 key={activeTab}
                 initial={{ opacity: 0, x: 20 }}

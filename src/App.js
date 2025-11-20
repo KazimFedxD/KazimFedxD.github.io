@@ -11,7 +11,6 @@ import Experience from './pages/Experience';
 import Education from './pages/Education';
 import Contact from './pages/Contact';
 import HireMeCTA from './components/HireMeCTA';
-import MobileSwipeNavigation from './components/MobileSwipeNavigation';
 
 // Scroll to top component
 function ScrollToTop() {
@@ -117,7 +116,6 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <MobileSwipeNavigation />
       <div className="min-h-screen">
         <Navigation />
         <HireMeCTA />
