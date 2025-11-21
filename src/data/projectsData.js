@@ -136,21 +136,22 @@ export const projectsData = [
   },
 
   // ============================================================
-  // ORDER 7: PORTFOLIO WEBSITE
+  // ORDER 7: PORTFOLIO WEBSITE (META PROJECT)
   // ============================================================
   {
     order: 6,
     title: 'Portfolio Website',
-    description: 'Modern, professional portfolio website built with React and Tailwind CSS, featuring smooth animations and custom domain.',
-    tech: ['React 19', 'Tailwind CSS', 'Framer Motion', 'EmailJS', 'GitHub Pages'],
+    badge: '🎨 This Website',
+    description: 'Modern, responsive portfolio website built with React 19, Tailwind CSS, and Framer Motion showcasing award-winning projects and professional experience.',
+    tech: ['React 19', 'Tailwind CSS', 'Framer Motion', 'EmailJS', 'React Router', 'GitHub Pages'],
     github: 'https://github.com/KazimFedxD/KazimFedxD.github.io',
     features: [
-      'Responsive design with purple gradient theme',
-      'Framer Motion animations and transitions',
-      'EmailJS contact form integration',
-      'Custom domain with 404 redirect handling',
-      '8 pages with smooth navigation',
-      'GitHub Pages deployment'
+      'Modern SPA with smooth page transitions',
+      'Dynamic project showcase with detailed pages',
+      'Interactive contact form with EmailJS',
+      'GitHub stats integration with live data',
+      'Responsive mobile-first design',
+      'Custom animation system with 60 FPS performance'
     ]
   },
 
@@ -253,4 +254,22 @@ export const getTotalProjects = () => {
 // Get featured projects label
 export const getFeaturedLabel = () => {
   return `${getTotalProjects()} Featured Projects`;
+};
+
+// Track which projects have detailed data files
+// Add project titles here when you create their data files
+export const projectsWithDetails = [
+  'Full-Stack Template',
+  'FedxD Data Container (FxDC)',
+  'FxPy',
+  'FeXoBot',
+  'FxQuest',
+  'Portfolio Website',
+  // Add more project names as you create their data files
+  // Example: 'Skyntel', 'FinCore', etc.
+];
+
+// Helper to check if a project has detailed data
+export const hasProjectDetails = (projectTitle) => {
+  return projectsWithDetails.includes(projectTitle);
 };

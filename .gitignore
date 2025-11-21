@@ -34,3 +34,7 @@ node_modules/
 .github/
 
 deploy.sh
+
+# Website documentation folder (keep private)
+.website/
+

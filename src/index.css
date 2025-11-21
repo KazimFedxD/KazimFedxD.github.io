@@ -91,3 +91,41 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #9333ea;
 }
+
+/* Mobile performance optimizations */
+@media (max-width: 768px) {
+  /* Disable expensive backdrop-blur on mobile */
+  .backdrop-blur-sm,
+  .backdrop-blur,
+  .backdrop-blur-md,
+  .backdrop-blur-lg {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Optimize animations on mobile */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Reduce GPU-intensive effects */
+  .group-hover\:scale-110,
+  .hover\:scale-105,
+  .hover\:scale-110 {
+    transform: none !important;
+  }
+  
+  /* Add will-change for smoother scrolling */
+  .overflow-x-auto,
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+  }
+}
+
+/* Performance optimizations for all devices */
+img {
+  content-visibility: auto;
+}
+

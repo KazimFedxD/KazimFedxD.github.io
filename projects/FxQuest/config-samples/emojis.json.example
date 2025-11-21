@@ -1,0 +1,16 @@
+{
+  "coal": ["coal_emoji", "123456789012345678"],
+  "iron": ["iron_emoji", "234567890123456789"],
+  "gold": ["gold_emoji", "345678901234567890"],
+  "diamond": ["diamond_emoji", "456789012345678901"],
+  "emerald": ["emerald_emoji", "567890123456789012"],
+  "bedrock": ["bedrock_emoji", "678901234567890123"],
+  "stone": ["stone_emoji", "789012345678901234"],
+  "dirt": ["dirt_emoji", "890123456789012345"],
+  "wood": ["wood_emoji", "901234567890123456"],
+  "wooden_pickaxe": ["wooden_pickaxe", "012345678901234567"],
+  "stone_pickaxe": ["stone_pickaxe", "123450987654321098"],
+  "iron_pickaxe": ["iron_pickaxe", "234561098765432109"],
+  "gold_pickaxe": ["gold_pickaxe", "345672109876543210"],
+  "diamond_pickaxe": ["diamond_pickaxe", "456783210987654321"]
+}

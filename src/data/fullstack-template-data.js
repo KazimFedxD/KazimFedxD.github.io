@@ -7,7 +7,6 @@ export const fullStackTemplateData = {
   shortDescription: "A production-ready, containerized full-stack template featuring React 19, Django REST Framework, PostgreSQL, Redis, and comprehensive JWT authentication with email verification.",
   
   github: "https://github.com/KazimFedxD/FullStack-Template",
-  liveDemo: "N/A (Template Project)",
   
   badges: [
     { icon: "🚀", text: "Production-Ready" },
@@ -33,6 +32,8 @@ export const fullStackTemplateData = {
   overview: {
     description: "This is a comprehensive, production-ready full-stack web application template designed to accelerate development by providing a robust, scalable foundation with modern best practices. The template combines React 19's latest features with Django 5.2's powerful backend capabilities, all orchestrated through Docker for seamless deployment across any platform.",
     
+    problemIntro: "Starting a new full-stack web application involves significant overhead:",
+    
     problemStatement: [
       "Configuration Complexity: Setting up Django, React, PostgreSQL, Redis, and Nginx requires deep knowledge of each technology and their integration points",
       "Authentication Boilerplate: Implementing secure JWT authentication with refresh tokens, httpOnly cookies, and email verification is time-consuming and error-prone",
@@ -40,6 +41,39 @@ export const fullStackTemplateData = {
       "Development Environment: Creating a consistent development environment across team members with different operating systems",
       "Security Concerns: Properly securing API endpoints, managing CORS, implementing CSRF protection, and handling sensitive credentials",
       "Task Management: Setting up background job processing for emails, scheduled tasks, and long-running operations"
+    ],
+
+    howWeSolve: [
+      {
+        problem: "Configuration Complexity",
+        solution: "Pre-configured Docker Compose orchestrates all services with a single command. Each service has optimized settings and environment variables clearly documented.",
+        benefit: "Developers can start building features in minutes instead of spending days on configuration."
+      },
+      {
+        problem: "Authentication Boilerplate",
+        solution: "Complete JWT authentication system with access/refresh tokens, httpOnly cookies, email verification with 6-digit codes, and automatic token refresh—all implemented and tested.",
+        benefit: "Copy-paste secure authentication that follows industry best practices without writing a single auth function."
+      },
+      {
+        problem: "Deployment Challenges",
+        solution: "Docker containerization ensures identical behavior across development, staging, and production. Nginx reverse proxy handles routing, static files, and SSL termination.",
+        benefit: "Deploy anywhere Docker runs—local machine, VPS, cloud provider—with zero configuration changes."
+      },
+      {
+        problem: "Development Environment",
+        solution: "Docker eliminates 'works on my machine' syndrome. Hot-reload enabled for both React and Django means instant feedback on code changes.",
+        benefit: "Team members on Windows, Mac, or Linux get identical development experience with a single 'docker-compose up' command."
+      },
+      {
+        problem: "Security Concerns",
+        solution: "Security-first architecture with httpOnly cookies, CORS whitelist, CSRF protection, JWT blacklisting on logout, and email verification before login access.",
+        benefit: "Production-grade security from day one without security expertise required."
+      },
+      {
+        problem: "Task Management",
+        solution: "Celery workers and Celery Beat scheduler handle async tasks and periodic jobs. Redis serves as a fast, reliable message broker.",
+        benefit: "Send emails, process uploads, and run cleanup tasks in the background without blocking API responses."
+      }
     ],
 
     targetAudience: [
@@ -415,6 +449,25 @@ def clear_verification_tokens() -> None:
     ]
   },
 
+  // Architecture
+  architecture: {
+    description: "This full-stack application follows a modern microservices-inspired architecture, containerized with Docker for consistency and scalability.",
+    servicesTitle: "Service Architecture",
+    servicesIntro: "The application consists of 7 containerized services:",
+    diagram: {
+      // Architecture diagram data (if you add visual diagrams later)
+    },
+    services: [
+      { name: "PostgreSQL", port: "5432", purpose: "Persistent data storage" },
+      { name: "Redis", port: "6379", purpose: "Message broker and cache" },
+      { name: "Django Backend", port: "8000", purpose: "REST API server" },
+      { name: "React Frontend", port: "3000", purpose: "User interface" },
+      { name: "Celery Worker", port: "-", purpose: "Background task processor" },
+      { name: "Celery Beat", port: "-", purpose: "Periodic task scheduler" },
+      { name: "Nginx", port: "80", purpose: "Reverse proxy" }
+    ]
+  },
+
   // Known issues
   knownIssues: [
     {
@@ -423,7 +476,22 @@ def clear_verification_tokens() -> None:
       description: "Verification tokens are stored in-memory rather than in the database.",
       impact: "Tokens are lost if the backend container restarts",
       workaround: "Keep backend container running or request new verification email",
-      status: "Planned for v2.0"
+      status: "Planned for v2.0",
+      detailedExplanation: "Currently, email verification tokens are stored in a Python list (`VERIFICATION_TOKENS`) in memory. This approach works for development but has limitations in production environments where containers may be restarted or scaled horizontally.",
+      technicalDetails: "The `VerificationToken` class stores tokens with a 10-minute timeout. Every 60 seconds, a Celery task cleans up expired tokens. However, since this data is in memory, it doesn't persist across container restarts.",
+      whyItHappens: "This design choice was made to simplify the template and avoid additional database tables for temporary data. For a template meant for learning and rapid prototyping, it reduces complexity.",
+      proposedFix: "Migrate to database storage using a `VerificationToken` model with fields: `user`, `token`, `created_at`, `expires_at`. Use Django's built-in database cleanup or Celery periodic task to delete expired tokens.",
+      codeExample: `# Proposed solution
+class VerificationToken(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+    
+    def is_valid(self):
+        return timezone.now() < self.expires_at`,
+      estimatedEffort: "2-3 hours",
+      priority: "Medium (High for production use)"
     },
     {
       title: "No Rate Limiting",
@@ -431,7 +499,29 @@ def clear_verification_tokens() -> None:
       description: "No API rate limiting implemented.",
       impact: "Vulnerable to brute force attacks on login",
       workaround: "Add rate limiting manually using Django packages",
-      status: "Recommended for production"
+      status: "Recommended for production",
+      detailedExplanation: "The template does not include rate limiting on authentication endpoints (/api/auth/login/, /api/auth/register/). This makes it vulnerable to automated attacks that attempt to guess passwords or flood the registration system.",
+      technicalDetails: "Without rate limiting, an attacker can make unlimited login attempts per second, potentially: (1) Brute-forcing weak passwords, (2) Causing database overload, (3) Sending spam verification emails, (4) Exploiting any logic flaws through repeated requests.",
+      whyItHappens: "Rate limiting adds complexity and requires additional dependencies. For a template focused on core functionality, it was omitted to keep the setup simple and let developers choose their preferred rate limiting strategy.",
+      proposedFix: "Use Django REST Framework's throttling classes or django-ratelimit package. Implement per-IP and per-user rate limits on sensitive endpoints.",
+      codeExample: `# Using DRF throttling
+from rest_framework.throttling import AnonRateThrottle
+
+class LoginRateThrottle(AnonRateThrottle):
+    rate = '5/min'  # 5 login attempts per minute
+
+class LoginView(APIView):
+    throttle_classes = [LoginRateThrottle]
+    # ... rest of view code
+
+# Or using django-ratelimit
+from django_ratelimit.decorators import ratelimit
+
+@ratelimit(key='ip', rate='5/m', method='POST')
+def login_view(request):
+    # ... login logic`,
+      estimatedEffort: "1-2 hours to implement basic rate limiting",
+      priority: "Critical for production"
     },
     {
       title: "No Real-Time Features",
@@ -439,7 +529,46 @@ def clear_verification_tokens() -> None:
       description: "No WebSocket support for real-time communication.",
       impact: "No live chat or real-time notifications",
       workaround: "Use polling or implement Django Channels",
-      status: "Feature request"
+      status: "Feature request",
+      detailedExplanation: "The template uses traditional HTTP requests only. It does not support WebSockets, which means features like live chat, real-time notifications, collaborative editing, or live dashboards require polling (repeatedly requesting data) instead of push-based updates.",
+      technicalDetails: "Polling is inefficient: the frontend must make repeated requests (e.g., every 5 seconds) to check for new data. This increases server load, network traffic, and delays between updates. WebSockets maintain a persistent connection for instant bidirectional communication.",
+      whyItHappens: "WebSocket support requires Django Channels, which adds significant complexity (ASGI servers, Redis channel layer, different deployment configuration). For a template focused on standard CRUD operations, WebSockets were deemed out of scope.",
+      proposedFix: "Integrate Django Channels for WebSocket support. Add ASGI configuration, Redis channel layer, and create consumers for real-time features.",
+      codeExample: `# Install Django Channels
+pip install channels channels-redis
+
+# asgi.py
+import os
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
+from django.core.asgi import get_asgi_application
+
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AuthMiddlewareStack(
+        URLRouter([
+            # WebSocket URL patterns
+        ])
+    ),
+})
+
+# Consumer example
+from channels.generic.websocket import AsyncWebsocketConsumer
+import json
+
+class NotificationConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        await self.channel_layer.group_add("notifications", self.channel_name)
+        await self.accept()
+    
+    async def receive(self, text_data):
+        # Handle incoming messages
+        pass
+    
+    async def send_notification(self, event):
+        await self.send(text_data=json.dumps(event))`,
+      estimatedEffort: "1-2 days for basic WebSocket support, 3-5 days for complete real-time features",
+      priority: "Low (depends on project requirements)"
     }
   ],
 
@@ -450,14 +579,270 @@ def clear_verification_tokens() -> None:
       timeline: "Q1-Q2 2026",
       theme: "Production-Ready Enhancements & Security",
       features: [
-        { name: "Two-Factor Authentication (2FA)", priority: "High", effort: "2-3 days" },
-        { name: "Social Authentication (Google, GitHub)", priority: "High", effort: "3-5 days" },
-        { name: "Role-Based Access Control (RBAC)", priority: "Medium", effort: "2-4 days" },
-        { name: "Rate Limiting", priority: "High", effort: "1-2 days" },
-        { name: "API Versioning", priority: "Medium", effort: "2-3 days" },
-        { name: "Swagger/OpenAPI Documentation", priority: "High", effort: "1-2 days" },
-        { name: "File Upload Support", priority: "High", effort: "3-5 days" },
-        { name: "Cloud Storage Integration", priority: "Medium", effort: "2-3 days" }
+        { 
+          name: "Two-Factor Authentication (2FA)", 
+          priority: "High", 
+          difficulty: "Medium",
+          effort: "2-3 days",
+          description: "Add TOTP-based two-factor authentication using apps like Google Authenticator or Authy.",
+          whyWeNeed: "2FA significantly reduces account takeover risks. Even if a password is compromised, attackers cannot access accounts without the second factor. Essential for applications handling sensitive data or financial transactions.",
+          howToImplement: "1. Install `pyotp` library for generating TOTP secrets. 2. Add `TwoFactorAuth` model to store user's secret key. 3. Create endpoints for enabling/disabling 2FA and verifying codes. 4. Generate QR code for easy setup. 5. Update login flow to require 2FA code after password verification. 6. Provide backup codes for account recovery.",
+          benefits: "Enhanced security, compliance with security standards (SOC 2, ISO 27001), reduced fraud, increased user trust.",
+          codeSnippet: `# Backend implementation
+import pyotp
+import qrcode
+
+class TwoFactorAuth(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    secret = models.CharField(max_length=32)
+    enabled = models.BooleanField(default=False)
+    backup_codes = models.JSONField(default=list)
+
+@api_view(['POST'])
+def enable_2fa(request):
+    secret = pyotp.random_base32()
+    totp = pyotp.TOTP(secret)
+    uri = totp.provisioning_uri(request.user.email, issuer_name="YourApp")
+    # Generate QR code from uri
+    return Response({'secret': secret, 'qr_code': uri})`
+        },
+        { 
+          name: "Social Authentication (Google, GitHub)", 
+          priority: "High", 
+          difficulty: "Medium",
+          effort: "3-5 days",
+          description: "Enable users to sign up and log in using their Google or GitHub accounts via OAuth2.",
+          whyWeNeed: "Reduces friction in signup process (no email verification needed), improves conversion rates, and leverages trusted identity providers. Users prefer social login for faster onboarding.",
+          howToImplement: "1. Install `django-allauth` or `social-auth-app-django`. 2. Register apps on Google Cloud Console and GitHub OAuth Apps. 3. Add OAuth client IDs and secrets to environment variables. 4. Configure callback URLs. 5. Create endpoints for initiating OAuth flow and handling callbacks. 6. Link social accounts to existing users or create new accounts. 7. Add social login buttons to frontend.",
+          benefits: "Faster user onboarding, reduced password management burden, access to user profile data (with permission), higher signup conversion rates.",
+          codeSnippet: `# Using django-allauth
+# settings.py
+INSTALLED_APPS += ['allauth', 'allauth.account', 'allauth.socialaccount', 'allauth.socialaccount.providers.google', 'allauth.socialaccount.providers.github']
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {'SCOPE': ['profile', 'email'], 'AUTH_PARAMS': {'access_type': 'online'}},
+    'github': {'SCOPE': ['user:email']}
+}
+
+# Frontend button
+<button onClick={() => window.location.href = '/auth/google/'}>
+  Sign in with Google
+</button>`
+        },
+        { 
+          name: "Role-Based Access Control (RBAC)", 
+          priority: "Medium", 
+          difficulty: "Medium",
+          effort: "2-4 days",
+          description: "Implement a flexible permission system with roles (Admin, Editor, Viewer) and custom permissions.",
+          whyWeNeed: "Not all users should have the same access level. RBAC allows granular control over who can create, read, update, or delete resources. Essential for team collaboration and enterprise applications.",
+          howToImplement: "1. Create `Role` and `Permission` models. 2. Extend User model with `role` field. 3. Create permission decorators and middleware. 4. Define role hierarchy (Admin > Editor > Viewer). 5. Implement permission checks in API views. 6. Add role management endpoints for admins. 7. Update frontend to show/hide UI elements based on permissions.",
+          benefits: "Enhanced security, team collaboration support, audit trails, compliance with access control policies, prevents privilege escalation.",
+          codeSnippet: `# Models
+class Role(models.Model):
+    name = models.CharField(max_length=50)
+    permissions = models.JSONField(default=list)
+
+class UserRole(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+
+# Permission decorator
+from functools import wraps
+
+def require_permission(permission):
+    def decorator(view_func):
+        @wraps(view_func)
+        def wrapped(request, *args, **kwargs):
+            if not request.user.has_permission(permission):
+                return Response({'error': 'Forbidden'}, status=403)
+            return view_func(request, *args, **kwargs)
+        return wrapped
+    return decorator
+
+@require_permission('delete_user')
+@api_view(['DELETE'])
+def delete_user(request, user_id):
+    # Delete logic`
+        },
+        { 
+          name: "Rate Limiting", 
+          priority: "High", 
+          difficulty: "Easy",
+          effort: "1-2 days",
+          description: "Implement per-IP and per-user rate limiting on authentication and sensitive endpoints.",
+          whyWeNeed: "Protects against brute force attacks, DDoS attempts, and API abuse. Essential for production environments to ensure service availability and security.",
+          howToImplement: "1. Install `django-ratelimit` or use DRF throttling. 2. Define rate limits for different endpoint types (e.g., 5 login attempts/min, 100 API calls/hour). 3. Apply decorators to views. 4. Use Redis to store rate limit counters for distributed systems. 5. Add custom error responses for rate-limited requests. 6. Consider different limits for authenticated vs anonymous users.",
+          benefits: "Protection against brute force attacks, reduced server load from spam, improved API reliability, compliance with security best practices.",
+          codeSnippet: `# Using django-ratelimit
+from django_ratelimit.decorators import ratelimit
+
+@ratelimit(key='ip', rate='5/m', method='POST', block=True)
+@api_view(['POST'])
+def login_view(request):
+    # Login logic
+    pass
+
+# Using DRF throttling
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
+
+class LoginThrottle(AnonRateThrottle):
+    rate = '5/minute'
+
+class APIThrottle(UserRateThrottle):
+    rate = '100/hour'
+
+class LoginView(APIView):
+    throttle_classes = [LoginThrottle]
+    # View logic`
+        },
+        { 
+          name: "API Versioning", 
+          priority: "Medium", 
+          difficulty: "Easy",
+          effort: "2-3 days",
+          description: "Implement API versioning to maintain backward compatibility when making breaking changes.",
+          whyWeNeed: "Allows evolving the API without breaking existing client applications. Mobile apps and third-party integrations can continue using older API versions while new features are developed.",
+          howToImplement: "1. Choose versioning strategy (URL path /api/v1/, header, or query parameter). 2. Restructure endpoints to include version prefix. 3. Create version-specific serializers and views. 4. Document version changes and deprecation timeline. 5. Add version negotiation middleware. 6. Set up automated tests for each API version.",
+          benefits: "Smooth feature rollouts, maintains compatibility with legacy clients, professional API management, easier deprecation process.",
+          codeSnippet: `# URL versioning (recommended)
+# urls.py
+urlpatterns = [
+    path('api/v1/', include('api.v1.urls')),
+    path('api/v2/', include('api.v2.urls')),
+]
+
+# Header versioning
+from rest_framework.versioning import AcceptHeaderVersioning
+
+REST_FRAMEWORK = {
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+    'ALLOWED_VERSIONS': ['v1', 'v2'],
+    'DEFAULT_VERSION': 'v1'
+}
+
+# View
+class UserViewSet(viewsets.ModelViewSet):
+    def get_serializer_class(self):
+        if self.request.version == 'v2':
+            return UserSerializerV2
+        return UserSerializerV1`
+        },
+        { 
+          name: "Swagger/OpenAPI Documentation", 
+          priority: "High", 
+          difficulty: "Easy",
+          effort: "1-2 days",
+          description: "Auto-generate interactive API documentation using Swagger/OpenAPI specification.",
+          whyWeNeed: "Automatically documented APIs improve developer experience, reduce support burden, and serve as living documentation that stays up-to-date with code changes. Essential for API-first applications.",
+          howToImplement: "1. Install `drf-spectacular` or `drf-yasg`. 2. Configure schema generation settings. 3. Add docstrings to API views for descriptions. 4. Annotate serializers with field descriptions. 5. Add example responses. 6. Configure Swagger UI endpoint. 7. Add authentication to Swagger for testing protected endpoints.",
+          benefits: "Self-documenting API, interactive testing interface, client SDK generation, reduces documentation maintenance, improves team collaboration.",
+          codeSnippet: `# Using drf-spectacular
+pip install drf-spectacular
+
+# settings.py
+INSTALLED_APPS += ['drf_spectacular']
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# urls.py
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+
+urlpatterns = [
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+]
+
+# Annotated view
+from drf_spectacular.utils import extend_schema
+
+@extend_schema(
+    description="Register a new user account",
+    responses={201: UserSerializer}
+)
+@api_view(['POST'])
+def register(request):
+    # Registration logic`
+        },
+        { 
+          name: "File Upload Support", 
+          priority: "High", 
+          difficulty: "Medium",
+          effort: "3-5 days",
+          description: "Add secure file upload functionality with validation, virus scanning, and storage management.",
+          whyWeNeed: "Most applications need file uploads (profile pictures, documents, attachments). Implementing it securely with proper validation, size limits, and malware scanning is critical.",
+          howToImplement: "1. Configure Django media files settings. 2. Create FileUpload model to track uploads. 3. Implement file validation (size, type, extension). 4. Add virus scanning using ClamAV or external service. 5. Generate unique filenames to prevent overwriting. 6. Implement chunked upload for large files. 7. Add file deletion and cleanup. 8. Create upload progress tracking.",
+          benefits: "Complete user profiles, document management, rich content creation, better user engagement.",
+          codeSnippet: `# Model
+class FileUpload(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    file = models.FileField(upload_to='uploads/%Y/%m/%d/')
+    original_filename = models.CharField(max_length=255)
+    size = models.IntegerField()
+    mime_type = models.CharField(max_length=100)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+# View with validation
+from django.core.files.uploadedfile import UploadedFile
+
+@api_view(['POST'])
+def upload_file(request):
+    file: UploadedFile = request.FILES.get('file')
+    
+    # Validate
+    if file.size > 10 * 1024 * 1024:  # 10MB limit
+        return Response({'error': 'File too large'}, status=400)
+    
+    allowed_types = ['image/jpeg', 'image/png', 'application/pdf']
+    if file.content_type not in allowed_types:
+        return Response({'error': 'Invalid file type'}, status=400)
+    
+    # Save
+    upload = FileUpload.objects.create(
+        user=request.user,
+        file=file,
+        original_filename=file.name,
+        size=file.size,
+        mime_type=file.content_type
+    )
+    return Response(FileUploadSerializer(upload).data, status=201)`
+        },
+        { 
+          name: "Cloud Storage Integration", 
+          priority: "Medium", 
+          difficulty: "Medium",
+          effort: "2-3 days",
+          description: "Integrate cloud storage (AWS S3, Google Cloud Storage, or Azure Blob) for scalable file storage.",
+          whyWeNeed: "Local file storage doesn't scale with containerized deployments. Cloud storage provides unlimited capacity, CDN integration, automatic backups, and geographic redundancy.",
+          howToImplement: "1. Install `django-storages` and cloud provider SDK (boto3 for AWS). 2. Configure storage backend in settings. 3. Set up cloud storage bucket with proper access policies. 4. Add environment variables for credentials. 5. Configure static/media files to use cloud storage. 6. Implement presigned URLs for secure downloads. 7. Add CDN configuration for faster delivery.",
+          benefits: "Unlimited storage capacity, automatic scaling, CDN integration for faster delivery, geographic redundancy, reduced server load, works with horizontal scaling.",
+          codeSnippet: `# AWS S3 setup
+pip install django-storages boto3
+
+# settings.py
+INSTALLED_APPS += ['storages']
+
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+# Generate presigned URL for private files
+from botocore.client import Config
+import boto3
+
+s3 = boto3.client('s3', config=Config(signature_version='s3v4'))
+url = s3.generate_presigned_url(
+    'get_object',
+    Params={'Bucket': bucket, 'Key': key},
+    ExpiresIn=3600  # 1 hour
+)`
+        }
       ]
     },
     {
@@ -465,10 +850,173 @@ def clear_verification_tokens() -> None:
       timeline: "Q4 2026",
       theme: "Real-Time & Mobile",
       features: [
-        { name: "WebSocket Support (Django Channels)", priority: "High", effort: "1 week" },
-        { name: "Mobile Apps (iOS & Android)", priority: "High", effort: "3-4 weeks" },
-        { name: "Push Notifications", priority: "High", effort: "3-5 days" },
-        { name: "GraphQL API", priority: "Medium", effort: "1 week" }
+        { 
+          name: "WebSocket Support (Django Channels)", 
+          priority: "High", 
+          difficulty: "Hard",
+          effort: "1 week",
+          description: "Add full WebSocket support using Django Channels for real-time bidirectional communication.",
+          whyWeNeed: "Enable real-time features like live chat, notifications, collaborative editing, live dashboards, and gaming without inefficient polling.",
+          howToImplement: "1. Install Django Channels and channels-redis. 2. Create ASGI application configuration. 3. Set up Redis as channel layer. 4. Create WebSocket consumers for different features. 5. Implement authentication for WebSocket connections. 6. Add routing for WebSocket URLs. 7. Update Nginx to proxy WebSocket connections. 8. Create frontend WebSocket client with reconnection logic.",
+          benefits: "Real-time user experience, reduced server load compared to polling, enables collaborative features, instant notifications, modern app capabilities.",
+          codeSnippet: `# Installation
+pip install channels channels-redis
+
+# asgi.py
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
+import chat.routing
+
+application = ProtocolTypeRouter({
+    'http': get_asgi_application(),
+    'websocket': AuthMiddlewareStack(
+        URLRouter(chat.routing.websocket_urlpatterns)
+    ),
+})
+
+# Consumer
+from channels.generic.websocket import AsyncJsonWebsocketConsumer
+
+class ChatConsumer(AsyncJsonWebsocketConsumer):
+    async def connect(self):
+        self.room_name = self.scope['url_route']['kwargs']['room_name']
+        await self.channel_layer.group_add(self.room_name, self.channel_name)
+        await self.accept()
+    
+    async def receive_json(self, content):
+        await self.channel_layer.group_send(
+            self.room_name,
+            {'type': 'chat.message', 'message': content['message']}
+        )
+    
+    async def chat_message(self, event):
+        await self.send_json({'message': event['message']})`
+        },
+        { 
+          name: "Mobile Apps (iOS & Android)", 
+          priority: "High", 
+          difficulty: "Hard",
+          effort: "3-4 weeks",
+          description: "Build native mobile applications for iOS and Android using React Native or Flutter.",
+          whyWeNeed: "Mobile users expect native app experiences. Mobile apps provide better performance, offline capability, push notifications, and access to device features (camera, location, biometrics).",
+          howToImplement: "1. Choose framework (React Native recommended for code reuse). 2. Set up React Native project with Expo or bare workflow. 3. Implement authentication flow with biometric support. 4. Create API client wrapper. 5. Implement offline-first data sync. 6. Add push notification support. 7. Implement camera and file access. 8. Build for iOS App Store and Google Play Store. 9. Set up CI/CD for mobile builds.",
+          benefits: "Reach mobile users, better performance than web apps, offline functionality, push notifications, device feature access, app store presence.",
+          codeSnippet: `// React Native setup
+npx react-native init YourApp
+
+// Auth with biometrics
+import * as LocalAuthentication from 'expo-local-authentication';
+
+const authenticateWithBiometrics = async () => {
+  const hasHardware = await LocalAuthentication.hasHardwareAsync();
+  const result = await LocalAuthentication.authenticateAsync({
+    promptMessage: 'Authenticate to access your account',
+  });
+  
+  if (result.success) {
+    // Load saved credentials and login
+  }
+};
+
+// API client
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const api = axios.create({ baseURL: 'https://api.yourapp.com' });
+
+api.interceptors.request.use(async (config) => {
+  const token = await AsyncStorage.getItem('accessToken');
+  if (token) config.headers.Authorization = \`Bearer \${token}\`;
+  return config;
+});`
+        },
+        { 
+          name: "Push Notifications", 
+          priority: "High", 
+          difficulty: "Medium",
+          effort: "3-5 days",
+          description: "Implement web and mobile push notifications for real-time user engagement.",
+          whyWeNeed: "Re-engage users with timely updates, increase retention, deliver important alerts even when app is closed.",
+          howToImplement: "1. Set up Firebase Cloud Messaging (FCM) or OneSignal. 2. Create Notification model to store push subscriptions. 3. Implement service worker for web push. 4. Add notification preferences for users. 5. Create notification sending service. 6. Implement notification scheduling. 7. Add rich notifications with images and actions. 8. Track notification delivery and engagement.",
+          benefits: "Increased user engagement, better retention rates, timely alerts, marketing channel, improved user experience.",
+          codeSnippet: `# Backend with FCM
+from firebase_admin import messaging
+
+def send_push_notification(user, title, body):
+    message = messaging.Message(
+        notification=messaging.Notification(title=title, body=body),
+        token=user.push_token,
+    )
+    response = messaging.send(message)
+    return response
+
+# Frontend (web) service worker
+self.addEventListener('push', (event) => {
+  const data = event.data.json();
+  self.registration.showNotification(data.title, {
+    body: data.body,
+    icon: '/icon.png',
+    badge: '/badge.png',
+    actions: [
+      { action: 'view', title: 'View' },
+      { action: 'dismiss', title: 'Dismiss' }
+    ]
+  });
+});`
+        },
+        { 
+          name: "GraphQL API", 
+          priority: "Medium", 
+          difficulty: "Hard",
+          effort: "1 week",
+          description: "Add GraphQL API alongside REST for flexible, efficient data fetching.",
+          whyWeNeed: "GraphQL solves over-fetching and under-fetching problems of REST. Clients request exactly what they need, reducing bandwidth and improving performance. Great for mobile apps and complex UIs.",
+          howToImplement: "1. Install Graphene-Django. 2. Define GraphQL types from Django models. 3. Create query and mutation schemas. 4. Implement resolvers with permission checks. 5. Add DataLoader for N+1 query optimization. 6. Set up GraphQL endpoint. 7. Add GraphQL Playground for testing. 8. Implement subscriptions for real-time data (requires Channels).",
+          benefits: "Flexible data fetching, reduced over-fetching, single request for multiple resources, strongly typed schema, better mobile performance, real-time subscriptions.",
+          codeSnippet: `# Installation
+pip install graphene-django
+
+# Schema
+import graphene
+from graphene_django import DjangoObjectType
+
+class UserType(DjangoObjectType):
+    class Meta:
+        model = User
+        fields = ('id', 'email', 'first_name', 'last_name')
+
+class Query(graphene.ObjectType):
+    users = graphene.List(UserType)
+    user = graphene.Field(UserType, id=graphene.Int())
+    
+    def resolve_users(self, info):
+        return User.objects.all()
+    
+    def resolve_user(self, info, id):
+        return User.objects.get(pk=id)
+
+class CreateUser(graphene.Mutation):
+    class Arguments:
+        email = graphene.String(required=True)
+        password = graphene.String(required=True)
+    
+    user = graphene.Field(UserType)
+    
+    def mutate(self, info, email, password):
+        user = User.objects.create_user(email=email, password=password)
+        return CreateUser(user=user)
+
+# Frontend query
+const query = gql\`
+  query GetUser($id: Int!) {
+    user(id: $id) {
+      email
+      firstName
+      lastName
+    }
+  }
+\`;`
+        }
       ]
     }
   ],

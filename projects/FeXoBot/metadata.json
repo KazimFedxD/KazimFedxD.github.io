@@ -1,0 +1,44 @@
+{
+  "title": "FeXoBot - Feature-Rich Discord Bot",
+  "shortDescription": "A comprehensive, multi-purpose Discord bot with 100+ commands, advanced moderation, interactive games, AI integration, and extensive API integrations for enhanced server management.",
+  "techStack": [
+    "Python 3.12",
+    "Discord.py 2.0+",
+    "SQLite",
+    "GPT-4 Free API",
+    "Easy-PIL",
+    "Asyncio"
+  ],
+  "features": [
+    "Advanced Moderation: Complete warning system, ban/kick management, role control, and message purging",
+    "Interactive Games: Hangman, Tic-Tac-Toe, Pokémon database, and trivia with 4,000+ questions",
+    "AI-Powered Features: ChatGPT integration for intelligent responses and natural language processing",
+    "12+ API Integrations: NASA, PokeAPI, JokeAPI, Google Translate, Currency Converter, and more",
+    "Leveling System: XP tracking with automatic role rewards at levels 5, 10, 25, 50, and 100",
+    "Support Ticketing: Full ticket lifecycle management with transcripts and staff notifications"
+  ],
+  "badges": [
+    "🤖 100+ Commands",
+    "🎮 Multiple Interactive Games",
+    "🚀 Active Development"
+  ],
+  "github": "https://github.com/KazimFedxD/FeXoBot",
+  "liveDemo": "Available on Discord - Invite via GitHub",
+  "performance": {
+    "commandResponseTime": "< 100ms avg",
+    "databaseQueryTime": "< 50ms",
+    "uptime": "99.5%",
+    "concurrentServers": "Multiple guilds supported"
+  },
+  "awards": [],
+  "requirements": {
+    "os": ["Windows", "macOS", "Linux"],
+    "browsers": ["Not applicable - Discord Bot"],
+    "minRAM": "512MB",
+    "dependencies": [
+      "Python 3.12+",
+      "Discord.py 2.0+",
+      "SQLite3"
+    ]
+  }
+}

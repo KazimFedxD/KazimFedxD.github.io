@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Copy, Check } from 'lucide-react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const CodeSnippet = ({ title, code, language = 'javascript' }) => {
-  const [copied, setCopied] = React.useState(false);
+  const [copied, setCopied] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(code);
@@ -15,8 +23,8 @@ const CodeSnippet = ({ title, code, language = 'javascript' }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={isMobile ? false : { opacity: 0, y: 20 }}
+      animate={isMobile ? false : { opacity: 1, y: 0 }}
       className="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 mb-6"
     >
       {/* Header */}
