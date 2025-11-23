@@ -8,6 +8,7 @@ import { fxpyData } from '../data/fxpy-data';
 import { fexobotData } from '../data/fexobot-data';
 import { fxquestData } from '../data/fxquest-data';
 import { portfolioWebsiteData } from '../data/portfolio-website-data';
+import { fincoreData } from '../data/fincore-data';
 import FeatureCard from '../components/project-detail/FeatureCard';
 import TechStackTable from '../components/project-detail/TechStackTable';
 import CodeSnippet from '../components/project-detail/CodeSnippet';
@@ -41,6 +42,7 @@ const ProjectDetail = () => {
     'FeXoBot': fexobotData,
     'FxQuest': fxquestData,
     'Portfolio-Website': portfolioWebsiteData,
+    'FinCore': fincoreData,
   }), []);
   
   const projectData = projectDataMap[projectName] || null;

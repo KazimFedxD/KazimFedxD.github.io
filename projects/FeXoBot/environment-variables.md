@@ -116,7 +116,7 @@ def ninjaapiTOKEN():
 - **Type**: String
 - **Format**: 39-character API key starting with "AIza"
 - **Purpose**: Google Custom Search for image search
-- **Example**: `AIzaSyD1234567890abcdefghijklmnopqrstuv`
+- **Example**: `Your-Google-Key`
 - **Required**: ❌ No (image search will use Unsplash as fallback)
 - **Default**: None
 - **How to Obtain**:

@@ -265,8 +265,8 @@ export const projectsWithDetails = [
   'FeXoBot',
   'FxQuest',
   'Portfolio Website',
+  'FinCore',
   // Add more project names as you create their data files
-  // Example: 'Skyntel', 'FinCore', etc.
 ];
 
 // Helper to check if a project has detailed data
