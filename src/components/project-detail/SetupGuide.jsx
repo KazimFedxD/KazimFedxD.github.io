@@ -166,14 +166,18 @@ const SetupGuide = ({ setupSteps }) => {
                       <span className="text-lg">📝</span>
                       Important Notes
                     </h4>
-                    <ul className="space-y-1 text-sm text-slate-300">
-                      {step.notes.map((note, noteIdx) => (
-                        <li key={noteIdx} className="flex items-start gap-2">
-                          <span className="text-blue-400 mt-1">•</span>
-                          <span>{note}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    {typeof step.notes === 'string' ? (
+                      <p className="text-sm text-slate-300">{step.notes}</p>
+                    ) : (
+                      <ul className="space-y-1 text-sm text-slate-300">
+                        {step.notes.map((note, noteIdx) => (
+                          <li key={noteIdx} className="flex items-start gap-2">
+                            <span className="text-blue-400 mt-1">•</span>
+                            <span>{note}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </motion.div>
                 )}
 
@@ -187,14 +191,18 @@ const SetupGuide = ({ setupSteps }) => {
                       <span className="text-lg">⚠️</span>
                       Warnings
                     </h4>
-                    <ul className="space-y-1 text-sm text-slate-300">
-                      {step.warnings.map((warning, warnIdx) => (
-                        <li key={warnIdx} className="flex items-start gap-2">
-                          <span className="text-yellow-400 mt-1">•</span>
-                          <span>{warning}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    {typeof step.warnings === 'string' ? (
+                      <p className="text-sm text-slate-300">{step.warnings}</p>
+                    ) : (
+                      <ul className="space-y-1 text-sm text-slate-300">
+                        {step.warnings.map((warning, warnIdx) => (
+                          <li key={warnIdx} className="flex items-start gap-2">
+                            <span className="text-yellow-400 mt-1">•</span>
+                            <span>{warning}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </motion.div>
                 )}
               </motion.div>
