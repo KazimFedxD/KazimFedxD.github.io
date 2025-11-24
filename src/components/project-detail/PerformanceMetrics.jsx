@@ -9,38 +9,51 @@ const PerformanceMetrics = ({ performance }) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700"
+          whileHover={{ scale: 1.01, y: -3 }}
+          className="glass rounded-xl p-6 border border-purple-500/30"
         >
           <h3 className="text-xl font-bold text-white mb-4">Benchmark Overview</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {performance.overview.benchmarkDate && (
-              <div className="bg-gray-900/50 rounded-lg p-3">
-                <div className="text-xs text-gray-400 mb-1">Benchmark Date</div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="glass rounded-lg p-3 border border-slate-700/50"
+              >
+                <div className="text-xs text-slate-400 mb-1">Benchmark Date</div>
                 <div className="text-white font-medium">{performance.overview.benchmarkDate}</div>
-              </div>
+              </motion.div>
             )}
             {performance.overview.interpreterVersion && (
-              <div className="bg-gray-900/50 rounded-lg p-3">
-                <div className="text-xs text-gray-400 mb-1">Version</div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="glass rounded-lg p-3 border border-slate-700/50"
+              >
+                <div className="text-xs text-slate-400 mb-1">Version</div>
                 <div className="text-white font-medium">{performance.overview.interpreterVersion}</div>
-              </div>
+              </motion.div>
             )}
             {performance.overview.pythonVersion && (
-              <div className="bg-gray-900/50 rounded-lg p-3">
-                <div className="text-xs text-gray-400 mb-1">Python Version</div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="glass rounded-lg p-3 border border-slate-700/50"
+              >
+                <div className="text-xs text-slate-400 mb-1">Python Version</div>
                 <div className="text-white font-medium">{performance.overview.pythonVersion}</div>
-              </div>
+              </motion.div>
             )}
             {performance.overview.testEnvironment && (
-              <div className="bg-gray-900/50 rounded-lg p-3">
-                <div className="text-xs text-gray-400 mb-1">Environment</div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="glass rounded-lg p-3 border border-slate-700/50"
+              >
+                <div className="text-xs text-slate-400 mb-1">Environment</div>
                 <div className="text-white font-medium">{performance.overview.testEnvironment}</div>
-              </div>
+              </motion.div>
             )}
           </div>
           {performance.overview.philosophy && (
-            <div className="mt-4 p-4 bg-gray-900/50 rounded-lg border border-purple-700">
-              <p className="text-gray-300 text-sm italic">{performance.overview.philosophy}</p>
+            <div className="mt-4 p-4 glass rounded-lg border border-purple-500/30">
+              <p className="text-slate-300 text-sm italic">{performance.overview.philosophy}</p>
             </div>
           )}
         </motion.div>
@@ -52,15 +65,23 @@ const PerformanceMetrics = ({ performance }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700"
+          whileHover={{ scale: 1.01, y: -3 }}
+          className="glass rounded-xl p-6 border border-purple-500/30"
         >
           <h3 className="text-xl font-bold text-white mb-4">Key Metrics</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {Object.entries(performance.keyMetrics).map(([key, value]) => (
-              <div key={key} className="bg-gray-900/50 rounded-lg p-4 text-center">
+            {Object.entries(performance.keyMetrics).map(([key, value], idx) => (
+              <motion.div 
+                key={key} 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: idx * 0.05 }}
+                whileHover={{ scale: 1.1, y: -5 }}
+                className="glass rounded-lg p-4 text-center border border-slate-700/50"
+              >
                 <div className="text-2xl font-bold text-purple-400 mb-1">{value}</div>
-                <div className="text-xs text-gray-400">{key.replace(/([A-Z])/g, ' $1').trim()}</div>
-              </div>
+                <div className="text-xs text-slate-400">{key.replace(/([A-Z])/g, ' $1').trim()}</div>
+              </motion.div>
             ))}
           </div>
         </motion.div>

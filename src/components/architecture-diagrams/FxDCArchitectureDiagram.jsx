@@ -16,17 +16,31 @@ const FxDCArchitectureDiagram = () => {
 
   return (
     <div className="w-full overflow-x-auto">
-      <div className="min-w-[900px] p-4 md:p-8 bg-gray-900 rounded-lg border border-gray-700">
+      <div className="min-w-[900px] p-4 md:p-8 glass rounded-2xl border border-purple-500/20">
         {/* Title */}
-        <h3 className="text-xl md:text-2xl font-bold text-white text-center mb-4 md:mb-8">
+        <motion.h3
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-xl md:text-2xl font-bold gradient-text text-center mb-4 md:mb-8"
+        >
           FxDC Pipeline Architecture
-        </h3>
-        <p className="text-gray-400 text-center mb-4 md:mb-8 text-xs md:text-sm">
+        </motion.h3>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-slate-400 text-center mb-4 md:mb-8 text-xs md:text-sm"
+        >
           Data flows through distinct stages: Raw Text → Tokens → AST → Python Objects
-        </p>
+        </motion.p>
 
         {/* Input Layer */}
-        <div className="mb-4 md:mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-4 md:mb-8"
+        >
           <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">INPUT LAYER</h4>
           <div className="flex justify-center">
             <StageBox
@@ -38,10 +52,15 @@ const FxDCArchitectureDiagram = () => {
             />
           </div>
           <ArrowDown label="Character stream" />
-        </div>
+        </motion.div>
 
         {/* Lexical Analysis */}
-        <div className="mb-4 md:mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mb-4 md:mb-8"
+        >
           <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">LEXICAL ANALYSIS</h4>
           <div className="flex justify-center gap-4 md:gap-8">
             <StageBox
@@ -60,10 +79,15 @@ const FxDCArchitectureDiagram = () => {
             />
           </div>
           <ArrowDown label="Token stream" />
-        </div>
+        </motion.div>
 
         {/* Syntactic Analysis */}
-        <div className="mb-4 md:mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mb-4 md:mb-8"
+        >
           <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">SYNTACTIC ANALYSIS</h4>
           <div className="flex justify-center gap-4 md:gap-8">
             <StageBox
@@ -82,10 +106,15 @@ const FxDCArchitectureDiagram = () => {
             />
           </div>
           <ArrowDown label="Parsed structure" />
-        </div>
+        </motion.div>
 
         {/* Object Construction */}
-        <div className="mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mb-8"
+        >
           <h4 className="text-sm font-semibold text-purple-400 mb-4 text-center">OBJECT CONSTRUCTION</h4>
           <div className="flex justify-center gap-4 md:gap-8">
             <StageBox
@@ -104,10 +133,14 @@ const FxDCArchitectureDiagram = () => {
             />
           </div>
           <ArrowDown label="Final output" />
-        </div>
+        </motion.div>
 
         {/* Output Layer */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+        >
           <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">OUTPUT LAYER</h4>
           <div className="flex justify-center">
             <StageBox
@@ -118,14 +151,19 @@ const FxDCArchitectureDiagram = () => {
               color="green"
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Bidirectional Flow Note */}
-        <div className="mt-4 md:mt-8 p-3 md:p-4 bg-purple-900/20 border border-purple-500/30 rounded-lg">
-          <p className="text-xs md:text-sm text-gray-300 text-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="mt-4 md:mt-8 p-3 md:p-4 glass border border-purple-500/30 rounded-lg"
+        >
+          <p className="text-xs md:text-sm text-slate-300 text-center">
             <span className="text-purple-400 font-semibold">Round-Trip Serialization:</span> Python objects can be dumped back to FxDC format using the Serialization Engine (write.py)
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
@@ -144,18 +182,24 @@ const StageBox = ({ icon: Icon, title, subtitle, features, color }) => {
     <motion.div
       initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
       animate={isMobile ? false : { opacity: 1, scale: 1 }}
-      className={`p-3 md:p-4 rounded-lg bg-${color}-900/20 border border-${color}-500/30 min-w-[180px] md:min-w-[220px]`}
+      whileHover={{ scale: 1.05, y: -5 }}
+      className={`p-3 md:p-4 rounded-lg glass border border-${color}-500/30 min-w-[180px] md:min-w-[220px]`}
     >
       <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-        <Icon className={`w-5 h-5 md:w-6 md:h-6 text-${color}-400`} />
+        <motion.div
+          animate={{ rotate: [0, 10, -10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+        >
+          <Icon className={`w-5 h-5 md:w-6 md:h-6 text-${color}-400`} />
+        </motion.div>
         <div>
           <div className="text-xs md:text-sm font-bold text-white">{title}</div>
-          <div className="text-[10px] md:text-xs text-gray-400">{subtitle}</div>
+          <div className="text-[10px] md:text-xs text-slate-400">{subtitle}</div>
         </div>
       </div>
       <div className="space-y-1">
         {features.map((feature, idx) => (
-          <div key={idx} className="text-[10px] md:text-xs text-gray-300 flex items-center gap-1">
+          <div key={idx} className="text-[10px] md:text-xs text-slate-300 flex items-center gap-1">
             <span className={`text-${color}-400`}>•</span>
             {feature}
           </div>
@@ -175,11 +219,17 @@ const ArrowDown = ({ label }) => {
 
   return (
     <div className="flex flex-col items-center my-2">
-      <div className="text-[10px] md:text-xs text-gray-500 mb-1">{label}</div>
+      <div className="text-[10px] md:text-xs text-slate-500 mb-1">{label}</div>
       <motion.div
         initial={isMobile ? false : { opacity: 0 }}
-        animate={isMobile ? false : { opacity: 1 }}
-        transition={isMobile ? {} : { delay: 0.3 }}
+        animate={isMobile ? false : { 
+          opacity: 1,
+          y: [0, 5, 0]
+        }}
+        transition={isMobile ? {} : { 
+          opacity: { delay: 0.3 },
+          y: { duration: 1.5, repeat: Infinity }
+        }}
       >
         <svg className="w-5 h-6 md:w-6 md:h-8 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 4v12m0 0l-4-4m4 4l4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />

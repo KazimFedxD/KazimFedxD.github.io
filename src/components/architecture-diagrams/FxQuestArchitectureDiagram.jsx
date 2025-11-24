@@ -45,31 +45,41 @@ const FxQuestArchitectureDiagram = () => {
   }), [isMobile]);
 
   const ArrowDown = () => (
-    <div className="flex justify-center my-2 md:my-4">
+    <motion.div 
+      className="flex justify-center my-2 md:my-4"
+      animate={{ opacity: 1, y: [0, 5, 0] }}
+      transition={{ y: { duration: 1.5, repeat: Infinity, ease: "easeInOut" } }}
+    >
       <div className="text-purple-400 text-xl md:text-2xl">↓</div>
-    </div>
+    </motion.div>
   );
 
   const ComponentBox = ({ icon: Icon, title, subtitle, color = "blue" }) => {
     const colorMap = {
-      blue: "border-blue-500 bg-blue-500/10",
-      green: "border-green-500 bg-green-500/10",
-      purple: "border-purple-500 bg-purple-500/10",
-      indigo: "border-indigo-500 bg-indigo-500/10",
-      orange: "border-orange-500 bg-orange-500/10",
-      pink: "border-pink-500 bg-pink-500/10"
+      blue: "border-blue-500/30 bg-blue-500/10",
+      green: "border-green-500/30 bg-green-500/10",
+      purple: "border-purple-500/30 bg-purple-500/10",
+      indigo: "border-indigo-500/30 bg-indigo-500/10",
+      orange: "border-orange-500/30 bg-orange-500/10",
+      pink: "border-pink-500/30 bg-pink-500/10"
     };
 
     return (
       <motion.div
         variants={itemVariants}
-        className={`p-3 md:p-4 rounded-lg border-2 ${colorMap[color]} ${isMobile ? '' : 'backdrop-blur-sm'}`}
+        whileHover={{ scale: 1.05, y: -5 }}
+        className={`glass p-3 md:p-4 rounded-lg border-2 ${colorMap[color]}`}
       >
         <div className="flex items-center gap-2 md:gap-3">
-          <Icon className="w-5 h-5 md:w-6 md:h-6 text-white flex-shrink-0" />
+          <motion.div
+            animate={{ rotate: [0, 10, -10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+          >
+            <Icon className="w-5 h-5 md:w-6 md:h-6 text-white flex-shrink-0" />
+          </motion.div>
           <div className="min-w-0">
             <div className="font-semibold text-white text-sm md:text-base truncate">{title}</div>
-            {subtitle && <div className="text-xs text-gray-400 mt-1 line-clamp-2">{subtitle}</div>}
+            {subtitle && <div className="text-xs text-slate-400 mt-1 line-clamp-2">{subtitle}</div>}
           </div>
         </div>
       </motion.div>
@@ -79,13 +89,19 @@ const FxQuestArchitectureDiagram = () => {
   const CogBox = ({ icon: Icon, title, description }) => (
     <motion.div
       variants={itemVariants}
-      className={`p-2 md:p-3 rounded-lg border-2 border-green-500 bg-green-500/10 ${isMobile ? '' : 'backdrop-blur-sm'}`}
+      whileHover={{ scale: 1.05, y: -3 }}
+      className="glass p-2 md:p-3 rounded-lg border-2 border-green-500/30 bg-green-500/10"
     >
       <div className="flex items-center gap-2 mb-1 md:mb-2">
-        <Icon className="w-4 h-4 md:w-5 md:h-5 text-green-400 flex-shrink-0" />
+        <motion.div
+          animate={{ rotate: [0, 10, -10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
+        >
+          <Icon className="w-4 h-4 md:w-5 md:h-5 text-green-400 flex-shrink-0" />
+        </motion.div>
         <div className="font-semibold text-white text-xs md:text-sm truncate">{title}</div>
       </div>
-      <div className="text-xs text-gray-400 line-clamp-1">{description}</div>
+      <div className="text-xs text-slate-400 line-clamp-1">{description}</div>
     </motion.div>
   );
 
@@ -95,13 +111,13 @@ const FxQuestArchitectureDiagram = () => {
         variants={isMobile ? {} : containerVariants}
         initial={isMobile ? false : "hidden"}
         animate={isMobile ? false : "visible"}
-        className="min-w-[900px] p-4 md:p-8 bg-gray-900 rounded-lg border border-gray-700"
+        className="min-w-[900px] p-4 md:p-8 glass rounded-2xl border border-purple-500/20"
       >
         {/* Title */}
-        <h3 className="text-xl md:text-2xl font-bold text-white text-center mb-2">
+        <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent text-center mb-2">
           FxQuest Bot Architecture
         </h3>
-        <p className="text-xs md:text-sm text-gray-400 text-center mb-4 md:mb-8">
+        <p className="text-xs md:text-sm text-slate-400 text-center mb-4 md:mb-8">
           Async Gaming & Leveling Bot with Custom Database Abstraction Layer
         </p>
 
@@ -329,74 +345,74 @@ const FxQuestArchitectureDiagram = () => {
         {/* Stats Panel */}
         <motion.div
           variants={itemVariants}
-          className="mt-8 p-6 bg-gradient-to-r from-purple-900/30 to-indigo-900/30 rounded-lg border border-purple-500/50"
+          className="mt-8 p-6 glass bg-gradient-to-r from-purple-900/20 to-indigo-900/20 rounded-lg border border-purple-500/30"
         >
           <h4 className="text-lg font-bold text-white mb-4 text-center">
             Architecture Statistics
           </h4>
           <div className="grid grid-cols-4 gap-4 text-center">
-            <div>
+            <motion.div whileHover={{ scale: 1.1 }}>
               <div className="text-3xl font-bold text-purple-400">8+</div>
-              <div className="text-sm text-gray-400">Games</div>
-            </div>
-            <div>
+              <div className="text-sm text-slate-400">Games</div>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.1 }}>
               <div className="text-3xl font-bold text-green-400">12</div>
-              <div className="text-sm text-gray-400">Features</div>
-            </div>
-            <div>
+              <div className="text-sm text-slate-400">Features</div>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.1 }}>
               <div className="text-3xl font-bold text-blue-400">15+</div>
-              <div className="text-sm text-gray-400">Cog Modules</div>
-            </div>
-            <div>
+              <div className="text-sm text-slate-400">Cog Modules</div>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.1 }}>
               <div className="text-3xl font-bold text-orange-400">∞</div>
-              <div className="text-sm text-gray-400">Concurrent Games</div>
-            </div>
+              <div className="text-sm text-slate-400">Concurrent Games</div>
+            </motion.div>
           </div>
         </motion.div>
 
         {/* Technical Highlights */}
         <motion.div
           variants={itemVariants}
-          className="mt-6 p-6 bg-gray-800/50 rounded-lg border border-gray-700"
+          className="mt-6 p-6 glass rounded-lg border border-slate-700/50"
         >
           <h4 className="text-lg font-bold text-white mb-4">Technical Highlights</h4>
           <div className="grid grid-cols-2 gap-4 text-sm">
-            <div>
+            <motion.div whileHover={{ scale: 1.02 }}>
               <div className="text-purple-400 font-semibold mb-2">Async Architecture</div>
-              <ul className="text-gray-400 space-y-1 list-disc list-inside">
+              <ul className="text-slate-400 space-y-1 list-disc list-inside">
                 <li>Non-blocking I/O with asyncio</li>
                 <li>Concurrent game sessions</li>
                 <li>Async database operations (asyncsqlite3)</li>
                 <li>Background tasks for chat games</li>
               </ul>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.02 }}>
               <div className="text-green-400 font-semibold mb-2">Custom Database Layer</div>
-              <ul className="text-gray-400 space-y-1 list-disc list-inside">
+              <ul className="text-slate-400 space-y-1 list-disc list-inside">
                 <li>ORM-like abstraction over SQLite</li>
                 <li>Simple API (maketable, selecttable, etc.)</li>
                 <li>Dictionary returns for easy access</li>
                 <li>Automatic schema creation</li>
               </ul>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.02 }}>
               <div className="text-blue-400 font-semibold mb-2">Interactive Gaming</div>
-              <ul className="text-gray-400 space-y-1 list-disc list-inside">
+              <ul className="text-slate-400 space-y-1 list-disc list-inside">
                 <li>Turn-based mechanics</li>
                 <li>Real-time state management</li>
                 <li>Professional game engines (PyPokerEngine)</li>
                 <li>8+ multiplayer games</li>
               </ul>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.02 }}>
               <div className="text-orange-400 font-semibold mb-2">Progression Systems</div>
-              <ul className="text-gray-400 space-y-1 list-disc list-inside">
+              <ul className="text-slate-400 space-y-1 list-disc list-inside">
                 <li>XP-based leveling (quadratic formula)</li>
                 <li>Virtual economy with gambling</li>
                 <li>Minecraft mining & inventory</li>
                 <li>Role rewards at milestones</li>
               </ul>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </motion.div>
