@@ -8,10 +8,10 @@ export const fedxdDataContainerData = {
   liveDemo: "https://pypi.org/project/fxdc/",
   
   badges: [
-    { icon: "📦", text: "Published on PyPI" },
-    { icon: "🐍", text: "Python 3.10+" },
-    { icon: "⚡", text: "v5.0.0" },
-    { icon: "📄", text: "MIT License" },
+    { icon: "Package", text: "Published on PyPI" },
+    { icon: "Code2", text: "Python 3.10+" },
+    { icon: "Zap", text: "v5.0.0" },
+    { icon: "FileText", text: "MIT License" },
   ],
 
   techStack: [
@@ -86,7 +86,7 @@ export const fedxdDataContainerData = {
 
     uniqueFeatures: [
       {
-        icon: "🎯",
+        icon: "Target",
         title: "Zero-Boilerplate Class Serialization",
         points: [
           "Register classes once with @Config.add_class decorator",
@@ -97,7 +97,7 @@ export const fedxdDataContainerData = {
         ]
       },
       {
-        icon: "🔍",
+        icon: "Search",
         title: "Type-Safe with Runtime Validation",
         points: [
           "FxDCField descriptors with compile-time type hints",
@@ -108,7 +108,7 @@ export const fedxdDataContainerData = {
         ]
       },
       {
-        icon: "⚙️",
+        icon: "Settings",
         title: "Hand-Built Lexer & Parser",
         points: [
           "Complete tokenization and parsing system from scratch",
@@ -119,7 +119,7 @@ export const fedxdDataContainerData = {
         ]
       },
       {
-        icon: "🚀",
+        icon: "Rocket",
         title: "Built-in Support for Common Types",
         points: [
           "Python built-ins: set, tuple, bytes, range, map, filter, etc.",
@@ -152,7 +152,7 @@ export const fedxdDataContainerData = {
     {
       id: 1,
       title: "Custom Lexer & Parser Implementation",
-      icon: "🔧",
+      icon: "Wrench",
       description: "FxDC includes a complete tokenization and parsing system built from scratch, featuring a custom lexer that breaks down FxDC-formatted text into tokens and a recursive descent parser that constructs Python objects from these tokens.",
       whyItMatters: "By implementing a custom lexer and parser, FxDC has complete control over syntax rules, error handling, and performance. This allows for precise error messages, flexible syntax extensions, and optimized parsing for Python-specific constructs that generic parsers can't handle efficiently.",
       howItWorks: [
@@ -241,7 +241,7 @@ export const fedxdDataContainerData = {
     {
       id: 2,
       title: "Type-Safe Serialization with FxDCField",
-      icon: "🔐",
+      icon: "KeyRound",
       description: "The FxDCField descriptor provides compile-time type annotations and runtime validation for class attributes, including type checking, null/blank constraints, default values, and human-readable metadata.",
       whyItMatters: "Without FxDCField, developers must manually validate data after deserialization, write custom validation logic, and maintain separate documentation. FxDCField centralizes all validation rules in the class definition, making code self-documenting and eliminating entire categories of bugs.",
       howItWorks: [
@@ -356,7 +356,7 @@ class User:
     {
       id: 3,
       title: "Automatic Class Mapping & Serialization",
-      icon: "🔄",
+      icon: "RefreshCw",
       description: "FxDC automatically serializes and deserializes custom Python classes without requiring manual conversion code. Register a class once with @Config.add_class, and FxDC handles the rest, including constructor argument mapping and nested object reconstruction.",
       whyItMatters: "Traditional serialization requires writing custom to_dict() and from_dict() methods for every class, creating maintenance burden and potential bugs. FxDC eliminates this boilerplate by introspecting class constructors and automatically mapping data fields to constructor parameters.",
       howItWorks: [
@@ -474,7 +474,7 @@ print(loaded.original.login_count)  # 5`
     {
       id: 4,
       title: "Direct JSON Conversion",
-      icon: "📄",
+      icon: "FileText",
       description: "FxDC provides fxdc_to_json() function that converts FxDC-formatted strings directly into JSON without deserializing into Python objects first, optimizing memory and performance.",
       whyItMatters: "When you only need JSON output and don't care about reconstructing Python classes, this method bypasses object instantiation entirely. This is faster, uses less memory, and is ideal for data export pipelines where class reconstruction is unnecessary overhead.",
       howItWorks: [
@@ -528,7 +528,7 @@ print(json_output)
     {
       id: 5,
       title: "Pre-Built Support for Common Python Types",
-      icon: "�",
+      icon: "Binary",
       description: "FxDC automatically serializes and deserializes custom Python classes without requiring manual conversion code. Register a class once with @Config.add_class, and FxDC handles the rest, including constructor argument mapping and nested object reconstruction.",
       whyItMatters: "Traditional serialization requires writing custom to_dict() and from_dict() methods for every class, creating maintenance burden and potential bugs. FxDC eliminates this boilerplate by introspecting class constructors and automatically mapping data fields to constructor parameters.",
       howItWorks: [
@@ -594,7 +594,7 @@ print(loaded.original.login_count)  # 5 (preserved!)`
     {
       id: 4,
       title: "Configuration Export & Import System",
-      icon: "📦",
+      icon: "Package",
       description: "FxDC can export all registered class metadata (type definitions, validation rules, defaults) to a portable configuration file and reimport it in different projects or environments, enabling consistent data schemas across codebases.",
       whyItMatters: "In team environments or multi-project setups, maintaining consistent data schemas is critical. FxDC's config export/import eliminates the need to duplicate class definitions, ensures validation rules stay synchronized, and enables plugin architectures where schemas are loaded dynamically.",
       howItWorks: [
@@ -648,7 +648,7 @@ Config_User|dict:
     {
       id: 5,
       title: "Pre-Built Support for Common Python Types",
-      icon: "🐍",
+      icon: "Code2",
       description: "FxDC comes with default serialization/deserialization handlers for Python built-in types (set, tuple, bytes, range, etc.), Pandas DataFrames, NumPy arrays, and datetime objects—no manual registration required.",
       whyItMatters: "Data science and backend workflows frequently use these types. Supporting them out-of-the-box eliminates setup friction and makes FxDC immediately useful for real-world projects without writing adapter code.",
       howItWorks: [
@@ -704,7 +704,7 @@ from datetime import date, time, datetime, timedelta`
     {
       id: 6,
       title: "Human-Readable Indentation-Based Syntax",
-      icon: "📝",
+      icon: "FileEdit",
       description: "FxDC uses Python-like indentation to represent nested structures, making files easy to read, edit, and version control while supporting comments and type hints.",
       whyItMatters: "Configuration files are often edited by hand or reviewed in code reviews. A clean, readable syntax reduces errors, improves collaboration, and makes diffs more meaningful in version control systems.",
       howItWorks: [
@@ -760,7 +760,7 @@ app|AppConfig:
     {
       id: 7,
       title: "Direct JSON Conversion",
-      icon: "🔄",
+      icon: "RefreshCw",
       description: "FxDC provides fxdc_to_json() function that converts FxDC-formatted strings directly into JSON strings without deserializing into Python objects first, optimizing memory usage and performance.",
       whyItMatters: "When you only need JSON output and don't care about reconstructing Python classes, this method bypasses object instantiation entirely. This is faster, uses less memory, and is ideal for data export pipelines where class reconstruction is unnecessary overhead.",
       howItWorks: [
@@ -814,7 +814,7 @@ print(json_output)
     {
       id: 8,
       title: "Flexible Type Hinting System",
-      icon: "🏷️",
+      icon: "Tag",
       description: "FxDC supports optional type hints using the | syntax (variable|type = value), with special handling for booleans, lists, custom classes, and primitives that require explicit typing.",
       whyItMatters: "Type hints enable automatic type conversion, validation, and better error messages. They're optional for primitives like strings and numbers (where type is obvious), but required for ambiguous types like booleans, lists, and custom classes.",
       howItWorks: [
@@ -874,7 +874,7 @@ user|User:
     {
       id: 9,
       title: "Verbose Names & Aliasing",
-      icon: "📛",
+      icon: "BadgeAlert",
       description: "FxDCField supports verbose_name parameter, allowing different attribute names in FxDC files versus Python code. This enables cleaner serialization formats while maintaining descriptive Python variable names.",
       whyItMatters: "Python code often uses descriptive variable names (user_authentication_token), but serialized data benefits from shorter keys (token). Verbose names let you have both without manual mapping.",
       howItWorks: [
@@ -931,7 +931,7 @@ print(fxdc_output)
     {
       id: 10,
       title: "Default Value Support",
-      icon: "⚙️",
+      icon: "Settings",
       description: "FxDCField and Config support default values that are automatically applied when a field is missing during deserialization, making configuration files more concise and enabling backward compatibility.",
       whyItMatters: "Default values make configuration files more concise—you only need to specify values that differ from defaults. This is crucial for backward compatibility when adding new fields to existing classes.",
       howItWorks: [
@@ -989,30 +989,30 @@ print(loaded.original.debug)  # False (default)`
         {
           name: "Input Layer",
           components: [
-            { name: "FxDC File/String", icon: "📄", description: "Raw FxDC-formatted text input" }
+            { name: "FxDC File/String", icon: "FileText", description: "Raw FxDC-formatted text input" }
           ]
         },
         {
           name: "Lexical Analysis",
           components: [
-            { name: "Lexer", icon: "🔍", description: "Character-by-character tokenization" },
-            { name: "Custom Classes Registry", icon: "📋", description: "Registered class names for keyword detection" }
+            { name: "Lexer", icon: "Search", description: "Character-by-character tokenization" },
+            { name: "Custom Classes Registry", icon: "ClipboardList", description: "Registered class names for keyword detection" }
           ]
         },
         {
           name: "Syntactic Analysis",
           components: [
-            { name: "Token Stream", icon: "🎯", description: "Sequence of tokens with types and values" },
-            { name: "Parser", icon: "🔧", description: "Recursive descent parser building AST" },
-            { name: "Type Resolution", icon: "🏷️", description: "Convert type hints to Python types" }
+            { name: "Token Stream", icon: "Target", description: "Sequence of tokens with types and values" },
+            { name: "Parser", icon: "Wrench", description: "Recursive descent parser building AST" },
+            { name: "Type Resolution", icon: "Tag", description: "Convert type hints to Python types" }
           ]
         },
         {
           name: "Object Construction",
           components: [
-            { name: "FxDCObject", icon: "📦", description: "Parsed data structure" },
-            { name: "Class Constructor Mapping", icon: "🗺️", description: "Map data fields to __init__ parameters" },
-            { name: "Python Objects", icon: "🐍", description: "Fully reconstructed custom class instances" }
+            { name: "FxDCObject", icon: "Package", description: "Parsed data structure" },
+            { name: "Class Constructor Mapping", icon: "Map", description: "Map data fields to __init__ parameters" },
+            { name: "Python Objects", icon: "Code2", description: "Fully reconstructed custom class instances" }
           ]
         }
       ],
@@ -1508,5 +1508,10 @@ class ParseObject:
         },
       ]
     },
+  ],
+
+  // Related projects with similar tech stack
+  relatedProjects: [
+    "FxPy"
   ]
 };

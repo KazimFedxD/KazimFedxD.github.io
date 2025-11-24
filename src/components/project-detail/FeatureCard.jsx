@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
+import * as LucideIcons from 'lucide-react';
 
 const FeatureCard = ({ feature, index }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -12,14 +13,31 @@ const FeatureCard = ({ feature, index }) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const getIcon = (iconEmoji) => {
+  const getIcon = (iconName) => {
+    // If iconName is a string representing a Lucide icon name
+    if (typeof iconName === 'string' && iconName.length > 2) {
+      const IconComponent = LucideIcons[iconName];
+      if (IconComponent) {
+        return (
+          <motion.div
+            className="mb-3 md:mb-4"
+            animate={{ rotate: [0, 10, -10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+          >
+            <IconComponent className="w-8 h-8 md:w-10 md:h-10 text-purple-400" />
+          </motion.div>
+        );
+      }
+    }
+    
+    // Fallback to emoji if icon name not found or is actually an emoji
     return (
       <motion.div
         className="text-3xl md:text-4xl mb-3 md:mb-4"
         animate={{ rotate: [0, 10, -10, 0] }}
         transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
       >
-        {iconEmoji}
+        {iconName}
       </motion.div>
     );
   };

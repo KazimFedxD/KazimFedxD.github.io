@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, ArrowLeft } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 import { fullStackTemplateData } from '../data/fullstack-template-data';
 import { fedxdDataContainerData } from '../data/fedxd-data-container-data';
 import { fxpyData } from '../data/fxpy-data';
@@ -796,19 +797,27 @@ const ProjectDetail = () => {
 
             {projectData.badges && projectData.badges.length > 0 && (
               <div className="flex flex-wrap gap-2">
-                {projectData.badges.map((badge, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                    className="px-4 py-2 glass border border-purple-500/30 text-purple-300 rounded-full text-sm flex items-center gap-2"
-                  >
-                    <span>{badge.icon}</span>
-                    <span>{badge.text}</span>
-                  </motion.span>
-                ))}
+                {projectData.badges.map((badge, index) => {
+                  const IconComponent = typeof badge.icon === 'string' && badge.icon.length > 2 ? LucideIcons[badge.icon] : null;
+                  
+                  return (
+                    <motion.span
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.4 + index * 0.1 }}
+                      whileHover={{ scale: 1.05 }}
+                      className="px-4 py-2 glass border border-purple-500/30 text-purple-300 rounded-full text-sm flex items-center gap-2"
+                    >
+                      {IconComponent ? (
+                        <IconComponent className="w-4 h-4" />
+                      ) : (
+                        <span>{badge.icon}</span>
+                      )}
+                      <span>{badge.text}</span>
+                    </motion.span>
+                  );
+                })}
               </div>
             )}
           </motion.div>

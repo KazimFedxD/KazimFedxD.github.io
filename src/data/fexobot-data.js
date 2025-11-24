@@ -12,11 +12,11 @@ export const fexobotData = {
   github: "https://github.com/KazimFedxD/FeXoBot",
   
   badges: [
-    { icon: "🤖", text: "100+ Commands" },
-    { icon: "🎮", text: "Multiple Interactive Games" },
-    { icon: "🧠", text: "AI-Powered (GPT-4)" },
-    { icon: "🌐", text: "12+ API Integrations" },
-    { icon: "🚀", text: "Active Development" }
+    { icon: "Bot", text: "100+ Commands" },
+    { icon: "Gamepad2", text: "Multiple Interactive Games" },
+    { icon: "Brain", text: "AI-Powered (GPT-4)" },
+    { icon: "Globe", text: "12+ API Integrations" },
+    { icon: "Rocket", text: "Active Development" }
   ],
 
   techStack: [
@@ -85,7 +85,7 @@ export const fexobotData = {
 
     uniqueFeatures: [
       {
-        icon: "🎯",
+        icon: "Target",
         title: "Comprehensive Feature Set",
         points: [
           "100+ commands across moderation, games, utilities, and APIs",
@@ -96,7 +96,7 @@ export const fexobotData = {
         ]
       },
       {
-        icon: "🏗️",
+        icon: "Building2",
         title: "Modular Cog Architecture",
         points: [
           "Discord.py cog system for organized code structure",
@@ -107,7 +107,7 @@ export const fexobotData = {
         ]
       },
       {
-        icon: "🔌",
+        icon: "Plug",
         title: "Extensive API Integrations",
         points: [
           "NASA: Astronomy Picture of the Day with HD images",
@@ -119,7 +119,7 @@ export const fexobotData = {
         ]
       },
       {
-        icon: "⚡",
+        icon: "Zap",
         title: "Advanced Technical Features",
         points: [
           "Async/await architecture for non-blocking operations",
@@ -149,7 +149,7 @@ export const fexobotData = {
     {
       id: 1,
       title: "Advanced Moderation System",
-      icon: "🛡️",
+      icon: "Shield",
       description: "A comprehensive moderation toolkit providing server administrators with powerful tools to manage their communities effectively. The system includes persistent warning tracking, ban/kick management with reason logging, role-based muting, bulk message deletion, and detailed permission viewing.",
       whyItMatters: "Maintaining order in active Discord communities requires robust moderation tools. FeXoBot's moderation system stores all actions in a database, allowing administrators to track user behavior over time, make informed decisions, and maintain accountability with logged reasons for all actions.",
       howItWorks: [
@@ -201,7 +201,7 @@ async def warn(self, interaction: Interaction, user: Member, reason: str):
     {
       id: 2,
       title: "Interactive Games System",
-      icon: "🎮",
+      icon: "Gamepad2",
       description: "Multiple fully-functional games integrated directly into Discord, including Hangman with difficulty levels, multiplayer Tic-Tac-Toe, comprehensive Pokémon database lookup, and trivia with 4,000+ questions across multiple categories.",
       whyItMatters: "Community engagement is crucial for active Discord servers. Interactive games provide entertainment, encourage member participation, and create opportunities for social interaction - all without leaving Discord.",
       howItWorks: [
@@ -253,8 +253,9 @@ async def warn(self, interaction: Interaction, user: Member, reason: str):
         elif self.wrong_guesses >= self.max_wrong:
             await self.lose(interaction)
         else:
-            await self.update_display(interaction, display_word)`
-        }
+            await self.update_display(interaction, display_word)`,
+        screenshot: "/screenshots/FeXoBot/games.png"
+        },
       ],
       screenshot: "/screenshots/FeXoBot/hangman.png"
     },
@@ -262,7 +263,7 @@ async def warn(self, interaction: Interaction, user: Member, reason: str):
     {
       id: 3,
       title: "AI-Powered ChatGPT Integration",
-      icon: "🧠",
+      icon: "Brain",
       description: "Seamless integration with GPT-4 Free API providing intelligent conversational responses, code explanations, question answering, and natural language processing directly within Discord.",
       whyItMatters: "AI assistance enhances user experience by providing instant answers to questions, explaining complex topics, generating creative content, and offering coding help - making the bot an intelligent assistant rather than just a command executor.",
       howItWorks: [
@@ -314,7 +315,7 @@ async def chatgpt(self, interaction: Interaction, message: str):
     {
       id: 4,
       title: "12+ External API Integrations",
-      icon: "🌐",
+      icon: "Globe",
       description: "Extensive integration with third-party APIs providing access to space data (NASA), Pokémon information (PokeAPI), jokes (JokeAPI), facts and quotes (NinjaAPI), translation (Google Translate), currency conversion, weather data, recipes, temporary emails, and more.",
       whyItMatters: "API integrations transform the bot from a simple utility into a gateway for rich, real-time external data. Users can access diverse information sources without leaving Discord, making the server a comprehensive information hub.",
       howItWorks: [
@@ -387,7 +388,7 @@ async def pokemon_info(self, interaction: Interaction, name: str):
     {
       id: 5,
       title: "Automated Leveling System",
-      icon: "📊",
+      icon: "BarChart3",
       description: "Sophisticated XP and leveling system that tracks user activity, awards experience points for messages, calculates levels with progressive requirements, and automatically assigns role rewards at milestones (levels 5, 10, 25, 50, 100).",
       whyItMatters: "Gamification through leveling systems significantly increases user engagement and encourages active participation. Role rewards provide tangible recognition for active members, creating motivation to contribute to the community.",
       howItWorks: [
@@ -450,7 +451,7 @@ async def on_message(self, message: Message):
     {
       id: 6,
       title: "Complete Support Ticketing System",
-      icon: "🎫",
+      icon: "Ticket",
       description: "Full-featured support ticket system with category management, transcript generation, staff role notifications, and complete ticket lifecycle handling from creation to resolution.",
       whyItMatters: "Support systems are essential for community management. A dedicated ticketing system ensures user issues are tracked, staff are notified, and conversations are preserved for future reference.",
       howItWorks: [
@@ -518,7 +519,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 7,
       title: "Advanced Mathematics & Calculator",
-      icon: "🧮",
+      icon: "Calculator",
       description: "Comprehensive mathematical toolkit featuring an interactive GUI calculator directly in Discord, equation solving capabilities, advanced functions (power, root, factorial), geometry calculators, statistics functions, and support for complex mathematical expressions.",
       whyItMatters: "Many students and professionals need quick mathematical computations. Having a full-featured calculator and math solver integrated into Discord eliminates the need to switch applications, making it perfect for study groups, homework help servers, and professional channels.",
       howItWorks: [
@@ -590,7 +591,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 8,
       title: "Interactive Polls & Voting System",
-      icon: "📊",
+      icon: "BarChart3",
       description: "Create engaging polls with up to 4 options, real-time vote tracking, and automatic results calculation. Polls feature emoji reactions for voting, anti-cheat measures to prevent double-voting, and beautiful embed displays with live vote counts.",
       whyItMatters: "Community engagement and decision-making are crucial for active Discord servers. The poll system enables democratic voting on server decisions, gathering member opinions, and creating interactive content that encourages participation.",
       howItWorks: [
@@ -606,7 +607,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 9,
       title: "Custom Embed Builder",
-      icon: "📝",
+      icon: "FileEdit",
       description: "Powerful visual embed creation system with interactive modals for designing beautiful, customizable Discord embeds. Features include title/description editing, color selection, image/thumbnail attachments, field management, footer customization, and template saving.",
       whyItMatters: "Eye-catching announcements and messages improve server aesthetics and user engagement. The embed builder eliminates the need for external tools or complex JSON formatting, making professional-looking embeds accessible to all server staff.",
       howItWorks: [
@@ -621,7 +622,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 10,
       title: "Giveaway System",
-      icon: "🎁",
+      icon: "Gift",
       description: "Host automated giveaways with timed duration, multiple winner selection, entry tracking, and automatic winner announcement. Includes features like minimum server activity requirements, entry validation, and full giveaway management (edit, end early, reroll).",
       whyItMatters: "Giveaways boost server activity, reward loyal members, and create excitement in the community. The automated system handles all entry tracking and winner selection fairly, removing manual work and bias from the process.",
       howItWorks: [
@@ -637,7 +638,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 11,
       title: "Reaction Roles System",
-      icon: "🎭",
+      icon: "Theater",
       description: "Allow members to self-assign roles by reacting to messages. Supports multiple role options per message, emoji customization, role limits, and automatic role removal when reactions are removed.",
       whyItMatters: "Manual role assignment is tedious for moderators. Reaction roles empower members to customize their server experience (color roles, notification preferences, game roles) independently, reducing admin workload.",
       howItWorks: [
@@ -652,7 +653,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 12,
       title: "Translation & Multi-Language Support",
-      icon: "🌐",
+      icon: "Globe",
       description: "Real-time text translation supporting 100+ languages powered by Google Translate API. Features include auto-detection of source language, language code autocomplete, and support for translating message content by reply reference.",
       whyItMatters: "Global Discord communities have members speaking different languages. The translation feature breaks language barriers, enabling cross-cultural communication and making servers accessible to international audiences.",
       howItWorks: [
@@ -667,7 +668,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 13,
       title: "Welcome System with Custom Images",
-      icon: "👋",
+      icon: "Hand",
       description: "Greet new members with personalized welcome messages and auto-generated welcome cards featuring user avatars, server information, and customizable backgrounds using Easy-PIL for image generation.",
       whyItMatters: "First impressions matter. Welcoming new members makes them feel valued and increases retention. Custom welcome images with server branding create a professional, polished onboarding experience.",
       howItWorks: [
@@ -682,7 +683,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 14,
       title: "Message & Event Logging",
-      icon: "📋",
+      icon: "ClipboardList",
       description: "Comprehensive logging system that tracks all server activity including message edits/deletes, member joins/leaves, role changes, channel modifications, and command usage with timestamps and detailed context.",
       whyItMatters: "Server security and moderation require activity tracking. Logs provide evidence for rule enforcement, help identify problematic users, track deleted messages, and maintain accountability across the server.",
       howItWorks: [
@@ -697,7 +698,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 15,
       title: "Currency Converter & Utilities",
-      icon: "💱",
+      icon: "Coins",
       description: "Real-time currency conversion supporting 150+ currencies with live exchange rates, cryptocurrency support, historical rate comparison, and batch conversion for multiple currencies simultaneously.",
       whyItMatters: "International communities and trading servers need quick currency conversions. The real-time rates ensure accuracy for financial discussions, international transactions, and crypto trading.",
       howItWorks: [
@@ -712,7 +713,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 16,
       title: "Security & Encryption Tools",
-      icon: "🔐",
+      icon: "KeyRound",
       description: "Message encryption/decryption using Fernet symmetric encryption, secure password generation with customizable complexity, and secure message storage for sensitive information sharing within Discord.",
       whyItMatters: "Sharing sensitive information in Discord can be risky. The encryption tools allow secure communication of passwords, API keys, and private data, with only intended recipients able to decrypt messages.",
       howItWorks: [
@@ -727,7 +728,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 17,
       title: "NASA API Integration",
-      icon: "🚀",
+      icon: "Rocket",
       description: "Access NASA's Astronomy Picture of the Day (APOD), Mars Rover photos, Near Earth Object data, and space news directly in Discord with high-resolution images, detailed descriptions, and astronomical data.",
       whyItMatters: "Space enthusiasts and educational servers benefit from direct access to NASA's vast image and data archives. Daily astronomy content keeps channels engaging and educational.",
       howItWorks: [
@@ -743,7 +744,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 18,
       title: "AFK (Away From Keyboard) System",
-      icon: "💤",
+      icon: "Moon",
       description: "Set custom AFK status messages that automatically display when users are mentioned. Includes return detection, timestamped away duration, and automatic status clearing when user returns to chatting.",
       whyItMatters: "Lets users inform others of their unavailability without manually responding to every mention. Reduces spam from repeated pings and sets expectations for response times.",
       howItWorks: [
@@ -758,7 +759,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 19,
       title: "Code Execution & Formatting",
-      icon: "💻",
+      icon: "Monitor",
       description: "Execute code snippets in multiple programming languages (Python, JavaScript, Java, C++, etc.) with syntax highlighting, output capture, error handling, and execution time tracking using online compilers.",
       whyItMatters: "Programming servers and educational communities need quick code testing capabilities. Direct execution eliminates context-switching and enables collaborative debugging and learning.",
       howItWorks: [
@@ -773,7 +774,7 @@ async def create_ticket(self, interaction: Interaction):
     {
       id: 20,
       title: "Fun & Entertainment Commands",
-      icon: "🎉",
+      icon: "PartyPopper",
       description: "Collection of entertainment commands including 8ball predictions, coin flips, dice rolls, rock-paper-scissors, joke fetching from JokeAPI, memes, quotes, facts, and random content generation.",
       whyItMatters: "Keeps community engaged during downtime. Fun commands encourage casual interaction and create lighthearted moments that build community bonds.",
       howItWorks: [
@@ -804,40 +805,40 @@ async def create_ticket(self, interaction: Interaction):
         {
           name: "User Interface",
           components: [
-            { name: "Discord User", icon: "👤", description: "Server members using commands and interacting with bot" }
+            { name: "Discord User", icon: "User", description: "Server members using commands and interacting with bot" }
           ]
         },
         {
           name: "Discord Gateway",
           components: [
-            { name: "WebSocket Connection", icon: "🔌", description: "Real-time event stream from Discord" }
+            { name: "WebSocket Connection", icon: "Plug", description: "Real-time event stream from Discord" }
           ]
         },
         {
           name: "Discord.py Framework",
           components: [
-            { name: "Event Handler", icon: "⚡", description: "Processes Discord events and routes to bot" }
+            { name: "Event Handler", icon: "Zap", description: "Processes Discord events and routes to bot" }
           ]
         },
         {
           name: "FeXoBot Core",
           components: [
-            { name: "Bot Instance (main.py)", icon: "🤖", description: "Main bot initialization and cog management" }
+            { name: "Bot Instance (main.py)", icon: "Bot", description: "Main bot initialization and cog management" }
           ]
         },
         {
           name: "Command Layer",
           components: [
-            { name: "Command Cogs", icon: "📋", description: "15+ modular command categories (Admin, Games, Levels, etc.)" },
-            { name: "Handler Cogs", icon: "🎯", description: "Event handlers (on_message, on_member_join, etc.)" }
+            { name: "Command Cogs", icon: "ClipboardList", description: "15+ modular command categories (Admin, Games, Levels, etc.)" },
+            { name: "Handler Cogs", icon: "Target", description: "Event handlers (on_message, on_member_join, etc.)" }
           ]
         },
         {
           name: "Data Layer",
           components: [
-            { name: "SQLite Databases", icon: "💾", description: "Main DB + server-specific databases" },
-            { name: "External APIs", icon: "🌐", description: "NASA, PokeAPI, ChatGPT, Google, etc." },
-            { name: "Discord REST API", icon: "🔗", description: "Send messages, manage roles, channels" }
+            { name: "SQLite Databases", icon: "Database", description: "Main DB + server-specific databases" },
+            { name: "External APIs", icon: "Globe", description: "NASA, PokeAPI, ChatGPT, Google, etc." },
+            { name: "Discord REST API", icon: "Link", description: "Send messages, manage roles, channels" }
           ]
         }
       ],
@@ -2056,5 +2057,10 @@ async def play(self, interaction: Interaction, query: str):
         }
       ]
     }
+  ],
+
+  // Related projects with similar tech stack
+  relatedProjects: [
+    "FxQuest"
   ]
 };
