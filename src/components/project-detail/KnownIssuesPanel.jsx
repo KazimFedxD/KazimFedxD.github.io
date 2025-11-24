@@ -1,10 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertTriangle, Info, Clock, ChevronDown, Wrench, Zap } from 'lucide-react';
 import CodeSnippet from './CodeSnippet';
 
 const KnownIssuesPanel = ({ issues }) => {
   const [expandedIssue, setExpandedIssue] = useState(null);
+  const issueRefs = useRef([]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setExpandedIssue((prev) => {
+          const next = prev === null ? 0 : Math.min((prev + 1), issues.length - 1);
+          return next;
+        });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setExpandedIssue((prev) => {
+          const next = prev === null ? 0 : Math.max((prev - 1), 0);
+          return next;
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [issues.length]);
+
+  useEffect(() => {
+    if (expandedIssue !== null && issueRefs.current[expandedIssue]) {
+      // Delay scroll to allow animation to complete
+      setTimeout(() => {
+        issueRefs.current[expandedIssue]?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 350);
+    }
+  }, [expandedIssue]);
 
   const getSeverityColor = (severity) => {
     switch (severity.toLowerCase()) {
@@ -55,6 +89,7 @@ const KnownIssuesPanel = ({ issues }) => {
         return (
           <motion.div
             key={idx}
+            ref={(el) => (issueRefs.current[idx] = el)}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.1 }}

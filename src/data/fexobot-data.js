@@ -254,10 +254,13 @@ async def warn(self, interaction: Interaction, user: Member, reason: str):
             await self.lose(interaction)
         else:
             await self.update_display(interaction, display_word)`,
-        screenshot: "/screenshots/FeXoBot/games.png"
+        screenshot: "/screenshots/FeXoBot/hangman.png"
         },
       ],
-      screenshot: "/screenshots/FeXoBot/hangman.png"
+      screenshots: [
+        "/screenshots/FeXoBot/hangman.png",
+        "/screenshots/FeXoBot/calculator-interface.png"
+      ]
     },
 
     {
@@ -382,7 +385,10 @@ async def pokemon_info(self, interaction: Interaction, name: str):
     await interaction.followup.send(embed=embed)`
         }
       ],
-      screenshot: "/screenshots/FeXoBot/nasa-apod.png"
+      screenshots: [
+        "/screenshots/FeXoBot/nasa-apod.png",
+        "/screenshots/FeXoBot/help-commands.png"
+      ]
     },
 
     {
@@ -445,7 +451,10 @@ async def on_message(self, message: Message):
     self.cooldowns[message.author.id] = current_time`
         }
       ],
-      screenshot: "/screenshots/FeXoBot/level-card-example.png"
+      screenshots: [
+        "/screenshots/FeXoBot/level-card-example.png",
+        "/screenshots/FeXoBot/setup-wizard.png"
+      ]
     },
 
     {

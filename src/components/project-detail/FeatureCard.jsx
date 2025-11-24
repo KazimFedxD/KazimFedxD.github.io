@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 import * as LucideIcons from 'lucide-react';
+import ImageCarousel from './ImageCarousel';
 
 const FeatureCard = ({ feature, index }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -99,18 +100,16 @@ const FeatureCard = ({ feature, index }) => {
           </div>
         )}
 
-        {feature.screenshots && feature.screenshots.length > 0 && (
+        {(feature.screenshot || (feature.screenshots && feature.screenshots.length > 0)) && (
           <motion.div
             className="mt-3 md:mt-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: index * 0.1 + 0.3 }}
           >
-            <img
-              src={feature.screenshot || feature.screenshots[0]}
+            <ImageCarousel 
+              images={feature.screenshots || feature.screenshot} 
               alt={feature.title}
-              loading="lazy"
-              className="w-full rounded-lg border border-purple-500/20 shadow-lg"
             />
           </motion.div>
         )}

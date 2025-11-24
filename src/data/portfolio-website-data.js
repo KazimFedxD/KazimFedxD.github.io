@@ -204,8 +204,7 @@ function App() {
       </AnimatePresence>
     </Router>
   );
-}`,
-        screenshot: "/screenshots/Portfolio Website/homepage.png"
+}`
         },
         {
           title: "Navigation with Active State",

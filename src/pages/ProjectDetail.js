@@ -22,6 +22,7 @@ import ApiReference from '../components/project-detail/ApiReference';
 import CommandReference from '../components/project-detail/CommandReference';
 import ProjectBadges from '../components/project-detail/ProjectBadges';
 import RelatedProjects from '../components/project-detail/RelatedProjects';
+import SetupGuide from '../components/project-detail/SetupGuide';
 
 const ProjectDetail = () => {
   const { projectName } = useParams();
@@ -29,6 +30,7 @@ const ProjectDetail = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [isMobile, setIsMobile] = useState(false);
   const tabsRef = React.useRef(null);
+  const activeTabRef = React.useRef(null);
 
   // Detect mobile
   useEffect(() => {
@@ -84,6 +86,51 @@ const ProjectDetail = () => {
     { id: 'issues', label: 'Known Issues' },
     { id: 'future', label: 'Roadmap' },
   ], [projectData]);
+
+  // Keyboard navigation for tabs
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        
+        const currentIndex = tabs.findIndex(tab => tab.id === activeTab);
+        let newIndex;
+        
+        if (e.key === 'ArrowLeft') {
+          newIndex = Math.max(0, currentIndex - 1);
+        } else {
+          newIndex = Math.min(tabs.length - 1, currentIndex + 1);
+        }
+        
+        setActiveTab(tabs[newIndex].id);
+        
+        // Scroll to top of page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeTab, tabs]);
+
+  // Scroll active tab into view in the tab bar
+  useEffect(() => {
+    if (activeTabRef.current && tabsRef.current) {
+      const tabsContainer = tabsRef.current;
+      const activeTabElement = activeTabRef.current;
+      
+      const containerRect = tabsContainer.getBoundingClientRect();
+      const tabRect = activeTabElement.getBoundingClientRect();
+      
+      // Calculate scroll position to center the active tab
+      const scrollLeft = tabRect.left - containerRect.left + tabsContainer.scrollLeft - (containerRect.width / 2) + (tabRect.width / 2);
+      
+      tabsContainer.scrollTo({
+        left: scrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  }, [activeTab]);
 
   if (!projectData) {
     return (
@@ -382,33 +429,7 @@ const ProjectDetail = () => {
               </p>
             </div>
 
-            {projectData.setupSteps?.map((step, idx) => (
-              <div key={idx} className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-                    {idx + 1}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                    <p className="text-gray-300 mb-4">{step.description}</p>
-                    
-                    {step.code && (
-                      <CodeSnippet 
-                        title={step.codeTitle || "Code"}
-                        code={step.code}
-                        language={step.language || "bash"}
-                      />
-                    )}
-
-                    {step.notes && (
-                      <div className="mt-4 bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
-                        <p className="text-sm text-blue-300">{step.notes}</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
+            <SetupGuide setupSteps={projectData.setupSteps} />
           </div>
         );
 
@@ -841,6 +862,7 @@ const ProjectDetail = () => {
                 {tabs.map((tab, index) => (
                   <motion.button
                     key={tab.id}
+                    ref={activeTab === tab.id ? activeTabRef : null}
                     onClick={() => setActiveTab(tab.id)}
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}

@@ -202,7 +202,11 @@ export const getAccessToken = async () => {
 };`
         }
       ],
-      screenshot: "/screenshots/FullStack-Template/login.png"
+      screenshots: [
+        "/screenshots/Full-Stack-Template/login.png",
+        "/screenshots/Full-Stack-Template/register.png",
+        "/screenshots/Full-Stack-Template/homepage.png"
+      ]
     },
     {
       id: 2,
@@ -273,7 +277,10 @@ def clear_verification_tokens() -> None:
         token.del_self()`
         }
       ],
-      screenshot: "/screenshots/FullStack-Template/verification.png"
+      screenshots: [
+        "/screenshots/Full-Stack-Template/verification.png",
+        "/screenshots/Full-Stack-Template/dashboard.png"
+      ]
     },
     {
       id: 3,

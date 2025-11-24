@@ -190,7 +190,10 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
 }`,
-        screenshot: "/screenshots/FinCore/auth.png"
+        screenshots: [
+          "/screenshots/FinCore/homepage.png",
+          "/screenshots/FinCore/dashboard.png"
+        ]
         },
         {
           title: "Email Verification Token System",

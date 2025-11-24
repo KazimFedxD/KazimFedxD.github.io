@@ -181,7 +181,11 @@ export const fxquestData= {
         description += f"Current Card: {self.game['current_color']} {self.game['current_number']}\\n"
         # Players can select cards from dropdown menu
         # Color picker for Wild cards`,
-        screenshot: "/screenshots/FxQuest/games.png"
+        screenshots: [
+          "/screenshots/FxQuest/blackjack.png",
+          "/screenshots/FxQuest/hangman.png",
+          "/screenshots/FxQuest/rps.png"
+        ]
         },
         {
           title: "Poker System with PyPokerEngine",
@@ -531,7 +535,11 @@ class Armor(Item):
           description: "Server-specific emojis for visual item representation"
         }
       ],
-      screenshot: "/screenshots/FxQuest/mine-surface.png"
+      screenshots: [
+        "/screenshots/FxQuest/mine-surface.png",
+        "/screenshots/FxQuest/mine-underground.png",
+        "/screenshots/FxQuest/inventory-display.png"
+      ]
     },
 
     // FEATURE 5: Automated Chat Games

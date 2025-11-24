@@ -1,10 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Rocket, Clock, ChevronDown, Target, Lightbulb, Code, TrendingUp, Zap } from 'lucide-react';
 import CodeSnippet from './CodeSnippet';
 
 const FutureRoadmap = ({ enhancements }) => {
   const [expandedFeature, setExpandedFeature] = useState(null);
+  const featureRefs = useRef({});
+
+  // Create a flat list of all features with their indices
+  const allFeatures = useMemo(() => {
+    const features = [];
+    enhancements.forEach((version, versionIdx) => {
+      version.features.forEach((feature, featureIdx) => {
+        features.push({ versionIdx, featureIdx, key: `${versionIdx}-${featureIdx}` });
+      });
+    });
+    return features;
+  }, [enhancements]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setExpandedFeature((prev) => {
+          if (prev === null) return allFeatures[0]?.key || null;
+          const currentIdx = allFeatures.findIndex(f => f.key === prev);
+          const nextIdx = Math.min(currentIdx + 1, allFeatures.length - 1);
+          return allFeatures[nextIdx].key;
+        });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setExpandedFeature((prev) => {
+          if (prev === null) return allFeatures[0]?.key || null;
+          const currentIdx = allFeatures.findIndex(f => f.key === prev);
+          const nextIdx = Math.max(currentIdx - 1, 0);
+          return allFeatures[nextIdx].key;
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [allFeatures]);
+
+  useEffect(() => {
+    if (expandedFeature && featureRefs.current[expandedFeature]) {
+      // Delay scroll to allow animation to complete
+      setTimeout(() => {
+        featureRefs.current[expandedFeature]?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 350);
+    }
+  }, [expandedFeature]);
 
   const getPriorityColor = (priority) => {
     switch (priority?.toLowerCase()) {
@@ -98,10 +147,12 @@ const FutureRoadmap = ({ enhancements }) => {
           <div className="space-y-3">
             {version.features.map((feature, featureIdx) => {
               const isExpanded = expandedFeature === `${versionIdx}-${featureIdx}`;
+              const featureKey = `${versionIdx}-${featureIdx}`;
               
               return (
                 <div
                   key={featureIdx}
+                  ref={(el) => (featureRefs.current[featureKey] = el)}
                   className="glass rounded-lg border border-slate-700/50 hover:border-purple-500/50 transition-colors overflow-hidden"
                 >
                   {/* Clickable Feature Header */}
