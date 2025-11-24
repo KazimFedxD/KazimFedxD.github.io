@@ -237,7 +237,17 @@ const ProjectDetail = () => {
                     whileHover={{ scale: 1.03, y: -5 }}
                     className="glass rounded-xl p-6 border border-slate-700/50"
                   >
-                    <div className="text-4xl mb-3">{feature.icon}</div>
+                    <div className="text-4xl mb-3">
+                      {(() => {
+                        if (typeof feature.icon === 'string' && feature.icon.length > 2) {
+                          const IconComponent = LucideIcons[feature.icon];
+                          if (IconComponent) {
+                            return <IconComponent className="w-10 h-10 text-purple-400" />;
+                          }
+                        }
+                        return <span>{feature.icon}</span>;
+                      })()}
+                    </div>
                     <h4 className="text-xl font-bold text-white mb-3">{feature.title}</h4>
                     <ul className="space-y-2">
                       {feature.points.map((point, pointIdx) => (
