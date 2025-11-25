@@ -9,9 +9,9 @@ export const fullStackTemplateData = {
   github: "https://github.com/KazimFedxD/FullStack-Template",
   
   badges: [
-    { icon: "🚀", text: "Production-Ready" },
-    { icon: "📦", text: "Fully Containerized" },
-    { icon: "🔧", text: "Developer-Friendly" }
+    { icon: "Rocket", text: "Production-Ready" },
+    { icon: "Package", text: "Fully Containerized" },
+    { icon: "Wrench", text: "Developer-Friendly" }
   ],
 
   techStack: [
@@ -87,7 +87,7 @@ export const fullStackTemplateData = {
 
     uniqueFeatures: [
       {
-        icon: "🔒",
+        icon: "Lock",
         title: "Security-First Design",
         points: [
           "HttpOnly cookies prevent XSS token theft",
@@ -98,7 +98,7 @@ export const fullStackTemplateData = {
         ]
       },
       {
-        icon: "🐳",
+        icon: "Container",
         title: "True Containerization",
         points: [
           "Every component runs in Docker—no 'it works on my machine' issues",
@@ -109,7 +109,7 @@ export const fullStackTemplateData = {
         ]
       },
       {
-        icon: "⚡",
+        icon: "Zap",
         title: "Async Task Processing",
         points: [
           "Celery workers handle background tasks (emails, reports, etc.)",
@@ -119,7 +119,7 @@ export const fullStackTemplateData = {
         ]
       },
       {
-        icon: "🎨",
+        icon: "Palette",
         title: "Modern Frontend Architecture",
         points: [
           "React 19 with latest hooks and concurrent features",
@@ -149,7 +149,7 @@ export const fullStackTemplateData = {
     {
       id: 1,
       title: "Secure JWT Authentication with HttpOnly Cookies",
-      icon: "🔐",
+      icon: "KeyRound",
       description: "A comprehensive authentication system that implements JWT (JSON Web Tokens) stored in httpOnly cookies, preventing XSS attacks while maintaining a seamless user experience. The system includes automatic token refresh, token blacklisting on logout, and persistent authentication state across browser sessions.",
       whyItMatters: "Traditional JWT implementations often store tokens in localStorage or sessionStorage, making them vulnerable to XSS attacks. HttpOnly cookies cannot be accessed by JavaScript, significantly improving security.",
       howItWorks: [
@@ -202,12 +202,16 @@ export const getAccessToken = async () => {
 };`
         }
       ],
-      screenshot: "/screenshots/FullStack-Template/login.png"
+      screenshots: [
+        "/screenshots/Full-Stack-Template/login.png",
+        "/screenshots/Full-Stack-Template/register.png",
+        "/screenshots/Full-Stack-Template/homepage.png"
+      ]
     },
     {
       id: 2,
       title: "Automated Email Verification System",
-      icon: "📧",
+      icon: "Mail",
       description: "A complete email verification workflow that sends verification codes to users during registration, validates tokens with expiration, and uses Celery for background email delivery. Includes HTML email templates with customizable branding.",
       whyItMatters: "Email verification prevents spam accounts, ensures users have valid email addresses for password recovery, and adds an extra layer of security. Background task processing prevents slow API responses during registration.",
       howItWorks: [
@@ -273,12 +277,15 @@ def clear_verification_tokens() -> None:
         token.del_self()`
         }
       ],
-      screenshot: "/screenshots/FullStack-Template/verification.png"
+      screenshots: [
+        "/screenshots/Full-Stack-Template/verification.png",
+        "/screenshots/Full-Stack-Template/dashboard.png"
+      ]
     },
     {
       id: 3,
       title: "Modern UI with Glassmorphism Design",
-      icon: "🎨",
+      icon: "Palette",
       description: "A beautiful, responsive user interface built with Tailwind CSS and Framer Motion, featuring glassmorphism effects, smooth animations, and an intuitive user experience.",
       whyItMatters: "First impressions matter. A modern, polished UI increases user trust and engagement. Glassmorphism provides a contemporary aesthetic while maintaining usability.",
       screenshots: [
@@ -290,7 +297,7 @@ def clear_verification_tokens() -> None:
     {
       id: 4,
       title: "Complete Docker Containerization",
-      icon: "🐳",
+      icon: "Container",
       description: "The entire application stack is fully containerized with Docker Compose, including PostgreSQL, Redis, Django backend, React frontend, Celery workers, Celery Beat scheduler, and Nginx reverse proxy.",
       whyItMatters: "Containerization eliminates environment inconsistencies ('works on my machine'), simplifies deployment, enables easy scaling, and provides isolated environments for each service.",
       services: [
@@ -306,49 +313,49 @@ def clear_verification_tokens() -> None:
     {
       id: 5,
       title: "Celery Background Task Processing",
-      icon: "⚡",
+      icon: "Zap",
       description: "Asynchronous task processing using Celery workers and Celery Beat scheduler, powered by Redis as the message broker.",
       whyItMatters: "Sending emails, processing large datasets, and running scheduled tasks should never block user requests. Celery enables scalable, asynchronous processing."
     },
     {
       id: 6,
       title: "Persistent Authentication State",
-      icon: "💾",
+      icon: "Database",
       description: "Authentication state persists across page refreshes, browser tabs, and navigation events using React Context API combined with localStorage and automatic token validation.",
       whyItMatters: "Users expect to stay logged in across sessions. Losing authentication state on page refresh creates a frustrating user experience."
     },
     {
       id: 7,
       title: "Email System with HTML Templates",
-      icon: "✉️",
+      icon: "MailOpen",
       description: "A production-ready email system with SMTP integration, HTML templates with variable substitution, and Celery integration for background delivery.",
       whyItMatters: "Email is critical for user verification, notifications, and engagement. HTML emails look professional and support branding."
     },
     {
       id: 8,
       title: "Data Encryption System",
-      icon: "🔐",
+      icon: "KeyRound",
       description: "Fernet-based symmetric encryption for sensitive data storage with automatic key generation.",
       whyItMatters: "Storing sensitive data in plaintext is a security risk. Encryption protects data at rest and ensures compliance with data protection regulations."
     },
     {
       id: 9,
       title: "Centralized Configuration System",
-      icon: "⚙️",
+      icon: "Settings",
       description: "A single configuration file that controls all frontend settings including API endpoints, branding, navigation menus, and feature toggles.",
       whyItMatters: "Scattered configuration makes customization difficult. Centralized configuration enables quick rebranding and easy environment changes."
     },
     {
       id: 10,
       title: "Nginx Reverse Proxy",
-      icon: "🔄",
+      icon: "RefreshCw",
       description: "Nginx configured as reverse proxy to route API requests to Django backend and frontend requests to React build.",
       whyItMatters: "Nginx efficiently handles static files, provides SSL termination, and is production-ready for high traffic."
     },
     {
       id: 11,
       title: "Custom User Model with Email Authentication",
-      icon: "👤",
+      icon: "User",
       description: "Django custom user model using email as the primary authentication field (no username).",
       whyItMatters: "Email-based authentication is more user-friendly than usernames and aligns with modern authentication practices."
     }
@@ -1785,5 +1792,11 @@ Nginx Proxy: http://localhost`,
       language: "text",
       notes: "Default admin credentials will be created on first run (check backend logs for details)."
     }
+  ],
+
+  // Related projects with similar tech stack
+  relatedProjects: [
+    "FinCore",
+    "Portfolio Website"
   ]
 };

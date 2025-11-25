@@ -16,24 +16,38 @@ const FullStackArchitectureDiagram = () => {
 
   return (
     <div className="w-full overflow-x-auto">
-      <div className="min-w-[900px] p-4 md:p-8 bg-gray-900 rounded-lg border border-gray-700">
+      <div className="min-w-[900px] p-4 md:p-8 glass rounded-2xl border border-purple-500/20">
         {/* Title */}
-        <h3 className="text-xl md:text-2xl font-bold text-white text-center mb-4 md:mb-8">
+        <motion.h3
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-xl md:text-2xl font-bold gradient-text text-center mb-4 md:mb-8"
+        >
           System Architecture Overview
-        </h3>
+        </motion.h3>
 
         {/* Client Layer */}
-        <div className="mb-4 md:mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mb-4 md:mb-8"
+        >
           <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">CLIENT LAYER</h4>
           <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6">
             <LayerBox icon={Monitor} title="Web Browser" subtitle="Desktop" color="blue" />
             <LayerBox icon={Smartphone} title="Mobile Device" subtitle="Responsive" color="blue" />
           </div>
           <ArrowDown />
-        </div>
+        </motion.div>
 
         {/* Reverse Proxy */}
-        <div className="mb-4 md:mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mb-4 md:mb-8"
+        >
           <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">REVERSE PROXY</h4>
           <div className="flex justify-center">
             <ServiceBox
@@ -48,10 +62,15 @@ const FullStackArchitectureDiagram = () => {
             <ArrowDown label="/api/*" />
             <ArrowDown label="/*" />
           </div>
-        </div>
+        </motion.div>
 
         {/* Application Layer */}
-        <div className="mb-4 md:mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-4 md:mb-8"
+        >
           <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">APPLICATION LAYER</h4>
           <div className="flex justify-center gap-4 md:gap-8">
             <ServiceBox
@@ -70,10 +89,15 @@ const FullStackArchitectureDiagram = () => {
             />
           </div>
           <ArrowDown />
-        </div>
+        </motion.div>
 
         {/* Background Services */}
-        <div className="mb-4 md:mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mb-4 md:mb-8"
+        >
           <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">BACKGROUND SERVICES</h4>
           <div className="flex justify-center gap-4 md:gap-8">
             <ServiceBox
@@ -92,10 +116,14 @@ const FullStackArchitectureDiagram = () => {
             />
           </div>
           <ArrowDown />
-        </div>
+        </motion.div>
 
         {/* Data Layer */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
           <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">DATA LAYER</h4>
           <div className="flex justify-center gap-4 md:gap-8">
             <ServiceBox
@@ -113,7 +141,7 @@ const FullStackArchitectureDiagram = () => {
               color="red"
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
@@ -136,11 +164,17 @@ const LayerBox = ({ icon: Icon, title, subtitle, color }) => {
     <motion.div
       initial={isMobile ? false : { opacity: 0, y: 20 }}
       animate={isMobile ? false : { opacity: 1, y: 0 }}
-      className={`flex flex-col items-center justify-center p-3 md:p-4 rounded-lg bg-${color}-900/20 border border-${color}-500/30 min-w-[120px] md:min-w-[150px]`}
+      whileHover={{ scale: 1.05, y: -5 }}
+      className={`flex flex-col items-center justify-center p-3 md:p-4 rounded-lg glass border border-${color}-500/30 min-w-[120px] md:min-w-[150px]`}
     >
-      <Icon className={`w-6 h-6 md:w-8 md:h-8 text-${color}-400 mb-2`} />
+      <motion.div
+        animate={{ rotate: [0, 5, -5, 0] }}
+        transition={{ duration: 2, repeat: Infinity, repeatDelay: 2 }}
+      >
+        <Icon className={`w-6 h-6 md:w-8 md:h-8 text-${color}-400 mb-2`} />
+      </motion.div>
       <div className="text-xs md:text-sm font-semibold text-white">{title}</div>
-      <div className="text-[10px] md:text-xs text-gray-400">{subtitle}</div>
+      <div className="text-[10px] md:text-xs text-slate-400">{subtitle}</div>
     </motion.div>
   );
 };
@@ -161,18 +195,24 @@ const ServiceBox = ({ icon: Icon, title, subtitle, features, color }) => {
     <motion.div
       initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
       animate={isMobile ? false : { opacity: 1, scale: 1 }}
-      className={`p-3 md:p-4 rounded-lg bg-${color}-900/20 border border-${color}-500/30 min-w-[160px] md:min-w-[200px]`}
+      whileHover={{ scale: 1.05, y: -5 }}
+      className={`p-3 md:p-4 rounded-lg glass border border-${color}-500/30 min-w-[160px] md:min-w-[200px]`}
     >
       <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-        <Icon className={`w-5 h-5 md:w-6 md:h-6 text-${color}-400`} />
+        <motion.div
+          animate={{ rotate: [0, 10, -10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+        >
+          <Icon className={`w-5 h-5 md:w-6 md:h-6 text-${color}-400`} />
+        </motion.div>
         <div>
           <div className="text-xs md:text-sm font-bold text-white">{title}</div>
-          <div className="text-[10px] md:text-xs text-gray-400">{subtitle}</div>
+          <div className="text-[10px] md:text-xs text-slate-400">{subtitle}</div>
         </div>
       </div>
       <div className="space-y-1">
         {features.map((feature, idx) => (
-          <div key={idx} className="text-[10px] md:text-xs text-gray-300 flex items-center gap-1">
+          <div key={idx} className="text-[10px] md:text-xs text-slate-300 flex items-center gap-1">
             <span className={`text-${color}-400`}>•</span>
             {feature}
           </div>
@@ -196,11 +236,17 @@ const ArrowDown = ({ label }) => {
 
   return (
     <div className="flex flex-col items-center my-1 md:my-2">
-      <div className="text-[10px] md:text-xs text-gray-500 mb-1">{label}</div>
+      <div className="text-[10px] md:text-xs text-slate-500 mb-1">{label}</div>
       <motion.div
         initial={isMobile ? false : { opacity: 0 }}
-        animate={isMobile ? false : { opacity: 1 }}
-        transition={isMobile ? {} : { delay: 0.3 }}
+        animate={isMobile ? false : { 
+          opacity: 1,
+          y: [0, 5, 0]
+        }}
+        transition={isMobile ? {} : { 
+          opacity: { delay: 0.3 },
+          y: { duration: 1.5, repeat: Infinity }
+        }}
       >
         <svg className="w-5 h-6 md:w-6 md:h-8 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 4v12m0 0l-4-4m4 4l4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />

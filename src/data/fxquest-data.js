@@ -8,10 +8,10 @@ export const fxquestData= {
   github: "https://github.com/KazimFedxD/FxQuest",
   
   badges: [
-    { icon: "🚀", text: "Production Ready" },
-    { icon: "🎮", text: "8+ Games" },
-    { icon: "💎", text: "Advanced Economy" },
-    { icon: "⚡", text: "Async Architecture" }
+    { icon: "Rocket", text: "Production Ready" },
+    { icon: "Gamepad2", text: "8+ Games" },
+    { icon: "Gem", text: "Advanced Economy" },
+    { icon: "Zap", text: "Async Architecture" }
   ],
 
   // ============================================================
@@ -81,7 +81,7 @@ export const fxquestData= {
 
     uniqueFeatures: [
       {
-        icon: "🎮",
+        icon: "Gamepad2",
         title: "True Multiplayer Games",
         points: [
           "8+ fully-featured games with turn-based mechanics and state management",
@@ -92,7 +92,7 @@ export const fxquestData= {
         ]
       },
       {
-        icon: "⛏️",
+        icon: "Pickaxe",
         title: "Minecraft Integration",
         points: [
           "Unique mining system inspired by Minecraft gameplay",
@@ -103,7 +103,7 @@ export const fxquestData= {
         ]
       },
       {
-        icon: "🗄️",
+        icon: "Database",
         title: "Custom Database Layer",
         points: [
           "ORM-like abstraction over SQLite with async operations",
@@ -114,7 +114,7 @@ export const fxquestData= {
         ]
       },
       {
-        icon: "⚙️",
+        icon: "Settings",
         title: "Comprehensive Customization",
         points: [
           "Interactive setup UI with buttons and select menus",
@@ -148,7 +148,7 @@ export const fxquestData= {
     {
       id: 1,
       title: "Multi-Player Interactive Games",
-      icon: "🎮",
+      icon: "Gamepad2",
       description: "FxQuest provides 8+ fully-featured multiplayer games with turn-based mechanics, real-time state management, and modern Discord UI components. Each game supports multiple concurrent sessions across different servers with persistent game states.",
       whyItMatters: "Keeps members active and interacting in your server through varied gaming experiences. Multi-player games encourage social interaction and provide reasons for members to return regularly.",
       howItWorks: [
@@ -180,7 +180,12 @@ export const fxquestData= {
         description = f"Current Turn: <@{self.game['current_player']}>\\n"
         description += f"Current Card: {self.game['current_color']} {self.game['current_number']}\\n"
         # Players can select cards from dropdown menu
-        # Color picker for Wild cards`
+        # Color picker for Wild cards`,
+        screenshots: [
+          "/screenshots/FxQuest/blackjack.png",
+          "/screenshots/FxQuest/hangman.png",
+          "/screenshots/FxQuest/rps.png"
+        ]
         },
         {
           title: "Poker System with PyPokerEngine",
@@ -238,7 +243,7 @@ export const fxquestData= {
     {
       id: 2,
       title: "Advanced Economy System",
-      icon: "💰",
+      icon: "DollarSign",
       description: "A comprehensive virtual currency system with profile tracking, leaderboards, gambling mechanics, and reward distribution. Each user has a persistent profile storing balance, stats, level progression, and activity metrics.",
       whyItMatters: "Virtual currency incentivizes participation and creates competitive engagement through leaderboards. Players earn money through games and activities, creating a progression-driven economy.",
       howItWorks: [
@@ -339,7 +344,7 @@ async def coinflip(self, interaction: Interaction, bet: int, choice: str):
     {
       id: 3,
       title: "XP-Based Leveling with Role Rewards",
-      icon: "📊",
+      icon: "BarChart3",
       description: "An automated progression system that rewards active members with XP for each message, levels them up based on a quadratic formula, grants money bonuses, and assigns prestigious roles at milestone levels.",
       whyItMatters: "Long-term members receive visible status recognition through roles and levels. The system encourages consistent participation without manual tracking, with server-specific role reward configuration.",
       howItWorks: [
@@ -435,7 +440,7 @@ async def levelupdater(self, message: Message):
     {
       id: 4,
       title: "Minecraft-Inspired Mining & Inventory System",
-      icon: "⛏️",
+      icon: "Pickaxe",
       description: "A unique Minecraft-style mining system with resource gathering, tool/armor management with durability mechanics, inventory storage, crafting capabilities, and player stats (health, hunger, effects).",
       whyItMatters: "Adds RPG-like progression elements not commonly found in Discord bots. Appeals to Minecraft players and adds depth to the economy through resource gathering and trading.",
       howItWorks: [
@@ -530,14 +535,18 @@ class Armor(Item):
           description: "Server-specific emojis for visual item representation"
         }
       ],
-      screenshot: "/screenshots/FxQuest/mine-surface.png"
+      screenshots: [
+        "/screenshots/FxQuest/mine-surface.png",
+        "/screenshots/FxQuest/mine-underground.png",
+        "/screenshots/FxQuest/inventory-display.png"
+      ]
     },
 
     // FEATURE 5: Automated Chat Games
     {
       id: 5,
       title: "Automated Chat Games with Rewards",
-      icon: "🎲",
+      icon: "Dice5",
       description: "Timed, automatic mini-games that appear in designated channels at random intervals (20-60 minutes), rewarding the first correct answer with virtual currency.",
       whyItMatters: "Provides passive engagement without user initiation. Games appear automatically, encouraging channel activity and rewarding quick, attentive members with currency.",
       howItWorks: [
@@ -644,7 +653,7 @@ async def check_answer(self, message: Message):
     {
       id: 6,
       title: "Comprehensive Server Customization",
-      icon: "⚙️",
+      icon: "Settings",
       description: "Extensive per-server configuration options allowing administrators to customize every aspect of the bot's functionality, from enabling/disabling features to designating specific channels and setting role rewards.",
       whyItMatters: "Each server can tailor the bot to their specific needs. Channel organization keeps bot activity designated. Admins control which features to enable, improving server-specific workflows.",
       howItWorks: [
@@ -731,7 +740,7 @@ async def check_answer(self, message: Message):
     {
       id: 7,
       title: "Interactive Help System with Command Discovery",
-      icon: "❓",
+      icon: "HelpCircle",
       description: "A comprehensive, category-based help system with autocomplete, paginated command listings, detailed command information, and interactive navigation. Users can easily discover and learn about all available bot commands.",
       whyItMatters: "New users can explore all features without external documentation. Built-in reference makes commands accessible and improves user experience through interactive UI navigation.",
       howItWorks: [
@@ -808,7 +817,7 @@ async def check_answer(self, message: Message):
     {
       id: 8,
       title: "User Feedback & Suggestion System",
-      icon: "💬",
+      icon: "MessageCircle",
       description: "Built-in feedback system allowing users to submit suggestions, report bugs, and provide general feedback directly through Discord commands. All submissions are forwarded to a dedicated support channel.",
       whyItMatters: "Community can contribute ideas and report issues directly. Users feel heard and valued. Creates continuous feedback loop for development improvement.",
       howItWorks: [
@@ -879,7 +888,7 @@ async def check_answer(self, message: Message):
     {
       id: 9,
       title: "Advanced Owner Control Panel",
-      icon: "👑",
+      icon: "Crown",
       description: "Comprehensive bot administration interface exclusively for the bot owner, providing full control over bot operations including cog management, command syncing, database operations, and live code evaluation.",
       whyItMatters: "Enables hot reloading without downtime, live code execution for troubleshooting, and complete bot system control from Discord. Reduces deployment overhead and improves debugging workflow.",
       howItWorks: [
@@ -962,7 +971,7 @@ class Owner(Cog):
     {
       id: 10,
       title: "Profile Statistics & Leaderboards",
-      icon: "📈",
+      icon: "TrendingUp",
       description: "Comprehensive user profile system tracking stats across all bot features with visual profile cards and server-wide leaderboards for money, level, and activity.",
       whyItMatters: "Progress visibility shows users their achievements. Leaderboards drive engagement through competition. Full stat tracking provides transparency and motivates participation.",
       howItWorks: [
@@ -1018,7 +1027,7 @@ async def profile(self, interaction: Interaction, user: User = None):
     {
       id: 11,
       title: "Akinator Game Integration (Beta)",
-      icon: "🧞",
+      icon: "Sparkles",
       description: "Interactive Akinator game where the bot thinks of a character and asks Yes/No questions to guess who you're thinking of, fully integrated with Discord's button system.",
       whyItMatters: "AI-powered guessing game provides highly interactive and entertaining experience. Unique feature different from traditional card/board games, using external Akinator API.",
       howItWorks: [
@@ -1082,7 +1091,7 @@ async def profile(self, interaction: Interaction, user: User = None):
     {
       id: 12,
       title: "Custom Database Abstraction Layer",
-      icon: "🗄️",
+      icon: "Database",
       description: "A custom-built ORM-like abstraction layer over SQLite providing simplified async database operations with methods for common CRUD operations.",
       whyItMatters: "Simplified database queries improve developer experience. Async operations prevent blocking the bot. Easy to switch to PostgreSQL later for scalability.",
       howItWorks: [
@@ -1161,7 +1170,7 @@ async def profile(self, interaction: Interaction, user: User = None):
           components: [
             {
               name: "Discord Gateway",
-              icon: "🌐",
+              icon: "Globe",
               description: "WebSocket + REST API communication with Discord servers"
             }
           ]
@@ -1171,7 +1180,7 @@ async def profile(self, interaction: Interaction, user: User = None):
           components: [
             {
               name: "MyBot Class",
-              icon: "🤖",
+              icon: "Bot",
               description: "Custom bot extensions: Database abstraction, error handling, help system generator"
             }
           ]
@@ -1181,17 +1190,17 @@ async def profile(self, interaction: Interaction, user: User = None):
           components: [
             {
               name: "Command Cogs",
-              icon: "⚙️",
+              icon: "Settings",
               description: "setup.py, gambling.py, feedback.py, help.py, owner.py"
             },
             {
               name: "Game Cogs",
-              icon: "🎮",
+              icon: "Gamepad2",
               description: "uno.py, poker.py, blackjack.py, hangman.py, tictactoe.py, bluff.py, rps.py"
             },
             {
               name: "Handler Cogs",
-              icon: "📊",
+              icon: "BarChart3",
               description: "level.py, money.py, mine.py, chatgames.py, inventory.py, views.py"
             }
           ]
@@ -1201,7 +1210,7 @@ async def profile(self, interaction: Interaction, user: User = None):
           components: [
             {
               name: "SQLite Database",
-              icon: "🗄️",
+              icon: "Database",
               description: "main.db with tables: profiles, guilds, inventory, poker, helpcommands, errors"
             }
           ]
@@ -2062,6 +2071,11 @@ channel = await guild.create_text_channel(...)`
         }
       ]
     }
+  ],
+
+  // Related projects with similar tech stack
+  relatedProjects: [
+    "FeXoBot"
   ]
 };
 

@@ -12,9 +12,9 @@ export const fincoreData = {
   github: "https://github.com/KazimFedxD/FinCore",
   
   badges: [
-    { icon: "🚧", text: "In Active Development" },
-    { icon: "🏗️", text: "Built on FullStack-Template" },
-    { icon: "🕌", text: "Islamic Finance Ready" }
+    { icon: "Construction", text: "In Active Development" },
+    { icon: "Building2", text: "Built on FullStack-Template" },
+    { icon: "Building", text: "Islamic Finance Ready" }
   ],
 
   // Tech Stack with categories
@@ -95,7 +95,7 @@ export const fincoreData = {
 
     uniqueFeatures: [
       {
-        icon: "🕌",
+        icon: "Building",
         title: "Islamic Finance Integration (Upcoming)",
         points: [
           "Automated Khums (one-fifth tax) calculations based on income and expenses",
@@ -106,7 +106,7 @@ export const fincoreData = {
         ]
       },
       {
-        icon: "🏗️",
+        icon: "Building2",
         title: "Built on Production-Ready Template",
         points: [
           "JWT authentication with automatic token refresh",
@@ -117,7 +117,7 @@ export const fincoreData = {
         ]
       },
       {
-        icon: "🔒",
+        icon: "Lock",
         title: "Data Privacy & Ownership",
         points: [
           "Self-hosted deployment option with full control",
@@ -128,7 +128,7 @@ export const fincoreData = {
         ]
       },
       {
-        icon: "⚡",
+        icon: "Zap",
         title: "Modern Developer Experience",
         points: [
           "Clean separation of concerns (Django backend, React frontend)",
@@ -162,7 +162,7 @@ export const fincoreData = {
     {
       id: 1,
       title: "JWT-Based Authentication with Email Verification",
-      icon: "🔐",
+      icon: "KeyRound",
       description: "Secure user authentication system using JSON Web Tokens (JWT) with automatic token refresh, cookie-based authentication, and email verification. Ensures only verified users can access their financial data while providing a seamless login experience.",
       whyItMatters: "JWT tokens prevent unauthorized access to sensitive financial data. Automatic token refresh eliminates annoying re-login prompts. Email verification ensures account authenticity and enables password recovery. Stateless architecture enables horizontal scaling without session storage.",
       howItWorks: [
@@ -189,7 +189,11 @@ REST_FRAMEWORK = {
         "usermanagement.middleware.CookieJWTAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
-}`
+}`,
+        screenshots: [
+          "/screenshots/FinCore/homepage.png",
+          "/screenshots/FinCore/dashboard.png"
+        ]
         },
         {
           title: "Email Verification Token System",
@@ -253,7 +257,7 @@ REST_FRAMEWORK = {
     {
       id: 2,
       title: "Hierarchical Category System",
-      icon: "📁",
+      icon: "FolderTree",
       description: "Flexible category management system with parent-child relationships allowing unlimited nesting depth. Supports root categories (Income/Expense) that are protected from deletion, with user-defined subcategories for granular organization.",
       whyItMatters: "Nested categories provide granular tracking without complexity. Users can create custom categories matching their lifestyle. Root categories prevent orphaned transactions. Enables detailed reporting with category-wise breakdowns and aggregations.",
       howItWorks: [
@@ -363,7 +367,7 @@ REST_FRAMEWORK = {
     {
       id: 3,
       title: "Real-Time Financial Dashboard",
-      icon: "📊",
+      icon: "BarChart3",
       description: "Provides an at-a-glance view of financial health with three key metrics (total income, total expenses, current balance) and visual category breakdowns showing where money comes from and where it goes.",
       whyItMatters: "Instant insights allow seeing financial status in seconds. Visual progress bars make patterns obvious. Quickly identify top expense categories. Positive balance displayed in encouraging colors for motivation.",
       howItWorks: [
@@ -459,7 +463,7 @@ def get_report(request: Request) -> Response:
     {
       id: 4,
       title: "Comprehensive Income & Expense Tracking",
-      icon: "💰",
+      icon: "DollarSign",
       description: "Full CRUD (Create, Read, Update, Delete) operations for both income and expenses with category assignment, date tracking, and detailed descriptions. User-specific data isolation ensures privacy.",
       whyItMatters: "Complete transaction history enables accurate financial analysis. Category-based organization makes finding transactions easy. Date sorting shows recent activity first. Descriptions provide context for each transaction.",
       howItWorks: [
@@ -527,7 +531,7 @@ def get_report(request: Request) -> Response:
     {
       id: 5,
       title: "Detailed Financial Reporting",
-      icon: "📈",
+      icon: "TrendingUp",
       description: "Comprehensive financial reports showing all transactions with category breakdowns, total calculations, and chronological sorting. Aggregates data to provide meaningful insights into spending patterns.",
       whyItMatters: "Category-wise breakdowns reveal spending patterns. Chronological sorting shows financial history. Total calculations provide financial health snapshot. Helps identify areas to reduce expenses.",
       howItWorks: [
@@ -583,7 +587,7 @@ def get_report(request: Request) -> Response:
     {
       id: 6,
       title: "Responsive Modern UI",
-      icon: "🎨",
+      icon: "Palette",
       description: "Clean, intuitive interface built with React 19, Tailwind CSS, and Framer Motion. Features glassmorphic design, smooth animations, and mobile-responsive layouts that work seamlessly across devices.",
       whyItMatters: "Mobile-first design ensures accessibility on all devices. Smooth animations provide professional feel. Glass morphism creates modern, premium aesthetic. Tailwind enables rapid UI iteration.",
       howItWorks: [
@@ -651,35 +655,35 @@ def get_report(request: Request) -> Response:
         {
           name: "Client Layer",
           components: [
-            { name: "Web Browser", icon: "💻", description: "React 19 SPA served as static files" },
-            { name: "Mobile Browser", icon: "📱", description: "Responsive design adapts to mobile screens" }
+            { name: "Web Browser", icon: "Monitor", description: "React 19 SPA served as static files" },
+            { name: "Mobile Browser", icon: "Smartphone", description: "Responsive design adapts to mobile screens" }
           ]
         },
         {
           name: "Proxy Layer",
           components: [
-            { name: "Nginx", icon: "🔀", description: "Reverse proxy, SSL termination, static file serving" }
+            { name: "Nginx", icon: "GitBranch", description: "Reverse proxy, SSL termination, static file serving" }
           ]
         },
         {
           name: "Application Layer",
           components: [
-            { name: "Django Backend", icon: "🐍", description: "RESTful API with JWT authentication" },
-            { name: "React Frontend", icon: "⚛️", description: "Single Page Application with routing" }
+            { name: "Django Backend", icon: "Code2", description: "RESTful API with JWT authentication" },
+            { name: "React Frontend", icon: "Atom", description: "Single Page Application with routing" }
           ]
         },
         {
           name: "Background Services",
           components: [
-            { name: "Celery Worker", icon: "⚙️", description: "Async task processing (emails)" },
-            { name: "Celery Beat", icon: "⏰", description: "Scheduled tasks (token cleanup)" }
+            { name: "Celery Worker", icon: "Settings", description: "Async task processing (emails)" },
+            { name: "Celery Beat", icon: "Clock", description: "Scheduled tasks (token cleanup)" }
           ]
         },
         {
           name: "Data Layer",
           components: [
-            { name: "PostgreSQL", icon: "🗄️", description: "Primary data storage" },
-            { name: "Redis", icon: "⚡", description: "Message broker and cache" }
+            { name: "PostgreSQL", icon: "Database", description: "Primary data storage" },
+            { name: "Redis", icon: "Zap", description: "Message broker and cache" }
           ]
         }
       ],
@@ -1224,5 +1228,10 @@ def get_report(request: Request) -> Response:
         }
       ]
     }
+  ],
+
+  // Related projects with similar tech stack
+  relatedProjects: [
+    "Full-Stack Web Application Template"
   ]
 };

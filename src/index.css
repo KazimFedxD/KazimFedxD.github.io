@@ -20,10 +20,14 @@
 @layer components {
   .gradient-text {
     @apply bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent;
+    text-shadow: 0 0 1px rgba(168, 85, 247, 0.5);
+    -webkit-text-stroke: 0.5px rgba(168, 85, 247, 0.1);
   }
   
   html.light .gradient-text {
     @apply bg-gradient-to-r from-purple-600 via-pink-600 to-purple-800 bg-clip-text text-transparent;
+    text-shadow: 0 0 1px rgba(147, 51, 234, 0.5);
+    -webkit-text-stroke: 0.5px rgba(147, 51, 234, 0.1);
   }
   
   /* Ensure navbar stays fixed */
@@ -46,6 +50,42 @@
     @apply transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50;
   }
   
+  /* Glassmorphism effect */
+  .glass {
+    @apply bg-white/20 backdrop-blur-lg border border-white/20;
+  }
+  
+  html.light .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-purple-200/50;
+  }
+  
+  /* 3D card effect */
+  .card-3d {
+    @apply transform-gpu transition-all duration-300;
+    transform-style: preserve-3d;
+  }
+  
+  .card-3d:hover {
+    transform: rotateY(5deg) rotateX(5deg) scale(1.02);
+  }
+  
+  /* Animated gradient background */
+  .gradient-animation {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  
+  /* Particle container */
+  .particles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+  
   /* Hide scrollbar but keep functionality */
   .scrollbar-hide {
     -ms-overflow-style: none;  /* IE and Edge */
@@ -54,6 +94,36 @@
   
   .scrollbar-hide::-webkit-scrollbar {
     display: none;  /* Chrome, Safari, Opera */
+  }
+  
+  /* Custom thin scrollbar for tabs */
+  .scrollbar-thin {
+    scrollbar-width: thin;  /* Firefox */
+    scrollbar-color: rgba(168, 85, 247, 0.5) transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.5);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  .scrollbar-thin:hover::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.8);
   }
   
   /* Light mode text colors */
@@ -90,6 +160,150 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #9333ea;
+}
+
+/* Keyframe Animations */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8), 0 0 60px rgba(236, 72, 153, 0.6); }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotate-360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.3),
+                0 0 20px rgba(168, 85, 247, 0.2),
+                0 0 30px rgba(168, 85, 247, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6),
+                0 0 40px rgba(168, 85, 247, 0.4),
+                0 0 60px rgba(168, 85, 247, 0.2);
+  }
+}
+
+/* Animation utility classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.8s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.8s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-rotate {
+  animation: rotate-360 20s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Perspective for 3D effects */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+/* Transform style */
+.transform-3d {
+  transform-style: preserve-3d;
 }
 
 /* Mobile performance optimizations */

@@ -1,34 +1,109 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Rocket, Clock, ChevronDown, Target, Lightbulb, Code, TrendingUp, Zap } from 'lucide-react';
 import CodeSnippet from './CodeSnippet';
 
 const FutureRoadmap = ({ enhancements }) => {
   const [expandedFeature, setExpandedFeature] = useState(null);
+  const featureRefs = useRef({});
+
+  // Create a flat list of all features with their indices
+  const allFeatures = useMemo(() => {
+    const features = [];
+    enhancements.forEach((version, versionIdx) => {
+      version.features.forEach((feature, featureIdx) => {
+        features.push({ versionIdx, featureIdx, key: `${versionIdx}-${featureIdx}` });
+      });
+    });
+    return features;
+  }, [enhancements]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setExpandedFeature((prev) => {
+          if (prev === null) return allFeatures[0]?.key || null;
+          const currentIdx = allFeatures.findIndex(f => f.key === prev);
+          const nextIdx = Math.min(currentIdx + 1, allFeatures.length - 1);
+          return allFeatures[nextIdx].key;
+        });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setExpandedFeature((prev) => {
+          if (prev === null) return allFeatures[0]?.key || null;
+          const currentIdx = allFeatures.findIndex(f => f.key === prev);
+          const nextIdx = Math.max(currentIdx - 1, 0);
+          return allFeatures[nextIdx].key;
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [allFeatures]);
+
+  useEffect(() => {
+    if (expandedFeature && featureRefs.current[expandedFeature]) {
+      // Delay scroll to allow animation to complete
+      setTimeout(() => {
+        featureRefs.current[expandedFeature]?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 350);
+    }
+  }, [expandedFeature]);
 
   const getPriorityColor = (priority) => {
     switch (priority?.toLowerCase()) {
       case 'high':
-        return 'text-red-400 bg-red-500/20 border-red-500/50';
+        return 'text-red-300 bg-gradient-to-br from-red-600 to-red-700 border-2 border-red-400 shadow-xl shadow-red-500/30 font-black';
       case 'medium':
-        return 'text-yellow-400 bg-yellow-500/20 border-yellow-500/50';
+        return 'text-amber-200 bg-gradient-to-br from-amber-600 to-orange-600 border-2 border-amber-400 shadow-xl shadow-amber-500/30 font-black';
       case 'low':
-        return 'text-blue-400 bg-blue-500/20 border-blue-500/50';
+        return 'text-cyan-200 bg-gradient-to-br from-cyan-600 to-blue-600 border-2 border-cyan-400 shadow-xl shadow-cyan-500/30 font-black';
       default:
         return 'text-gray-400 bg-gray-500/20 border-gray-500/50';
+    }
+  };
+
+  const getPriorityIcon = (priority) => {
+    switch (priority?.toLowerCase()) {
+      case 'high':
+        return '🔥';
+      case 'medium':
+        return '⚡';
+      case 'low':
+        return '💡';
+      default:
+        return '•';
     }
   };
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty?.toLowerCase()) {
       case 'easy':
-        return 'text-green-400 bg-green-500/20 border-green-500/50';
+        return 'text-emerald-900 bg-gradient-to-r from-emerald-300 to-green-400 border border-emerald-600 shadow-lg shadow-emerald-400/40 font-bold';
       case 'medium':
-        return 'text-yellow-400 bg-yellow-500/20 border-yellow-500/50';
+        return 'text-orange-900 bg-gradient-to-r from-orange-300 to-yellow-400 border border-orange-600 shadow-lg shadow-orange-400/40 font-bold';
       case 'hard':
-        return 'text-red-400 bg-red-500/20 border-red-500/50';
+        return 'text-rose-900 bg-gradient-to-r from-rose-300 to-pink-400 border border-rose-600 shadow-lg shadow-rose-400/40 font-bold';
       default:
         return 'text-gray-400 bg-gray-500/20 border-gray-500/50';
+    }
+  };
+
+  const getDifficultyIcon = (difficulty) => {
+    switch (difficulty?.toLowerCase()) {
+      case 'easy':
+        return '✓';
+      case 'medium':
+        return '◆';
+      case 'hard':
+        return '★';
+      default:
+        return '•';
     }
   };
 
@@ -45,18 +120,24 @@ const FutureRoadmap = ({ enhancements }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: versionIdx * 0.1 }}
-          className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-gray-700"
+          whileHover={{ scale: 1.01, y: -3 }}
+          className="glass rounded-xl p-4 sm:p-6 border border-purple-500/30"
         >
           {/* Version Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 pb-4 border-b border-gray-700 gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 pb-4 border-b border-slate-700/50 gap-3">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <Rocket className="text-purple-400" size={24} />
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: versionIdx * 0.5 }}
+                >
+                  <Rocket className="text-purple-400" size={24} />
+                </motion.div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white">Version {version.version}</h3>
               </div>
               <p className="text-purple-400 font-semibold text-sm sm:text-base">{version.theme}</p>
             </div>
-            <div className="flex items-center gap-2 text-gray-400">
+            <div className="flex items-center gap-2 text-slate-400">
               <Clock size={16} />
               <span className="text-xs sm:text-sm">{version.timeline}</span>
             </div>
@@ -66,11 +147,13 @@ const FutureRoadmap = ({ enhancements }) => {
           <div className="space-y-3">
             {version.features.map((feature, featureIdx) => {
               const isExpanded = expandedFeature === `${versionIdx}-${featureIdx}`;
+              const featureKey = `${versionIdx}-${featureIdx}`;
               
               return (
                 <div
                   key={featureIdx}
-                  className="bg-gray-900/50 rounded-lg border border-gray-700 hover:border-purple-500 transition-colors overflow-hidden"
+                  ref={(el) => (featureRefs.current[featureKey] = el)}
+                  className="glass rounded-lg border border-slate-700/50 hover:border-purple-500/50 transition-colors overflow-hidden"
                 >
                   {/* Clickable Feature Header */}
                   <button
@@ -82,30 +165,38 @@ const FutureRoadmap = ({ enhancements }) => {
                         <h4 className="text-white font-semibold text-sm sm:text-base">{feature.name}</h4>
                         
                         {feature.priority && (
-                          <span className={`px-2 py-1 rounded border text-xs font-semibold ${getPriorityColor(feature.priority)}`}>
-                            {feature.priority}
-                          </span>
-                        )}
-                        
-                        {feature.difficulty && (
-                          <span className={`px-2 py-1 rounded border text-xs font-semibold ${getDifficultyColor(feature.difficulty)}`}>
-                            {feature.difficulty}
-                          </span>
+                          <motion.span 
+                            whileHover={{ scale: 1.1, rotate: 3 }}
+                            className={`px-3 py-1.5 rounded-md text-xs uppercase tracking-wider flex items-center gap-1.5 ${getPriorityColor(feature.priority)}`}
+                          >
+                            <span className="text-sm">{getPriorityIcon(feature.priority)}</span>
+                            PRIORITY: {feature.priority}
+                          </motion.span>
                         )}
                       </div>
                       
                       {feature.description && (
-                        <p className="text-gray-400 text-xs sm:text-sm mb-2">{feature.description}</p>
+                        <p className="text-slate-400 text-xs sm:text-sm mb-2">{feature.description}</p>
                       )}
                       
-                      <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500">
+                      <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
                         {feature.effort && (
                           <span>Effort: {feature.effort}</span>
                         )}
                       </div>
                     </div>
                     
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 flex items-center gap-3">
+                      {feature.difficulty && (
+                        <motion.span 
+                          whileHover={{ scale: 1.1, rotate: -3 }}
+                          className={`px-3 py-1.5 rounded-full text-xs uppercase tracking-wider flex items-center gap-1.5 ${getDifficultyColor(feature.difficulty)}`}
+                        >
+                          <span className="text-base">{getDifficultyIcon(feature.difficulty)}</span>
+                          {feature.difficulty}
+                        </motion.span>
+                      )}
+                      
                       <motion.div
                         animate={{ rotate: isExpanded ? 180 : 0 }}
                         transition={{ duration: 0.3 }}

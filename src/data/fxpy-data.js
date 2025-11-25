@@ -12,10 +12,10 @@ export const fxpyData = {
   github: "https://github.com/KazimFedxD/FxPy",
   
   badges: [
-    { icon: "🚀", text: "Pure Python Implementation" },
-    { icon: "🛠️", text: "Zero Dependencies" },
-    { icon: "📚", text: "Educational Project" },
-    { icon: "⚡", text: "~3,300 Lines of Code" }
+    { icon: "Rocket", text: "Pure Python Implementation" },
+    { icon: "Wrench", text: "Zero Dependencies" },
+    { icon: "BookOpen", text: "Educational Project" },
+    { icon: "Zap", text: "~3,300 Lines of Code" }
   ],
 
   techStack: [
@@ -81,7 +81,7 @@ export const fxpyData = {
 
     uniqueFeatures: [
       {
-        icon: "🎯",
+        icon: "Target",
         title: "Complete Language Implementation",
         points: [
           "Full module/import system with relative path resolution",
@@ -92,7 +92,7 @@ export const fxpyData = {
         ]
       },
       {
-        icon: "📖",
+        icon: "BookOpen",
         title: "Educational & Readable",
         points: [
           "~3,300 lines of clean, documented Python code",
@@ -103,7 +103,7 @@ export const fxpyData = {
         ]
       },
       {
-        icon: "⚡",
+        icon: "Zap",
         title: "Modern Language Features",
         points: [
           "Arrow functions: fex square(x) -> return x * x",
@@ -114,7 +114,7 @@ export const fxpyData = {
         ]
       },
       {
-        icon: "🔧",
+        icon: "Wrench",
         title: "Real-World Applicability",
         points: [
           "Interactive REPL for experimentation",
@@ -143,7 +143,7 @@ export const fxpyData = {
     {
       id: 1,
       title: "Dynamic Type System with Runtime Checking",
-      icon: "🔢",
+      icon: "Binary",
       description: "FxPy implements a dynamic type system where variables can hold any type of value, and type checking happens at runtime rather than compile time. The language supports Numbers (integers and floats), Strings, Lists, Dictionaries, and Functions as first-class values.",
       whyItMatters: "Dynamic typing provides flexibility for rapid prototyping and scripting tasks. It allows developers to focus on logic rather than type declarations, making the language more accessible to beginners while still powerful for advanced users.",
       howItWorks: [
@@ -186,7 +186,7 @@ x = "now a string"      # Valid in FxPy`
     {
       id: 2,
       title: "First-Class Functions with Closures",
-      icon: "ƒ",
+      icon: "FunctionSquare",
       description: "Functions in FxPy are first-class citizens—they can be assigned to variables, passed as arguments, returned from other functions, and maintain closure over their defining scope. The language supports both traditional function syntax and arrow function syntax.",
       whyItMatters: "First-class functions enable functional programming paradigms, including higher-order functions, callbacks, and function composition. This makes the language more expressive and allows for powerful abstractions.",
       howItWorks: [
@@ -253,7 +253,7 @@ print(operation(5))  # 25`
     {
       id: 3,
       title: "Advanced Module System with Import Resolution",
-      icon: "📦",
+      icon: "Package",
       description: "FxPy features a sophisticated module system that supports importing code from other .fx files with multiple import syntaxes: basic imports, aliased imports, and selective imports. The system uses relative path resolution based on the importing file's location.",
       whyItMatters: "Modular code organization is essential for building larger programs. The import system allows developers to split code into reusable modules, promoting code reuse and maintainability.",
       howItWorks: [
@@ -321,7 +321,7 @@ print(fact(5))`
     {
       id: 4,
       title: "Variadic Functions with *args and **kwargs",
-      icon: "⋯",
+      icon: "MoreHorizontal",
       description: "FxPy supports variadic functions through *args for collecting positional arguments and **kwargs for collecting keyword arguments. This allows functions to accept flexible numbers of parameters.",
       whyItMatters: "Variadic functions are essential for creating flexible APIs and utility functions. They enable patterns like sum functions, logging with metadata, configuration builders, and more—making FxPy suitable for real-world scripting tasks.",
       howItWorks: [
@@ -389,7 +389,7 @@ print(log("ERROR", "Failed", "to", "connect", code=500, retry=True))`
     {
       id: 5,
       title: "Rich Error Reporting with Visual Context",
-      icon: "💡",
+      icon: "Lightbulb",
       description: "FxPy provides comprehensive error reporting that shows exactly where errors occur in source code, with visual indicators pointing to the problematic location. Errors include position information, context, and helpful messages.",
       whyItMatters: "Good error messages are crucial for developer productivity. Instead of cryptic errors, FxPy shows the exact line, column, and context where errors occur, making debugging significantly easier—especially for students learning programming.",
       howItWorks: [
@@ -438,7 +438,7 @@ print(log("ERROR", "Failed", "to", "connect", code=500, retry=True))`
     {
       id: 6,
       title: "Interactive REPL with Live Feedback",
-      icon: "🔄",
+      icon: "RefreshCw",
       description: "FxPy includes an interactive Read-Eval-Print Loop (REPL) that allows developers to execute code line-by-line and see immediate results. Perfect for experimentation, learning, and quick calculations.",
       whyItMatters: "REPLs are invaluable for learning languages, testing code snippets, and debugging. They provide instant feedback and make the language more accessible for beginners while remaining useful for experienced developers.",
       howItWorks: [
@@ -484,7 +484,7 @@ while True:
     {
       id: 7,
       title: "Rich Data Structures (Lists & Dictionaries)",
-      icon: "📊",
+      icon: "BarChart3",
       description: "FxPy provides built-in support for two essential data structures: Lists (ordered collections) and Dictionaries (key-value mappings). These structures support intuitive operations and can be nested for complex data modeling.",
       whyItMatters: "Data structures are fundamental to any programming language. Lists enable working with sequences of data, while dictionaries allow for efficient key-based lookups and data organization.",
       howItWorks: [
@@ -548,7 +548,7 @@ let host = (config / "db") / "host"  # "localhost"`
     {
       id: 8,
       title: "Control Flow Structures",
-      icon: "🔀",
+      icon: "GitBranch",
       description: "FxPy supports comprehensive control flow mechanisms including conditional statements (if/elif/else), iteration loops (for, while), and flow control keywords (break, continue, return).",
       whyItMatters: "Control flow is essential for any programming language. It allows programs to make decisions, repeat operations, and respond to different conditions.",
       howItWorks: [
@@ -615,7 +615,7 @@ end`
     {
       id: 9,
       title: "Comprehensive Built-in Functions (25+)",
-      icon: "🔧",
+      icon: "Wrench",
       description: "FxPy includes 25+ built-in functions covering I/O operations, type conversions, list manipulations, string operations, and utilities. These functions are globally available and implemented in Python for efficiency.",
       whyItMatters: "Built-in functions provide essential functionality without requiring module imports. They make the language immediately useful for common tasks like printing output, getting input, type conversions, and data manipulation.",
       howItWorks: [
@@ -678,7 +678,7 @@ end`
     {
       id: 10,
       title: "Operator Overloading for Intuitive Syntax",
-      icon: "➕",
+      icon: "Plus",
       description: "FxPy implements operator overloading to provide intuitive operations on different data types. Operators behave contextually based on operand types, making the language feel natural and reducing verbosity.",
       whyItMatters: "Operator overloading makes code more readable and expressive. Instead of calling methods, you can use natural operators like + for append or / for indexing.",
       howItWorks: [
@@ -750,7 +750,7 @@ let name = person / "name"           # Key access: "Alice"`
           components: [
             { 
               name: "Source Code", 
-              icon: "📄", 
+              icon: "FileText", 
               description: ".fx files or REPL input - raw text to be processed"
             }
           ]
@@ -760,7 +760,7 @@ let name = person / "name"           # Key access: "Alice"`
           components: [
             { 
               name: "Lexer (lexer.py)", 
-              icon: "🔤", 
+              icon: "Type", 
               description: "Tokenizes character stream into 40+ token types with position tracking"
             }
           ]
@@ -770,7 +770,7 @@ let name = person / "name"           # Key access: "Alice"`
           components: [
             { 
               name: "Parser (fxparser.py)", 
-              icon: "🌳", 
+              icon: "TreePine", 
               description: "Builds Abstract Syntax Tree using recursive descent with precedence climbing"
             }
           ]
@@ -780,7 +780,7 @@ let name = person / "name"           # Key access: "Alice"`
           components: [
             { 
               name: "Interpreter (interpreter.py)", 
-              icon: "⚙️", 
+              icon: "Settings", 
               description: "Tree-walking interpreter executing AST nodes with visitor pattern"
             }
           ]
@@ -1582,5 +1582,10 @@ print(alice.greet())`
         }
       ]
     }
+  ],
+
+  // Related projects with similar tech stack
+  relatedProjects: [
+    "FedxD Data Container"
   ]
 };

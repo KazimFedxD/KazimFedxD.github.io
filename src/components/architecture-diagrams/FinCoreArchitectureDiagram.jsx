@@ -39,20 +39,21 @@ const FinCoreArchitectureDiagram = () => {
   // Reusable components
   const LayerBox = ({ title, children, color = "purple" }) => {
     const colorClasses = {
-      purple: "border-purple-500/30 bg-purple-500/5",
-      blue: "border-blue-500/30 bg-blue-500/5",
-      green: "border-green-500/30 bg-green-500/5",
-      indigo: "border-indigo-500/30 bg-indigo-500/5",
-      pink: "border-pink-500/30 bg-pink-500/5",
-      orange: "border-orange-500/30 bg-orange-500/5"
+      purple: "border-purple-500/30",
+      blue: "border-blue-500/30",
+      green: "border-green-500/30",
+      indigo: "border-indigo-500/30",
+      pink: "border-pink-500/30",
+      orange: "border-orange-500/30"
     };
 
     return (
       <motion.div 
         variants={itemVariants}
-        className={`border-2 rounded-lg p-6 ${colorClasses[color]}`}
+        whileHover={{ scale: 1.01 }}
+        className={`glass border-2 rounded-lg p-6 ${colorClasses[color]}`}
       >
-        <h4 className="text-sm font-semibold text-gray-400 mb-4 text-center uppercase tracking-wider">
+        <h4 className="text-sm font-semibold text-slate-400 mb-4 text-center uppercase tracking-wider">
           {title}
         </h4>
         {children}
@@ -65,23 +66,25 @@ const FinCoreArchitectureDiagram = () => {
       <motion.div
         whileHover={{ scale: 1.05, y: -5 }}
         className={`
-          bg-gradient-to-br from-gray-800 to-gray-900
+          glass
           border border-${color}-500/30
           rounded-lg p-4 
           flex flex-col items-center justify-center
           text-center
-          shadow-lg
-          hover:shadow-${color}-500/20
-          transition-all duration-300
           min-h-[140px]
         `}
       >
-        <Icon className={`text-${color}-400 mb-2`} size={32} />
+        <motion.div
+          animate={{ rotate: [0, 10, -10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+        >
+          <Icon className={`text-${color}-400 mb-2`} size={32} />
+        </motion.div>
         <h5 className="text-white font-semibold text-sm mb-1">{name}</h5>
         {port && (
-          <span className="text-xs text-gray-400 mb-2">:{port}</span>
+          <span className="text-xs text-slate-400 mb-2">:{port}</span>
         )}
-        <p className="text-xs text-gray-500">{description}</p>
+        <p className="text-xs text-slate-500">{description}</p>
       </motion.div>
     );
   };
@@ -90,9 +93,8 @@ const FinCoreArchitectureDiagram = () => {
     return (
       <motion.div 
         className="flex flex-col items-center my-3"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
+        animate={{ opacity: 1, y: [0, 5, 0] }}
+        transition={{ y: { duration: 1.5, repeat: Infinity, ease: "easeInOut" } }}
       >
         <div className="w-0.5 h-8 bg-gradient-to-b from-purple-500 to-transparent"></div>
         <div className="w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-purple-500"></div>
@@ -106,12 +108,12 @@ const FinCoreArchitectureDiagram = () => {
   return (
     <div className="w-full overflow-x-auto">
       <motion.div 
-        className="min-w-[900px] p-8 bg-gray-900 rounded-lg border border-gray-700"
+        className="min-w-[900px] p-8 glass rounded-2xl border border-purple-500/20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <h3 className="text-2xl font-bold text-white text-center mb-8">
+        <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent text-center mb-8">
           FinCore System Architecture
         </h3>
 
@@ -147,13 +149,13 @@ const FinCoreArchitectureDiagram = () => {
             />
           </div>
           <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
-            <div className="bg-gray-800 rounded p-2 border border-purple-500/20">
+            <div className="glass rounded p-2 border border-purple-500/20">
               <code className="text-purple-400">/* → React Frontend</code>
-              <p className="text-gray-500 mt-1">Serve static files</p>
+              <p className="text-slate-500 mt-1">Serve static files</p>
             </div>
-            <div className="bg-gray-800 rounded p-2 border border-purple-500/20">
+            <div className="glass rounded p-2 border border-purple-500/20">
               <code className="text-purple-400">/api/* → Django Backend</code>
-              <p className="text-gray-500 mt-1">Proxy API requests</p>
+              <p className="text-slate-500 mt-1">Proxy API requests</p>
             </div>
           </div>
         </LayerBox>
@@ -180,25 +182,25 @@ const FinCoreArchitectureDiagram = () => {
           </div>
           
           {/* API Endpoints Preview */}
-          <div className="mt-4 bg-gray-800 rounded p-3 border border-green-500/20">
+          <div className="mt-4 glass rounded p-3 border border-green-500/20">
             <h5 className="text-green-400 font-semibold text-xs mb-2">🔑 Key API Endpoints</h5>
             <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-              <div className="text-gray-400">
+              <div className="text-slate-400">
                 <span className="text-blue-400">POST</span> /api/auth/login/
               </div>
-              <div className="text-gray-400">
+              <div className="text-slate-400">
                 <span className="text-green-400">GET</span> /api/report/
               </div>
-              <div className="text-gray-400">
+              <div className="text-slate-400">
                 <span className="text-green-400">GET</span> /api/income/
               </div>
-              <div className="text-gray-400">
+              <div className="text-slate-400">
                 <span className="text-green-400">GET</span> /api/expense/
               </div>
-              <div className="text-gray-400">
+              <div className="text-slate-400">
                 <span className="text-blue-400">POST</span> /api/categories/
               </div>
-              <div className="text-gray-400">
+              <div className="text-slate-400">
                 <span className="text-orange-400">DELETE</span> /api/income/:id/
               </div>
             </div>
@@ -225,9 +227,9 @@ const FinCoreArchitectureDiagram = () => {
           </div>
           
           {/* Task Examples */}
-          <div className="mt-4 bg-gray-800 rounded p-3 border border-orange-500/20">
+          <div className="mt-4 glass rounded p-3 border border-orange-500/20">
             <h5 className="text-orange-400 font-semibold text-xs mb-2">⚙️ Background Tasks</h5>
-            <div className="space-y-1 text-xs text-gray-400">
+            <div className="space-y-1 text-xs text-slate-400">
               <div>• <code className="text-orange-300">send_verification_email()</code> - Email delivery</div>
               <div>• <code className="text-orange-300">clear_verification_tokens()</code> - Cleanup expired tokens</div>
               <div>• <code className="text-orange-300">generate_monthly_report()</code> - Scheduled reports (planned)</div>
@@ -257,15 +259,15 @@ const FinCoreArchitectureDiagram = () => {
           </div>
           
           {/* Database Schema Preview */}
-          <div className="mt-4 bg-gray-800 rounded p-3 border border-indigo-500/20">
+          <div className="mt-4 glass rounded p-3 border border-indigo-500/20">
             <h5 className="text-indigo-400 font-semibold text-xs mb-2">🗄️ Database Models</h5>
-            <div className="grid grid-cols-2 gap-2 text-xs font-mono text-gray-400">
+            <div className="grid grid-cols-2 gap-2 text-xs font-mono text-slate-400">
               <div>• <span className="text-indigo-300">AuthAcc</span> (Users)</div>
               <div>• <span className="text-indigo-300">Category</span> (Hierarchical)</div>
               <div>• <span className="text-indigo-300">Income</span> (Transactions)</div>
               <div>• <span className="text-indigo-300">Expense</span> (Transactions)</div>
             </div>
-            <div className="mt-2 text-xs text-gray-500">
+            <div className="mt-2 text-xs text-slate-500">
               All models have <code className="text-indigo-400">user</code> FK for data isolation
             </div>
           </div>
@@ -300,37 +302,37 @@ const FinCoreArchitectureDiagram = () => {
         {/* Request Flow Summary */}
         <motion.div 
           variants={itemVariants}
-          className="mt-8 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-lg p-6"
+          className="mt-8 glass bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-lg p-6"
         >
           <h4 className="text-white font-semibold mb-4 text-center">📊 Request Flow Example: Login</h4>
           <div className="space-y-2 text-sm">
             <div className="flex items-center gap-3">
               <span className="text-blue-400 font-mono">1.</span>
-              <span className="text-gray-300">User submits email/password from React login form</span>
+              <span className="text-slate-300">User submits email/password from React login form</span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-purple-400 font-mono">2.</span>
-              <span className="text-gray-300">Nginx forwards <code className="text-purple-300">/api/auth/login/</code> to Django backend</span>
+              <span className="text-slate-300">Nginx forwards <code className="text-purple-300">/api/auth/login/</code> to Django backend</span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-green-400 font-mono">3.</span>
-              <span className="text-gray-300">Django validates credentials against PostgreSQL AuthAcc table</span>
+              <span className="text-slate-300">Django validates credentials against PostgreSQL AuthAcc table</span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-orange-400 font-mono">4.</span>
-              <span className="text-gray-300">Django generates JWT access (5 min) & refresh (7 days) tokens</span>
+              <span className="text-slate-300">Django generates JWT access (5 min) & refresh (7 days) tokens</span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-indigo-400 font-mono">5.</span>
-              <span className="text-gray-300">Tokens set in HTTP-only cookies and returned to React app</span>
+              <span className="text-slate-300">Tokens set in HTTP-only cookies and returned to React app</span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-pink-400 font-mono">6.</span>
-              <span className="text-gray-300">React stores user state and redirects to dashboard</span>
+              <span className="text-slate-300">React stores user state and redirects to dashboard</span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-blue-400 font-mono">7.</span>
-              <span className="text-gray-300">Subsequent requests auto-include cookies for authentication</span>
+              <span className="text-slate-300">Subsequent requests auto-include cookies for authentication</span>
             </div>
           </div>
         </motion.div>
@@ -340,18 +342,27 @@ const FinCoreArchitectureDiagram = () => {
           variants={itemVariants}
           className="mt-6 grid grid-cols-3 gap-4 text-xs"
         >
-          <div className="bg-gray-800 rounded p-3 border border-green-500/20">
+          <motion.div 
+            whileHover={{ scale: 1.05, y: -3 }}
+            className="glass rounded p-3 border border-green-500/20"
+          >
             <h5 className="text-green-400 font-semibold mb-2">✅ Scalability</h5>
-            <p className="text-gray-400">Stateless JWT allows horizontal scaling. Each container independent.</p>
-          </div>
-          <div className="bg-gray-800 rounded p-3 border border-blue-500/20">
+            <p className="text-slate-400">Stateless JWT allows horizontal scaling. Each container independent.</p>
+          </motion.div>
+          <motion.div 
+            whileHover={{ scale: 1.05, y: -3 }}
+            className="glass rounded p-3 border border-blue-500/20"
+          >
             <h5 className="text-blue-400 font-semibold mb-2">🔒 Security</h5>
-            <p className="text-gray-400">HTTP-only cookies prevent XSS. User-specific data isolation in DB.</p>
-          </div>
-          <div className="bg-gray-800 rounded p-3 border border-purple-500/20">
+            <p className="text-slate-400">HTTP-only cookies prevent XSS. User-specific data isolation in DB.</p>
+          </motion.div>
+          <motion.div 
+            whileHover={{ scale: 1.05, y: -3 }}
+            className="glass rounded p-3 border border-purple-500/20"
+          >
             <h5 className="text-purple-400 font-semibold mb-2">⚡ Performance</h5>
-            <p className="text-gray-400">Redis caching, connection pooling, indexed queries for speed.</p>
-          </div>
+            <p className="text-slate-400">Redis caching, connection pooling, indexed queries for speed.</p>
+          </motion.div>
         </motion.div>
       </motion.div>
     </div>

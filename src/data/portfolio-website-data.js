@@ -11,10 +11,10 @@ export const portfolioWebsiteData = {
   liveDemo: "https://fedxd.net",
   
   badges: [
-    { icon: "🎨", text: "Modern UI/UX" },
-    { icon: "📱", text: "Mobile-First Design" },
-    { icon: "⚡", text: "Lightning Fast" },
-    { icon: "♿", text: "Accessible" }
+    { icon: "Palette", text: "Modern UI/UX" },
+    { icon: "Smartphone", text: "Mobile-First Design" },
+    { icon: "Zap", text: "Lightning Fast" },
+    { icon: "Accessibility", text: "Accessible" }
   ],
 
   // Tech Stack with categories
@@ -93,7 +93,7 @@ export const portfolioWebsiteData = {
 
     uniqueFeatures: [
       {
-        icon: "📊",
+        icon: "BarChart3",
         title: "Project Detail Pages with Deep Technical Dives",
         points: [
           "Tab-based navigation with 10 sections: Overview, Features, Architecture, API Reference, Setup, Screenshots, Performance, Requirements, Issues, Roadmap",
@@ -106,7 +106,7 @@ export const portfolioWebsiteData = {
         ]
       },
       {
-        icon: "🏗️",
+        icon: "Building2",
         title: "Data-Driven Architecture",
         points: [
           "Projects imported from structured data files - not hardcoded in components",
@@ -118,7 +118,7 @@ export const portfolioWebsiteData = {
         ]
       },
       {
-        icon: "🎭",
+        icon: "Theater",
         title: "Advanced Animation System",
         points: [
           "Custom Tailwind animations: fade-in, slide-up, slide-down, slide-left, slide-right, glow, float",
@@ -130,7 +130,7 @@ export const portfolioWebsiteData = {
         ]
       },
       {
-        icon: "🔗",
+        icon: "Link",
         title: "Real-Time Integrations",
         points: [
           "GitHub contribution calendar with custom purple theme",
@@ -164,7 +164,7 @@ export const portfolioWebsiteData = {
     {
       id: 1,
       title: "Modern Single Page Application (SPA) with Smooth Page Transitions",
-      icon: "🚀",
+      icon: "Rocket",
       description: "The portfolio is built as a Single Page Application using React 19 and React Router DOM 7.9.4, providing instant page transitions without full page reloads. Framer Motion powers smooth animations between routes and components, creating a mobile-app-like feel in the browser.",
       whyItMatters: "SPAs provide a superior user experience with faster navigation, no page flickers, and the ability to maintain application state across route changes. This creates a professional, modern feel that keeps visitors engaged.",
       howItWorks: [
@@ -284,7 +284,7 @@ const itemVariants = {
     {
       id: 2,
       title: "Dynamic Project Showcase with Detailed Project Pages",
-      icon: "📁",
+      icon: "FolderKanban",
       description: "Projects are displayed in a responsive grid with comprehensive detail pages. Each project has its own dedicated page with tabbed navigation showing overview, features, architecture, API documentation, setup guides, performance metrics, requirements, known issues, and future roadmap.",
       whyItMatters: "Unlike simple project lists, this system allows visitors to deep-dive into technical implementations, understanding not just what was built but how and why. This demonstrates technical depth, documentation skills, and attention to detail - all highly valued by employers.",
       howItWorks: [
@@ -426,7 +426,7 @@ const itemVariants = {
     {
       id: 3,
       title: "Interactive Contact Form with EmailJS Integration",
-      icon: "📧",
+      icon: "Mail",
       description: "A fully functional contact form integrated with EmailJS that sends notifications to the site owner and confirmation emails to visitors. Includes comprehensive form validation, loading states, error handling, and fallback email options.",
       whyItMatters: "Provides a professional way for recruiters, clients, and collaborators to reach out directly from the website without exposing personal email addresses to spam bots. The dual-email system ensures both parties receive confirmation of the message.",
       howItWorks: [
@@ -598,7 +598,7 @@ const Contact = () => {
     {
       id: 4,
       title: "GitHub Stats Integration with Real-Time Data",
-      icon: "📊",
+      icon: "BarChart3",
       description: "Live GitHub statistics displayed on the About page using react-github-calendar. Shows contribution heatmap, activity patterns, and repository statistics automatically fetched from GitHub API with custom purple theming.",
       whyItMatters: "Provides visual proof of coding consistency and activity. GitHub contributions are a strong signal to recruiters about dedication, regular practice, and active development work. The live data means no manual updates required.",
       howItWorks: [
@@ -684,7 +684,7 @@ const StatCard = ({ label, value, icon }) => (
     {
       id: 5,
       title: "Responsive Design with Mobile-First Approach",
-      icon: "📱",
+      icon: "Smartphone",
       description: "The entire website is built mobile-first with Tailwind CSS responsive utilities. Includes touch-optimized interactions, swipe navigation capability, adaptive layouts for all screen sizes from phones to 4K displays, and minimum 44x44px touch targets for accessibility.",
       whyItMatters: "Over 60% of web traffic comes from mobile devices. A mobile-first approach ensures the best experience for the majority of users while progressively enhancing for larger screens. This improves SEO, accessibility, and user satisfaction.",
       howItWorks: [
@@ -817,7 +817,7 @@ const StatCard = ({ label, value, icon }) => (
     {
       id: 6,
       title: "Custom Animation System with Framer Motion & Tailwind",
-      icon: "🎭",
+      icon: "Theater",
       description: "Comprehensive animation system combining custom Tailwind keyframes (fade-in, slide, glow, float) with Framer Motion for component-level animations. Includes stagger children effects, page transitions, hover interactions, and GPU-accelerated transforms for 60 FPS performance.",
       whyItMatters: "Animations guide user attention, provide feedback, and create a polished, professional feel. Strategic animations improve perceived performance and engagement while making the portfolio memorable and enjoyable to explore.",
       howItWorks: [
@@ -973,7 +973,7 @@ const itemVariants = {
     {
       id: 7,
       title: "Tech Stack Icon Visualization System",
-      icon: "⚙️",
+      icon: "Settings",
       description: "Reusable TechIcon component that displays technology logos from react-icons/si (Simple Icons) next to tech stack items. Used throughout the site in Skills, Projects, Experience, and Achievements pages to visually represent technologies with consistent purple-themed styling.",
       whyItMatters: "Visual recognition of technology logos is faster than reading text alone. Icons make the tech stack section more engaging, professional, and easier to scan. This enhances visual hierarchy and breaks up text-heavy content while reinforcing brand recognition of technologies.",
       howItWorks: [
@@ -1115,7 +1115,7 @@ const Projects = () => {
           components: [
             {
               name: "User Browser",
-              icon: "🌐",
+              icon: "Globe",
               description: "Any modern web browser (Chrome, Firefox, Safari, Edge)"
             }
           ]
@@ -1125,7 +1125,7 @@ const Projects = () => {
           components: [
             {
               name: "GitHub Pages CDN",
-              icon: "☁️",
+              icon: "Cloud",
               description: "Global CDN serving static files with HTTPS and custom domain support"
             }
           ]
@@ -1135,12 +1135,12 @@ const Projects = () => {
           components: [
             {
               name: "React 19 SPA",
-              icon: "⚛️",
+              icon: "Atom",
               description: "Single Page Application with component-based architecture"
             },
             {
               name: "React Router",
-              icon: "🔀",
+              icon: "GitBranch",
               description: "Client-side routing for instant navigation"
             }
           ]
@@ -1150,12 +1150,12 @@ const Projects = () => {
           components: [
             {
               name: "Pages",
-              icon: "📄",
+              icon: "FileText",
               description: "Home, About, Projects, Skills, Contact, etc."
             },
             {
               name: "Components",
-              icon: "🧩",
+              icon: "Puzzle",
               description: "Reusable UI components (Cards, Forms, Icons, etc.)"
             }
           ]
@@ -1165,7 +1165,7 @@ const Projects = () => {
           components: [
             {
               name: "Project Data",
-              icon: "💾",
+              icon: "Database",
               description: "Structured JavaScript files with project information"
             }
           ]
@@ -1175,12 +1175,12 @@ const Projects = () => {
           components: [
             {
               name: "EmailJS",
-              icon: "📧",
+              icon: "Mail",
               description: "Contact form email delivery"
             },
             {
               name: "GitHub API",
-              icon: "📊",
+              icon: "BarChart3",
               description: "Contribution graph data"
             }
           ]
@@ -1926,5 +1926,10 @@ if ('serviceWorker' in navigator) {
         }
       ]
     }
+  ],
+
+  // Related projects with similar tech stack
+  relatedProjects: [
+    "Full-Stack Web Application Template"
   ]
 };
