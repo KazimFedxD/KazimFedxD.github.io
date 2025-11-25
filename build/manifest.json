@@ -1,0 +1,15 @@
+{
+  "short_name": "Kazim Abbas",
+  "name": "Kazim Abbas Portfolio",
+  "icons": [
+    {
+      "src": "favicon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#a855f7",
+  "background_color": "#0f0a1f"
+}
