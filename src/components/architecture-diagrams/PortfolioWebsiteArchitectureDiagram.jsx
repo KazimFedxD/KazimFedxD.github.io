@@ -1,18 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Monitor, Smartphone, Cloud, Code, Package, Mail, Github, Globe, Palette, Zap } from 'lucide-react';
+import { Monitor, Smartphone, Cloud, Code, Package, Mail, Github, Palette, Zap } from 'lucide-react';
 
 const PortfolioWebsiteArchitectureDiagram = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   return (
     <div className="w-full overflow-x-auto">

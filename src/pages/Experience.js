@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
-import { Briefcase, Calendar, MapPin, TrendingUp, Users, Target, CheckCircle2 } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, TrendingUp, Target, CheckCircle2 } from 'lucide-react';
 import TechIcon from '../components/TechIcon';
 import AnimatedSection from '../components/AnimatedSection';
 import AnimatedGradientText from '../components/AnimatedGradientText';

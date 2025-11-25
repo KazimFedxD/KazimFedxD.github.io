@@ -38,3 +38,6 @@ deploy.sh
 # Website documentation folder (keep private)
 .website/
 
+# Build Files
+build
+

@@ -1663,7 +1663,7 @@ registerRoute(
       workaround: "Use complete class names or add to safelist in tailwind.config.js",
       status: "✅ Resolved by using complete class names",
       detailedExplanation: "Tailwind's JIT compiler scans source files for class names to include in the final CSS. It can't detect classes that are constructed dynamically using template literals or string concatenation.",
-      technicalDetails: "The purge process uses regex to find class names in source files. Dynamic constructions like `text-${color}-500` won't be detected because the full class name doesn't appear literally in the code.",
+      technicalDetails: "The purge process uses regex to find class names in source files. Dynamic constructions like 'text-' + color + '-500' won't be detected because the full class name doesn't appear literally in the code.",
       whyItHappens: "Static analysis limitation - the build tool can't execute JavaScript to determine all possible class combinations.",
       proposedFix: "Always use complete class names or conditional assignment. For dynamic scenarios, use safelist configuration.",
       codeExample: {

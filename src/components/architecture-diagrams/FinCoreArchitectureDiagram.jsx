@@ -9,7 +9,6 @@ import {
   Clock, 
   GitBranch,
   Layers,
-  ArrowDown,
   Users,
   Lock,
   Mail
@@ -150,7 +149,7 @@ const FinCoreArchitectureDiagram = () => {
           </div>
           <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
             <div className="glass rounded p-2 border border-purple-500/20">
-              <code className="text-purple-400">/* → React Frontend</code>
+              <code className="text-purple-400">{'/* → React Frontend'}</code>
               <p className="text-slate-500 mt-1">Serve static files</p>
             </div>
             <div className="glass rounded p-2 border border-purple-500/20">

@@ -18,7 +18,6 @@ import {
   Calculator,
   Image as ImageIcon,
   Brain,
-  Server
 } from 'lucide-react';
 
 const FeXoBotArchitectureDiagram = () => {

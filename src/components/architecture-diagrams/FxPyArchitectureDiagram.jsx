@@ -3,16 +3,6 @@ import { motion } from 'framer-motion';
 import { FileCode, Hash, GitBranch, Play, Terminal, Zap } from 'lucide-react';
 
 const FxPyArchitectureDiagram = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   return (
     <div className="w-full overflow-x-auto">
