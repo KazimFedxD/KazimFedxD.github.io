@@ -109,30 +109,8 @@ const Skills = () => {
     <div className="min-h-screen pt-24 px-4 pb-12 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.2, 0.1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.1, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+        <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-xl" />
+        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-xl" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -255,20 +233,7 @@ const Skills = () => {
                                 ease: "easeOut"
                               }}
                               className={`h-full bg-gradient-to-r ${getColorByLevel(skill.level)} rounded-full relative`}
-                            >
-                              <motion.div
-                                className="absolute inset-0 bg-white/20"
-                                animate={{
-                                  x: ['-100%', '200%']
-                                }}
-                                transition={{
-                                  duration: 2,
-                                  repeat: Infinity,
-                                  ease: "linear",
-                                  delay: skillIndex * 0.2
-                                }}
-                              />
-                            </motion.div>
+                            />
                           </div>
                         </motion.div>
                       ))}

@@ -59,8 +59,8 @@ function Navigation() {
       animate={{ y: 0 }}
       className={`fixed w-full top-0 z-[100] transition-all duration-300 ${
         scrolled 
-          ? 'bg-slate-900/70 backdrop-blur-xl border-b border-purple-500/30 shadow-lg shadow-purple-500/10' 
-          : 'bg-slate-900/50 backdrop-blur-md border-b border-purple-500/10'
+          ? 'bg-slate-900/80 backdrop-blur-md border-b border-purple-500/30 shadow-lg shadow-purple-500/10' 
+          : 'bg-slate-900/60 backdrop-blur-sm border-b border-purple-500/10'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,7 +71,7 @@ function Navigation() {
               whileTap={{ scale: 0.95 }}
               className="text-xl sm:text-2xl font-bold whitespace-nowrap relative"
             >
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] group-hover:from-purple-300 group-hover:via-pink-300 group-hover:to-purple-500 transition-all">
+              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] group-hover:from-purple-300 group-hover:via-pink-300 group-hover:to-purple-500 transition-all" style={{ textShadow: '0 0 1px rgba(168, 85, 247, 0.5)', WebkitTextStroke: '0.5px rgba(168, 85, 247, 0.1)' }}>
                 Kazim Abbas
               </span>
               <motion.div

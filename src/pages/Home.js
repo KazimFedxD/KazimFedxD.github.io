@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
 import Tilt from 'react-parallax-tilt';
@@ -69,8 +69,8 @@ const Home = () => {
       {/* Animated background blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
-          animate={{
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-xl"
+          animate={isMobile ? {} : {
             x: [0, 100, 0],
             y: [0, -100, 0],
             scale: [1, 1.2, 1],
@@ -82,8 +82,8 @@ const Home = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl"
-          animate={{
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-xl"
+          animate={isMobile ? {} : {
             x: [0, -100, 0],
             y: [0, 100, 0],
             scale: [1, 1.3, 1],
@@ -95,8 +95,8 @@ const Home = () => {
           }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
-          animate={{
+          className="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-xl"
+          animate={isMobile ? {} : {
             x: [-50, 50, -50],
             y: [-50, 50, -50],
           }}
@@ -125,15 +125,16 @@ const Home = () => {
               className="mb-8 inline-block"
             >
               <Tilt
-                tiltMaxAngleX={15}
-                tiltMaxAngleY={15}
+                tiltMaxAngleX={isMobile ? 0 : 15}
+                tiltMaxAngleY={isMobile ? 0 : 15}
                 perspective={1000}
                 transitionSpeed={1500}
-                scale={1.05}
-                gyroscope={true}
+                scale={isMobile ? 1 : 1.05}
+                gyroscope={!isMobile}
+                tiltEnable={!isMobile}
               >
                 <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur-2xl opacity-50 animate-pulse-glow"></div>
+                  <div className={`absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full ${isMobile ? 'blur-xl opacity-30' : 'blur-2xl opacity-50 animate-pulse-glow'}`}></div>
                   <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-purple-600 via-pink-600 to-purple-600 p-1.5 animate-glow">
                     <div className="w-full h-full rounded-full bg-slate-900 p-1">
                       <img

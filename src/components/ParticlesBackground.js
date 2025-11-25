@@ -1,8 +1,32 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import Particles from 'react-tsparticles';
 import { loadSlim } from 'tsparticles-slim';
 
 const ParticlesBackground = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  useEffect(() => {
+    let scrollTimer;
+    const handleScroll = () => {
+      setIsScrolling(true);
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => setIsScrolling(false), 150);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimer);
+    };
+  }, []);
+  
   const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine);
   }, []);
@@ -17,25 +41,25 @@ const ParticlesBackground = () => {
         value: 'transparent',
       },
     },
-    fpsLimit: 120,
+    fpsLimit: isMobile ? 60 : 120,
     interactivity: {
       events: {
         onClick: {
-          enable: true,
+          enable: !isMobile,
           mode: 'push',
         },
         onHover: {
-          enable: true,
+          enable: !isMobile && !isScrolling,
           mode: 'repulse',
         },
         resize: true,
       },
       modes: {
         push: {
-          quantity: 4,
+          quantity: isMobile ? 2 : 4,
         },
         repulse: {
-          distance: 100,
+          distance: isMobile ? 50 : 100,
           duration: 0.4,
         },
       },
@@ -46,19 +70,19 @@ const ParticlesBackground = () => {
       },
       links: {
         color: '#a855f7',
-        distance: 150,
+        distance: isMobile ? 100 : 150,
         enable: true,
         opacity: 0.3,
         width: 1,
       },
       move: {
         direction: 'none',
-        enable: true,
+        enable: !isScrolling,
         outModes: {
           default: 'bounce',
         },
         random: false,
-        speed: 1,
+        speed: isMobile ? 0.5 : 1,
         straight: false,
       },
       number: {
@@ -66,13 +90,13 @@ const ParticlesBackground = () => {
           enable: true,
           area: 800,
         },
-        value: 80,
+        value: isMobile ? 20 : 80,
       },
       opacity: {
         value: 0.5,
         random: true,
         animation: {
-          enable: true,
+          enable: !isMobile,
           speed: 1,
           minimumValue: 0.1,
           sync: false,
