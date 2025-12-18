@@ -67,43 +67,35 @@ const Home = () => {
       <ParticlesBackground />
       
       {/* Animated background blobs */}
+      {/* Animated Purple Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-xl"
-          animate={isMobile ? {} : {
-            x: [0, 100, 0],
-            y: [0, -100, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-xl"
-          animate={isMobile ? {} : {
-            x: [0, -100, 0],
-            y: [0, 100, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-xl"
-          animate={isMobile ? {} : {
-            x: [-50, 50, -50],
-            y: [-50, 50, -50],
+          className="absolute inset-0"
+          animate={{
+            backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
           }}
           transition={{
             duration: 15,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "linear"
+          }}
+          style={{
+            backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(147, 51, 234, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%), radial-gradient(circle at 40% 20%, rgba(126, 34, 206, 0.1) 0%, transparent 50%)',
+            backgroundSize: '200% 200%'
+          }}
+        />
+        <motion.div
+          className="absolute inset-0"
+          animate={{
+            rotate: [0, 360],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          style={{
+            background: 'conic-gradient(from 0deg at 50% 50%, rgba(147, 51, 234, 0.05) 0deg, transparent 60deg, transparent 180deg, rgba(168, 85, 247, 0.05) 240deg, transparent 300deg, rgba(147, 51, 234, 0.05) 360deg)',
           }}
         />
       </div>
@@ -122,7 +114,7 @@ const Home = () => {
                 damping: 20,
                 delay: 0.1
               }}
-              className="mb-8 inline-block"
+              className="mb-16 mt-16 inline-block"
             >
               <Tilt
                 tiltMaxAngleX={isMobile ? 0 : 15}
@@ -147,11 +139,9 @@ const Home = () => {
                   <motion.div
                     className="absolute -top-4 -right-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full p-3"
                     animate={{
-                      rotate: 360,
                       scale: [1, 1.2, 1],
                     }}
                     transition={{
-                      rotate: { duration: 20, repeat: Infinity, ease: "linear" },
                       scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
                     }}
                   >
@@ -185,7 +175,7 @@ const Home = () => {
               } : {}}
             >
               <AnimatedGradientText 
-                gradient="from-purple-400 via-pink-400 to-purple-600"
+                gradient="from-purple-300 via-pink-300 to-purple-400"
                 animateOnHover={true}
               >
                 Kazim Abbas
@@ -197,7 +187,7 @@ const Home = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="text-2xl md:text-4xl text-purple-300 mb-8 h-16 md:h-20 font-light"
+              className="text-2xl md:text-4xl text-purple-200 mb-8 h-16 md:h-20 font-light"
             >
               <TypeAnimation
                 sequence={[
@@ -217,7 +207,7 @@ const Home = () => {
                 wrapper="span"
                 speed={50}
                 repeat={Infinity}
-                className="gradient-text"
+                className="text-purple-200"
               />
             </motion.div>
 
@@ -315,7 +305,7 @@ const Home = () => {
                 className="glass rounded-2xl p-6 text-center group cursor-pointer"
               >
                 <motion.div
-                  animate={{ rotate: 360 }}
+                  animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   className="inline-block mb-3"
                 >
@@ -441,7 +431,7 @@ const Home = () => {
                   <div className="glass rounded-2xl p-6 h-full group cursor-pointer">
                     <motion.div
                       className={`w-12 h-12 bg-gradient-to-r ${item.color} rounded-xl flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-purple-500/50 transition-all`}
-                      whileHover={{ rotate: 360 }}
+                      whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                     >
                       <item.icon className="w-6 h-6 text-white" />

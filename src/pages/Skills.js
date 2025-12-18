@@ -194,7 +194,7 @@ const Skills = () => {
                     {/* Category Header */}
                     <div className="flex items-center mb-6">
                       <motion.div
-                        whileHover={{ rotate: 360 }}
+                        whileHover={{ scale: 1.1 }}
                         transition={{ duration: 0.5 }}
                         className={`p-3 bg-gradient-to-r ${category.color} rounded-xl mr-4`}
                       >

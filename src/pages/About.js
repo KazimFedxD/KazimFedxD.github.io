@@ -80,7 +80,7 @@ const About = () => {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <motion.div
-                    animate={{ rotate: 360 }}
+                    animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     className="p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl"
                   >
@@ -134,7 +134,7 @@ const About = () => {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <motion.div
-                    animate={{ rotate: -360 }}
+                    animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     className="p-3 bg-gradient-to-r from-pink-600 to-purple-600 rounded-xl"
                   >
@@ -155,7 +155,7 @@ const About = () => {
                       className="flex items-start gap-4 p-4 rounded-xl glass hover:bg-purple-900/30 transition-all cursor-pointer"
                     >
                       <motion.div
-                        whileHover={{ rotate: 360 }}
+                        whileHover={{ scale: 1.1 }}
                         transition={{ duration: 0.6 }}
                         className={`p-2 bg-gradient-to-r ${interest.color} rounded-lg flex-shrink-0`}
                       >

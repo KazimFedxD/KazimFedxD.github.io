@@ -738,9 +738,7 @@ const StatCard = ({ label, value, icon }) => (
             className="md:hidden p-2 rounded-lg hover:bg-purple-900/50"
             aria-label="Toggle menu"
           >
-            <svg className="w-6 h-6 text-purple-400">
-              {isOpen ? <CloseIcon /> : <MenuIcon />}
-            </svg>
+            {isOpen ? <X className="w-6 h-6 text-purple-400" /> : <Menu className="w-6 h-6 text-purple-400" />}
           </button>
           
           {/* Desktop navigation - hidden on mobile */}

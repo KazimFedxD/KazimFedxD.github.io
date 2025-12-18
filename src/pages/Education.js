@@ -168,7 +168,7 @@ const Education = () => {
                   <div className="flex flex-col md:flex-row gap-6">
                     {/* Icon */}
                     <motion.div
-                      whileHover={{ rotate: 360 }}
+                      whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                       className={`p-4 bg-gradient-to-r ${edu.color} rounded-2xl flex items-center justify-center self-start`}
                     >
@@ -302,7 +302,7 @@ const Education = () => {
               className="glass rounded-3xl p-8 border border-purple-500/10 text-center"
             >
               <motion.div
-                animate={{ rotate: 360 }}
+                animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="inline-block mb-4"
               >

@@ -134,7 +134,7 @@ const Experience = () => {
                   </div>
 
                   {/* Content card */}
-                  <div className={`lg:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
+                  <div className="lg:w-[calc(50%-2rem)] text-left">
                     <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000}>
                       <motion.div
                         whileHover={{ y: -5, scale: 1.02 }}
@@ -143,10 +143,10 @@ const Experience = () => {
                         }`}
                       >
                         {/* Header */}
-                        <div className={`flex items-start gap-4 mb-6 ${index % 2 === 0 ? 'lg:flex-row-reverse' : ''}`}>
+                        <div className="flex items-start gap-4 mb-6">
                           <motion.div
-                            whileHover={{ rotate: 360 }}
-                            transition={{ duration: 0.6 }}
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ duration: 0.3 }}
                             className={`p-3 bg-gradient-to-r ${exp.color} rounded-xl flex-shrink-0 lg:hidden`}
                           >
                             <exp.icon className="w-6 h-6 text-white" />
@@ -164,7 +164,7 @@ const Experience = () => {
                             )}
                             <h3 className="text-2xl md:text-3xl font-bold gradient-text mb-2">{exp.role}</h3>
                             <h4 className="text-xl text-purple-300 font-semibold mb-2">{exp.company}</h4>
-                            <div className={`flex flex-wrap gap-3 mb-2 ${index % 2 === 0 ? 'lg:justify-end' : ''}`}>
+                            <div className={`flex flex-wrap gap-3 mb-2`}>
                               <span className="flex items-center gap-1 text-slate-400 text-sm">
                                 <Calendar className="w-4 h-4" />
                                 {exp.period}
@@ -191,13 +191,11 @@ const Experience = () => {
                             {exp.responsibilities.map((resp, idx) => (
                               <motion.li
                                 key={idx}
-                                initial={{ opacity: 0, x: index % 2 === 0 ? 20 : -20 }}
+                                initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className={`flex items-start gap-2 text-sm text-slate-400 ${
-                                  index % 2 === 0 ? 'lg:flex-row-reverse lg:text-right' : ''
-                                }`}
+                                className="flex items-start gap-2 text-sm text-slate-400"
                               >
                                 <span className="text-purple-400 flex-shrink-0">✦</span>
                                 <span>{resp}</span>
@@ -212,7 +210,7 @@ const Experience = () => {
                             <TrendingUp className="w-5 h-5" />
                             Achievements
                           </h4>
-                          <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? 'lg:justify-end' : ''}`}>
+                          <div className="flex flex-wrap gap-2">
                             {exp.achievements.map((achievement, idx) => (
                               <motion.span
                                 key={idx}
@@ -231,7 +229,7 @@ const Experience = () => {
                         {/* Technologies */}
                         <div>
                           <h4 className="text-lg font-bold text-purple-300 mb-3">Technologies</h4>
-                          <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? 'lg:justify-end' : ''}`}>
+                          <div className="flex flex-wrap gap-2">
                             {exp.tech.map((tech, idx) => (
                               <TechIcon key={idx} name={tech} />
                             ))}

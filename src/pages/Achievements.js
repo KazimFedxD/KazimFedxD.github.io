@@ -104,7 +104,7 @@ const Achievements = () => {
                 className="glass rounded-2xl p-6 text-center group cursor-pointer border border-yellow-500/10"
               >
                 <motion.div
-                  animate={{ rotate: 360 }}
+                  animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   className="inline-block mb-3"
                 >
@@ -248,7 +248,7 @@ const Achievements = () => {
                 >
                   <div className="flex items-start gap-4 mb-6">
                     <motion.div
-                      whileHover={{ rotate: 360 }}
+                      whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                       className={`p-3 bg-gradient-to-r ${cert.color} rounded-xl flex-shrink-0`}
                     >

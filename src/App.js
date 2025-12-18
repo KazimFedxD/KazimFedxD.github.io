@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 import Home from './pages/Home';
 import About from './pages/About';
 import Skills from './pages/Skills';
@@ -12,6 +13,7 @@ import Education from './pages/Education';
 import Contact from './pages/Contact';
 import HireMeCTA from './components/HireMeCTA';
 import ScrollToTopButton from './components/ScrollToTop';
+import ThemeToggle from './components/ThemeToggle';
 
 // Scroll to top component
 function ScrollToTop() {
@@ -59,8 +61,8 @@ function Navigation() {
       animate={{ y: 0 }}
       className={`fixed w-full top-0 z-[100] transition-all duration-300 ${
         scrolled 
-          ? 'bg-slate-900/80 backdrop-blur-md border-b border-purple-500/30 shadow-lg shadow-purple-500/10' 
-          : 'bg-slate-900/60 backdrop-blur-sm border-b border-purple-500/10'
+          ? 'bg-slate-900/80 dark:bg-slate-900/80 light:bg-purple/90 backdrop-blur-md border-b border-purple-500/30 shadow-lg shadow-purple-500/10' 
+          : 'bg-slate-900/60 dark:bg-slate-900/60 light:bg-purple/70 backdrop-blur-sm border-b border-purple-500/10'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -127,13 +129,11 @@ function Navigation() {
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 rounded-lg glass hover:bg-purple-800/30 transition-colors"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            {isOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </motion.button>
         </div>
 
@@ -180,6 +180,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <ScrollToTopButton />
+      <ThemeToggle />
       <div className="min-h-screen">
         <Navigation />
         <HireMeCTA />

@@ -264,7 +264,7 @@ const Contact = () => {
                     {isSubmitting ? (
                       <>
                         <motion.div
-                          animate={{ rotate: 360 }}
+                          animate={{ scale: [1, 1.05, 1] }}
                           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                           className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                         />
@@ -331,7 +331,7 @@ const Contact = () => {
                         className="flex items-center gap-4 p-4 rounded-xl glass hover:bg-purple-900/30 transition-all group cursor-pointer"
                       >
                         <motion.div
-                          whileHover={{ rotate: 360 }}
+                          whileHover={{ scale: 1.1 }}
                           transition={{ duration: 0.6 }}
                           className={`p-3 bg-gradient-to-r ${info.color} rounded-xl`}
                         >

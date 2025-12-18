@@ -4,16 +4,41 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white min-h-screen transition-colors duration-300;
+    @apply text-white min-h-screen transition-colors duration-300;
+    background: linear-gradient(135deg, #1e1b4b 0%, #581c87 25%, #6b21a8 50%, #581c87 75%, #1e1b4b 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
   
   /* Light Mode */
   html.light body {
     @apply bg-gradient-to-br from-slate-50 via-purple-50 to-slate-100 text-slate-900;
+    animation: none;
   }
   
   html.light {
     color-scheme: light;
+  }
+  
+  /* Light mode headings */
+  html.light h1,
+  html.light h2,
+  html.light h3,
+  html.light h4,
+  html.light h5,
+  html.light h6 {
+    @apply text-slate-900;
+  }
+  
+  /* Light mode paragraphs */
+  html.light p {
+    @apply text-slate-700;
   }
 }
 
@@ -25,9 +50,9 @@
   }
   
   html.light .gradient-text {
-    @apply bg-gradient-to-r from-purple-600 via-pink-600 to-purple-800 bg-clip-text text-transparent;
-    text-shadow: 0 0 1px rgba(147, 51, 234, 0.5);
-    -webkit-text-stroke: 0.5px rgba(147, 51, 234, 0.1);
+    @apply bg-gradient-to-r from-purple-700 via-pink-600 to-purple-800 bg-clip-text text-transparent;
+    text-shadow: 0 0 1px rgba(147, 51, 234, 0.4);
+    -webkit-text-stroke: 0.5px rgba(147, 51, 234, 0.15);
   }
   
   /* Ensure navbar stays fixed */
@@ -39,24 +64,28 @@
   }
   
   .card-gradient {
-    @apply bg-gradient-to-br from-purple-900/50 to-slate-900/50 backdrop-blur-sm;
+    @apply bg-gradient-to-br from-purple-900/20 to-slate-900/20 backdrop-blur-xl;
   }
   
   html.light .card-gradient {
-    @apply bg-gradient-to-br from-white/80 to-purple-50/80 backdrop-blur-sm border border-purple-200;
+    @apply bg-gradient-to-br from-white/20 to-purple-100/30 backdrop-blur-xl border border-purple-300/30 shadow-md;
   }
   
   .hover-glow {
     @apply transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50;
   }
   
+  html.light .hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-purple-400/40;
+  }
+  
   /* Glassmorphism effect */
   .glass {
-    @apply bg-white/20 backdrop-blur-lg border border-white/20;
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
   }
   
   html.light .glass {
-    @apply bg-white/70 backdrop-blur-lg border border-purple-200/50;
+    @apply bg-white/15 backdrop-blur-xl border border-purple-300/30 shadow-sm;
   }
   
   /* 3D card effect */
@@ -125,22 +154,146 @@
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background: rgba(168, 85, 247, 0.8);
   }
-  
-  /* Light mode text colors */
+}
+
+@layer utilities {
+  /* Light mode text color utilities */
   html.light .text-slate-400 {
-    @apply text-slate-600;
+    color: rgb(71 85 105);
   }
   
   html.light .text-slate-300 {
-    @apply text-slate-700;
+    color: rgb(51 65 85);
+  }
+  
+  html.light .text-slate-200 {
+    color: rgb(30 41 59);
+  }
+  
+  html.light .text-slate-500 {
+    color: rgb(100 116 139);
+  }
+  
+  html.light .text-slate-600 {
+    color: rgb(71 85 105);
   }
   
   html.light .text-purple-200 {
-    @apply text-purple-700;
+    color: rgb(126 34 206);
   }
   
   html.light .text-purple-300 {
-    @apply text-purple-800;
+    color: rgb(107 33 168);
+  }
+  
+  html.light .text-purple-400 {
+    color: rgb(126 34 206);
+  }
+  
+  html.light .text-gray-200 {
+    color: rgb(31 41 55);
+  }
+  
+  html.light .text-gray-300 {
+    color: rgb(55 65 81);
+  }
+  
+  html.light .text-gray-400 {
+    color: rgb(75 85 99);
+  }
+  
+  html.light .text-white {
+    color: rgb(30 41 59);
+  }
+  
+  html.light nav .text-white,
+  html.light button .text-white,
+  html.light .from-purple-600 .text-white,
+  html.light .to-pink-600 .text-white {
+    color: rgb(255 255 255) !important;
+  }
+  
+  /* Light mode background utilities */
+  html.light .bg-gray-900 {
+    background-color: rgb(248 250 252);
+    color: rgb(30 41 59);
+  }
+  
+  html.light .bg-gray-800 {
+    background-color: rgb(255 255 255);
+    border-color: rgb(216 180 254);
+  }
+  
+  html.light .bg-slate-900 {
+    background-color: rgb(255 255 255);
+  }
+  
+  /* Purple gradient blob overrides for light mode */
+  html.light [class*="bg-purple-900"] {
+    background-color: rgba(88, 28, 135, 0.3) !important;
+  }
+  
+  html.light [class*="bg-purple-950"] {
+    background-color: rgba(59, 7, 100, 0.5) !important;
+  }
+  
+  html.light nav {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgba(216, 180, 254, 0.5);
+  }
+  
+  /* Light mode border utilities */
+  html.light .border-gray-700 {
+    border-color: rgb(216 180 254);
+  }
+  
+  html.light .border-gray-800 {
+    border-color: rgb(233 213 255);
+  }
+  
+  html.light .border-slate-700 {
+    border-color: rgb(216 180 254);
+  }
+  
+  html.light .border-green-700 {
+    border-color: rgb(34 197 94);
+  }
+  
+  html.light .border-orange-700 {
+    border-color: rgb(249 115 22);
+  }
+  
+  html.light .border-red-700 {
+    border-color: rgb(239 68 68);
+  }
+  
+  /* Code blocks */
+  html.light pre {
+    background-color: rgb(30 41 59) !important;
+    color: rgb(226 232 240) !important;
+  }
+  
+  html.light code {
+    background-color: rgb(30 41 59);
+    color: rgb(216 180 254);
+  }
+  
+  html.light pre code {
+    background-color: transparent;
+  }
+  
+  /* Form inputs */
+  html.light input,
+  html.light textarea,
+  html.light select {
+    background-color: rgb(255 255 255);
+    border-color: rgb(216 180 254);
+    color: rgb(30 41 59);
+  }
+  
+  html.light input::placeholder,
+  html.light textarea::placeholder {
+    color: rgb(100 116 139);
   }
 }
 
@@ -153,13 +306,25 @@
   background: #1e1b4b;
 }
 
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #a855f7;
   border-radius: 5px;
 }
 
+html.light ::-webkit-scrollbar-thumb {
+  background: #9333ea;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: #9333ea;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #7e22ce;
 }
 
 /* Keyframe Animations */

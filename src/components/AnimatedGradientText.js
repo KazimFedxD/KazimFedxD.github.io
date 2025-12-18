@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const AnimatedGradientText = ({ 
   children, 
   className = '', 
-  gradient = 'from-purple-400 via-pink-400 to-purple-600',
+  gradient = 'from-purple-300 via-pink-300 to-purple-400',
   animateOnHover = false 
 }) => {
   const [isMobile, setIsMobile] = useState(false);

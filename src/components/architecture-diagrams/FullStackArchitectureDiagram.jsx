@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { MoveDown } from 'lucide-react';
 import { Database, Server, Cloud, Smartphone, Monitor, Mail, Clock } from 'lucide-react';
 
 const FullStackArchitectureDiagram = () => {
@@ -238,10 +239,7 @@ const ArrowDown = ({ label }) => {
           y: { duration: 1.5, repeat: Infinity }
         }}
       >
-        <svg className="w-5 h-6 md:w-6 md:h-8 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 4v12m0 0l-4-4m4 4l4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          <path d="M12 16v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        </svg>
+        <MoveDown className="w-5 h-6 md:w-6 md:h-8 text-purple-400" />
       </motion.div>
     </div>
   );

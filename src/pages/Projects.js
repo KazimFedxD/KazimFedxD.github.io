@@ -204,7 +204,7 @@ const Projects = () => {
                     <div className="mb-4">
                       <div className="flex items-start justify-between mb-3">
                         <motion.div
-                          whileHover={{ rotate: 360 }}
+                          whileHover={{ scale: 1.1 }}
                           transition={{ duration: 0.5 }}
                           className="p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl"
                         >
@@ -313,7 +313,7 @@ const Projects = () => {
           >
             <div className="glass rounded-3xl p-12 max-w-md mx-auto">
               <motion.div
-                animate={{ rotate: 360 }}
+                animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                 className="inline-block mb-4"
               >

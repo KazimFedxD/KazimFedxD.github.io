@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { ChevronRight, ArrowDown as ArrowDownIcon } from 'lucide-react';
 import { Monitor, Smartphone, Cloud, Code, Package, Mail, Github, Palette, Zap } from 'lucide-react';
 
 const PortfolioWebsiteArchitectureDiagram = () => {
@@ -244,9 +245,7 @@ const PipelineStep = ({ title, subtitle }) => {
 const PipelineArrow = () => {
   return (
     <div className="text-green-400">
-      <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-      </svg>
+      <ChevronRight className="w-4 h-4 md:w-6 md:h-6" />
     </div>
   );
 };
@@ -259,9 +258,7 @@ const ArrowDown = ({ label }) => {
       transition={{ y: { duration: 1.5, repeat: Infinity, ease: "easeInOut" } }}
     >
       <div className="text-purple-400">
-        <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+        <ArrowDownIcon className="w-5 h-5 md:w-6 md:h-6" />
       </div>
       {label && (
         <span className="text-[10px] md:text-xs text-slate-400 mt-1">{label}</span>
