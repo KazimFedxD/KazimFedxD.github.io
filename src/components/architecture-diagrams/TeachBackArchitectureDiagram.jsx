@@ -228,7 +228,7 @@ const TeachBackArchitectureDiagram = () => {
             delay={0.5}
             components={[
               { icon: Mic, name: "Deepgram", subtitle: "STT", color: "green" },
-              { icon: Brain, name: "Groq", subtitle: "AI/LLM", color: "orange" },
+              { icon: Brain, name: "OpenAI", subtitle: "AI/LLM", color: "orange" },
               { icon: Volume2, name: "ElevenLabs", subtitle: "TTS", color: "pink" }
             ]}
             isExternal
