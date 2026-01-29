@@ -10,6 +10,7 @@ import { fexobotData } from '../data/fexobot-data';
 import { fxquestData } from '../data/fxquest-data';
 import { portfolioWebsiteData } from '../data/portfolio-website-data';
 import { fincoreData } from '../data/fincore-data';
+import { teachbackData } from '../data/teachback-data';
 import FeatureCard from '../components/project-detail/FeatureCard';
 import TechStackTable from '../components/project-detail/TechStackTable';
 import CodeSnippet from '../components/project-detail/CodeSnippet';
@@ -23,6 +24,7 @@ import CommandReference from '../components/project-detail/CommandReference';
 import ProjectBadges from '../components/project-detail/ProjectBadges';
 import RelatedProjects from '../components/project-detail/RelatedProjects';
 import SetupGuide from '../components/project-detail/SetupGuide';
+import ShowcaseVideo from '../components/project-detail/ShowcaseVideo';
 
 const ProjectDetail = () => {
   const { projectName } = useParams();
@@ -63,6 +65,7 @@ const ProjectDetail = () => {
     'FxQuest': fxquestData,
     'Portfolio-Website': portfolioWebsiteData,
     'FinCore': fincoreData,
+    'TeachBack': teachbackData,
   }), []);
   
   const projectData = projectDataMap[projectName] || null;
@@ -163,6 +166,11 @@ const ProjectDetail = () => {
                 {projectData.overview.description}
               </p>
             </motion.div>
+
+            {/* Showcase Video - Only shows if project has showcaseVideo */}
+            {projectData.showcaseVideo && (
+              <ShowcaseVideo showcaseVideo={projectData.showcaseVideo} />
+            )}
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}

@@ -1,0 +1,44 @@
+{
+  "title": "TeachBack",
+  "shortDescription": "A revolutionary learning platform where students learn by teaching AI. Explain topics verbally, get interrupted with questions, and receive detailed evaluations on your understanding.",
+  "techStack": [
+    "React 19",
+    "Django 5.2",
+    "Django REST Framework",
+    "PostgreSQL 16",
+    "Redis 7",
+    "Celery",
+    "WebSockets",
+    "Docker Compose",
+    "Nginx"
+  ],
+  "features": [
+    "🎤 Voice-First Learning — Explain topics verbally with real-time speech-to-text",
+    "🧠 AI as Student — AI listens, interrupts, and asks clarifying questions",
+    "💬 Real-Time Dialogue — Live WebSocket-based conversation with AI",
+    "📊 Understanding Metrics — Detailed evaluation scores on clarity, structure, and coverage",
+    "🔊 Text-to-Speech — AI responds with natural voice (ElevenLabs/Deepgram)",
+    "🔒 Secure Auth — JWT httpOnly cookies, email verification, auto-refresh"
+  ],
+  "badges": [
+    "🏆 Best Use Of AI - AI Preneur '26",
+    "🚧 In Development"
+  ],
+  "github": "https://github.com/KazimFedxD/TeachBack",
+  "liveDemo": "",
+  "performance": {
+    "pageLoadTime": "< 2s",
+    "apiResponseTime": "~150ms avg",
+    "bundleSize": "~150 kB",
+    "lighthouseScore": 92
+  },
+  "awards": [
+    "🏆 Best Use Of AI - AI Preneur '26"
+  ],
+  "requirements": {
+    "os": ["Windows", "macOS", "Linux"],
+    "browsers": ["Chrome 90+", "Firefox 88+", "Safari 14+", "Edge 90+"],
+    "minRAM": "4GB",
+    "dependencies": ["Docker & Docker Compose", "Git"]
+  }
+}

@@ -1,0 +1,49 @@
+# TeachBack Backend Dependencies
+# Python 3.11+
+
+# Django & REST Framework
+django==5.2.10
+djangorestframework==3.16.1
+djangorestframework-simplejwt==5.5.1
+django-cors-headers==4.7.0
+django-ratelimit==4.1.0
+django-redis==6.0.0
+
+# Async & WebSockets
+channels==4.3.2
+channels-redis==4.3.0
+daphne==4.2.1
+
+# Celery Task Queue
+celery==5.5.3
+django-celery-beat==2.8.1
+redis==7.1.0
+
+# Database
+psycopg==3.3.2
+dj-database-url==3.0.1
+
+# AI & Speech Services
+deepgram-sdk==5.3.1
+elevenlabs==2.31.0
+openai==2.15.0
+groq>=0.4.0
+
+# HTTP & Async
+aiohttp==3.12.15
+httpx==0.28.1
+requests==2.32.5
+websockets==15.0.1
+
+# Data Validation & Serialization
+pydantic==2.11.7
+email-validator==2.2.0
+
+# Security & Encryption
+cryptography==45.0.6
+pyjwt==2.10.1
+
+# Utilities
+python-dotenv==1.1.1
+python-json-logger==4.0.0
+numpy==2.4.1

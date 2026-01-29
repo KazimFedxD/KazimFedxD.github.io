@@ -1,6 +1,6 @@
 // ========================================
 // PROJECTS DATA
-// Total Featured Projects: 11
+// Total Featured Projects: 12
 // ========================================
 // 
 // ORDERING SYSTEM:
@@ -21,10 +21,30 @@
 
 export const projectsData = [
   // ============================================================
-  // ORDER 1: TOP PROJECT - NASA WINNER
+  // ORDER 1: TEACHBACK - BEST USE OF AI WINNER
   // ============================================================
   {
-    order: 2,
+    order: 1,
+    title: 'TeachBack',
+    badge: '🏆 Best Use Of AI - AI Preneur \'26',
+    description: 'Revolutionary learning platform where students learn by teaching AI. Explain topics verbally, get interrupted with questions, and receive detailed evaluations on your understanding.',
+    tech: ['React 19', 'Django 5.2', 'Django Channels', 'WebSockets', 'PostgreSQL', 'Redis', 'Deepgram', 'Groq', 'ElevenLabs'],
+    github: 'https://github.com/KazimFedxD/TeachBack',
+    features: [
+      '🎤 Voice-First Learning — Explain topics verbally with real-time speech-to-text',
+      '🧠 AI as Student — AI listens, interrupts, and asks clarifying questions',
+      '💬 Real-Time Dialogue — Live WebSocket-based conversation with AI',
+      '📊 Multi-Dimensional Evaluation — Scores on clarity, structure, coverage',
+      '🔊 Natural Text-to-Speech — AI responds with natural voice',
+      '🔄 Real-Time Teaching Flow — Voice → AI → Voice loop'
+    ]
+  },
+
+  // ============================================================
+  // ORDER 2: NASA WINNER
+  // ============================================================
+  {
+    order: 3,
     title: 'Skyntel',
     badge: '🏆 2nd Place - NASA Space Apps Challenge 2025',
     description: 'Interactive weather app with AI query support, personalized alerts, daily email subscriptions, and live weather reports from users.',
@@ -266,6 +286,7 @@ export const projectsWithDetails = [
   'FxQuest',
   'Portfolio Website',
   'FinCore',
+  'TeachBack',
   // Add more project names as you create their data files
 ];
 

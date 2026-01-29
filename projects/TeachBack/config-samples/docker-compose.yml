@@ -1,0 +1,101 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: teachback_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: your_db_user
+      POSTGRES_PASSWORD: your_db_password
+      POSTGRES_DB: teachback_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U your_db_user -d teachback_db"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: teachback_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  backend:
+    build: ./backend
+    container_name: teachback_backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      CELERY_BROKER_URL: redis://redis:6379/0
+      DATABASE_URL: postgres://your_db_user:your_db_password@db:5432/teachback_db
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  celery:
+    build: ./backend
+    container_name: teachback_celery
+    command: celery -A backend worker --loglevel=info
+    volumes:
+      - ./backend:/app
+    depends_on:
+      backend:
+        condition: service_started
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    environment:
+      CELERY_BROKER_URL: redis://redis:6379/0
+      DATABASE_URL: postgres://your_db_user:your_db_password@db:5432/teachback_db
+
+  celery-beat:
+    build: ./backend
+    container_name: teachback_celery_beat
+    command: celery -A backend beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    volumes:
+      - ./backend:/app
+    depends_on:
+      backend:
+        condition: service_started
+      redis:
+        condition: service_started
+    environment:
+      CELERY_BROKER_URL: redis://redis:6379/0
+      DATABASE_URL: postgres://your_db_user:your_db_password@db:5432/teachback_db
+
+  frontend:
+    build: ./frontend
+    container_name: teachback_frontend
+    volumes:
+      - ./frontend:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  nginx:
+    image: nginx:alpine
+    container_name: teachback_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+      - frontend
+
+volumes:
+  postgres_data:
+  node_modules:

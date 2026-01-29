@@ -6,6 +6,7 @@ import FeXoBotArchitectureDiagram from '../architecture-diagrams/FeXoBotArchitec
 import FxQuestArchitectureDiagram from '../architecture-diagrams/FxQuestArchitectureDiagram';
 import PortfolioWebsiteArchitectureDiagram from '../architecture-diagrams/PortfolioWebsiteArchitectureDiagram';
 import FinCoreArchitectureDiagram from '../architecture-diagrams/FinCoreArchitectureDiagram';
+import TeachBackArchitectureDiagram from '../architecture-diagrams/TeachBackArchitectureDiagram';
 
 const ArchitectureDiagram = ({ projectName }) => {
   // Map project names to their specific diagram components
@@ -17,6 +18,7 @@ const ArchitectureDiagram = ({ projectName }) => {
     'FxQuest': FxQuestArchitectureDiagram,
     'Portfolio-Website': PortfolioWebsiteArchitectureDiagram,
     'FinCore': FinCoreArchitectureDiagram,
+    'TeachBack': TeachBackArchitectureDiagram,
   };
 
   // Get the specific diagram component for this project
