@@ -1,231 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { MoveDown } from 'lucide-react';
-import { FileText, Search, Code, Zap, Package, RefreshCw, CheckCircle } from 'lucide-react';
+// src/components/architecture-diagrams/FxDCArchitectureDiagram.jsx
+// 7-module pipeline. Lexer → Parser → Object system → Serialization /
+// Deserialization. Config and FxDCField flank the pipeline; default
+// classes feed into the engine.
 
-const FxDCArchitectureDiagram = () => {
+import DiagramFrame from "./DiagramFrame";
+import { Node, Arrow, Lane } from "./_primitives";
 
-  return (
-    <div className="w-full overflow-x-auto">
-      <div className="min-w-[900px] p-4 md:p-8 glass rounded-2xl border border-purple-500/20">
-        {/* Title */}
-        <motion.h3
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-xl md:text-2xl font-bold gradient-text text-center mb-4 md:mb-8"
-        >
-          FxDC Pipeline Architecture
-        </motion.h3>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-slate-400 text-center mb-4 md:mb-8 text-xs md:text-sm"
-        >
-          Data flows through distinct stages: Raw Text → Tokens → AST → Python Objects
-        </motion.p>
-
-        {/* Input Layer */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mb-4 md:mb-8"
-        >
-          <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">INPUT LAYER</h4>
-          <div className="flex justify-center">
-            <StageBox
-              icon={FileText}
-              title="FxDC File/String"
-              subtitle="Raw Text Input"
-              features={['Human-readable format', 'Indentation-based', 'Type hints']}
-              color="blue"
-            />
-          </div>
-          <ArrowDown label="Character stream" />
-        </motion.div>
-
-        {/* Lexical Analysis */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mb-4 md:mb-8"
-        >
-          <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">LEXICAL ANALYSIS</h4>
-          <div className="flex justify-center gap-4 md:gap-8">
-            <StageBox
-              icon={Search}
-              title="Lexer"
-              subtitle="Tokenization Engine"
-              features={['Character scanning', 'Token generation', 'Keyword detection']}
-              color="green"
-            />
-            <StageBox
-              icon={Package}
-              title="Class Registry"
-              subtitle="Custom Classes"
-              features={['@Config.add_class', 'Class metadata', 'Type mapping']}
-              color="cyan"
-            />
-          </div>
-          <ArrowDown label="Token stream" />
-        </motion.div>
-
-        {/* Syntactic Analysis */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="mb-4 md:mb-8"
-        >
-          <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">SYNTACTIC ANALYSIS</h4>
-          <div className="flex justify-center gap-4 md:gap-8">
-            <StageBox
-              icon={Code}
-              title="Parser"
-              subtitle="Recursive Descent"
-              features={['AST construction', 'Syntax validation', 'Nesting handling']}
-              color="purple"
-            />
-            <StageBox
-              icon={Zap}
-              title="Type Resolution"
-              subtitle="Type Conversion"
-              features={['Type hints parsing', 'Python type mapping', 'Generic support']}
-              color="orange"
-            />
-          </div>
-          <ArrowDown label="Parsed structure" />
-        </motion.div>
-
-        {/* Object Construction */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="mb-8"
-        >
-          <h4 className="text-sm font-semibold text-purple-400 mb-4 text-center">OBJECT CONSTRUCTION</h4>
-          <div className="flex justify-center gap-4 md:gap-8">
-            <StageBox
-              icon={RefreshCw}
-              title="FxDCObject"
-              subtitle="Data Structure"
-              features={['Field mapping', 'Nested objects', 'List/Dict support']}
-              color="pink"
-            />
-            <StageBox
-              icon={CheckCircle}
-              title="Class Instantiation"
-              subtitle="Constructor Mapping"
-              features={['__init__ params', 'Field validation', 'Type checking']}
-              color="indigo"
-            />
-          </div>
-          <ArrowDown label="Final output" />
-        </motion.div>
-
-        {/* Output Layer */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-        >
-          <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">OUTPUT LAYER</h4>
-          <div className="flex justify-center">
-            <StageBox
-              icon={Package}
-              title="Python Objects"
-              subtitle="Fully Reconstructed"
-              features={['Custom class instances', 'Type integrity', 'Ready to use']}
-              color="green"
-            />
-          </div>
-        </motion.div>
-
-        {/* Bidirectional Flow Note */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="mt-4 md:mt-8 p-3 md:p-4 glass border border-purple-500/30 rounded-lg"
-        >
-          <p className="text-xs md:text-sm text-slate-300 text-center">
-            <span className="text-purple-400 font-semibold">Round-Trip Serialization:</span> Python objects can be dumped back to FxDC format using the Serialization Engine (write.py)
-          </p>
-        </motion.div>
-      </div>
-    </div>
-  );
-};
-
-// Reusable Components
-const StageBox = ({ icon: Icon, title, subtitle, features, color }) => {
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-  }, []);
+export default function FxDCArchitectureDiagram() {
+  const W = 820;
+  const H = 320;
 
   return (
-    <motion.div
-      initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
-      animate={isMobile ? false : { opacity: 1, scale: 1 }}
-      whileHover={{ scale: 1.05, y: -5 }}
-      className={`p-3 md:p-4 rounded-lg glass border border-${color}-500/30 min-w-[180px] md:min-w-[220px]`}
+    <DiagramFrame
+      title="FxDC · Pipeline Architecture"
+      subtitle="7 modules · Python package"
     >
-      <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-        <motion.div
-          animate={{ rotate: [0, 10, -10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-        >
-          <Icon className={`w-5 h-5 md:w-6 md:h-6 text-${color}-400`} />
-        </motion.div>
-        <div>
-          <div className="text-xs md:text-sm font-bold text-white">{title}</div>
-          <div className="text-[10px] md:text-xs text-slate-400">{subtitle}</div>
-        </div>
-      </div>
-      <div className="space-y-1">
-        {features.map((feature, idx) => (
-          <div key={idx} className="text-[10px] md:text-xs text-slate-300 flex items-center gap-1">
-            <span className={`text-${color}-400`}>•</span>
-            {feature}
-          </div>
-        ))}
-      </div>
-    </motion.div>
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="FxDC architecture diagram">
+        <Lane x={20} y={44}  w={780} h={84} label="input" />
+        <Lane x={20} y={144} w={780} h={84} label="core" />
+        <Lane x={20} y={244} w={780} h={64} label="output" />
+
+        <Node x={60}  y={60}  w={140} h={50} label="Python object" sublabel="user input" status="always" />
+        <Node x={60}  y={160} w={140} h={50} label="Config"         sublabel="class registry" status="always" />
+        <Node x={60}  y={260} w={140} h={50} label="Default Classes" sublabel="built-in types" status="data" />
+
+        <Node x={250} y={160} w={140} h={50} label="Serialization" accent sublabel="write.py" status="always" />
+        <Node x={430} y={160} w={140} h={50} label="Lexer"         sublabel="lexer.py" status="always" />
+        <Node x={610} y={160} w={140} h={50} label="Parser"        sublabel="parsedata.py" status="always" />
+
+        <Node x={430} y={260} w={140} h={50} label="FxDCField" sublabel="fields.py" status="data" />
+        <Node x={250} y={260} w={140} h={50} label="Deserialization" accent sublabel="read.py" status="always" />
+
+        <Node x={610} y={60}  w={140} h={50} label=".fxdc file" sublabel="serialized" status="data" />
+
+        <Arrow x1={130} y1={110} x2={130} y2={160} />
+        <Arrow x1={200} y1={185} x2={250} y2={185} label="introspect" />
+        <Arrow x1={390} y1={185} x2={430} y2={185} />
+        <Arrow x1={570} y1={185} x2={610} y2={185} label="tokens" />
+        <Arrow x1={680} y1={160} x2={680} y2={110} label="AST" />
+        <Arrow x1={430} y1={210} x2={430} y2={260} label="validate" dashed />
+        <Arrow x1={320} y1={210} x2={320} y2={260} label="load" dashed />
+        <Arrow x1={130} y1={210} x2={130} y2={260} dashed />
+      </svg>
+    </DiagramFrame>
   );
-};
-
-const ArrowDown = ({ label }) => {
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-  }, []);
-
-  return (
-    <div className="flex flex-col items-center my-2">
-      <div className="text-[10px] md:text-xs text-slate-500 mb-1">{label}</div>
-      <motion.div
-        initial={isMobile ? false : { opacity: 0 }}
-        animate={isMobile ? false : { 
-          opacity: 1,
-          y: [0, 5, 0]
-        }}
-        transition={isMobile ? {} : { 
-          opacity: { delay: 0.3 },
-          y: { duration: 1.5, repeat: Infinity }
-        }}
-      >
-        <MoveDown className="w-5 h-6 md:w-6 md:h-8 text-purple-400" />
-      </motion.div>
-    </div>
-  );
-};
-
-export default FxDCArchitectureDiagram;
+}

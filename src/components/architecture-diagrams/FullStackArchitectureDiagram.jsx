@@ -1,248 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { MoveDown } from 'lucide-react';
-import { Database, Server, Cloud, Smartphone, Monitor, Mail, Clock } from 'lucide-react';
+// src/components/architecture-diagrams/FullStackArchitectureDiagram.jsx
+// 7-service stack — same shape as the standard web stack.
 
-const FullStackArchitectureDiagram = () => {
+import DiagramFrame from "./DiagramFrame";
+import StandardWebStackDiagram from "./StandardWebStackDiagram";
 
+export default function FullStackArchitectureDiagram() {
   return (
-    <div className="w-full overflow-x-auto">
-      <div className="min-w-[900px] p-4 md:p-8 glass rounded-2xl border border-purple-500/20">
-        {/* Title */}
-        <motion.h3
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-xl md:text-2xl font-bold gradient-text text-center mb-4 md:mb-8"
-        >
-          System Architecture Overview
-        </motion.h3>
-
-        {/* Client Layer */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="mb-4 md:mb-8"
-        >
-          <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">CLIENT LAYER</h4>
-          <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6">
-            <LayerBox icon={Monitor} title="Web Browser" subtitle="Desktop" color="blue" />
-            <LayerBox icon={Smartphone} title="Mobile Device" subtitle="Responsive" color="blue" />
-          </div>
-          <ArrowDown />
-        </motion.div>
-
-        {/* Reverse Proxy */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mb-4 md:mb-8"
-        >
-          <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">REVERSE PROXY</h4>
-          <div className="flex justify-center">
-            <ServiceBox
-              icon={Cloud}
-              title="Nginx"
-              subtitle="Port 80/443"
-              features={['Load Balancing', 'SSL Termination', 'Static Files']}
-              color="purple"
-            />
-          </div>
-          <div className="flex justify-center gap-16 md:gap-32 mt-3 md:mt-4">
-            <ArrowDown label="/api/*" />
-            <ArrowDown label="/*" />
-          </div>
-        </motion.div>
-
-        {/* Application Layer */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mb-4 md:mb-8"
-        >
-          <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">APPLICATION LAYER</h4>
-          <div className="flex justify-center gap-4 md:gap-8">
-            <ServiceBox
-              icon={Server}
-              title="Django Backend"
-              subtitle="Port 8000"
-              features={['REST API', 'JWT Auth', 'Admin Panel']}
-              color="green"
-            />
-            <ServiceBox
-              icon={Monitor}
-              title="React Frontend"
-              subtitle="Port 3000"
-              features={['SPA', 'React 19', 'Context API']}
-              color="cyan"
-            />
-          </div>
-          <ArrowDown />
-        </motion.div>
-
-        {/* Background Services */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mb-4 md:mb-8"
-        >
-          <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">BACKGROUND SERVICES</h4>
-          <div className="flex justify-center gap-4 md:gap-8">
-            <ServiceBox
-              icon={Mail}
-              title="Celery Worker"
-              subtitle="Background Tasks"
-              features={['Email Sending', 'Async Jobs']}
-              color="orange"
-            />
-            <ServiceBox
-              icon={Clock}
-              title="Celery Beat"
-              subtitle="Scheduler"
-              features={['Periodic Tasks', 'Token Cleanup']}
-              color="orange"
-            />
-          </div>
-          <ArrowDown />
-        </motion.div>
-
-        {/* Data Layer */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-3 md:mb-4 text-center">DATA LAYER</h4>
-          <div className="flex justify-center gap-4 md:gap-8">
-            <ServiceBox
-              icon={Database}
-              title="PostgreSQL"
-              subtitle="Port 5432"
-              features={['User Data', 'Persistent Storage']}
-              color="indigo"
-            />
-            <ServiceBox
-              icon={Database}
-              title="Redis"
-              subtitle="Port 6379"
-              features={['Message Broker', 'Cache']}
-              color="red"
-            />
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  );
-};
-
-// Reusable Components
-const LayerBox = ({ icon: Icon, title, subtitle, color }) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  return (
-    <motion.div
-      initial={isMobile ? false : { opacity: 0, y: 20 }}
-      animate={isMobile ? false : { opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.05, y: -5 }}
-      className={`flex flex-col items-center justify-center p-3 md:p-4 rounded-lg glass border border-${color}-500/30 min-w-[120px] md:min-w-[150px]`}
+    <DiagramFrame
+      title="Full-Stack Template · System Architecture"
+      subtitle="7 services · Docker Compose"
     >
-      <motion.div
-        animate={{ rotate: [0, 5, -5, 0] }}
-        transition={{ duration: 2, repeat: Infinity, repeatDelay: 2 }}
-      >
-        <Icon className={`w-6 h-6 md:w-8 md:h-8 text-${color}-400 mb-2`} />
-      </motion.div>
-      <div className="text-xs md:text-sm font-semibold text-white">{title}</div>
-      <div className="text-[10px] md:text-xs text-slate-400">{subtitle}</div>
-    </motion.div>
-  );
-};
-
-const ServiceBox = ({ icon: Icon, title, subtitle, features, color }) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  return (
-    <motion.div
-      initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
-      animate={isMobile ? false : { opacity: 1, scale: 1 }}
-      whileHover={{ scale: 1.05, y: -5 }}
-      className={`p-3 md:p-4 rounded-lg glass border border-${color}-500/30 min-w-[160px] md:min-w-[200px]`}
-    >
-      <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-        <motion.div
-          animate={{ rotate: [0, 10, -10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-        >
-          <Icon className={`w-5 h-5 md:w-6 md:h-6 text-${color}-400`} />
-        </motion.div>
-        <div>
-          <div className="text-xs md:text-sm font-bold text-white">{title}</div>
-          <div className="text-[10px] md:text-xs text-slate-400">{subtitle}</div>
+      <StandardWebStackDiagram project="Full-Stack Template" />
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono text-ink-2">
+        <div className="rounded-sm border border-rule p-3">
+          <div className="text-ink-3 uppercase text-[10px] mb-1">Auth</div>
+          JWT + email verification, refresh tokens
+        </div>
+        <div className="rounded-sm border border-rule p-3">
+          <div className="text-ink-3 uppercase text-[10px] mb-1">Async</div>
+          Email templates, scheduled cleanup
+        </div>
+        <div className="rounded-sm border border-rule p-3">
+          <div className="text-ink-3 uppercase text-[10px] mb-1">Reverse proxy</div>
+          Nginx routes /api and /static
         </div>
       </div>
-      <div className="space-y-1">
-        {features.map((feature, idx) => (
-          <div key={idx} className="text-[10px] md:text-xs text-slate-300 flex items-center gap-1">
-            <span className={`text-${color}-400`}>•</span>
-            {feature}
-          </div>
-        ))}
-      </div>
-    </motion.div>
+    </DiagramFrame>
   );
-};
-
-const ArrowDown = ({ label }) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  return (
-    <div className="flex flex-col items-center my-1 md:my-2">
-      <div className="text-[10px] md:text-xs text-slate-500 mb-1">{label}</div>
-      <motion.div
-        initial={isMobile ? false : { opacity: 0 }}
-        animate={isMobile ? false : { 
-          opacity: 1,
-          y: [0, 5, 0]
-        }}
-        transition={isMobile ? {} : { 
-          opacity: { delay: 0.3 },
-          y: { duration: 1.5, repeat: Infinity }
-        }}
-      >
-        <MoveDown className="w-5 h-6 md:w-6 md:h-8 text-purple-400" />
-      </motion.div>
-    </div>
-  );
-};
-
-export default FullStackArchitectureDiagram;
+}

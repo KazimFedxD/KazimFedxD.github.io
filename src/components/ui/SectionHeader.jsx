@@ -1,0 +1,47 @@
+// src/components/ui/SectionHeader.jsx
+// Section eyebrow + headline + optional lede. Eyebrow is uppercase mono with
+// a small `$` prompt. Title is 700-weight with a thin terminal-green rule
+// underneath — the editorial "dropped mark" for each section.
+
+import { cn } from "../../lib/cn";
+
+export default function SectionHeader({
+  eyebrow,
+  title,
+  lede,
+  align = "left",
+  as: Title = "h2",
+  className,
+  ruleWidth = "w-8",
+}) {
+  return (
+    <div
+      className={cn(
+        "max-w-prose",
+        align === "center" && "mx-auto text-center",
+        className
+      )}
+    >
+      {eyebrow && (
+        <div className="font-mono text-[11px] uppercase tracking-[0.05em] text-ink-3 mb-3">
+          <span className="text-terminal">$</span> {eyebrow}
+        </div>
+      )}
+      <Title
+        className={cn(
+          "text-fluid-headline font-bold text-ink",
+          "text-balance"
+        )}
+      >
+        {title}
+      </Title>
+      {/* The one decorative mark on every section: 24px terminal-green rule. */}
+      <div className={cn("mt-3 h-px bg-terminal", ruleWidth)} aria-hidden="true" />
+      {lede && (
+        <p className="mt-3 text-lg md:text-xl text-ink-2 leading-relaxed text-pretty">
+          {lede}
+        </p>
+      )}
+    </div>
+  );
+}

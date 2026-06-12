@@ -1,38 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow" />
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d1410" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f6f3" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
+
     <link rel="icon" href="%PUBLIC_URL%/favicon.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#a855f7" />
-    <meta
-      name="description"
-      content="Kazim Abbas - Software Developer | Backend Engineer | Tech Enthusiast. Specializing in Python, Django, and modern web technologies."
-    />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.jpg" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Kazim Abbas - Software Developer</title>
-    
-    <!-- Single Page Apps for GitHub Pages -->
-    <!-- This script checks for redirects from 404.html and restores the original URL -->
+
+    <title>Kazim Abbas — Backend Developer</title>
+    <meta
+      name="description"
+      content="Kazim Abbas — Backend developer from Karachi. Building production systems in Django, Python, and PostgreSQL. NASA Space Apps 2025 winner, Discord bot author, 40K+ views on KayzBlog."
+    />
+    <meta
+      name="keywords"
+      content="Kazim Abbas, fedxd, backend developer, Django, Python, PostgreSQL, REST API, Discord bot, NASA Space Apps, portfolio"
+    />
+    <meta name="author" content="Kazim Abbas" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kazim Abbas" />
+    <meta property="og:title" content="Kazim Abbas — Backend Developer" />
+    <meta
+      property="og:description"
+      content="Backend developer from Karachi. Django, Python, PostgreSQL, and shipping. NASA Space Apps 2025 winner."
+    />
+    <meta property="og:url" content="https://fedxd.net/" />
+    <meta property="og:image" content="https://fedxd.net/dp.jpg" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kazim Abbas — Backend Developer" />
+    <meta
+      name="twitter:description"
+      content="Backend developer from Karachi. Django, Python, PostgreSQL, and shipping. NASA Space Apps 2025 winner."
+    />
+    <meta name="twitter:image" content="https://fedxd.net/dp.jpg" />
+
+    <link rel="canonical" href="https://fedxd.net/" />
+
+    <!-- Geist Sans + Geist Mono via Vercel CDN. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+    />
+
+    <!-- Single Page Apps for GitHub Pages: restore the original URL after the 404 fallback. -->
     <script type="text/javascript">
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash
           );
         }
-      }(window.location))
+      })(window.location);
     </script>
+
+    <style>
+      /* Boot styles: set the surface to carbon so the user never sees a white flash. */
+      html, body { background: #0d1410; color: #ebf2ec; }
+      html.light, html.light body { background: #f4f6f3; color: #0d1410; }
+      .preboot { display: none; }
+    </style>
   </head>
   <body>
-    <section style="display:none;">
-    Kazim Abbas — Software Developer, Backend Engineer, Django Specialist.
-    </section>
+    <noscript>
+      <section style="padding: 2rem; max-width: 60ch; margin: 4rem auto; font-family: ui-sans-serif, system-ui, sans-serif;">
+        <h1 style="font-size: 1.5rem; margin: 0 0 0.5rem 0;">Kazim Abbas — Backend Developer</h1>
+        <p>
+          This portfolio requires JavaScript to render. You can still reach me at
+          <a href="mailto:abbaskazim135@gmail.com">abbaskazim135@gmail.com</a> or on
+          <a href="https://github.com/KazimFedxD">GitHub</a>.
+        </p>
+      </section>
+    </noscript>
 
     <div id="root"></div>
   </body>

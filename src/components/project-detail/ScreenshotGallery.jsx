@@ -1,153 +1,131 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+// src/components/project-detail/ScreenshotGallery.jsx
+// Grid of project screenshots. Click opens a modal lightbox.
 
-const ScreenshotGallery = ({ screenshots, projectName }) => {
-  const [selectedIndex, setSelectedIndex] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
+import { useEffect, useState } from "react";
+import { X, ChevronLeft, ChevronRight, ImageIcon } from "lucide-react";
+import { cn } from "../../lib/cn";
 
-  // Detect mobile device
+function Lightbox({ items, index, onClose, onPrev, onNext }) {
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+      else if (e.key === "ArrowLeft") onPrev();
+      else if (e.key === "ArrowRight") onNext();
     };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose, onPrev, onNext]);
 
-  const openLightbox = (index) => {
-    setSelectedIndex(index);
-  };
+  const it = items[index];
+  if (!it) return null;
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={it.caption || it.alt || "Screenshot"}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-carbon/95"
+      onClick={onClose}
+    >
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        aria-label="Close"
+        className="absolute top-4 right-4 p-2 text-ink-2 hover:text-ink-1"
+      >
+        <X size={18} strokeWidth={1.75} />
+      </button>
+      {items.length > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); onPrev(); }}
+            aria-label="Previous"
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-ink-2 hover:text-ink-1"
+          >
+            <ChevronLeft size={20} strokeWidth={1.75} />
+          </button>
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); onNext(); }}
+            aria-label="Next"
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-ink-2 hover:text-ink-1"
+          >
+            <ChevronRight size={20} strokeWidth={1.75} />
+          </button>
+        </>
+      )}
+      <figure
+        className="max-w-5xl w-full"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={it.src}
+          alt={it.alt || it.caption || ""}
+          className="w-full h-auto rounded-sm border border-rule"
+        />
+        <figcaption className="mt-3 font-mono text-xs text-ink-3 text-center">
+          {it.caption || it.alt}
+          {items.length > 1 && (
+            <> · <span className="text-ink-2">{index + 1}/{items.length}</span></>
+          )}
+        </figcaption>
+      </figure>
+    </div>
+  );
+}
 
-  const closeLightbox = () => {
-    setSelectedIndex(null);
-  };
-
-  const goToPrevious = () => {
-    setSelectedIndex((prev) => (prev > 0 ? prev - 1 : screenshots.length - 1));
-  };
-
-  const goToNext = () => {
-    setSelectedIndex((prev) => (prev < screenshots.length - 1 ? prev + 1 : 0));
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') goToPrevious();
-      if (e.key === 'ArrowRight') goToNext();
-    };
-
-    if (selectedIndex !== null) {
-      window.addEventListener('keydown', handleKeyDown);
-      return () => window.removeEventListener('keydown', handleKeyDown);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedIndex]);
-
+export default function ScreenshotGallery({ screenshots }) {
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(0);
+  if (!screenshots || screenshots.length === 0) {
+    return (
+      <div className="rounded-sm border border-rule bg-carbon-1 p-6 text-center">
+        <ImageIcon size={20} strokeWidth={1.75} className="mx-auto text-ink-3" />
+        <p className="mt-2 text-sm text-ink-2">No screenshots yet.</p>
+      </div>
+    );
+  }
+  const goto = (i) => setIndex(((i % screenshots.length) + screenshots.length) % screenshots.length);
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        {screenshots.map((screenshot, idx) => (
-          <motion.div
-            key={idx}
-            initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
-            animate={isMobile ? false : { opacity: 1, scale: 1 }}
-            transition={isMobile ? {} : { delay: idx * 0.05 }}
-            className="group relative bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-purple-500 transition-colors cursor-pointer"
-            onClick={() => openLightbox(idx)}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {screenshots.map((s, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => { setIndex(i); setOpen(true); }}
+            className={cn(
+              "group block text-left rounded-sm border border-rule bg-carbon-1 overflow-hidden",
+              "hover:border-terminal/50 transition-[border-color] duration-180"
+            )}
           >
-            <div className="aspect-video relative overflow-hidden">
+            <div className="aspect-video bg-carbon-2 overflow-hidden">
               <img
-                src={`/screenshots/${projectName}/${screenshot.filename}`}
-                alt={screenshot.caption}
+                src={s.src}
+                alt={s.alt || s.caption || ""}
                 loading="lazy"
-                className="w-full h-full object-cover md:group-hover:scale-110 transition-transform duration-300"
+                className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-180"
               />
-              
-              {/* Overlay - only on desktop */}
-              {!isMobile && (
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <ZoomIn className="text-white" size={32} />
+            </div>
+            {(s.caption || s.alt) && (
+              <div className="px-3 py-2 border-t border-rule">
+                <div className="font-mono text-xs text-ink-2 truncate">
+                  {s.caption || s.alt}
                 </div>
-              )}
-            </div>
-            
-            <div className="p-3 md:p-4">
-              <p className="text-xs md:text-sm text-gray-300 line-clamp-2">{screenshot.caption}</p>
-            </div>
-          </motion.div>
+              </div>
+            )}
+          </button>
         ))}
       </div>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {selectedIndex !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: isMobile ? 0.2 : 0.3 }}
-            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-2 md:p-4"
-            onClick={closeLightbox}
-          >
-            {/* Close Button */}
-            <button
-              onClick={closeLightbox}
-              className="absolute top-2 right-2 md:top-4 md:right-4 text-white hover:text-purple-400 transition-colors z-10 p-2 bg-gray-800/50 rounded-lg"
-            >
-              <X size={isMobile ? 24 : 32} />
-            </button>
-
-            {/* Previous Button */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                goToPrevious();
-              }}
-              className="absolute left-2 md:left-4 text-white hover:text-purple-400 transition-colors z-10 p-2 bg-gray-800/50 rounded-lg"
-            >
-              <ChevronLeft size={isMobile ? 32 : 48} />
-            </button>
-
-            {/* Next Button */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                goToNext();
-              }}
-              className="absolute right-2 md:right-4 text-white hover:text-purple-400 transition-colors z-10 p-2 bg-gray-800/50 rounded-lg"
-            >
-              <ChevronRight size={isMobile ? 32 : 48} />
-            </button>
-
-            {/* Image */}
-            <motion.div
-              initial={isMobile ? false : { scale: 0.9 }}
-              animate={isMobile ? false : { scale: 1 }}
-              exit={isMobile ? false : { scale: 0.9 }}
-              className="max-w-6xl max-h-[90vh] w-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={`/screenshots/${projectName}/${screenshots[selectedIndex].filename}`}
-                alt={screenshots[selectedIndex].caption}
-                className="w-full h-full object-contain rounded-lg"
-              />
-              
-              <div className="mt-2 md:mt-4 text-center">
-                <p className="text-white text-sm md:text-lg">{screenshots[selectedIndex].caption}</p>
-                <p className="text-gray-400 text-xs md:text-sm mt-1 md:mt-2">
-                  {selectedIndex + 1} / {screenshots.length}
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {open && (
+        <Lightbox
+          items={screenshots}
+          index={index}
+          onClose={() => setOpen(false)}
+          onPrev={() => goto(index - 1)}
+          onNext={() => goto(index + 1)}
+        />
+      )}
     </>
   );
-};
-
-export default ScreenshotGallery;
+}

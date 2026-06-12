@@ -1,41 +1,77 @@
-import React from 'react';
-import FullStackArchitectureDiagram from '../architecture-diagrams/FullStackArchitectureDiagram';
-import FxDCArchitectureDiagram from '../architecture-diagrams/FxDCArchitectureDiagram';
-import FxPyArchitectureDiagram from '../architecture-diagrams/FxPyArchitectureDiagram';
-import FeXoBotArchitectureDiagram from '../architecture-diagrams/FeXoBotArchitectureDiagram';
-import FxQuestArchitectureDiagram from '../architecture-diagrams/FxQuestArchitectureDiagram';
-import PortfolioWebsiteArchitectureDiagram from '../architecture-diagrams/PortfolioWebsiteArchitectureDiagram';
-import FinCoreArchitectureDiagram from '../architecture-diagrams/FinCoreArchitectureDiagram';
-import TeachBackArchitectureDiagram from '../architecture-diagrams/TeachBackArchitectureDiagram';
+// src/components/project-detail/ArchitectureDiagram.jsx
+// Dispatches to the right per-project diagram based on the project title.
 
-const ArchitectureDiagram = ({ projectName }) => {
-  // Map project names to their specific diagram components
-  const diagramComponents = {
-    'Full-Stack-Template': FullStackArchitectureDiagram,
-    'FedxD-Data-Container-FxDC': FxDCArchitectureDiagram,
-    'FxPy': FxPyArchitectureDiagram,
-    'FeXoBot': FeXoBotArchitectureDiagram,
-    'FxQuest': FxQuestArchitectureDiagram,
-    'Portfolio-Website': PortfolioWebsiteArchitectureDiagram,
-    'FinCore': FinCoreArchitectureDiagram,
-    'TeachBack': TeachBackArchitectureDiagram,
-  };
+import TeachBack from "../architecture-diagrams/TeachBackArchitectureDiagram";
+import FinCore from "../architecture-diagrams/FinCoreArchitectureDiagram";
+import FullStack from "../architecture-diagrams/FullStackArchitectureDiagram";
+import FxDC from "../architecture-diagrams/FxDCArchitectureDiagram";
+import FxPy from "../architecture-diagrams/FxPyArchitectureDiagram";
+import FeXoBot from "../architecture-diagrams/FeXoBotArchitectureDiagram";
+import FxQuest from "../architecture-diagrams/FxQuestArchitectureDiagram";
+import Portfolio from "../architecture-diagrams/PortfolioWebsiteArchitectureDiagram";
 
-  // Get the specific diagram component for this project
-  const DiagramComponent = diagramComponents[projectName];
+const DIAGRAMS = {
+  "TeachBack": TeachBack,
+  "FinCore": FinCore,
+  "Full-Stack Template": FullStack,
+  "Full-Stack-Template": FullStack,
+  "FedxD Data Container (FxDC)": FxDC,
+  "FedxD-Data-Container-FxDC": FxDC,
+  "FxPy": FxPy,
+  "FeXoBot": FeXoBot,
+  "FxQuest": FxQuest,
+  "Portfolio Website": Portfolio,
+  "Portfolio-Website": Portfolio,
+};
 
-  // If no specific diagram exists, show a message
-  if (!DiagramComponent) {
+export default function ArchitectureDiagram({ title, architecture }) {
+  let Diagram = DIAGRAMS[title];
+  if (!Diagram) {
+    // Try the slug form (`/` → `-`, drop parens).
+    const slug = String(title || "")
+      .replace(/\s*\(([^)]+)\)/g, "-$1")
+      .replace(/[()]/g, "")
+      .replace(/\s+/g, "-")
+      .trim();
+    Diagram = DIAGRAMS[slug];
+  }
+  if (Diagram) return <Diagram />;
+
+  // Fallback: a simple services list if no diagram exists for this project.
+  if (architecture?.services) {
     return (
-      <div className="w-full p-8 bg-gray-900 rounded-lg border border-gray-700">
-        <p className="text-gray-400 text-center">
-          Architecture diagram not available for this project.
-        </p>
+      <div className="rounded-sm border border-rule bg-carbon-1 p-4">
+        <div className="font-mono text-xs text-ink-3 mb-3">
+          <span className="text-terminal">$</span> {architecture.servicesTitle || "Services"}
+        </div>
+        {architecture.description && (
+          <p className="text-sm text-ink-1 leading-relaxed mb-3">
+            {architecture.description}
+          </p>
+        )}
+        <ul className="flex flex-col gap-2">
+          {architecture.services.map((s, i) => (
+            <li
+              key={i}
+              className="rounded-sm border border-rule p-3 bg-carbon-2"
+            >
+              <div className="text-sm font-medium text-ink">
+                {s.name}
+                {s.port && (
+                  <span className="ml-2 font-mono text-xs text-ink-3">:{s.port}</span>
+                )}
+              </div>
+              {s.purpose && (
+                <div className="mt-1 text-xs text-ink-2">{s.purpose}</div>
+              )}
+              {s.description && (
+                <div className="mt-1 text-xs text-ink-2">{s.description}</div>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
-
-  return <DiagramComponent />;
-};
-
-export default ArchitectureDiagram;
+  return null;
+}

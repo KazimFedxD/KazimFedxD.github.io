@@ -1,51 +1,45 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+// src/components/project-detail/TechStackTable.jsx
+// Plain table, monospace cells, 1px hairlines.
 
-const TechStackTable = ({ techStack }) => {
-  // Group by category
-  const groupedStack = techStack.reduce((acc, tech) => {
-    if (!acc[tech.category]) {
-      acc[tech.category] = [];
-    }
-    acc[tech.category].push(tech);
-    return acc;
-  }, {});
+import TechIcon from "../ui/TechIcon";
 
-  const categories = Object.keys(groupedStack);
-
+export default function TechStackTable({ stack }) {
+  if (!stack || stack.length === 0) return null;
   return (
-    <div className="space-y-6">
-      {categories.map((category, idx) => (
-        <motion.div
-          key={category}
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: idx * 0.1 }}
-          className="glass rounded-xl p-6 border border-purple-500/20"
-        >
-          <h3 className="text-lg font-bold text-purple-400 mb-4">{category}</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {groupedStack[category].map((tech, techIdx) => (
-              <motion.div
-                key={techIdx}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: idx * 0.1 + techIdx * 0.05 }}
-                whileHover={{ scale: 1.05, y: -3 }}
-                className="glass flex items-center justify-between px-4 py-3 rounded-lg border border-slate-700/50 hover:border-purple-500/50 transition-all duration-300"
-              >
-                <span className="text-white font-medium">{tech.name}</span>
-                {tech.version && (
-                  <span className="text-sm text-slate-400 px-2 py-1 rounded bg-purple-600/20 border border-purple-500/30">v{tech.version}</span>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      ))}
+    <div className="rounded-sm border border-rule overflow-hidden">
+      <table className="w-full text-sm">
+        <thead>
+          <tr className="border-b border-rule bg-carbon-2">
+            <th className="text-left font-mono text-[10px] uppercase text-ink-3 px-3 py-2 font-medium">
+              Tech
+            </th>
+            <th className="text-left font-mono text-[10px] uppercase text-ink-3 px-3 py-2 font-medium hidden sm:table-cell">
+              Version
+            </th>
+            <th className="text-left font-mono text-[10px] uppercase text-ink-3 px-3 py-2 font-medium">
+              Category
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {stack.map((s, i) => (
+            <tr
+              key={`${s.name}-${i}`}
+              className="border-b border-rule last:border-b-0 hover:bg-carbon-1"
+            >
+              <td className="px-3 py-2 text-ink">
+                <TechIcon name={s.name} size="sm" showIcon={false} />
+              </td>
+              <td className="px-3 py-2 font-mono text-ink-2 hidden sm:table-cell">
+                {s.version || "—"}
+              </td>
+              <td className="px-3 py-2 font-mono text-xs text-ink-2">
+                {s.category || "—"}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-};
-
-export default TechStackTable;
+}

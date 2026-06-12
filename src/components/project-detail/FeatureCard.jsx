@@ -1,121 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import Tilt from 'react-parallax-tilt';
-import * as LucideIcons from 'lucide-react';
-import ImageCarousel from './ImageCarousel';
+// src/components/project-detail/FeatureCard.jsx
+// Title + monospace icon label + prose + "Why it matters" + "How it works"
+// + optional code snippet. One feature per card.
 
-const FeatureCard = ({ feature, index }) => {
-  const [isMobile, setIsMobile] = useState(false);
+import CodeSnippet from "./CodeSnippet";
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const getIcon = (iconName) => {
-    // If iconName is a string representing a Lucide icon name
-    if (typeof iconName === 'string' && iconName.length > 2) {
-      const IconComponent = LucideIcons[iconName];
-      if (IconComponent) {
-        return (
-          <motion.div
-            className="mb-3 md:mb-4"
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-          >
-            <IconComponent className="w-8 h-8 md:w-10 md:h-10 text-purple-400" />
-          </motion.div>
-        );
-      }
-    }
-    
-    // Fallback to emoji if icon name not found or is actually an emoji
-    return (
-      <motion.div
-        className="text-3xl md:text-4xl mb-3 md:mb-4"
-        animate={{ rotate: [0, 10, -10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-      >
-        {iconName}
-      </motion.div>
-    );
-  };
-
-  return (
-    <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1.02}>
-      <motion.div
-        initial={isMobile ? false : { opacity: 0, y: 20 }}
-        animate={isMobile ? false : { opacity: 1, y: 0 }}
-        transition={isMobile ? {} : { delay: index * 0.1 }}
-        whileHover={{ y: -5 }}
-        className="glass rounded-xl p-4 md:p-6 border border-purple-500/10 hover:border-purple-500/30 transition-all h-full"
-      >
-        {getIcon(feature.icon)}
-      
-        <h3 className="text-lg md:text-xl font-bold gradient-text mb-2 md:mb-3">{feature.title}</h3>
-      
-        <p className="text-sm md:text-base text-slate-300 mb-3 md:mb-4 leading-relaxed">
-          {feature.description}
-        </p>
-
-        {feature.whyItMatters && (
-          <div className="mb-3 md:mb-4">
-            <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-2">Why It Matters</h4>
-            <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
-              {feature.whyItMatters}
-            </p>
-          </div>
-        )}
-
-        {feature.howItWorks && (
-          <div className="mb-3 md:mb-4">
-            <h4 className="text-xs md:text-sm font-semibold text-purple-400 mb-2">How It Works</h4>
-            <ol className="text-xs md:text-sm text-slate-400 space-y-1 md:space-y-2">
-              {feature.howItWorks.map((step, idx) => (
-                <li key={idx} className="flex gap-2">
-                  <span className="text-purple-500 font-bold flex-shrink-0">{idx + 1}.</span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        )}
-
-        {feature.services && (
-          <div className="mt-3 md:mt-4 space-y-2">
-            {feature.services.map((service, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 + idx * 0.05 }}
-                className="flex flex-col md:flex-row md:justify-between md:items-center text-xs md:text-sm glass px-2 md:px-3 py-2 rounded gap-1 border border-purple-500/10"
-              >
-                <span className="text-white font-medium">{service.name}</span>
-                <span className="text-slate-400">{service.purpose}</span>
-              </motion.div>
-            ))}
-          </div>
-        )}
-
-        {(feature.screenshot || (feature.screenshots && feature.screenshots.length > 0)) && (
-          <motion.div
-            className="mt-3 md:mt-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: index * 0.1 + 0.3 }}
-          >
-            <ImageCarousel 
-              images={feature.screenshots || feature.screenshot} 
-              alt={feature.title}
-            />
-          </motion.div>
-        )}
-      </motion.div>
-    </Tilt>
-  );
+const ICON_MAP = {
+  Mic: "🎤", Brain: "🧠", Volume2: "🔊", Languages: "🌐",
+  Construction: "🚧", Code2: "💻", Sparkles: "✨", Lock: "🔒",
+  Database: "🗄️", Zap: "⚡", Server: "🖥️", Shield: "🛡️",
+  Trophy: "🏆", Rocket: "🚀", Mail: "✉️", Star: "⭐",
+  Image: "🖼️", Cpu: "🧮", Gamepad2: "🎮", BarChart3: "📊",
+  RefreshCw: "🔄", Package: "📦", GitBranch: "🌿", Eye: "👁️",
+  Hash: "#", Terminal: "▶", FileText: "📄", ListChecks: "✅",
+  Award: "🏅", Flame: "🔥", TrendingUp: "📈", Calculator: "🧮",
+  Coins: "🪙", Map: "🗺️", BookOpen: "📖", Search: "🔍",
 };
 
-export default FeatureCard;
+export default function FeatureCard({ feature }) {
+  const emoji = ICON_MAP[feature.icon] || "·";
+  return (
+    <article className="rounded-sm border border-rule bg-carbon-1 p-5">
+      <div className="flex items-center gap-2">
+        <span className="font-mono text-base" aria-hidden="true">{emoji}</span>
+        <h3 className="text-lg font-semibold text-ink leading-tight">
+          {feature.title}
+        </h3>
+      </div>
+      <p className="mt-2 text-sm text-ink-1 leading-relaxed">
+        {feature.description}
+      </p>
+
+      {feature.whyItMatters && (
+        <div className="mt-4">
+          <div className="font-mono text-[10px] text-ink-3 uppercase mb-1.5">
+            Why it matters
+          </div>
+          <p className="text-sm text-ink-1 leading-relaxed">
+            {feature.whyItMatters}
+          </p>
+        </div>
+      )}
+
+      {feature.howItWorks && feature.howItWorks.length > 0 && (
+        <div className="mt-4">
+          <div className="font-mono text-[10px] text-ink-3 uppercase mb-1.5">
+            How it works
+          </div>
+          <ol className="flex flex-col gap-1.5 text-sm text-ink-1">
+            {feature.howItWorks.map((step, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="font-mono text-xs text-terminal-1 shrink-0 mt-0.5">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      {feature.codeSnippets && feature.codeSnippets.length > 0 && (
+        <div className="mt-4 space-y-3">
+          {feature.codeSnippets.map((s, i) => (
+            <CodeSnippet key={i} language={s.language} code={s.code} filename={s.filename} />
+          ))}
+        </div>
+      )}
+    </article>
+  );
+}
