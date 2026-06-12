@@ -1,0 +1,106 @@
+{
+  "source": "src/pages/Education.js",
+  "header": {
+    "title": "Education",
+    "subtitle": "My academic journey and continuous learning path"
+  },
+  "formalEducation": [
+    {
+      "degree": "Intermediate (11-12), Computer Science",
+      "institution": "Fatimiyah Boys College",
+      "location": "Karachi, Pakistan",
+      "period": "2024 - Present",
+      "status": "Currently in 12th Grade",
+      "description": "Advanced study in Computer Science with focus on programming fundamentals, algorithms, and software development principles.",
+      "courses": [
+        "Computer Science",
+        "Mathematics",
+        "Physics",
+        "Programming Fundamentals",
+        "Data Structures",
+        "Web Development"
+      ],
+      "icon": "GraduationCap",
+      "color": "from-blue-600 to-cyan-600",
+      "current": true
+    },
+    {
+      "degree": "Matriculation, Computer Science",
+      "institution": "Happy Home High School (HHS)",
+      "location": "Karachi, Pakistan",
+      "period": "2016 - 2024",
+      "status": "Completed",
+      "description": "Foundation in Computer Science with comprehensive coverage of basic programming concepts and computer fundamentals.",
+      "courses": [
+        "Computer Science",
+        "Mathematics",
+        "Science",
+        "Basic Programming",
+        "Computer Fundamentals",
+        "English"
+      ],
+      "icon": "Award",
+      "color": "from-green-600 to-emerald-600",
+      "current": false
+    }
+  ],
+  "selfLearning": [
+    {
+      "category": "Backend Development",
+      "topics": [
+        "Django & Django REST Framework",
+        "Python Advanced Concepts",
+        "PostgreSQL & Database Design",
+        "API Development & Best Practices",
+        "Celery & Task Queues",
+        "MinIO Object Storage"
+      ],
+      "icon": "🔧",
+      "color": "from-purple-600 to-pink-600"
+    },
+    {
+      "category": "Frontend Development",
+      "topics": [
+        "React & Modern JavaScript",
+        "State Management (Context, Redux)",
+        "Tailwind CSS & Responsive Design",
+        "Framer Motion Animations",
+        "Component Architecture",
+        "Performance Optimization"
+      ],
+      "icon": "🎨",
+      "color": "from-blue-600 to-purple-600"
+    },
+    {
+      "category": "DevOps & Tools",
+      "topics": [
+        "Docker & Containerization",
+        "Git Version Control",
+        "Linux System Administration",
+        "CI/CD Pipelines",
+        "Deployment Strategies",
+        "Cloud Platforms"
+      ],
+      "icon": "⚙️",
+      "color": "from-orange-600 to-red-600"
+    },
+    {
+      "category": "Computer Science Fundamentals",
+      "topics": [
+        "Data Structures & Algorithms",
+        "Design Patterns",
+        "System Design",
+        "Problem Solving",
+        "Code Optimization",
+        "Software Architecture"
+      ],
+      "icon": "💻",
+      "color": "from-green-600 to-teal-600"
+    }
+  ],
+  "philosophy": {
+    "title": "Continuous Learning",
+    "body": "Beyond formal education, I believe in continuous self-improvement through hands-on projects, online courses, and staying updated with the latest technologies. Every project is an opportunity to learn something new and push the boundaries of what I can create.",
+    "tags": ["Learn by Doing", "Stay Curious", "Never Stop Growing"]
+  }
+}

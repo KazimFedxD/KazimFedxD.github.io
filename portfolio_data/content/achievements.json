@@ -1,0 +1,44 @@
+{
+  "source": "src/pages/Achievements.js",
+  "header": {
+    "title": "Achievements",
+    "subtitle": "Milestones and recognitions in my journey as a developer"
+  },
+  "achievements": [
+    {
+      "year": "2025",
+      "title": "NASA Space Apps Challenge - Karachi",
+      "position": "2nd Place",
+      "badge": "Global Competition",
+      "description": "Secured second place in the NASA Space Apps Challenge 2025 Karachi Local Event with Skyntel - an interactive weather app featuring AI query support, personalized alerts, email subscriptions, and live community reports.",
+      "highlights": [
+        "Built full-stack weather application with Django REST Framework backend",
+        "Integrated Groq AI for intelligent weather queries",
+        "Implemented Celery automation and Redis caching for performance",
+        "Deployed using Docker and Nginx reverse proxy",
+        "Presented innovative solution to judges and competed against local teams"
+      ],
+      "tech": ["Django", "React", "PostgreSQL", "Redis", "Celery", "Docker", "Nginx", "Groq AI"],
+      "icon": "Trophy",
+      "color": "from-yellow-600 to-orange-600",
+      "link": "https://github.com/KazimFedxD/Skyntel"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Self-Taught Developer Journey",
+      "issuer": "Independent Learning",
+      "year": "2023-Present",
+      "description": "Comprehensive self-education in modern web technologies through projects and hands-on experience",
+      "skills": ["Python", "Django", "React", "PostgreSQL", "Docker", "REST APIs"],
+      "icon": "Star",
+      "color": "from-purple-600 to-pink-600"
+    }
+  ],
+  "stats": [
+    { "value": "2nd", "label": "NASA Space Apps", "icon": "Trophy" },
+    { "value": "40K+", "label": "Blog Views", "icon": "Award" },
+    { "value": "10+", "label": "Projects", "icon": "Star" },
+    { "value": "4K+", "label": "Followers", "icon": "Sparkles" }
+  ]
+}

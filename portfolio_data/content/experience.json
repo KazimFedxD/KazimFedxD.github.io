@@ -1,0 +1,73 @@
+{
+  "source": "src/pages/Experience.js",
+  "header": {
+    "title": "Experience",
+    "subtitle": "My professional journey and growth as a developer and content creator"
+  },
+  "experiences": [
+    {
+      "period": "July 2024 - Present",
+      "role": "Manager & Content Creator",
+      "company": "KayzBlog",
+      "type": "Medical Blog Platform",
+      "location": "Karachi, Pakistan",
+      "description": "Managing and maintaining a comprehensive medical blog platform with advanced features and growing audience engagement.",
+      "responsibilities": [
+        "Edited 6-8 videos per month and produced 12-15 research-based articles monthly",
+        "Grew social media page to 4,000+ followers with strategic content planning",
+        "Achieved over 40,000+ views and 1,200+ likes on top-performing videos",
+        "Developed custom admin panels and handled website updates",
+        "Improved SEO visibility and content optimization strategies"
+      ],
+      "achievements": [
+        "40,000+ total views",
+        "4,000+ social media followers",
+        "1,200+ video likes",
+        "12-15 articles/month"
+      ],
+      "tech": ["Content Management", "SEO", "Video Editing", "Social Media", "Admin Panels"],
+      "icon": "Briefcase",
+      "color": "from-blue-600 to-purple-600",
+      "current": true
+    },
+    {
+      "period": "Nov 2024 - Jan 2025",
+      "role": "Lead Developer",
+      "company": "Disutils",
+      "type": "Discord Gaming Bot",
+      "location": "Remote",
+      "description": "Architected and developed a feature-rich Discord bot with advanced gaming mechanics and virtual economy systems.",
+      "responsibilities": [
+        "Designed database-backed user management and currency systems",
+        "Implemented asynchronous task handling for efficient command processing",
+        "Bot deployed in 10+ servers, executing hundreds of commands daily",
+        "Achieved minimal downtime with robust error handling",
+        "Created engaging game mechanics and virtual economy features"
+      ],
+      "achievements": [
+        "10+ active servers",
+        "Hundreds of daily commands",
+        "99%+ uptime",
+        "Advanced game logic"
+      ],
+      "tech": ["Python", "Discord.py", "SQLite", "Async Programming", "Game Logic", "Database Design"],
+      "icon": "Target",
+      "color": "from-purple-600 to-pink-600",
+      "current": false
+    }
+  ],
+  "skillsGained": [
+    {
+      "category": "Management",
+      "items": ["Team Leadership", "Content Strategy", "Project Planning"]
+    },
+    {
+      "category": "Development",
+      "items": ["Backend Systems", "Database Design", "API Development"]
+    },
+    {
+      "category": "Growth",
+      "items": ["SEO Optimization", "Community Building", "Analytics"]
+    }
+  ]
+}
