@@ -2,6 +2,12 @@
 // Section eyebrow + headline + optional lede. Eyebrow is uppercase mono with
 // a small `$` prompt. Title is 700-weight with a thin terminal-green rule
 // underneath — the editorial "dropped mark" for each section.
+//
+// `kind` controls the title typography:
+//   "sans"  (default) — fluid-headline, current behaviour
+//   "bold"  — section-display, used on the project case-study first-class
+//             sections where the title is a chapter heading
+//   "ghost" — eyebrow + title, no rule, no lede (used for in-flow sub-sections)
 
 import { cn } from "../../lib/cn";
 
@@ -13,6 +19,8 @@ export default function SectionHeader({
   as: Title = "h2",
   className,
   ruleWidth = "w-8",
+  kind = "sans",
+  hideRule = false,
 }) {
   return (
     <div
@@ -29,14 +37,16 @@ export default function SectionHeader({
       )}
       <Title
         className={cn(
-          "text-fluid-headline font-bold text-ink",
-          "text-balance"
+          "font-bold text-ink text-balance",
+          kind === "bold" ? "text-section-display" : "text-fluid-headline"
         )}
       >
         {title}
       </Title>
       {/* The one decorative mark on every section: 24px terminal-green rule. */}
-      <div className={cn("mt-3 h-px bg-terminal", ruleWidth)} aria-hidden="true" />
+      {!hideRule && (
+        <div className={cn("mt-3 h-px bg-terminal", ruleWidth)} aria-hidden="true" />
+      )}
       {lede && (
         <p className="mt-3 text-lg md:text-xl text-ink-2 leading-relaxed text-pretty">
           {lede}

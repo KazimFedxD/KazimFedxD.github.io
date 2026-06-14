@@ -33,11 +33,13 @@ module.exports = {
       },
 
       // ── TERMINAL ──────────────────────────────────────────────────────────
-      // The accent. Electric green. 30–60% of the visible surface on hero.
+      // The accent. Electric green. Used as a compositional element on the
+      // project hero H1, on first-class section H2s, and on the architecture
+      // diagram frame — not just for hover/focus accents.
       terminal: {
-        DEFAULT: "oklch(0.84 0.18 145)",
-        1: "oklch(0.78 0.20 145)", // primary brand
-        2: "oklch(0.70 0.19 145)", // hover/active
+        DEFAULT: "oklch(0.86 0.20 145)",
+        1: "oklch(0.80 0.21 145)", // primary brand
+        2: "oklch(0.72 0.20 145)", // hover/active
         3: "oklch(0.62 0.17 145)", // disabled
         dim: "oklch(0.55 0.16 145)",
         ghost: "oklch(0.40 0.12 145)",
@@ -54,10 +56,12 @@ module.exports = {
       },
 
       // ── RULE ──────────────────────────────────────────────────────────────
-      // 1px hairlines, never wider.
+      // 1px hairlines by default. rule-2 is reserved for the 2px "loud" rule
+      // that appears on the project hero only — never anywhere else.
       rule: {
         DEFAULT: "oklch(0.22 0.010 145)",
         1: "oklch(0.30 0.012 145)",
+        2: "oklch(0.40 0.012 145)",
       },
 
       // ── SIGNAL ────────────────────────────────────────────────────────────
@@ -108,9 +112,12 @@ module.exports = {
       "4xl":["2.25rem",   { lineHeight: "2.5rem",   letterSpacing: "-0.025em" }],
       "5xl":["3rem",      { lineHeight: "1.05",     letterSpacing: "-0.03em" }],
       "6xl":["3.75rem",   { lineHeight: "1.02",     letterSpacing: "-0.035em" }],
-      // Display: fluid, capped at 6rem ceiling.
-      "fluid-display": ["clamp(2.75rem, 6.5vw, 5.5rem)", { lineHeight: "1.0", letterSpacing: "-0.04em" }],
+      // Display: fluid, capped at 6rem ceiling. Tight tracking for typographic punch.
+      "fluid-display": ["clamp(2.75rem, 7.5vw, 6rem)", { lineHeight: "0.98", letterSpacing: "-0.045em" }],
       "fluid-headline":["clamp(1.875rem, 3.2vw, 2.75rem)", { lineHeight: "1.08", letterSpacing: "-0.025em" }],
+      // Section display: first-class section H2s on the project page.
+      // Larger than fluid-headline, with deliberate negative tracking.
+      "section-display": ["clamp(1.625rem, 2.8vw, 2.25rem)", { lineHeight: "1.08", letterSpacing: "-0.025em" }],
     },
 
     extend: {
@@ -165,6 +172,11 @@ module.exports = {
         "hover-lift": "0 1px 0 0 oklch(0.04 0.010 145), 0 2px 8px -2px oklch(0.04 0.010 145 / 0.6)",
         "lift": "0 1px 0 0 oklch(0.22 0.014 145), 0 2px 8px -2px oklch(0 0 0 / 0.55)",
         "lift-light": "0 1px 0 0 oklch(0.80 0.012 90), 0 2px 6px -2px oklch(0 0 0 / 0.18)",
+        // Case-study shadow: used only on the architecture diagram frame on
+        // the project page. 1px rule + deep ambient drop. Makes the diagram
+        // feel like the centerpiece moment of the case study.
+        "case-study": "0 1px 0 0 var(--rule), 0 12px 32px -16px oklch(0 0 0 / 0.55), 0 0 0 1px var(--rule-1)",
+        "case-study-light": "0 1px 0 0 var(--rule-1), 0 8px 24px -12px oklch(0 0 0 / 0.18), 0 0 0 1px var(--rule)",
       },
 
       transitionTimingFunction: {

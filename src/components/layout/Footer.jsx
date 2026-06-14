@@ -46,6 +46,9 @@ export default function Footer() {
               Backend developer from Karachi. Django, Python, PostgreSQL,
               and shipping. Open to remote backend opportunities.
             </p>
+            <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.05em] text-ink-3">
+              updated 2026.06
+            </div>
             <a
               href="/Kazim%20Abbas%20CV.pdf"
               className="mt-5 inline-flex items-center gap-1.5 text-sm text-ink hover:text-terminal-1 transition-colors duration-180 ease-out"

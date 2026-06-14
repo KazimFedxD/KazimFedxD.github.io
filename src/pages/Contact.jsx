@@ -124,6 +124,16 @@ export default function Contact() {
         <p className="mt-3 max-w-prose text-base md:text-lg text-ink-2 leading-relaxed">
           {contactJson.header.subtitle}
         </p>
+        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1.5 font-mono text-xs">
+          <span className="inline-flex items-center gap-1.5 text-ink-2">
+            <Clock size={11} strokeWidth={1.75} className="text-terminal" />
+            <span className="text-ink-3">timezone:</span> Asia/Karachi · UTC+5
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-ink-2">
+            <span className="text-terminal">▸</span>
+            <span className="text-ink-3">accepting:</span> full-time · contract · freelance
+          </span>
+        </div>
       </Section>
 
       {/* ── CARDS ─────────────────────────────────────────────── */}

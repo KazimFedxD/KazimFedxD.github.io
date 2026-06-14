@@ -12,7 +12,6 @@ import {
 
 import { Section } from "../components/layout/PageShell";
 import SectionHeader from "../components/ui/SectionHeader";
-import Metric from "../components/ui/Metric";
 import Card, { CardBody, CardHeader } from "../components/ui/Card";
 import Chip from "../components/ui/Chip";
 import Button from "../components/ui/Button";
@@ -23,7 +22,6 @@ import { getSortedProjects } from "../data/registry";
 import homeContent from "../portfolio_data/content/home.json";
 
 const ICON_FOR = { Code2, Sparkles, Rocket, Award, Trophy };
-const STAT_ICONS = { Code2, Sparkles, Rocket, Award };
 
 /* ── Typing rotation, re-implemented inline (no third-party lib) ──────── */
 function useTyping(sequences) {
@@ -155,9 +153,13 @@ function FeaturedProject() {
           )}
         </div>
         <div className="mt-5 flex items-center gap-4 text-sm">
-          <span className="inline-flex items-center gap-1.5 text-ink-3 font-mono text-xs">
-            Case study coming soon
-          </span>
+          <Link
+            to={`/projects/${featured.title}`}
+            className="inline-flex items-center gap-1.5 text-terminal-1 hover:text-terminal-2 transition-colors duration-180"
+          >
+            Read the case study
+            <ArrowRight size={12} strokeWidth={1.75} />
+          </Link>
           {featured.github && (
             <a
               href={featured.github}
@@ -219,22 +221,20 @@ function QuickLinks() {
   );
 }
 
-/* ── Stats row (B5: tween enabled) ─────────────────────────────────── */
+/* ── Stats row — single mono "by the numbers" line, not 4 cards ─────── */
 function StatRow() {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-      {homeContent.stats.map((s) => {
-        const Icon = STAT_ICONS[s.icon] || Sparkles;
-        return (
-          <Metric
-            key={s.label}
-            value={s.value}
-            label={s.label}
-            icon={Icon}
-            tween
-          />
-        );
-      })}
+    <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2 font-mono text-sm text-ink-2 border-t border-b border-rule py-3">
+      {homeContent.stats.map((s, i) => (
+        <div key={s.label} className="inline-flex items-baseline gap-1.5">
+          <span className="text-base md:text-lg font-bold text-ink">
+            {s.value}
+          </span>
+          <span className="text-ink-3 text-xs uppercase tracking-[0.05em]">
+            {s.label}
+          </span>
+        </div>
+      ))}
     </div>
   );
 }

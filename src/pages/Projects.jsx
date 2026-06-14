@@ -9,6 +9,7 @@ import { Search, ArrowRight, ArrowUpRight, Star, X, Folder } from "lucide-react"
 
 import { Section } from "../components/layout/PageShell";
 import Card, { CardBody, CardHeader } from "../components/ui/Card";
+import Button from "../components/ui/Button";
 import Chip from "../components/ui/Chip";
 import { cn } from "../lib/cn";
 import { slugify, techPreview } from "../lib/format";
@@ -17,6 +18,29 @@ import {
   hasProjectDetails,
 } from "../data/registry";
 import { SCREENSHOT_FOLDER } from "../lib/screenshots";
+import MetricsStrip from "../components/project-list/MetricsStrip";
+
+import { teachbackData } from "../portfolio_data/teachback-data.js";
+import { fincoreData } from "../portfolio_data/fincore-data.js";
+import { fullStackTemplateData } from "../portfolio_data/fullstack-template-data.js";
+import { fedxdDataContainerData } from "../portfolio_data/fedxd-data-container-data.js";
+import { fxpyData } from "../portfolio_data/fxpy-data.js";
+import { fexobotData } from "../portfolio_data/fexobot-data.js";
+import { fxquestData } from "../portfolio_data/fxquest-data.js";
+import { portfolioWebsiteData } from "../portfolio_data/portfolio-website-data.js";
+
+// Registry → detail data lookup so the projects list can show real
+// performance metrics on the featured cards.
+const DETAIL_BY_SLUG = {
+  TeachBack: teachbackData,
+  FinCore: fincoreData,
+  "Full-Stack-Template": fullStackTemplateData,
+  "FedxD-Data-Container-FxDC": fedxdDataContainerData,
+  FxPy: fxpyData,
+  FeXoBot: fexobotData,
+  FxQuest: fxquestData,
+  "Portfolio-Website": portfolioWebsiteData,
+};
 
 const ALL_TECH = (() => {
   const set = new Set();
@@ -119,6 +143,14 @@ function ProjectCard({ project, density = "standard" }) {
           ))}
           {extra > 0 && <Chip size="sm" variant="muted">+{extra}</Chip>}
         </div>
+
+        {/* Featured cards get a real metrics strip. */}
+        {!compact && (
+          <MetricsStrip
+            project={project}
+            detailData={DETAIL_BY_SLUG[slug]}
+          />
+        )}
         <div className="mt-5 pt-4 border-t border-rule flex items-center gap-4 text-sm">
           {hasDetail && (
             <Link
@@ -129,7 +161,7 @@ function ProjectCard({ project, density = "standard" }) {
               <ArrowRight size={14} strokeWidth={1.75} />
             </Link>
           )}
-          {project.github && project.github !== "https://github.com/KazimFedxD" && (
+          {project.github && (project.github !== "https://github.com/KazimFedxD") && (
             <a
               href={project.github}
               target="_blank"
@@ -315,6 +347,30 @@ export default function Projects() {
             )}
           </div>
         )}
+      </Section>
+
+      {/* ── BOTTOM CTA ────────────────────────────────────────── */}
+      <Section className="pt-2 pb-4">
+        <Card accent>
+          <CardBody>
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-center">
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.05em] text-terminal mb-2">
+                  → want a project like this?
+                </div>
+                <p className="text-sm text-ink-1 max-w-prose">
+                  I build serious systems — Django, React, Discord bots, custom
+                  languages, full-stack templates. If you have a problem that
+                  needs a real solution, let's talk.
+                </p>
+              </div>
+              <Button as={Link} to="/contact" variant="primary" size="md">
+                <ArrowRight size={14} strokeWidth={1.75} />
+                Get in touch
+              </Button>
+            </div>
+          </CardBody>
+        </Card>
       </Section>
     </>
   );

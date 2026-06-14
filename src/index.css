@@ -31,9 +31,9 @@
     --ink-2: oklch(0.68 0.012 145);
     --ink-3: oklch(0.55 0.014 145);
 
-    --terminal: oklch(0.78 0.20 145);
-    --terminal-1: oklch(0.84 0.18 145);
-    --terminal-2: oklch(0.70 0.19 145);
+    --terminal: oklch(0.80 0.21 145);
+    --terminal-1: oklch(0.86 0.20 145);
+    --terminal-2: oklch(0.72 0.20 145);
     --terminal-ghost: oklch(0.40 0.12 145);
 
     /* Amber — the "status" accent. Warm, near-neutral. */
@@ -44,6 +44,7 @@
 
     --rule: oklch(0.22 0.010 145);
     --rule-1: oklch(0.30 0.012 145);
+    --rule-2: oklch(0.40 0.012 145);
 
     --signal-ok: oklch(0.78 0.18 145);
     --signal-warn: oklch(0.80 0.16 80);
@@ -70,14 +71,15 @@
     --ink: oklch(0.20 0.012 145);
     --ink-1: oklch(0.32 0.012 145);
     --ink-2: oklch(0.42 0.012 145);
-    --ink-3: oklch(0.52 0.012 145);
+    --ink-3: oklch(0.48 0.012 145);
 
     --rule: oklch(0.86 0.012 90);
     --rule-1: oklch(0.72 0.012 90);
+    --rule-2: oklch(0.62 0.012 90);
 
-    --terminal: oklch(0.48 0.16 145);
-    --terminal-1: oklch(0.52 0.18 145);
-    --terminal-2: oklch(0.42 0.15 145);
+    --terminal: oklch(0.50 0.18 145);
+    --terminal-1: oklch(0.54 0.20 145);
+    --terminal-2: oklch(0.44 0.17 145);
     --terminal-ghost: oklch(0.55 0.10 145);
 
     --amber: oklch(0.52 0.14 75);
@@ -265,6 +267,36 @@
   /* Hide scrollbar but allow scrolling. */
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { scrollbar-width: none; }
+
+  /* Text utility — muted metadata color. Mapped to --ink-3. */
+  .text-utility { color: var(--ink-3); }
+  .text-utility-2 { color: var(--ink-2); }
+
+  /* Asymmetric 12-col grid baseline for the case-study layout.
+     Used by CaseStudyHero, ProjectDetail, and other compositional blocks. */
+  .grid-asym { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 1.5rem; }
+  @media (max-width: 768px) { .grid-asym { column-gap: 1rem; } }
+
+  /* "Loud" 2px terminal rule — the one place where the accent is loud.
+     Used only on the project hero. Never anywhere else. */
+  .rule-loud {
+    height: 2px;
+    background: var(--terminal);
+  }
+
+  /* 1px hairline rule — the workhorse section divider. */
+  .rule-hair {
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* Case-study shadow for the architecture diagram frame. */
+  .case-study-frame {
+    box-shadow: 0 1px 0 0 var(--rule), 0 12px 32px -16px oklch(0 0 0 / 0.55), 0 0 0 1px var(--rule-1);
+  }
+  html.light .case-study-frame {
+    box-shadow: 0 1px 0 0 var(--rule-1), 0 8px 24px -12px oklch(0 0 0 / 0.18), 0 0 0 1px var(--rule);
+  }
 }
 
 /* =========================================================================
