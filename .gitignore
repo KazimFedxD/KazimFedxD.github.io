@@ -27,7 +27,7 @@ notes.txt
 
 #OLD
 old_site/
-portfolio_data/
+./portfolio_data/
 
 # Build Files
 node_modules/
