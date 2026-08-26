@@ -1,0 +1,13 @@
+{
+  "source": "src/data/registry.js",
+  "mappings": [
+    { "urlSlug": "TeachBack",                 "dataModule": "teachback-data.js",                 "route": "/projects/TeachBack" },
+    { "urlSlug": "FinCore",                   "dataModule": "fincore-data.js",                   "route": "/projects/FinCore" },
+    { "urlSlug": "Full-Stack-Template",       "dataModule": "fullstack-template-data.js",        "route": "/projects/Full-Stack-Template" },
+    { "urlSlug": "FedxD-Data-Container-FxDC", "dataModule": "fedxd-data-container-data.js",      "route": "/projects/FedxD-Data-Container-FxDC" },
+    { "urlSlug": "FxPy",                      "dataModule": "fxpy-data.js",                      "route": "/projects/FxPy" },
+    { "urlSlug": "FeXoBot",                   "dataModule": "fexobot-data.js",                   "route": "/projects/FeXoBot" },
+    { "urlSlug": "FxQuest",                   "dataModule": "fxquest-data.js",                   "route": "/projects/FxQuest" },
+    { "urlSlug": "Portfolio-Website",         "dataModule": "portfolio-website-data.js",         "route": "/projects/Portfolio-Website" }
+  ]
+}

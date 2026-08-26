@@ -1,0 +1,49 @@
+{
+  "source": "src/pages/Contact.jsx",
+  "header": {
+    "title": "Get in touch",
+    "subtitle": "Open to remote backend roles, freelance work, and interesting collaborations. Drop a message — I reply within 24–48 hours."
+  },
+  "contactInfo": [
+    {
+      "title": "Email",
+      "icon": "Mail",
+      "value": "abbaskazim135@gmail.com",
+      "link": "mailto:abbaskazim135@gmail.com"
+    },
+    {
+      "title": "GitHub",
+      "icon": "Github",
+      "value": "github.com/KazimFedxD",
+      "link": "https://github.com/KazimFedxD"
+    },
+    {
+      "title": "LinkedIn",
+      "icon": "Linkedin",
+      "value": "linkedin.com/in/kazim-abbas-60b1b5257",
+      "link": "https://www.linkedin.com/in/kazim-abbas-60b1b5257/"
+    }
+  ],
+  "responseTime": "Replies within 24–48 hours",
+  "tags": [
+    "Backend",
+    "Django",
+    "Python",
+    "PostgreSQL",
+    "Remote",
+    "Full-time",
+    "Contract",
+    "Freelance"
+  ],
+  "form": {
+    "emailJs": {
+      "serviceId": "service_fedxd_portfolio",
+      "publicKey": "REPLACE_WITH_EMAILJS_PUBLIC_KEY",
+      "fallbackEmail": "abbaskazim135@gmail.com",
+      "templates": {
+        "notification": "template_fedxd_notify",
+        "confirmation": "template_fedxd_confirm"
+      }
+    }
+  }
+}

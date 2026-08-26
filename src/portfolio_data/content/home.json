@@ -1,0 +1,41 @@
+{
+  "source": "src/pages/Home.jsx",
+  "header": {
+    "name": "Kazim Abbas"
+  },
+  "summary": "Backend developer from Karachi, Pakistan — building production systems in Django, Python, and PostgreSQL. NASA Space Apps Challenge 2025 winner (Skyntel, 2nd place). Best Use of AI at AI Preneur '26 (TeachBack). Open to remote backend roles.",
+  "typingAnimation": {
+    "sequences": [
+      { "text": "Backend Engineer · Django / Python" },
+      { "text": "NASA Space Apps '25 · 2nd Place" },
+      { "text": "AI Preneur '26 · Best Use of AI" },
+      { "text": "Open to remote opportunities" }
+    ]
+  },
+  "quickLinks": [
+    {
+      "title": "Projects",
+      "description": "Eight case studies and four archived builds — Django, Discord bots, custom languages.",
+      "link": "/projects",
+      "icon": "Code2"
+    },
+    {
+      "title": "Skills",
+      "description": "Python, Django, React, PostgreSQL, Docker. The full toolkit in one place.",
+      "link": "/skills",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Timeline",
+      "description": "From self-taught in 2023 to NASA winner in 2025 — the path in order.",
+      "link": "/experience",
+      "icon": "Rocket"
+    }
+  ],
+  "stats": [
+    { "value": "2nd",   "label": "NASA Space Apps '25" },
+    { "value": "AI",    "label": "Best Use of AI '26" },
+    { "value": "10+",   "label": "Projects shipped" },
+    { "value": "40K+",  "label": "Blog views" }
+  ]
+}
