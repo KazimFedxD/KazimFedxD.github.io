@@ -20,6 +20,7 @@ import { fxpyData } from "../portfolio_data/fxpy-data.js";
 import { fexobotData } from "../portfolio_data/fexobot-data.js";
 import { fxquestData } from "../portfolio_data/fxquest-data.js";
 import { portfolioWebsiteData } from "../portfolio_data/portfolio-website-data.js";
+import { voiceMatterData } from "../portfolio_data/voicematter-data.js";
 
 import projectRouteMapping from "../portfolio_data/project_route_mapping.json";
 import seoMetadata from "../portfolio_data/seo_metadata.json";
@@ -44,6 +45,7 @@ const dataBySlug = {
   FeXoBot: fexobotData,
   FxQuest: fxquestData,
   "Portfolio-Website": portfolioWebsiteData,
+  "VoiceMatter": voiceMatterData,
 };
 
 // Sanity check: every detail slug in the on-disk route mapping should map
@@ -84,4 +86,5 @@ export {
   fexobotData,
   fxquestData,
   portfolioWebsiteData,
+  voiceMatterData,
 };

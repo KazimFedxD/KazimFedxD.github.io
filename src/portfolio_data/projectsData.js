@@ -249,6 +249,26 @@ export const projectsData = [
       'Email verification for security',
       'Search system for smooth UX'
     ]
+  },
+
+  // ============================================================
+  // ORDER 11: VOICEMATTER - LINUX VOICE DICTATION DAEMON
+  // ============================================================
+  {
+    order: 11,
+    title: 'VoiceMatter',
+    badge: '🚧 Alpha — v0.1.0',
+    description: 'Press-to-record Linux voice dictation daemon: Deepgram STT + Anthropic-compatible LLM formatter, with a frameless PySide6 overlay and auto-paste via ydotool.',
+    tech: ['Python 3.11+', 'PySide6 (Qt 6)', 'sounddevice (PortAudio)', 'NumPy', 'Deepgram Nova-3 SDK', 'Anthropic SDK', 'wl-copy (Wayland clipboard)', 'ydotool (synthetic input)', 'PipeWire + WirePlumber', 'Unix domain sockets (AF_UNIX)', 'python-dotenv', 'uv package manager'],
+    github: 'https://github.com/KazimFedxD',
+    features: [
+      '🎤 Press-to-record hotkey daemon — KDE-bound F8/F9/Esc survive alt-tab and reboots',
+      '📝 Deepgram Nova-3 transcription — fast multi-lingual STT with smart_format',
+      '🤖 LLM-powered formatter — editor-not-writer prompt that drops filler + fixes grammar',
+      '📋 Auto-copy + auto-paste — wl-copy to clipboard, ydotool for synthetic Ctrl+V',
+      '🎨 Floating PySide6 overlay — frameless pill with live audio meter, 6 visual states',
+      '⌨️ KDE global hotkeys — absolute-path CLI subcommands: trigger / pause / cancel / stop'
+    ]
   }
 ];
 
@@ -287,6 +307,7 @@ export const projectsWithDetails = [
   'Portfolio Website',
   'FinCore',
   'TeachBack',
+  'VoiceMatter',
   // Add more project names as you create their data files
 ];
 

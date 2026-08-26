@@ -8,6 +8,7 @@
     { "urlSlug": "FxPy",                      "dataModule": "fxpy-data.js",                      "route": "/projects/FxPy" },
     { "urlSlug": "FeXoBot",                   "dataModule": "fexobot-data.js",                   "route": "/projects/FeXoBot" },
     { "urlSlug": "FxQuest",                   "dataModule": "fxquest-data.js",                   "route": "/projects/FxQuest" },
-    { "urlSlug": "Portfolio-Website",         "dataModule": "portfolio-website-data.js",         "route": "/projects/Portfolio-Website" }
+    { "urlSlug": "Portfolio-Website",         "dataModule": "portfolio-website-data.js",         "route": "/projects/Portfolio-Website" },
+    { "urlSlug": "VoiceMatter",               "dataModule": "voicematter-data.js",              "route": "/projects/VoiceMatter" }
   ]
 }

@@ -13,6 +13,7 @@ export const SCREENSHOT_FOLDER = {
   "FxPy": "FxPy",
   "FeXoBot": "FeXoBot",
   "FxQuest": "FxQuest",
+  "VoiceMatter": "VoiceMatter",
 };
 
 /** Returns the first screenshot src for a project, or null if none. */
