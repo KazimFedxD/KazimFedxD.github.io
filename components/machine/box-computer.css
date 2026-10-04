@@ -1,0 +1,781 @@
+.rm-machine {
+    --shell: #2e2452;
+    --shell-hi: #3d3068;
+    --shell-lo: #1f1838;
+    --shell-line: #14102a;
+    --shell-shadow: #0a0818;
+    --bezel: #0a0812;
+    --screen-bg: #080510;
+    --phosphor: #3cf28a;
+    --red: #3cf28a;
+    --led-off: #2a2438;
+    --led-on: #3cf28a;
+    --wm-bg: #14101a;
+    --wm-panel: #0e0a14;
+    --wm-border: #2a2438;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+    /* fixed + inset instead of height:100% - this no longer lives under
+       an html,body{height:100%} chain the way the standalone page did */
+    position: fixed;
+    inset: 0;
+    margin: 0;
+    background: #000; color: #ddd;
+    font-family: var(--mono);
+    overflow: hidden;
+  }
+
+.rm-machine * { box-sizing: border-box; }
+
+/* ============================================================
+     FULL-BLEED MONITOR
+     ============================================================ */
+.rm-machine .monitor {
+    position: fixed; inset: 0;
+    /* rounded outer corners against the dark html/body behind it - real
+       chunky CRT housings were never sharp-cornered rectangles */
+    border-radius: clamp(20px,2.8vw,46px);
+    background: linear-gradient(165deg, var(--shell-hi) 0%, var(--shell) 42%, var(--shell) 60%, var(--shell-lo) 100%);
+    /* real CRTs had a noticeably taller bottom "chin" housing the
+       control cluster + branding - not a uniform bezel all round.
+       Trimmed down from the original clamps (60px/120px max) - the earlier
+       version read as too much dead housing eating the screen at typical
+       viewport widths. */
+    padding: clamp(16px,2.6vw,38px) clamp(16px,2.6vw,38px) clamp(56px,7vw,86px);
+    box-shadow: 0 40px 100px -20px rgba(0,0,0,.7);
+  }
+
+.rm-machine .monitor::before {
+    /* subtle vignette + faint purple cast, no top-left highlight - the
+       housing needs to read as a uniform dark purple, not a lit one */
+    content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; overflow: hidden;
+    background-image:
+      radial-gradient(70% 55% at 88% 96%, rgba(0,0,0,.45), transparent 65%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+/* single embossed nameplate on its own recessed plate - the raw text
+     was nearly invisible sitting directly on the vent texture */
+.rm-machine .nameplate-wrap {
+    position: absolute; top: clamp(9px,1.8vw,18px); left: 50%; transform: translateX(-50%);
+    padding: 3px 14px; border-radius: 3px;
+    background: rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.25), inset 0 -1px 0 rgba(255,255,255,.2);
+  }
+
+.rm-machine .nameplate {
+    font-size: 11px; letter-spacing: .3em; font-weight: 700;
+    color: var(--shell-shadow);
+    text-shadow: 0 1px 0 rgba(255,255,255,.6);
+  }
+
+.rm-machine .screen-frame {
+    position: relative; height: 100%;
+    background: var(--bezel);
+    border-radius: 30px;
+    padding: clamp(7px, 1.3vw, 14px);
+    /* a real recess: dark occlusion right at the opening, plus a bright
+       catch-light rim where the plastic lip curves toward the glass */
+    box-shadow:
+      0 16px 34px rgba(0,0,0,.65) inset,
+      0 3px 0 rgba(255,255,255,.12) inset,
+      0 -2px 10px rgba(0,0,0,.4) inset,
+      0 0 0 1px #000;
+  }
+
+.rm-machine .screen {
+    position: relative; height: 100%;
+    background: var(--screen-bg);
+    border-radius: 32px; overflow: hidden;
+    transform-origin: center;
+    box-shadow: 0 0 0 2px rgba(255,255,255,.05), 0 0 0 3px rgba(0,0,0,.6);
+  }
+
+.rm-machine .screen::before {
+    content: ""; position: absolute; inset: 0; z-index: 50; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,.2) 0 1px, transparent 1px 3px);
+    mix-blend-mode: multiply;
+  }
+
+.rm-machine .screen::after {
+    /* barrel-curved glass: dark vignette toward the rounded corners +
+       a faint centered bulge highlight, like light catching convex glass */
+    content: ""; position: absolute; inset: 0; z-index: 50; pointer-events: none;
+    box-shadow: inset 0 0 190px rgba(0,0,0,.92), inset 0 0 70px rgba(180,120,255,.06);
+    border-radius: 32px;
+    background:
+      radial-gradient(120% 90% at 38% 28%, rgba(255,255,255,.06) 0%, transparent 42%),
+      linear-gradient(115deg, rgba(255,255,255,.045) 0%, transparent 22%, transparent 78%, rgba(255,255,255,.02) 100%);
+  }
+
+/* corner screws - a small, extremely recognizable CRT-bezel detail */
+.rm-machine .screw {
+    position: absolute; width: clamp(7px,0.9vw,11px); height: clamp(7px,0.9vw,11px); border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #8f8578, #453e30 70%, #221e17);
+    box-shadow: 0 1px 2px rgba(0,0,0,.5), inset 0 0 0 1px rgba(0,0,0,.3);
+  }
+
+.rm-machine .screw::after {
+    content: ""; position: absolute; left: 20%; top: 46%; width: 60%; height: 8%;
+    background: rgba(0,0,0,.55); transform: rotate(-18deg);
+  }
+
+.rm-machine .screw.tl { top: clamp(10px,1.6vw,18px); left: clamp(10px,1.6vw,18px); }
+
+.rm-machine .screw.tr { top: clamp(10px,1.6vw,18px); right: clamp(10px,1.6vw,18px); }
+
+.rm-machine .screw.bl { bottom: clamp(10px,1.6vw,18px); left: clamp(10px,1.6vw,18px); }
+
+.rm-machine .screw.br { bottom: clamp(10px,1.6vw,18px); right: clamp(10px,1.6vw,18px); }
+
+.rm-machine .screen.flicker { animation: flicker 7s infinite; }
+
+@keyframes flicker { 0%,95%,100% { opacity: 1; } 96% { opacity: .91; } 97% { opacity: 1; } 97.6% { opacity: .87; } }
+
+.rm-machine .screen.poweron { animation: crt-on .55s cubic-bezier(.2,.9,.3,1) both; }
+
+@keyframes crt-on {
+    0%   { transform: scaleY(.002) scaleX(.65); filter: brightness(7); }
+    32%  { transform: scaleY(.018) scaleX(1); filter: brightness(7); }
+    68%  { transform: scaleY(1) scaleX(1); filter: brightness(2.6); }
+    100% { transform: scaleY(1) scaleX(1); filter: brightness(1); }
+  }
+
+.rm-machine .screen.poweroff { animation: crt-off .45s ease-in both; }
+
+@keyframes crt-off {
+    0%   { transform: scaleY(1) scaleX(1); filter: brightness(1); }
+    35%  { transform: scaleY(.05) scaleX(1); filter: brightness(3.2); }
+    65%  { transform: scaleY(.006) scaleX(.05); filter: brightness(4.5); }
+    100% { transform: scaleY(.001) scaleX(.001); filter: brightness(0); }
+  }
+
+.rm-machine .crt-inner { position: relative; z-index: 1; height: 100%; }
+
+.rm-machine #crtCanvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; image-rendering: -moz-crisp-edges; }
+
+.rm-machine .typecatcher {
+    position: absolute; inset: 0; opacity: 0; border: none; background: transparent;
+    color: transparent; caret-color: transparent; font-size: 16px;
+  }
+
+/* ============================================================
+     X11-ish DESKTOP (appears after `startx`)
+     ============================================================ */
+.rm-machine .desktop {
+    position: absolute; inset: 0; z-index: 10; display: none;
+    /* the classic X11 "root weave" pattern - the default background on
+       basically every real UNIX workstation before anyone set a wallpaper -
+       redone in the phosphor green instead of the usual grey so it reads as
+       this machine's own screen material, not a borrowed texture */
+    background:
+      radial-gradient(120% 90% at 30% 10%, #1f1828 0%, var(--wm-bg) 55%),
+      repeating-linear-gradient(45deg, rgba(60,242,138,.05) 0 1px, transparent 1px 7px),
+      repeating-linear-gradient(-45deg, rgba(60,242,138,.05) 0 1px, transparent 1px 7px);
+  }
+
+.rm-machine .desktop.show { display: block; }
+
+.rm-machine .desktop::after {
+    /* a large etched-glass wordmark, parked bottom-right away from the
+       icon column - the weave texture alone still read as empty space
+       with nothing anchoring it as *this machine's* screen specifically */
+    content: "fedxd.net";
+    position: absolute; z-index: 0; right: 3%; bottom: 4%;
+    font-family: var(--mono); font-weight: 700; letter-spacing: -.02em;
+    font-size: clamp(64px, 13vw, 200px);
+    color: rgba(60,242,138,.035);
+    -webkit-text-stroke: 1px rgba(60,242,138,.09);
+    pointer-events: none; user-select: none;
+  }
+
+/* phone status bar - real markup, hidden on desktop, shown only under
+   the phone-width media query below so it never competes with the
+   desktop's own .panel taskbar */
+.rm-machine .mobile-statusbar { display: none; }
+
+.rm-machine .dicons {
+    /* bottom (not a fixed height) leaves room for the taskbar and gives
+       the flex box a real height to wrap against - with 10+ icons now,
+       a single unbounded column ran out of room and the later icons
+       rendered straight through/under the taskbar, clipped and
+       unclickable. flex-wrap lets extra icons start a new column
+       instead, same as any real desktop icon grid. */
+    position: absolute; z-index: 1; top: 14px; left: 14px; bottom: 40px;
+    display: flex; flex-direction: column; flex-wrap: wrap; align-content: flex-start; gap: 10px 18px;
+  }
+
+.rm-machine .dicon { width: 76px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; user-select: none; }
+
+.rm-machine .dicon .glyph {
+    width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+    position: relative; border: 1px solid rgba(60,242,138,.14);
+    background: rgba(8,5,16,.35); border-radius: 2px;
+    transition: border-color .1s, background .1s;
+  }
+
+/* real icons (MIT-licensed pixel art, see public/machine/icons/CREDITS.md)
+   rendered as a CSS mask so they inherit the phosphor-green theme through
+   background-color instead of being baked-in flat-color images - each
+   .icon-x class below just sets which SVG the mask points at */
+.rm-machine .dicon .glyph::after {
+    content: ""; position: absolute; inset: 7px;
+    background-color: var(--phosphor);
+    -webkit-mask-image: var(--icon-url); mask-image: var(--icon-url);
+    -webkit-mask-size: contain; mask-size: contain;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: center; mask-position: center;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 4px rgba(60,242,138,.55));
+  }
+
+.rm-machine .dicon:hover .glyph,
+  .rm-machine .dicon:focus-visible .glyph { border-color: rgba(60,242,138,.5); background: rgba(60,242,138,.1); }
+
+.rm-machine .dicon:active .glyph { background: rgba(60,242,138,.16); }
+
+.rm-machine .icon-terminal { --icon-url: url('/machine/icons/terminal.svg'); }
+.rm-machine .icon-user { --icon-url: url('/machine/icons/user.svg'); }
+.rm-machine .icon-code { --icon-url: url('/machine/icons/code.svg'); }
+.rm-machine .icon-users { --icon-url: url('/machine/icons/users.svg'); }
+.rm-machine .icon-mail { --icon-url: url('/machine/icons/mail.svg'); }
+.rm-machine .icon-briefcase { --icon-url: url('/machine/icons/briefcase.svg'); }
+.rm-machine .icon-folder { --icon-url: url('/machine/icons/folder.svg'); }
+.rm-machine .icon-bomb { --icon-url: url('/machine/icons/bomb.svg'); }
+.rm-machine .icon-snake { --icon-url: url('/machine/icons/snake.svg'); }
+.rm-machine .icon-grid-3x3 { --icon-url: url('/machine/icons/grid-3x3.svg'); }
+.rm-machine .icon-grid-2x2 { --icon-url: url('/machine/icons/grid-2x2-2.svg'); }
+.rm-machine .icon-target { --icon-url: url('/machine/icons/target.svg'); }
+.rm-machine .icon-card { --icon-url: url('/machine/icons/card.svg'); }
+.rm-machine .icon-repeat { --icon-url: url('/machine/icons/repeat.svg'); }
+.rm-machine .icon-power { --icon-url: url('/machine/icons/power.svg'); }
+.rm-machine .icon-close { --icon-url: url('/machine/icons/close.svg'); }
+.rm-machine .icon-reload { --icon-url: url('/machine/icons/reload.svg'); }
+.rm-machine .icon-chevron-left { --icon-url: url('/machine/icons/chevron-left.svg'); }
+.rm-machine .icon-chevron-right { --icon-url: url('/machine/icons/chevron-left.svg'); transform: scaleX(-1); }
+.rm-machine .icon-battery { --icon-url: url('/machine/icons/battery-full.svg'); }
+.rm-machine .icon-signal { --icon-url: url('/machine/icons/cellular-signal-3.svg'); }
+.rm-machine .icon-home { --icon-url: url('/machine/icons/home.svg'); }
+
+/* generic icon-mask utility for icons living outside the phosphor desktop
+   (window chrome, the in-universe retro browser) - uses currentColor so it
+   picks up whichever text color its button context already sets, rather
+   than the fixed phosphor-green glow the desktop glyphs use */
+.rm-machine .icon-mask {
+    display: inline-block; width: 100%; height: 100%;
+    background-color: currentColor;
+    -webkit-mask-image: var(--icon-url); mask-image: var(--icon-url);
+    -webkit-mask-size: contain; mask-size: contain;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: center; mask-position: center;
+  }
+
+.rm-machine .dicon span {
+    font-size: 10.5px; color: #e8cfd6; text-align: center; line-height: 1.3;
+    text-shadow: 0 1px 2px #000, 0 0 8px rgba(0,0,0,.8);
+    padding: 1px 3px; border-radius: 2px;
+  }
+
+.rm-machine .dicon:hover span,
+  .rm-machine .dicon:focus-visible span { background: rgba(60,242,138,.14); color: #fff; }
+
+.rm-machine .win {
+    position: absolute; background: var(--wm-bg); border: 1px solid var(--wm-border);
+    box-shadow: 3px 3px 0 rgba(0,0,0,.4), 0 0 0 1px #000;
+    display: flex; flex-direction: column; min-width: 300px; min-height: 220px;
+  }
+
+.rm-machine .win-title {
+    flex-shrink: 0; display: flex; align-items: center; gap: 6px;
+    background: linear-gradient(180deg, #1f1830, #120e1c);
+    border-bottom: 1px solid var(--wm-border);
+    padding: 6px 7px; cursor: grab; touch-action: none;
+  }
+
+.rm-machine .win-title .t { flex: 1; font-size: 12.5px; color: #f1d9d3; letter-spacing: .03em; }
+
+.rm-machine .win-btn {
+    width: 18px; height: 18px; border: 1px solid #5a4d47; background: #2a201d;
+    color: #d8c7c2; cursor: pointer; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; padding: 4px;
+  }
+
+.rm-machine .win-btn:active { background: #12100e; }
+.rm-machine .win-btn:hover { border-color: #8a746b; }
+
+.rm-machine .win-body { flex: 1; min-height: 0; overflow: hidden; position: relative; }
+
+.rm-machine .win-resize {
+    position: absolute; right: 0; bottom: 0; width: 16px; height: 16px; cursor: nwse-resize; touch-action: none;
+    background: linear-gradient(135deg, transparent 0 40%, var(--wm-border) 40% 46%, transparent 46% 60%, var(--wm-border) 60% 66%, transparent 66% 100%);
+  }
+
+/* terminal-in-window */
+.rm-machine .win-term { position: relative; width: 100%; height: 100%; background: var(--screen-bg); }
+
+.rm-machine .win-term canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+
+/* browser-in-window - styled like an actual mid-90s browser (Netscape /
+   early-IE era beveled chrome), not just a generic panel showing old-web
+   content. The content area underneath stays serif-on-cream, which was
+   already period-correct - it's the chrome around it that needed the work. */
+.rm-machine .win-browser { display: flex; flex-direction: column; height: 100%; background: #d8d4c8; color: #1a1a18; }
+
+.rm-machine .browser-menubar {
+  flex-shrink: 0; display: flex; gap: 14px; padding: 3px 10px;
+  background: #d8d4c8; border-bottom: 1px solid #8a8574;
+  font-size: 11px; color: #2a2a26; user-select: none;
+}
+.rm-machine .browser-menubar span { cursor: default; padding: 1px 3px; }
+.rm-machine .browser-menubar span:hover { background: #b8b19c; }
+
+.rm-machine .browser-toolbar { flex-shrink: 0; display: flex; align-items: center; gap: 4px; padding: 5px 6px; background: #c3bfb2; border-bottom: 1px solid #8a8574; }
+
+.rm-machine .bbtn {
+  border: 2px outset #e2ded2; background: #d8d4c8; width: 27px; height: 24px;
+  cursor: pointer; color: #2a2a26; display: flex; align-items: center; justify-content: center; padding: 5px; flex-shrink: 0;
+}
+.rm-machine .bbtn:active:not(:disabled) { border-style: inset; }
+.rm-machine .bbtn:disabled { cursor: default; opacity: .4; }
+
+.rm-machine .browser-addr-wrap { flex: 1; display: flex; align-items: center; gap: 6px; min-width: 0; }
+.rm-machine .browser-addr-label { font-size: 11px; color: #4a4538; flex-shrink: 0; }
+.rm-machine .browser-addr {
+  flex: 1; min-width: 0; border: 2px inset #e2ded2; background: #fff; font-size: 13px; padding: 3px 8px;
+  color: #1a1a18; font-family: var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.rm-machine .browser-throbber {
+  flex-shrink: 0; width: 18px; height: 18px; margin-left: 2px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffd873, #d4870a 70%);
+  box-shadow: 0 0 0 1px #8a8574 inset;
+}
+.rm-machine .browser-throbber.spin { animation: browser-throb .7s linear infinite; }
+@keyframes browser-throb {
+  0%, 100% { box-shadow: 0 0 6px 1px #ffd873, 0 0 0 1px #8a8574 inset; }
+  50% { box-shadow: 0 0 1px 0 #ffd873, 0 0 0 1px #8a8574 inset; }
+}
+
+.rm-machine .browser-page { flex: 1; overflow-y: auto; background: #f2efe4; padding: 24px 30px; font-family: Georgia, serif; }
+
+.rm-machine .browser-page h1 { font-family: var(--mono); font-size: 28px; margin: 0 0 6px; color: #7a1210; }
+
+.rm-machine .browser-page h2 { font-family: var(--mono); font-size: 16px; margin: 22px 0 8px; color: #4a2018; }
+
+.rm-machine .browser-page .tag { font-family: var(--mono); font-size: 12px; color: #7a1210; letter-spacing: .12em; }
+
+.rm-machine .browser-page p { font-size: 15px; line-height: 1.75; color: #2a2a26; max-width: 58ch; }
+
+.rm-machine .browser-page a { color: #1a4fa0; text-decoration: underline; cursor: pointer; }
+.rm-machine .browser-page a:visited { color: #6a1ab0; }
+
+.rm-machine .browser-page hr { border: none; border-top: 1px solid #b8b19c; margin: 18px 0; }
+
+.rm-machine .browser-page .card { border: 1px solid #b8b19c; background: #fbf9f2; padding: 12px 16px; margin-bottom: 10px; max-width: 58ch; }
+
+.rm-machine .browser-page .card b { font-family: var(--mono); font-size: 14px; color: #4a2018; display: block; margin-bottom: 3px; }
+
+.rm-machine .browser-page .card span { font-size: 12.5px; color: #5a5548; }
+
+.rm-machine .browser-page .pill { display: inline-block; font-family: var(--mono); font-size: 10.5px; border: 1px solid #b8b19c; color: #6a6558; padding: 1px 7px; margin: 2px 4px 2px 0; }
+
+.rm-machine .browser-page ul { padding-left: 20px; max-width: 58ch; }
+
+.rm-machine .browser-page li { font-size: 14px; line-height: 1.8; color: #2a2a26; }
+
+.rm-machine .browser-status {
+  flex-shrink: 0; display: flex; align-items: center; gap: 10px;
+  font-size: 11px; color: #555; padding: 3px 7px; border-top: 1px solid #8a8574; background: #c3bfb2;
+}
+.rm-machine .browser-status-zone { margin-left: auto; opacity: .7; }
+
+/* file manager */
+.rm-machine .filemgr { display: flex; flex-direction: column; height: 100%; background: #1b1d1a; color: #e8cfd6; }
+
+.rm-machine .filemgr-toolbar { flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 6px 8px; background: #14100e; border-bottom: 1px solid var(--wm-border); font-size: 11px; }
+
+.rm-machine .filemgr-toolbar button { background: #241a17; border: 1px solid var(--wm-border); color: #d8c7c2; font-size: 11px; padding: 3px 9px; cursor: pointer; font-family: var(--mono); }
+
+.rm-machine .filemgr-toolbar button:disabled { opacity: .4; cursor: default; }
+
+.rm-machine .filemgr-path { color: #8a8574; font-family: var(--mono); }
+
+.rm-machine .filemgr-list { flex: 1; overflow-y: auto; padding: 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 10px; align-content: start; }
+
+.rm-machine .filemgr-item { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; padding: 8px 4px; border: 1px solid transparent; border-radius: 2px; }
+
+.rm-machine .filemgr-item:hover { border-color: rgba(60,242,138,.35); background: rgba(60,242,138,.07); }
+
+.rm-machine .filemgr-item .glyph { font-size: 26px; line-height: 1; }
+
+.rm-machine .filemgr-item span { font-size: 10.5px; text-align: center; word-break: break-word; font-family: var(--mono); color: #e8cfd6; }
+
+/* minesweeper */
+.rm-machine .msweep { display: flex; flex-direction: column; height: 100%; background: #3a3a3a; }
+
+.rm-machine .msweep-bar {
+    flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 12px; background: #c3bfb2; border-bottom: 2px solid #8a8574;
+    font-family: var(--mono); font-size: 12px; color: #1a1a18;
+  }
+
+.rm-machine .msweep-bar button { font-size: 14px; background: #d8d4c8; border: 1px solid #8a8574; padding: 3px 10px; cursor: pointer; font-family: var(--mono); }
+
+.rm-machine #msStatus { color: var(--red); font-weight: 700; letter-spacing: .06em; }
+
+.rm-machine .mgrid { flex: 1; overflow: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #7a7a7a; padding: 14px; }
+
+.rm-machine .mrow { display: flex; }
+
+.rm-machine .mcell {
+    width: 24px; height: 24px; box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 12px; font-weight: 700; cursor: pointer; user-select: none;
+    background: linear-gradient(175deg, #c7c7c7, #8a8a8a); border: 2px outset #d8d8d8;
+  }
+
+.rm-machine .mcell.rev { background: #b0b0b0; border: 1px solid #8a8a8a; cursor: default; }
+
+/* snake */
+.rm-machine .snake-wrap { display: flex; flex-direction: column; height: 100%; background: #0b0f0a; outline: none; }
+
+.rm-machine .snake-bar {
+    flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 10px; background: #14100e; border-bottom: 1px solid var(--wm-border);
+    font-family: var(--mono); font-size: 11px; color: #e8cfd6;
+  }
+
+.rm-machine .snake-bar button { background: #241a17; border: 1px solid var(--wm-border); color: #d8c7c2; font-size: 11px; padding: 3px 9px; cursor: pointer; font-family: var(--mono); }
+
+.rm-machine #snStatus { color: var(--red); font-weight: 700; letter-spacing: .06em; }
+
+.rm-machine .snake-canvas { flex: 1; width: 100%; display: block; min-height: 0; }
+
+/* tic-tac-toe */
+.rm-machine .ttt { display: flex; flex-direction: column; height: 100%; background: #1b1d1a; }
+
+.rm-machine .ttt-bar {
+    flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 12px; background: #14100e; border-bottom: 1px solid var(--wm-border);
+    font-family: var(--mono); font-size: 12px; color: #e8cfd6;
+  }
+
+.rm-machine .ttt-bar button { background: #241a17; border: 1px solid var(--wm-border); color: #d8c7c2; font-size: 11px; padding: 3px 9px; cursor: pointer; font-family: var(--mono); }
+
+.rm-machine .ttt-board-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px; }
+
+.rm-machine .ttt-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 6px; width: min(280px, 90%); height: min(280px, 90%); }
+
+.rm-machine .ttt-cell {
+    background: #241f1a; border: 1px solid var(--wm-border); display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 34px; font-weight: 700; cursor: pointer;
+  }
+
+.rm-machine .ttt-cell:hover { background: #2c2620; }
+
+/* 2048 */
+.rm-machine .g2048-wrap { display: flex; flex-direction: column; height: 100%; background: #1b1d1a; outline: none; }
+.rm-machine .g2048-bar {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; background: #14100e; border-bottom: 1px solid var(--wm-border);
+  font-family: var(--mono); font-size: 12px; color: #e8cfd6;
+}
+.rm-machine .g2048-bar button { background: #241a17; border: 1px solid var(--wm-border); color: #d8c7c2; font-size: 11px; padding: 3px 9px; cursor: pointer; font-family: var(--mono); }
+.rm-machine #g2Status { color: var(--red); font-weight: 700; }
+.rm-machine .g2048-board { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 6px; padding: 14px; }
+.rm-machine .g2048-cell {
+  background: #241f1a; border: 1px solid var(--wm-border); display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-weight: 700; font-size: 20px; color: #e8cfd6;
+}
+.rm-machine .g2048-cell.v2 { background: #2b3a2c; color: #c9f2cd; }
+.rm-machine .g2048-cell.v4 { background: #33472f; color: #d8f2c9; }
+.rm-machine .g2048-cell.v8 { background: #4a5a2a; color: #f2e9c9; }
+.rm-machine .g2048-cell.v16 { background: #5a4a1e; color: #ffdca0; }
+.rm-machine .g2048-cell.v32 { background: #6a3a1a; color: #ffcf9e; }
+.rm-machine .g2048-cell.v64 { background: #7a2a18; color: #ffbf9e; }
+.rm-machine .g2048-cell.v128 { background: #8a2320; color: #ffe08a; font-size: 17px; }
+.rm-machine .g2048-cell.v256 { background: #992020; color: #ffe08a; font-size: 17px; }
+.rm-machine .g2048-cell.v512 { background: #a81c1c; color: #fff0a8; font-size: 17px; }
+.rm-machine .g2048-cell.v1024 { background: #b81818; color: #fff5c0; font-size: 15px; }
+.rm-machine .g2048-cell.v2048 { background: #c81414; color: #fff; font-size: 15px; }
+
+/* pong */
+.rm-machine .pong-wrap { display: flex; flex-direction: column; height: 100%; background: #0b0f0a; outline: none; }
+.rm-machine .pong-bar {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 10px; background: #14100e; border-bottom: 1px solid var(--wm-border);
+  font-family: var(--mono); font-size: 12px; color: #e8cfd6;
+}
+.rm-machine .pong-bar button { background: #241a17; border: 1px solid var(--wm-border); color: #d8c7c2; font-size: 11px; padding: 3px 9px; cursor: pointer; font-family: var(--mono); }
+.rm-machine #pgStatus { color: var(--red); font-weight: 700; }
+.rm-machine .pong-canvas { flex: 1; width: 100%; display: block; min-height: 0; cursor: none; }
+
+/* memory match */
+.rm-machine .mem-wrap { display: flex; flex-direction: column; height: 100%; background: #1b1d1a; }
+.rm-machine .mem-bar {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; background: #14100e; border-bottom: 1px solid var(--wm-border);
+  font-family: var(--mono); font-size: 12px; color: #e8cfd6;
+}
+.rm-machine .mem-bar button { background: #241a17; border: 1px solid var(--wm-border); color: #d8c7c2; font-size: 11px; padding: 3px 9px; cursor: pointer; font-family: var(--mono); }
+.rm-machine #memStatus { color: #3cf28a; font-weight: 700; }
+.rm-machine .mem-grid { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 8px; padding: 16px; }
+.rm-machine .mem-card { background: #2a251f; border: 1px solid var(--wm-border); display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; color: #e8c98a; }
+.rm-machine .mem-card.up { background: #1c1828; }
+.rm-machine .mem-card.matched { background: #1a3026; border-color: #3a5a4a; cursor: default; color: #9effa0; }
+
+/* simon says */
+.rm-machine .simon-wrap { display: flex; flex-direction: column; height: 100%; background: #1b1d1a; }
+.rm-machine .simon-bar {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; background: #14100e; border-bottom: 1px solid var(--wm-border);
+  font-family: var(--mono); font-size: 12px; color: #e8cfd6;
+}
+.rm-machine .simon-bar button { background: #241a17; border: 1px solid var(--wm-border); color: #d8c7c2; font-size: 11px; padding: 3px 9px; cursor: pointer; font-family: var(--mono); }
+.rm-machine #smStatus { color: var(--red); font-weight: 700; }
+.rm-machine .simon-pad { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 8px; padding: 20px; }
+.rm-machine .simon-btn { border-radius: 8px; cursor: pointer; opacity: .55; transition: opacity .08s; }
+.rm-machine .simon-btn.lit { opacity: 1; }
+.rm-machine .simon-btn.g { background: #2f9e50; }
+.rm-machine .simon-btn.r { background: #c23b34; }
+.rm-machine .simon-btn.y { background: #c2a23b; }
+.rm-machine .simon-btn.b { background: #3b6bc2; }
+
+/* panel / taskbar */
+.rm-machine .panel {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 26px; z-index: 30;
+    background: var(--wm-panel); border-top: 1px solid var(--red);
+    display: flex; align-items: stretch; padding: 0 4px; gap: 4px;
+  }
+
+.rm-machine .menubtn {
+    display: flex; align-items: center; gap: 5px; padding: 0 9px; border: 1px solid var(--wm-border);
+    background: #1c1626; color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: .05em;
+    cursor: pointer; margin: 3px 0;
+  }
+
+.rm-machine .menubtn:active { background: #100a18; }
+
+.rm-machine .tasklist { flex: 1; display: flex; align-items: center; gap: 4px; overflow-x: auto; }
+
+.rm-machine .taskbtn {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 10.5px; color: #cfcbbf; background: #221e1a; border: 1px solid var(--wm-border);
+    padding: 0 4px 0 8px; height: 20px; cursor: pointer; white-space: nowrap;
+  }
+
+.rm-machine .taskbtn.active { background: #2a2336; color: #fff; border-color: #5a4d7a; }
+
+.rm-machine .taskbtn .tclose {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 14px; height: 14px; border: 1px solid var(--wm-border); color: #b8b1a4;
+    background: transparent; font-size: 9px; line-height: 1; cursor: pointer; flex-shrink: 0;
+  }
+
+.rm-machine .taskbtn .tclose:hover { background: var(--red); color: #1a0f0d; border-color: var(--red); }
+
+.rm-machine .clock { align-self: center; font-size: 10.5px; color: #9c9689; padding: 0 8px; letter-spacing: .04em; }
+
+.rm-machine .rootmenu {
+    position: absolute; left: 4px; bottom: 29px; z-index: 40; display: none;
+    background: #1e1a17; border: 1px solid var(--wm-border); min-width: 160px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,.5);
+  }
+
+.rm-machine .rootmenu.show { display: block; }
+
+.rm-machine .rootmenu button {
+    display: block; width: 100%; text-align: left; padding: 6px 10px; font-size: 11px;
+    background: none; border: none; color: #d8d4c8; cursor: pointer; font-family: var(--mono);
+  }
+
+.rm-machine .rootmenu button:hover { background: #2a2336; color: #fff; }
+
+.rm-machine .rootmenu hr { border: none; border-top: 1px solid var(--wm-border); margin: 3px 0; }
+
+/* ── front control cluster ───────────────────────────────────────
+     real CRT monitors never had a lone button - power always sat
+     alongside brightness/contrast knobs in a recessed control well */
+.rm-machine .controls {
+    /* centered within the taller bottom chin now, clear of both the
+       screen-frame above it and the outer edge below it */
+    position: absolute; right: clamp(22px,4.2vw,48px); bottom: clamp(20px,3.4vw,38px);
+    display: flex; align-items: flex-end; gap: clamp(10px,1.8vw,20px);
+    padding: 7px 14px 6px;
+    background: linear-gradient(175deg, rgba(0,0,0,.08), rgba(0,0,0,.16));
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.3), inset 0 -1px 0 rgba(255,255,255,.12);
+  }
+
+.rm-machine .ctrl-group { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+
+/* was --shell-line (dark brown) on a dark recessed panel - basically
+     zero contrast, invisible. Light label on the dark well instead,
+     like a real silkscreened legend would actually be printed. */
+.rm-machine .ctrl-label { font-size: 8px; letter-spacing: .1em; color: #d8cfb0; opacity: .8; pointer-events: none; text-transform: uppercase; }
+
+.rm-machine .knob {
+    position: relative; width: clamp(16px,2vw,22px); height: clamp(16px,2vw,22px); border-radius: 50%;
+    background: radial-gradient(circle at 35% 28%, var(--shell-hi) 0%, var(--shell) 55%, var(--shell-lo) 100%);
+    box-shadow: 0 2px 0 var(--shell-shadow), inset 0 1px 1px rgba(255,255,255,.5), inset 0 -1px 2px rgba(0,0,0,.2);
+  }
+
+.rm-machine .knob::after { /* indicator notch, like a real rotary dial */
+    content: ""; position: absolute; left: 50%; top: 10%; width: 2px; height: 32%;
+    background: var(--shell-shadow); border-radius: 1px;
+    transform-origin: bottom; transform: translateX(-50%) rotate(-25deg);
+  }
+
+.rm-machine .knob.b2::after { transform: translateX(-50%) rotate(15deg); }
+
+.rm-machine .pwr {
+    position: relative; width: clamp(30px,3.8vw,40px); height: clamp(30px,3.8vw,40px);
+    border-radius: 50%; border: none; padding: 0; cursor: pointer;
+    background: radial-gradient(circle at 50% 50%, #8f8578 0%, #5c5347 60%, #3b352c 100%);
+    box-shadow: 0 2px 0 #201c17, 0 4px 8px rgba(0,0,0,.5);
+  }
+
+.rm-machine .pwr::before { /* inner beige disc */
+    content: ""; position: absolute; inset: 3px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 28%, var(--shell-hi) 0%, var(--shell) 55%, var(--shell-lo) 100%);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,.6), inset 0 -2px 4px rgba(0,0,0,.22);
+    transition: transform .07s ease, box-shadow .07s ease;
+  }
+
+.rm-machine .pwr.pressed::before { transform: scale(.94); box-shadow: inset 0 2px 6px rgba(0,0,0,.5); }
+
+.rm-machine .pwr .icon-mask.icon-power {
+    position: absolute; inset: 0; width: 50%; height: 50%; margin: auto; pointer-events: none;
+    color: var(--shell-shadow); filter: drop-shadow(0 1px 0 rgba(255,255,255,.35));
+  }
+
+.rm-machine .pwr .ring {
+    position: absolute; left: 50%; top: -6px; transform: translateX(-50%);
+    width: 5px; height: 5px; border-radius: 50%; background: var(--led-off);
+    transition: background .25s, box-shadow .25s; box-shadow: 0 0 0 1px #1a1512;
+  }
+
+.rm-machine .pwr .ring.on { background: var(--led-on); box-shadow: 0 0 7px var(--led-on), 0 0 0 1px #1a1512; }
+
+.rm-machine .pwr:focus-visible { outline: 2px solid var(--phosphor); outline-offset: 4px; }
+
+/* ── phone-width layout ──────────────────────────────────────────
+     matches isSmall()'s 700px JS threshold (windows already render
+     fullscreen and skip drag/resize below that width). This is a real
+     distinct phone shell, not the desktop chrome squeezed to fit: a
+     pixel-art status bar up top (clock/signal/battery), a home-screen
+     app grid of rounded icon tiles, apps that open as full-screen
+     sheets with a phone-style header instead of a draggable window,
+     and a bottom dock standing in for a home indicator instead of the
+     desktop's text taskbar. --statusbar-h / --dock-h are shared so the
+     desktop grid, open windows, and rootmenu sheet all size around the
+     same two bars instead of hardcoding overlapping numbers. */
+@media (max-width: 700px) {
+  .rm-machine {
+    --statusbar-h: 30px;
+    --dock-h: 46px;
+  }
+
+  .rm-machine .monitor { padding-bottom: clamp(64px, 15vw, 90px); }
+
+  .rm-machine .mobile-statusbar {
+    display: flex; align-items: center; justify-content: space-between;
+    position: absolute; z-index: 20; top: 0; left: 0; right: 0; height: var(--statusbar-h);
+    padding: 0 12px; background: rgba(8,5,16,.55); border-bottom: 1px solid rgba(60,242,138,.16);
+    font-size: 11.5px; color: var(--phosphor); letter-spacing: .05em;
+    text-shadow: 0 0 6px rgba(60,242,138,.4);
+  }
+
+  .rm-machine .msb-time { font-variant-numeric: tabular-nums; }
+
+  .rm-machine .msb-icons { display: flex; align-items: center; gap: 7px; }
+
+  .rm-machine .msb-icons .icon-mask { width: 15px; height: 15px; filter: drop-shadow(0 0 3px rgba(60,242,138,.5)); }
+
+  .rm-machine .dicons {
+    top: calc(var(--statusbar-h) + 14px); left: 10px; right: 10px; bottom: calc(var(--dock-h) - 2px);
+    display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: min-content;
+    align-content: start; justify-items: center; gap: 20px 6px;
+    flex-direction: unset; flex-wrap: unset;
+  }
+
+  .rm-machine .dicon { width: 100%; gap: 6px; }
+
+  .rm-machine .dicon .glyph {
+    width: 54px; height: 54px; border-radius: 13px;
+    border-color: rgba(60,242,138,.22); background: rgba(60,242,138,.06);
+  }
+
+  .rm-machine .dicon .glyph::after { inset: 12px; }
+
+  .rm-machine .dicon span { font-size: 10px; }
+
+  .rm-machine .win {
+    width: 100% !important; left: 0 !important;
+    top: var(--statusbar-h) !important; height: calc(100% - var(--statusbar-h) - var(--dock-h)) !important;
+  }
+
+  /* phone app sheet header, not a desktop title bar - no grab cursor
+     since dragging is already disabled below 700px in JS (isSmall()),
+     app name centered like a native nav bar, close target enlarged
+     for touch instead of the desktop's 18px hit target. */
+  .rm-machine .win-title {
+    cursor: default; padding: 12px 10px; justify-content: center; position: relative;
+  }
+
+  .rm-machine .win-title .t { flex: none; font-size: 13.5px; }
+
+  .rm-machine .win-btn {
+    position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; padding: 8px; border-radius: 50%;
+  }
+
+  .rm-machine .win-resize { display: none; }
+
+  .rm-machine .browser-menubar { display: none; }
+
+  /* bottom dock stands in for a home indicator: the taskbar's own start
+     button becomes an icon-only home glyph (text hidden via font-size,
+     not markup, so no JS/markup change was needed), the clock moves to
+     the status bar above so it isn't shown twice, and open-app pills
+     become a scrollable dock row instead of a Windows-style tasklist. */
+  .rm-machine .panel {
+    height: var(--dock-h); padding: 0 8px; gap: 8px; align-items: center;
+    background: var(--wm-panel); border-top: 1px solid rgba(60,242,138,.18);
+  }
+
+  .rm-machine .menubtn {
+    --icon-url: url('/machine/icons/home.svg');
+    font-size: 0; width: 40px; height: 40px; margin: 0; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    border-color: rgba(60,242,138,.22); background: rgba(60,242,138,.08);
+  }
+
+  .rm-machine .menubtn::before {
+    content: ""; width: 19px; height: 19px; background-color: var(--phosphor);
+    -webkit-mask-image: var(--icon-url); mask-image: var(--icon-url);
+    -webkit-mask-size: contain; mask-size: contain;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: center; mask-position: center;
+    filter: drop-shadow(0 0 3px rgba(60,242,138,.5));
+  }
+
+  .rm-machine .taskbtn { height: 30px; }
+
+  .rm-machine .panel .clock { display: none; }
+
+  .rm-machine .rootmenu {
+    left: 6px; right: 6px; bottom: calc(var(--dock-h) + 5px); width: auto; min-width: 0;
+  }
+
+  .rm-machine .rootmenu button { padding: 12px 14px; font-size: 13px; }
+
+  .rm-machine .controls { gap: clamp(8px,3vw,14px); padding: 6px 10px 5px; }
+
+  .rm-machine .pwr { width: 38px; height: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rm-machine .screen.flicker { animation: none; }
+
+  .rm-machine .screen.poweron,
+  .rm-machine .screen.poweroff { animation: none; }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Kazim Abbas - Portfolio Website",
+  "shortDescription": "A modern, responsive portfolio website built with React 19, Tailwind CSS, and Framer Motion showcasing award-winning projects and professional experience.",
+  "techStack": [
+    "React 19.2.0",
+    "React Router DOM 7.9.4",
+    "Tailwind CSS 3.4.17",
+    "Framer Motion 12.23.24",
+    "EmailJS 4.4.1",
+    "Lucide React 0.554.0",
+    "React Icons 5.5.0",
+    "GitHub Pages"
+  ],
+  "features": [
+    "Modern Single Page Application (SPA) with smooth page transitions",
+    "Dynamic Project Showcase with detailed project pages and tech stack visualization",
+    "Interactive Contact Form with EmailJS integration and auto-confirmation",
+    "GitHub Stats Integration showing real-time contribution activity",
+    "Responsive Design with mobile-first approach and swipe navigation",
+    "Custom Animation System using Framer Motion and Tailwind"
+  ],
+  "badges": [
+    "🎨 Modern UI/UX",
+    "📱 Mobile-First Design",
+    "⚡ Lightning Fast",
+    "♿ Accessible"
+  ],
+  "github": "https://github.com/KazimFedxD/KazimFedxD.github.io",
+  "liveDemo": "https://fedxd.net",
+  "performance": {
+    "pageLoadTime": "< 1.5s",
+    "bundleSize": "~200 KB (gzipped)",
+    "lighthouseScore": 95,
+    "buildTime": "~30 seconds"
+  },
+  "awards": [],
+  "requirements": {
+    "os": ["Windows", "macOS", "Linux"],
+    "browsers": ["Chrome 90+", "Firefox 88+", "Safari 14+", "Edge 90+"],
+    "minRAM": "2GB",
+    "dependencies": ["Node.js 18+", "npm 9+"]
+  }
+}

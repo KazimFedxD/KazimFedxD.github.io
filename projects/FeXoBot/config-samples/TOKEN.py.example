@@ -1,0 +1,64 @@
+# TOKEN.py.example
+# Copy this file to TOKEN.py and add your actual API keys
+
+def TOKEN():
+    """Discord Bot Token"""
+    token = "YOUR_DISCORD_BOT_TOKEN_HERE"
+    return token
+
+def TESTINGTOKEN():
+    """Discord Testing Bot Token"""
+    token = "YOUR_TESTING_BOT_TOKEN_HERE"
+    return token
+
+def tinyurlTOKEN():
+    """TinyURL API Token"""
+    token = "YOUR_TINYURL_TOKEN_HERE"
+    return token
+
+def ninjaapiTOKEN():
+    """Ninja API Token"""
+    token = "YOUR_NINJA_API_TOKEN_HERE"
+    return token
+
+def rapidapiTOKEN():
+    """RapidAPI Token"""
+    token = "YOUR_RAPIDAPI_TOKEN_HERE"
+    return token
+
+def googleapiTOKEN():
+    """Google API Token"""
+    token = "YOUR_GOOGLE_API_TOKEN_HERE"
+    return token
+
+def edamamTOKEN():
+    """Edamam API Credentials"""
+    id = "YOUR_EDAMAM_APP_ID"
+    token = "YOUR_EDAMAM_API_KEY"
+    return id, token 
+
+def exhangerateapiTOKEN():
+    """Exchange Rate API Token"""
+    token = "YOUR_EXCHANGE_RATE_API_TOKEN_HERE"
+    return token
+
+def tempmailTOKEN():
+    """Temp Mail API Credentials"""
+    token = "YOUR_TEMPMAIL_API_TOKEN_HERE"
+    namespace = "YOUR_NAMESPACE"
+    return token, namespace
+
+def unsplashapiTOKEN():
+    """Unsplash API Access Key"""
+    token = "YOUR_UNSPLASH_ACCESS_KEY_HERE"
+    return token
+
+def watchmodeTOKEN():
+    """Watchmode API Token"""
+    token = "YOUR_WATCHMODE_API_TOKEN_HERE"
+    return token
+
+def nasaTOKEN():
+    """NASA API Token"""
+    token = "YOUR_NASA_API_TOKEN_HERE"
+    return token

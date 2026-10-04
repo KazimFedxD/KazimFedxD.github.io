@@ -1,0 +1,50 @@
+======================================================================
+FxDC Performance Benchmark Results
+======================================================================
+
+Test: Simple Dictionary
+  Iterations: 1000
+  Total Time: 48.20ms
+  Average Time: 0.048ms
+  Operations/sec: 20748.51
+
+Test: Custom Class (User)
+  Iterations: 1000
+  Total Time: 89.07ms
+  Average Time: 0.089ms
+  Operations/sec: 11226.88
+
+Test: Nested Structure
+  Iterations: 500
+  Total Time: 125.82ms
+  Average Time: 0.252ms
+  Operations/sec: 3973.78
+
+Test: Large List (100 items)
+  Iterations: 100
+  Total Time: 549.19ms
+  Average Time: 5.492ms
+  Operations/sec: 182.09
+
+Test: Parse Only (loads)
+  Iterations: 5000
+  Total Time: 212.51ms
+  Average Time: 0.043ms
+  Operations/sec: 23528.36
+
+Test: Serialize Only (dumps)
+  Iterations: 5000
+  Total Time: 86.03ms
+  Average Time: 0.017ms
+  Operations/sec: 58116.46
+
+----------------------------------------------------------------------
+Test: FxDC vs JSON Comparison
+  Iterations: 1000
+  FxDC Total: 45.63ms (avg: 0.046ms)
+  JSON Total: 3.48ms (avg: 0.003ms)
+  FxDC/JSON Ratio: 13.13x
+
+======================================================================
+Benchmark Complete!
+======================================================================

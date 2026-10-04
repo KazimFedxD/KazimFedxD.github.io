@@ -1,0 +1,25 @@
+{
+  "source": "src/data/registry.js",
+  "site": {
+    "title": "Kazim Abbas — Backend Developer",
+    "description": "Backend developer from Karachi. Building production systems in Django, Python, and PostgreSQL. NASA Space Apps 2025 winner, Discord bot author, 40K+ views on KayzBlog.",
+    "url": "https://fedxd.net/",
+    "image": "https://fedxd.net/dp.jpg",
+    "locale": "en_US",
+    "type": "website",
+    "author": "Kazim Abbas",
+    "keywords": [
+      "Kazim Abbas",
+      "fedxd",
+      "backend developer",
+      "Django",
+      "Python",
+      "PostgreSQL",
+      "REST API",
+      "Discord bot",
+      "NASA Space Apps",
+      "portfolio"
+    ]
+  },
+  "pages": {}
+}

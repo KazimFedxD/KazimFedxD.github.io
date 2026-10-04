@@ -1,0 +1,62 @@
+{
+  "source": "src/pages/Achievements.js",
+  "header": {
+    "title": "Achievements",
+    "subtitle": "Milestones and recognitions in my journey as a developer"
+  },
+  "achievements": [
+    {
+      "year": "2026",
+      "title": "AI Preneur '26 - Best Use of AI",
+      "position": "Best Use of AI",
+      "badge": "AI Preneur '26",
+      "description": "Won Best Use of AI at AI Preneur '26 with TeachBack - a voice-first learning platform where students teach an AI listener and get interrupted by clarifying questions. Real-time STT + LLM + TTS pipeline with multi-dimensional evaluation (clarity, structure, coverage).",
+      "highlights": [
+        "Built voice-first teaching loop: voice in → Deepgram STT → Groq LLM → ElevenLabs TTS → voice out",
+        "Real-time WebSocket dialogue via Django Channels with sub-second interruption latency",
+        "Multi-dimensional evaluation engine scoring clarity, structure, and coverage of explanations",
+        "Full-stack production system: React 19 SPA + Django 5.2 + PostgreSQL + Redis + Celery",
+        "Judged Best Use of AI for the integration depth across STT, LLM, and TTS in a real product"
+      ],
+      "tech": ["React 19", "Django 5.2", "Django Channels", "WebSockets", "PostgreSQL", "Redis", "Celery", "Deepgram Nova-3", "Groq", "ElevenLabs"],
+      "icon": "Trophy",
+      "color": "from-pink-600 to-purple-600",
+      "link": "https://github.com/KazimFedxD/TeachBack"
+    },
+    {
+      "year": "2025",
+      "title": "NASA Space Apps Challenge - Karachi",
+      "position": "2nd Place",
+      "badge": "Global Competition",
+      "description": "Secured second place in the NASA Space Apps Challenge 2025 Karachi Local Event with Skyntel - an interactive weather app featuring AI query support, personalized alerts, email subscriptions, and live community reports.",
+      "highlights": [
+        "Built full-stack weather application with Django REST Framework backend",
+        "Integrated Groq AI for intelligent weather queries",
+        "Implemented Celery automation and Redis caching for performance",
+        "Deployed using Docker and Nginx reverse proxy",
+        "Presented innovative solution to judges and competed against local teams"
+      ],
+      "tech": ["Django", "React", "PostgreSQL", "Redis", "Celery", "Docker", "Nginx", "Groq AI"],
+      "icon": "Trophy",
+      "color": "from-yellow-600 to-orange-600",
+      "link": "https://github.com/KazimFedxD/Skyntel"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Self-Taught Developer Journey",
+      "issuer": "Independent Learning",
+      "year": "2023-Present",
+      "description": "Comprehensive self-education in modern web technologies through projects and hands-on experience",
+      "skills": ["Python", "Django", "React", "PostgreSQL", "Docker", "REST APIs"],
+      "icon": "Star",
+      "color": "from-purple-600 to-pink-600"
+    }
+  ],
+  "stats": [
+    { "value": "2nd",   "label": "NASA Space Apps '25", "icon": "Trophy" },
+    { "value": "AI",    "label": "Best Use of AI '26",  "icon": "Award" },
+    { "value": "12+",   "label": "Projects shipped",    "icon": "Star" },
+    { "value": "40K+",  "label": "Blog views",          "icon": "Sparkles" }
+  ]
+}
