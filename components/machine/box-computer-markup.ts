@@ -40,6 +40,9 @@ export const BOX_COMPUTER_MARKUP = `
             <div class="dicon" data-app="hire" tabindex="0">
               <div class="glyph icon-briefcase"></div><span>Hire Me</span>
             </div>
+            <div class="dicon" data-app="resume" tabindex="0">
+              <div class="glyph icon-resume"></div><span>Resume</span>
+            </div>
             <div class="dicon" data-app="files" tabindex="0">
               <div class="glyph icon-folder"></div><span>My Files</span>
             </div>
@@ -74,6 +77,7 @@ export const BOX_COMPUTER_MARKUP = `
             <button data-app="projects">Projects</button>
             <button data-app="contact">Contact</button>
             <button data-app="hire">Hire Me</button>
+            <button data-app="resume">Resume</button>
             <button data-app="files">My Files</button>
             <button data-app="minesweeper">Minesweeper</button>
             <button data-app="snake">Snake</button>

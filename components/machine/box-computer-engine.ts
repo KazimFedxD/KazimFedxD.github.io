@@ -979,6 +979,7 @@ export function initBoxComputer(root: HTMLElement) {
       html:
         '<span class="tag">// hire</span><h1>Available for Hire</h1>' +
         '<p>' + (skills.header && skills.header.subtitle ? skills.header.subtitle : IDENTITY.summary) + '</p>' +
+        '<p><a class="dlbtn" href="/resume.pdf" download rel="noopener noreferrer">Download resume.pdf</a></p>' +
         skills.categories.map(function (cat) {
           return '<h2>' + cat.title + '</h2>' +
             cat.skills.map(function (s) {
@@ -1755,6 +1756,7 @@ export function initBoxComputer(root: HTMLElement) {
   function appTitle(id){
     if (id === 'term') return 'Terminal — ' + IDENTITY.handle + '@fedxd.net';
     if (id === 'files') return 'My Files';
+    if (id === 'resume') return 'Resume';
     if (id === 'minesweeper') return 'Minesweeper';
     if (id === 'snake') return 'Snake';
     if (id === 'tictactoe') return 'Tic-Tac-Toe';
@@ -1907,12 +1909,32 @@ export function initBoxComputer(root: HTMLElement) {
     });
   }
 
+  // ponytail: Resume dicon triggers the PDF download instead of opening a
+  // window - matches what the user actually wants from this tile.
+  function downloadResume(){
+    var a = document.createElement('a');
+    a.href = '/resume.pdf';
+    a.download = '';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a); a.click(); a.remove();
+  }
   root.querySelectorAll('.dicon').forEach(function(el){
-    el.addEventListener('click', function(){ openApp(el.getAttribute('data-app')); }, { signal: signal });
-    el.addEventListener('keydown', function(e){ if (e.key === 'Enter') openApp(el.getAttribute('data-app')); }, { signal: signal });
+    var app = el.getAttribute('data-app');
+    if (app === 'resume') {
+      el.addEventListener('click', downloadResume, { signal: signal });
+      el.addEventListener('keydown', function(e){ if (e.key === 'Enter') downloadResume(); }, { signal: signal });
+      return;
+    }
+    el.addEventListener('click', function(){ openApp(app); }, { signal: signal });
+    el.addEventListener('keydown', function(e){ if (e.key === 'Enter') openApp(app); }, { signal: signal });
   });
   rootmenu.querySelectorAll('button[data-app]').forEach(function(el){
-    el.addEventListener('click', function(){ rootmenu.classList.remove('show'); openApp(el.getAttribute('data-app')); }, { signal: signal });
+    el.addEventListener('click', function(){
+      rootmenu.classList.remove('show');
+      var app = el.getAttribute('data-app');
+      if (app === 'resume') downloadResume();
+      else openApp(app);
+    }, { signal: signal });
   });
   menubtn.addEventListener('click', function(){ rootmenu.classList.toggle('show'); }, { signal: signal });
   function onOutsideClick(e){

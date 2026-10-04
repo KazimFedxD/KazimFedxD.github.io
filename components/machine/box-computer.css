@@ -255,6 +255,7 @@
 .rm-machine .icon-battery { --icon-url: url('/machine/icons/battery-full.svg'); }
 .rm-machine .icon-signal { --icon-url: url('/machine/icons/cellular-signal-3.svg'); }
 .rm-machine .icon-home { --icon-url: url('/machine/icons/home.svg'); }
+.rm-machine .icon-resume { --icon-url: url('/machine/icons/resume.svg'); }
 
 /* generic icon-mask utility for icons living outside the phosphor desktop
    (window chrome, the in-universe retro browser) - uses currentColor so it
@@ -375,6 +376,8 @@
 .rm-machine .browser-page .card b { font-family: var(--mono); font-size: 14px; color: #4a2018; display: block; margin-bottom: 3px; }
 
 .rm-machine .browser-page .card span { font-size: 12.5px; color: #5a5548; }
+.rm-machine .browser-page a.dlbtn { display: inline-block; padding: 8px 16px; border: 1px solid #4a2018; background: #fbf9f2; color: #4a2018; font-family: var(--mono); font-size: 13px; text-decoration: none; }
+.rm-machine .browser-page a.dlbtn:hover { background: #4a2018; color: #fbf9f2; }
 
 .rm-machine .browser-page .pill { display: inline-block; font-family: var(--mono); font-size: 10.5px; border: 1px solid #b8b19c; color: #6a6558; padding: 1px 7px; margin: 2px 4px 2px 0; }
 

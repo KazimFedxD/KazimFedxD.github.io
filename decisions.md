@@ -2,6 +2,31 @@
 
 A log of meaningful decisions made in this codebase, newest first. Each entry explains the call, the reasoning, and what was rejected.
 
+## 2026-10-04 — favicon.jpg + Resume dicon + Hire download button
+
+**Decision:** Three small changes, none of them architecturally new:
+
+1. Switch `metadata.icons` in `app/layout.tsx` from the three missing `favicon-{32,64,192}.png` entries to a single `/favicon.jpg` (the only favicon file on disk).
+3. Add a Resume app icon (with a tiny new `download.svg` mask) to the CRT desktop. Clicking it — or the Resume entry in the rootmenu — calls `downloadResume()`, which programmatically clicks a transient `<a href="/resume.pdf" download>` and discards it. No window opens.
+4. Add a `<a class="dlbtn" href="/resume.pdf" download>` line to `PAGES.hire.html` (the engine's virtual `hire.md` — the actual MD file does not exist in the repo; the page content is composed inline in the engine from `portfolio_data/content/skills.json`).
+
+**Why:**
+
+- The favicon files were referenced but never existed on disk — browsers were 404ing on every page load. Using what's on disk is the lazy fix.
+- A click → download flow was the user's literal request. Routing through `openApp('resume')` would have opened a windowed Resume app instead, which is what `openApp` does to every other dicon — but no Resume window makes sense if the file itself is the thing being handed over. The dicon and rootmenu both special-case `resume` before the `openApp()` fallthrough.
+- The `hire.md` filename is what the user wrote; the actual file is a virtual page in the engine's `PAGES.hire` slot (same shape as `about.md`, `contact.md`, etc. — they show up in the in-sim `ls` output via `FS_TREE` and the File Manager, but the content is composed inline at engine-load). Adding the download button there puts the same control a visitor sees when they open the Hire app — no second file to keep in sync.
+- New SVG icon file: 18 bytes, one path, a document + corner-fold. Mirrors the card/briefcase shape language of the existing icons so it sits in the grid without design debt.
+
+**Rejected:**
+
+- *Open a Resume window instead of triggering the download.* Would have required a new app entry in `appTitle()`, `openApp()`, the FS_TREE, plus window chrome for what is functionally a one-click file delivery. The user said "make it download" — they didn't ask for a window. Click → download is the smallest thing that satisfies the request.
+- *Reuse an existing icon (e.g. `card.svg`) for Resume.* `card.svg` is the Memory Match glyph. Repurposing it would have meant either changing Memory Match's icon (extra work for no gain) or having two apps with the same icon (visual confusion). One tiny SVG file is cheaper than either.
+- *Add the Resume download button to multiple places (About, Contact, rootmenu, etc.).* One place — the Hire page — is the canonical "you want to evaluate me for a role" surface. Spreading the same button across more pages is the kind of speculative reuse that drifts toward inconsistency.
+- *Write the hire content to a real `.md` file and have the engine load it.* The existing engine composes `PAGES.hire.html` from `portfolio_data/content/skills.json` and a subtitle. Migrating it to a real markdown file would have been a parallel format the engine doesn't read; adding one inline `<p>` line to the composition is the lazy fix.
+- *Generate the `.dlbtn` style with Tailwind utility classes.* The CRT browser chrome (`.browser-page`, `.card`, etc.) uses hand-rolled CSS, not Tailwind — the Hire page lives inside that chrome. A Tailwind class would not apply inside the scoped `.rm-machine` namespace without extra config.
+
+---
+
 ## 2026-10-04 — rebrand visual theme from cream+red to purple+green
 **Decision:** Shift the entire site palette from cream/beige CRT shell + red phosphor glow to a soft purple casing + green terminal phosphor. Every red accent flips to phosphor green, including semantic red (HTTP 500, "Access denied", FATAL labels) per user direction. Browser chrome `theme-color` flips to purple. UI layout, structure, animations, and functionality unchanged.
 **Why:** User wants the site to read as a personal cyber/terminal aesthetic rather than the original warm beige + red. Green-on-purple is the canonical hacker-terminal palette; flipping the semantic-red error text too gives a cohesive look even at the cost of some error affordance — the user explicitly chose cohesion over accessibility when asked.
