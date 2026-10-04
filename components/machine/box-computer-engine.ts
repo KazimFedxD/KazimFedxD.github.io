@@ -29,6 +29,7 @@ import experience from '@/portfolio_data/content/experience.json';
 import skills from '@/portfolio_data/content/skills.json';
 import linksMap from '@/portfolio_data/links.json';
 import { getSortedProjects } from '@/portfolio_data/projectsData';
+import emailjs from '@emailjs/browser';
 
 // ponytail: identity literal - the only "who am I" hardcode the engine carries.
 // Everything else (name, summary, email, github, projects, skills) flows from
@@ -971,6 +972,19 @@ export function initBoxComputer(root: HTMLElement) {
             : '<a href="' + c.link + '" target="_blank" rel="noopener noreferrer">' + c.title + '</a>';
           return '<div class="card"><b>' + anchor + '</b><span>' + c.value + '</span></div>';
         }).join('') +
+        '<h2>Send a message</h2>' +
+        '<form class="contact-form" id="contactForm" novalidate>' +
+          '<div class="form-row">' +
+            '<input type="text" name="user_name" placeholder="Name" required aria-label="Name" />' +
+            '<input type="email" name="email" placeholder="Email" required aria-label="Email" />' +
+          '</div>' +
+          '<input type="text" name="subject" placeholder="Subject (optional)" aria-label="Subject" />' +
+          '<textarea name="message" placeholder="Message" rows="6" required aria-label="Message"></textarea>' +
+          '<div class="form-actions">' +
+            '<button type="submit" class="dlbtn">Send</button>' +
+            '<span class="form-status" id="contactStatus" aria-live="polite"></span>' +
+          '</div>' +
+        '</form>' +
         '<hr><p>Based in ' + IDENTITY.location + ' &middot; ' + IDENTITY.responseTime + '.</p>',
     },
     hire: {
@@ -1012,6 +1026,66 @@ export function initBoxComputer(root: HTMLElement) {
       ] },
     ],
   };
+
+  /* ================================================================
+     CONTACT FORM (EmailJS: notify owner + confirm visitor)
+     ponytail: imperative DOM mirror of the old React Contact.jsx
+     submission. EmailJS service/template IDs and the public key come
+     straight from contact.json's form.emailJs block - no env-var
+     indirection, the keys are public-by-EmailJS-contract.
+     ================================================================ */
+  function wireContactForm(body, pageStatusEl){
+    var cfg = (contact && contact.form && contact.form.emailJs) || {};
+    var form = body.querySelector('#contactForm');
+    if (!form) return;
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var statusEl = form.querySelector('#contactStatus');
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function setStatus(msg, isErr){
+      if (statusEl) {
+        statusEl.textContent = msg;
+        statusEl.classList.toggle('err', !!isErr);
+      }
+      if (pageStatusEl) pageStatusEl.textContent = msg || 'Done';
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var fd = new FormData(form);
+      var name = String(fd.get('user_name') || '').trim();
+      var email = String(fd.get('email') || '').trim();
+      var subject = String(fd.get('subject') || '').trim();
+      var message = String(fd.get('message') || '').trim();
+
+      if (!name || !email || !message) { setStatus('Please fill in name, email, and message.', true); return; }
+      if (!EMAIL_RE.test(email)) { setStatus('Enter a valid email.', true); return; }
+
+      submitBtn.disabled = true;
+      setStatus('Sending…');
+
+      var payload = {
+        user_name: name,
+        email: email,
+        subject: subject || 'Portfolio Contact',
+        message: message,
+        timestamp: new Date().toLocaleString(),
+      };
+      var opts = { publicKey: cfg.publicKey || '' };
+      Promise.all([
+        emailjs.send(cfg.serviceId, cfg.templates.notification, payload, opts),
+        emailjs.send(cfg.serviceId, cfg.templates.confirmation, payload, opts),
+      ]).then(function(){
+        setStatus('Message sent.');
+        form.reset();
+      }).catch(function(){
+        setStatus('Couldn’t send. Try ' + (cfg.fallbackEmail || IDENTITY.email) + '.', true);
+      }).then(function(){
+        submitBtn.disabled = false;
+      });
+    });
+  }
+
   function buildFileManager(body){
     var stack = [FS_TREE];
     function draw(){
@@ -1863,6 +1937,7 @@ export function initBoxComputer(root: HTMLElement) {
           window.open(ALLOWED_LINKS[linkKey], '_blank', 'noopener,noreferrer');
         }
       });
+      if (id === 'contact') wireContactForm(body, statusEl);
       body.querySelector('#bReload').addEventListener('click', function(){
         throbberEl.classList.add('spin');
         statusEl.textContent = 'Loading ' + page.addr + '...';

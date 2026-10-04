@@ -2,6 +2,29 @@
 
 A log of meaningful decisions made in this codebase, newest first. Each entry explains the call, the reasoning, and what was rejected.
 
+## 2026-10-04 — Contact form wired to EmailJS, personal email removed
+
+**Decision:** Add a real `<form class="contact-form">` to the in-sim Contact app, with Name + Email side-by-side, optional Subject, Message body, and a Send button. Submit fires `emailjs.send(...)` for two recipient templates (notification to owner, confirmation to visitor), reading service ID / public key / template IDs from `portfolio_data/content/contact.json`'s `form.emailJs` block. The personal `abbaskazim135@gmail.com` is removed everywhere it appeared in `contact.json` and replaced with the business `fedxdofficial@gmail.com`. CSP `connect-src` is relaxed to allow `https://api.emailjs.com`.
+
+**Why:**
+
+- The user's old portfolio (`portfolio-website-data.js`) used the dual-template pattern with EmailJS; reusing the same payload shape (`user_name`, `subject`, `message`, `timestamp`) means the templates the user already has configured at EmailJS don't need to be edited. The `timestamp` field is added on top so the visitor's confirmation has a send-time string without the templates needing it.
+- EmailJS's `publicKey` is a public key by design (it's literally called that) — it gates the service ID, but it isn't secret. Reading it from `contact.json` keeps a single source of truth for all Contact-app configuration (form fields, contact info, EmailJS keys) instead of splitting between data and env vars.
+- The `IDENTITY.email` lookup in `box-computer-engine.ts` (line 73) is `contact.contactInfo.find(c => /email/i.test(c.title)).value` — so flipping the JSON value automatically propagates to the in-sim Terminal `contact` command, the `ALLOWED_LINKS.email = mailto:…` map, and the Hire page's footer. Zero engine edits needed for the email swap.
+- The browser-page click delegation (`pageEl.addEventListener('click', …)`) short-circuits on `e.target.closest('a')` and bails if null — so a form submission click falls through that path and only hits the new `submit` listener attached directly to `#contactForm`. No extension of the click handler needed.
+
+**Rejected:**
+
+- *Server-side proxy through `/api/contact`.* Would have kept `connect-src 'self'` intact, but added: a route handler, server-side fetch, env-var loading for the EmailJS service ID, and a second error-handling surface. The user provided direct-browser-call code; matching that is the lazy fix. CSP gets one allowlist entry, the engine stays self-contained.
+- *Env-var indirection (`NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`).* Standard practice for keys, but EmailJS's public key isn't a secret by their own contract, and the user explicitly chose to read from `contact.json`. Splitting keys across `.env.local` and `contact.json` would have been two sources of truth for one app's setup.
+- *Generic form hook / reusable `<ContactForm>` React component.* The engine is a single ~2000-line imperative DOM module by design (see the file's header comment). A React subtree inside `dangerouslySetInnerHTML` markup would break that contract for one feature.
+- *Use the existing in-page `#bStatus` as the only status feedback, skip the inline `#contactStatus`.* A bare status bar update is invisible until you look at the bottom of the window — feedback next to the Send button is the natural place. `#bStatus` is also updated so the bottom bar still reflects "Done" / "Sending…" / "Failed" like every other browser action.
+- *Migrate the static contact-info list to a real Markdown file (`hire.md`-style).* The Contact page is one of the few PAGES that already pulls all its content from `contact.json`. There's no engine reading a `.md` for it. Adding form HTML inline is the smaller change.
+- *Keep the personal email anywhere in `contact.json` (e.g. as a secondary card labeled differently) "in case I want to use it."* The user explicitly said remove my personal email from this — keeping it under a different label is the kind of speculative flexibility that drifts toward inconsistency. Out, fully.
+- *Add server-side rate limiting.* No backend involvement (EmailJS does this on its side). Adding our own limiter would mean the server proxy that was rejected above.
+
+---
+
 ## 2026-10-04 — favicon.jpg + Resume dicon + Hire download button
 
 **Decision:** Three small changes, none of them architecturally new:

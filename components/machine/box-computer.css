@@ -379,6 +379,23 @@
 .rm-machine .browser-page a.dlbtn { display: inline-block; padding: 8px 16px; border: 1px solid #4a2018; background: #fbf9f2; color: #4a2018; font-family: var(--mono); font-size: 13px; text-decoration: none; }
 .rm-machine .browser-page a.dlbtn:hover { background: #4a2018; color: #fbf9f2; }
 
+.rm-machine .browser-page .contact-form { max-width: 58ch; margin: 0 0 16px; }
+.rm-machine .browser-page .contact-form input,
+.rm-machine .browser-page .contact-form textarea {
+  width: 100%; display: block; box-sizing: border-box;
+  font-family: var(--mono); font-size: 13px;
+  padding: 6px 10px; margin: 0 0 8px;
+  border: 1px solid #b8b19c; background: #fff; color: #2a2a26;
+  box-shadow: inset 2px 2px 0 #e2ded2;
+}
+.rm-machine .browser-page .contact-form textarea { min-height: 120px; resize: vertical; }
+.rm-machine .browser-page .contact-form .form-row { display: flex; gap: 8px; }
+.rm-machine .browser-page .contact-form .form-row input { flex: 1; }
+.rm-machine .browser-page .contact-form .form-actions { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+.rm-machine .browser-page .contact-form .form-status { font-family: var(--mono); font-size: 12px; color: #4a2018; }
+.rm-machine .browser-page .contact-form .form-status.err { color: #7a1210; }
+.rm-machine .browser-page .contact-form button[disabled] { opacity: 0.5; cursor: not-allowed; }
+
 .rm-machine .browser-page .pill { display: inline-block; font-family: var(--mono); font-size: 10.5px; border: 1px solid #b8b19c; color: #6a6558; padding: 1px 7px; margin: 2px 4px 2px 0; }
 
 .rm-machine .browser-page ul { padding-left: 20px; max-width: 58ch; }

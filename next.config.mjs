@@ -54,7 +54,9 @@ const nextConfig = {
               "img-src 'self' data: blob:",
               // All GitHub/Spotify data is fetched server-side through our own
               // /api/* routes - the browser itself never talks to those hosts.
-              "connect-src 'self'",
+              // api.emailjs.com is the only direct-browser exception: the
+              // Contact form sends through EmailJS' REST endpoint.
+              "connect-src 'self' https://api.emailjs.com",
               "media-src 'self'",
               "object-src 'none'",
               "frame-ancestors 'none'",
