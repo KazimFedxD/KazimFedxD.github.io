@@ -5,11 +5,12 @@
 // selectors and box-computer-engine.ts's DOM lookups byte-for-byte.
 export const BOX_COMPUTER_MARKUP = `
 <div class="monitor" id="monitor">
-  <div class="nameplate-wrap"><div class="nameplate">fedxd.net</div></div>
+  <div class="nameplate-wrap">
+    <div class="nameplate">FX SYSTEMS</div>
+    <div class="model-label">FX-01<span class="model-description"> / FEDXD WORKSTATION</span></div>
+  </div>
 
   <div class="screen-frame">
-    <div class="screw tl"></div><div class="screw tr"></div>
-    <div class="screw bl"></div><div class="screw br"></div>
     <div class="screen" id="screen">
       <div class="crt-inner">
         <canvas id="crtCanvas" aria-hidden="true"></canvas>
@@ -103,10 +104,10 @@ export const BOX_COMPUTER_MARKUP = `
   <div class="controls">
     <div class="ctrl-group"><div class="knob" aria-hidden="true"></div><span class="ctrl-label">BRIGHT</span></div>
     <div class="ctrl-group"><div class="knob b2" aria-hidden="true"></div><span class="ctrl-label">CONTRAST</span></div>
-    <div class="ctrl-group">
-      <button class="pwr" id="pwr" aria-label="Power">
-        <span class="icon-mask icon-power"></span>
-        <span class="ring" id="pwrring"></span>
+    <div class="ctrl-group ctrl-group-power">
+      <button class="pwr" id="pwr" type="button" aria-label="Power">
+        <span class="icon-mask icon-power" aria-hidden="true"></span>
+        <span class="ring" id="pwrring" aria-hidden="true"></span>
       </button>
       <span class="ctrl-label">POWER</span>
     </div>
