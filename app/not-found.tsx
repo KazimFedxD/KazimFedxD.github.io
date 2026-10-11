@@ -126,9 +126,9 @@ export default function NotFound() {
             <Home className="h-4 w-4 transition-transform duration-150 group-hover:scale-110" />
             back home
           </Link>
-          <Link href="/projects" className="group inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-6 py-3 font-mono text-sm font-semibold text-foreground transition-all hover:border-primary/50 hover:bg-secondary active:scale-95">
+          <Link href="/portfolio" className="group inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-6 py-3 font-mono text-sm font-semibold text-foreground transition-all hover:border-primary/50 hover:bg-secondary active:scale-95">
             <Search className="h-4 w-4 transition-transform duration-150 group-hover:scale-110" />
-            browse projects
+            open portfolio
           </Link>
         </motion.div>
 
