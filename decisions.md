@@ -2,6 +2,15 @@
 
 A log of meaningful decisions made in this codebase, newest first. Each entry explains the call, the reasoning, and what was rejected.
 
+## 2026-10-17 21:00 — Single-shell-script deploy to source + gh-pages
+**Decision:** Add `scripts/deploy.sh` — prompts for a message, runs `npm run build`, commits + pushes the source branch, then publishes the static export to `gh-pages` via `git subtree split` + force-push.
+**Why:** Matches the user's "commit, build, push, go live in one shot" ask without bringing in a CI runner, an Actions workflow, or a second tool. Repo already uses `gh-pages` as the publishing branch (verified via `git ls-tree origin/gh-pages`), so `git subtree push --prefix out` is the smallest possible hammer. Force-push is safe because `gh-pages` is a build-artifact branch — never a history-bearing one — and `subtree push` alone refuses to fast-forward after a manual reset.
+**Rejected:**
+- *`git subtree push --prefix out origin gh-pages` (no force).* Refuses to publish when the local split diverges from a previous local reset on `gh-pages`. Adds a manual `git push origin :gh-pages` ritual before every deploy — not lazy.
+- *GitHub Actions workflow.* Would need a workflow file, a PAT, and a Pages config change. For a single-developer repo where the user wants a local one-shot, that's three new moving parts to replace a 14-line script.
+- *Husky + lint-staged precommit hook.* The user asked for a deploy script, not a commit gate. Two different problems.
+- *Add `output: "export"` to `next.config.mjs` as part of this change.* That's a build-config change with its own implications (loses SSR / image optimizer), out of scope for a deploy script. The script errors loudly if `out/` is absent and points at this knob.
+
 ## 2026-10-04 — Contact form wired to EmailJS, personal email removed
 
 **Decision:** Add a real `<form class="contact-form">` to the in-sim Contact app, with Name + Email side-by-side, optional Subject, Message body, and a Send button. Submit fires `emailjs.send(...)` for two recipient templates (notification to owner, confirmation to visitor), reading service ID / public key / template IDs from `portfolio_data/content/contact.json`'s `form.emailJs` block. The personal `abbaskazim135@gmail.com` is removed everywhere it appeared in `contact.json` and replaced with the business `fedxdofficial@gmail.com`. CSP `connect-src` is relaxed to allow `https://api.emailjs.com`.
