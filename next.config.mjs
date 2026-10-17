@@ -4,10 +4,12 @@ const isDev = process.env.NODE_ENV !== "production"
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   images: {
     // /api/avatar?url=... proxies external avatars through our own origin -
     // Next.js treats query strings on local image paths as untrusted by
     // default, so it needs an explicit opt-in.
+    unoptimized: true,
     localPatterns: [
       { pathname: "/api/avatar", search: "?url=*" },
     ],

@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next"
 import { SITE_URL } from "@/config/constants"
 import { getAllProjectSlugs } from "@/lib/portfolio/slugs"
 
+// Static export: snapshot sitemap at build time.
+export const dynamic = "force-static"
+
 interface SitemapEntry {
   path: string
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]

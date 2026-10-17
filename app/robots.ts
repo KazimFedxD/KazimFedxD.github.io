@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next"
 import { SITE_URL } from "@/config/constants"
 
+// Static export: snapshot robots at build time.
+export const dynamic = "force-static"
+
 // User-confirmed policy:
 //   - Conventional search crawlers and AI-search crawlers (Google, Bing, OAI-SearchBot,
 //     PerplexityBot, DuckAssistBot) are allowed.

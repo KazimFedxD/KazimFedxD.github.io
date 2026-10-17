@@ -2,6 +2,21 @@
 
 A log of meaningful decisions made in this codebase, newest first. Each entry explains the call, the reasoning, and what was rejected.
 
+## 2026-10-17 21:30 — Static-export migration: dropped dynamic runtime
+**Decision:** Set `output: "export"` + `images.unoptimized: true` in `next.config.mjs`, mark every dynamic API route `force-static`, delete the unused `/api/github` parent route, ignore `out/` and add `public/.nojekyll`. Three routes stay as dynamic (`/api/avatar`, `/api/cron/revalidate`, `/api/csp-report`) and silently don't ship — they have no caller on the static site that would notice.
+**Why:** The `scripts/deploy.sh` `git subtree push --prefix out` step needed `out/` to exist. `next build` only writes there with `output: "export"`. Static export is the only deploy target that works on GitHub Pages without a server, which is the whole point of the gh-pages branch.
+**Per-route fallout (snapshot-at-build is the only mode on gh-pages):**
+- `/api/github` (parent) — no frontend caller (`box-computer-engine.ts:785` only hits `/api/github/stats`). Deleted.
+- `/api/github/activity`, `/api/github/stats` — added `export const dynamic = "force-static"`. Build-time fetch from GitHub gets baked into the JSON; freshness now tracks deploys.
+- `/api/avatar`, `/api/status` — already had `export const revalidate = …`, which Next.js treats as static-cacheable. Build passed unchanged.
+- `/api/cron/revalidate` (POST), `/api/csp-report` (POST) — POST handlers can't be exported at all. Left in place but excluded from `out/`. The `Report-To` CSP header now points to a 404; the live CSP-reporting pipeline dies silently. Acceptable for a static deploy; a real backend can be wired in later.
+- `headers()` in `next.config.mjs` — Next.js warns "will not automatically work with output: export" and silently drops them. CSP / HSTS / cache-control no longer apply from app code. Move them to a `_headers` file, a Cloudflare rule, or a CDN later.
+**Rejected:**
+- *Keep `output: "export"` and add a Node server for the dynamic routes.* A deploy script that sometimes runs `next start` defeats the purpose of gh-pages and adds ops surface for two stale POST routes.
+- *Move the POST routes off the project (separate service).* Right answer long-term, wrong answer for "make `next build` exit 0 today."
+- *Use `output: "standalone"` and serve the result via something other than gh-pages.* Out of scope — the user picked the static branch.
+- *Convert API routes to client-side fetches against GitHub directly.* Loses server-side rate-limit headroom and the CORS-free fetch through our own origin. Snapshot at build is the lazy move; the proper move is a real backend, not a half-step to the browser.
+
 ## 2026-10-17 21:00 — Single-shell-script deploy to source + gh-pages
 **Decision:** Add `scripts/deploy.sh` — prompts for a message, runs `npm run build`, commits + pushes the source branch, then publishes the static export to `gh-pages` via `git subtree split` + force-push.
 **Why:** Matches the user's "commit, build, push, go live in one shot" ask without bringing in a CI runner, an Actions workflow, or a second tool. Repo already uses `gh-pages` as the publishing branch (verified via `git ls-tree origin/gh-pages`), so `git subtree push --prefix out` is the smallest possible hammer. Force-push is safe because `gh-pages` is a build-artifact branch — never a history-bearing one — and `subtree push` alone refuses to fast-forward after a manual reset.

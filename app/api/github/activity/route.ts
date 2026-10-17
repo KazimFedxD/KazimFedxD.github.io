@@ -2,6 +2,9 @@ import { NextResponse } from "next/server"
 import { GITHUB_USERNAME, GITHUB_API_URL, CACHE_DURATION_API, CACHE_DURATION_API_STALE } from "@/config/constants"
 import { ghHeaders } from "@/lib/github"
 
+// Static export: snapshot at build time (see /api/github/stats).
+export const dynamic = "force-static"
+
 const INTERESTING = ["PushEvent", "CreateEvent", "PullRequestEvent", "IssuesEvent", "WatchEvent"]
 
 export async function GET() {

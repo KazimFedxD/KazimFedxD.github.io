@@ -2,6 +2,11 @@ import { NextResponse } from "next/server"
 import { GITHUB_USERNAME, GITHUB_API_URL, GITHUB_ORGS, GITHUB_SKIP_REPOS, CACHE_DURATION_API, CACHE_DURATION_API_STALE } from "@/config/constants"
 import { ghHeaders } from "@/lib/github"
 
+// Static export: snapshot this route at build time. Live data is captured
+// once per deploy; the cron revalidate handler can no longer fire on a
+// static host, so freshness is tied to deploys.
+export const dynamic = "force-static"
+
 async function safeFetch(label: string, url: string, opts: RequestInit) {
   console.log(`[github/stats] Fetching ${label}: ${url}`)
   try {
