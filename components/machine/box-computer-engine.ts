@@ -542,13 +542,12 @@ export function initBoxComputer(root: HTMLElement) {
     await wait(650); if (!alive(s)) return;
     main.addLine('Last login: Mon Aug 10 22:14:03 on tty1', DIM);
     main.addLine('', DIM);
-    main.addLine(IDENTITY.name + " — type 'startx' to launch the desktop, or 'help' for commands.", DIM);
     main.addLine('', DIM);
     if (!alive(s)) return;
-    mode = 'shell';
-    main.setPrompt(IDENTITY.handle + '@fedxd.net:~$ ');
-    main.showPrompt(true);
-    focusCatcher();
+    // Auto-launch the desktop after a brief "Loading..." beat — no manual `startx`
+    main.addLine('Loading desktop environment...', DIM);
+    await wait(3000); if (!alive(s)) return;
+    startxPhase(session);
   }
 
   async function startxPhase(s){

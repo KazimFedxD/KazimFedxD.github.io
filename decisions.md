@@ -187,3 +187,15 @@ A log of meaningful decisions made in this codebase, newest first. Each entry ex
 - *Add a `Prerender.io`-style SEO header.* Next.js produces static HTML at build time for every `/projects/<slug>` route — server-side rendering is already happening for free; no third-party service needed.
 - *Move `<BoxComputer />` into a Server Component that streams a placeholder while the engine boots.* The engine is JS-driven and has to run client-side. The new `/` adds a server-rendered `<section class="sr-only">` semantic fallback alongside `<BoxComputer />` — invisible to sighted users but readable by crawlers and screen readers — so visitors with JS off, search bots, and AI agents all get the same identity summary visitors-on-OS-with-JS would see in the BIOS readout.
 - *Use a state layer (Zustand/Redux/Context) to share portfolio data between OS and SEO.* Module-level constants on the server side and `@ts-nocheck` imports on the engine side already work. The two layers don't share runtime state because they're on different routes; a state layer would couple them for no benefit.
+
+## 2026-10-17 — Auto-launch desktop after login (drop manual `startx`)
+
+**Decision:** In `components/machine/box-computer-engine.ts`, replace the `loginPhase()` tail (the "type startx to launch the desktop" hint, shell prompt setup, and `focusCatcher()`) with a single line `Loading desktop environment...`, a 3 s `await wait(3000)`, and a direct call to `startxPhase(session)`.
+
+**Why:** The visitor experience should be automatic — making the first-time user type `startx` is a quirk, not a feature. The 3 s beat lets the boot text stay readable and gives the OS chime a moment of anticipation before the desktop reveal. The manual `startx` command path is unchanged for users who later open the in-desktop Terminal app and want it.
+
+**Rejected:**
+- *Skip the pause entirely.* The boot text would vanish before the eye could read it; the chime + flicker would feel abrupt.
+- *Make the pause user-configurable.* Settings UI for a single 3-second timer is YAGNI; bump the constant if it ever matters.
+- *Keep the shell prompt at login as a power-user escape hatch.* A user who wants the shell can open the Terminal app from the desktop. Two entry points to the same shell is just dead UI.
+- *Add a separate loading widget (spinner / progress bar).* The rest of the boot is plain terminal text — a visual widget breaks the aesthetic and adds CSS/JS surface for a single 3-second moment.
