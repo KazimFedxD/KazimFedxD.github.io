@@ -1,0 +1,1111 @@
+{
+  "$schema": "https://fedxd.net/schemas/portfolio.json",
+  "generated": "2026-10-17T17:01:26.107Z",
+  "site": {
+    "url": "https://fedxd.net",
+    "name": "Kazim Abbas",
+    "alternateNames": [
+      "Kasim Abbas",
+      "FedxD",
+      "FedXD",
+      "Kazim FedxD",
+      "Kasim Abbas FedxD"
+    ],
+    "jobTitle": "Backend Engineer · Applied AI",
+    "description": "Backend developer from Karachi, Pakistan — Django, Python, PostgreSQL. NASA Space Apps '25 2nd place. Open to remote backend roles.",
+    "email": "kazim@fedxd.net",
+    "location": {
+      "city": "Karachi",
+      "country": "PK"
+    }
+  },
+  "identity": {
+    "@id": "https://fedxd.net#person",
+    "canonicalName": "Kazim Abbas",
+    "alternateName": [
+      "Kasim Abbas",
+      "FedxD",
+      "FedXD",
+      "Kazim FedxD",
+      "Kasim Abbas FedxD"
+    ],
+    "givenName": "Kazim",
+    "familyName": "Abbas",
+    "additionalName": "FedxD",
+    "knowsAbout": [
+      "Python",
+      "Django",
+      "Django REST Framework",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "Docker",
+      "TypeScript",
+      "React",
+      "WebSockets",
+      "Deepgram STT",
+      "ElevenLabs TTS",
+      "Anthropic / Groq LLM Tooling",
+      "Linux (Arch / KDE Plasma)",
+      "PySide6 / Qt 6",
+      "Backend Engineering",
+      "Applied AI"
+    ],
+    "sameAs": [
+      "https://github.com/KazimFedxD",
+      "https://www.linkedin.com/in/kazim-abbas-60b1b5257/"
+    ]
+  },
+  "biography": "# About - Content Extract\n\n> Source: `src/pages/About.js` (extracted verbatim - no rewriting or improvements).\n\n## Bio (Who I Am)\n\nI'm a **Software Engineering** student at **Bahria University Karachi Campus**, specializing in backend engineering and full-stack development. Currently in Semester 1 of the BSe program (Aug 2026 - June 2030), I combine academic coursework with hands-on experience shipping production systems.\n\nMy journey in tech is driven by curiosity and a desire to create solutions that make a difference. From winning **2nd place at NASA Space Apps Challenge 2025** with Skyntel, to **Best Use of AI at AI Preneur '26** with TeachBack, to shipping **VoiceMatter** (a Linux voice-dictation daemon) - I thrive on challenges that push me to learn and grow.\n\nAs a **self-taught developer** running in parallel with formal education, I've built a strong foundation in modern web, AI, and systems technologies, with a particular focus on Python, Django, and building scalable systems.\n\nStatus banner: \"Open to Remote Backend Development Opportunities\"\n\n## What I Do (Interests)\n\n- **Backend Development** - Building robust and scalable server-side applications\n- **AI & Voice Systems** - STT/LLM/TTS pipelines, voice-first UX, real-time WebSocket dialogue\n- **Linux & Systems** - Wayland, PipeWire, PySide6, low-level desktop tooling\n- **Automation** - Creating efficient workflows and automated solutions\n- **Hardware-Software Integration** - Bridging physical and digital worlds\n\n## Core Values\n\n- **Problem Solver** - Analytical approach to complex challenges\n- **Passionate Learner** - Constantly expanding my skillset\n- **Professional** - Committed to quality and best practices\n- **Team Player** - Collaborative and communicative\n\n## My Journey (Timeline)\n\n- **2026** - Locked into Bahria University Karachi Campus (BSe Software Engineering); won Best Use of AI at AI Preneur '26 with TeachBack; shipped VoiceMatter v0.1.0 (Linux voice-dictation daemon)\n- **2025** - NASA Space Apps Challenge Karachi - 2nd Place (Skyntel)\n- **2024** - Started KayzBlog Management\n- **2023** - Began Self-Taught Developer Journey\n\n## GitHub Stats (component)\n\n`src/components/GitHubStats.js` renders:\n- GitHub contribution heatmap for user `KazimFedxD` (react-github-calendar with custom purple theme).\n- Stat cards:\n  - Total Contributions: 1,500+\n  - Public Repos: 50+\n  - Current Streak: Active\n  - Languages: 10+\n",
+  "projects": [
+    {
+      "slug": "teachback",
+      "title": "TeachBack",
+      "shortDescription": "A revolutionary learning platform where students learn by teaching AI. Explain topics verbally, get interrupted with questions, and receive detailed evaluations on your understanding.",
+      "description": "TeachBack is a revolutionary learning platform built on a simple but powerful principle: You learn best by teaching. Unlike traditional learning platforms where AI teaches you, TeachBack reverses the roles. You become the teacher, explaining topics in your own words while an AI student listens, asks questions, and challenges your understanding. This active explanation approach forces you to organize your thoughts, identify gaps in your knowledge, and truly internalize what you're learning.",
+      "github": "https://github.com/KazimFedxD/TeachBack",
+      "tech": [
+        "React 19",
+        "Django 5.2",
+        "Django Channels",
+        "WebSockets",
+        "PostgreSQL",
+        "Redis",
+        "Deepgram",
+        "Groq",
+        "ElevenLabs"
+      ],
+      "features": [
+        "Voice-First Learning with Multi-Language Support",
+        "AI as Curious Student",
+        "Real-Time WebSocket Communication",
+        "Multi-Dimensional Evaluation",
+        "Natural Text-to-Speech",
+        "Secure Authentication System",
+        "Session Management & Pause/Resume",
+        "Branded Email Notifications"
+      ],
+      "badge": "🏆 Best Use Of AI - AI Preneur '26",
+      "status": "shipped",
+      "hasLongForm": true
+    },
+    {
+      "slug": "skyntel",
+      "title": "Skyntel",
+      "shortDescription": "Interactive weather app with AI query support, personalized alerts, daily email subscriptions, and live weather reports from users.",
+      "description": "Interactive weather app with AI query support, personalized alerts, daily email subscriptions, and live weather reports from users.",
+      "github": "https://github.com/KazimFedxD/Skyntel",
+      "tech": [
+        "Django REST Framework",
+        "Celery",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "Nginx",
+        "Groq AI"
+      ],
+      "features": [
+        "AI-powered weather queries using Groq AI",
+        "Personalized weather alerts and notifications",
+        "Daily email subscriptions with weather updates",
+        "Live weather reports from community users",
+        "Backend powered by Django REST Framework with Celery automation",
+        "Deployed using Docker and Nginx reverse proxy"
+      ],
+      "badge": "🏆 2nd Place - NASA Space Apps Challenge 2025",
+      "status": "shipped",
+      "hasLongForm": false
+    },
+    {
+      "slug": "fincore",
+      "title": "FinCore - Personal Finance & Islamic Wealth Management System",
+      "shortDescription": "A full-stack finance management application that helps users track income, expenses, and assets with upcoming Islamic financial principles integration (Khums & Zakat).",
+      "description": "FinCore is a sophisticated personal finance management system designed to provide users with complete control over their financial data. Built on a robust full-stack architecture, FinCore goes beyond simple expense tracking by offering a comprehensive solution that includes income management, categorized financial tracking, and detailed reporting capabilities. The platform is designed with modularity and extensibility at its core, with the vision of becoming a complete Islamic wealth management system featuring automated Khums and Zakat calculations.",
+      "github": "https://github.com/KazimFedxD/FinCore",
+      "tech": [
+        "Django 5.2",
+        "React 19",
+        "PostgreSQL",
+        "Redis",
+        "Celery",
+        "Docker",
+        "Tailwind CSS"
+      ],
+      "features": [
+        "JWT-Based Authentication with Email Verification",
+        "Hierarchical Category System",
+        "Real-Time Financial Dashboard",
+        "Comprehensive Income & Expense Tracking",
+        "Detailed Financial Reporting",
+        "Responsive Modern UI"
+      ],
+      "badge": "In Active Development",
+      "status": "in-development",
+      "hasLongForm": false
+    },
+    {
+      "slug": "fedxd-data-container-fxdc",
+      "title": "FedxD Data Container (FxDC)",
+      "shortDescription": "A lightweight, human-readable data serialization format for Python with native support for custom classes, type hints, and nested structures—cleaner than JSON, more Pythonic than YAML.",
+      "description": "FedxD Data Container (FxDC) is a custom data serialization format and parser library for Python that bridges the gap between human readability and programmatic power. Unlike JSON's rigid structure or YAML's ambiguous parsing, FxDC provides a clean, indentation-based syntax with native support for Python's type system, custom classes, and complex nested structures. The library features a hand-built lexer and parser that tokenizes FxDC-formatted text into Python objects, complete with type hints, field validation, and automatic class reconstruction. FxDC supports round-trip serialization—you can dump Python objects (including custom classes) to `.fxdc` files and load them back with full type integrity.",
+      "github": "https://github.com/KazimFedxD/FedxD-Data-Container",
+      "tech": [
+        "Python",
+        "Lexer",
+        "Parser",
+        "Custom Object System",
+        "Decorators"
+      ],
+      "features": [
+        "Custom Lexer & Parser Implementation",
+        "Type-Safe Serialization with FxDCField",
+        "Automatic Class Mapping & Serialization",
+        "Direct JSON Conversion",
+        "Pre-Built Support for Common Python Types",
+        "Configuration Export & Import System",
+        "Pre-Built Support for Common Python Types",
+        "Human-Readable Indentation-Based Syntax",
+        "Direct JSON Conversion",
+        "Flexible Type Hinting System",
+        "Verbose Names & Aliasing",
+        "Default Value Support"
+      ],
+      "badge": "Published on PyPI",
+      "status": "shipped",
+      "hasLongForm": true
+    },
+    {
+      "slug": "fxpy",
+      "title": "FxPy - Custom Programming Language",
+      "shortDescription": "A dynamically-typed, interpreted programming language built from scratch in Python with support for functions, control flow, modules, and comprehensive error reporting.",
+      "description": "FxPy is a custom-built, dynamically-typed interpreted programming language implemented entirely in Python. Born from the desire to understand how programming languages work under the hood, FxPy demonstrates the complete process of language design and implementation—from lexical analysis to code execution. The language features a clean, Python-inspired syntax while implementing its own unique characteristics, including a powerful module system, variadic functions, and comprehensive error reporting. FxPy serves both as a functional programming language and an educational resource for understanding compiler/interpreter design.",
+      "github": "https://github.com/KazimFedxD/FxPy",
+      "tech": [
+        "Python",
+        "Lexer",
+        "Parser",
+        "Interpreter",
+        "AST"
+      ],
+      "features": [
+        "Dynamic Type System with Runtime Checking",
+        "First-Class Functions with Closures",
+        "Advanced Module System with Import Resolution",
+        "Variadic Functions with *args and **kwargs",
+        "Rich Error Reporting with Visual Context",
+        "Interactive REPL with Live Feedback",
+        "Rich Data Structures (Lists & Dictionaries)",
+        "Control Flow Structures",
+        "Comprehensive Built-in Functions (25+)",
+        "Operator Overloading for Intuitive Syntax"
+      ],
+      "badge": "Pure Python Implementation",
+      "status": "shipped",
+      "hasLongForm": false
+    },
+    {
+      "slug": "fexobot",
+      "title": "FeXoBot - Feature-Rich Discord Bot",
+      "shortDescription": "A comprehensive, multi-purpose Discord bot with 100+ commands, advanced moderation, interactive games, AI integration, and extensive API integrations for enhanced server management.",
+      "description": "FeXoBot is a comprehensive, feature-rich Discord bot built with Python 3.12 and Discord.py 2.0+, designed to be an all-in-one solution for Discord server management and user engagement. With over 100 commands spanning moderation, entertainment, utilities, and API integrations, FeXoBot provides server administrators with powerful tools while offering engaging experiences for members. The bot leverages a modular cog-based architecture that ensures maintainability, scalability, and ease of feature addition. From advanced moderation systems with warning tracking to interactive games like Hangman and Tic-Tac-Toe, FeXoBot combines utility with entertainment. The integration of AI capabilities through GPT-4 Free API enables intelligent chatbot responses, while connections to 12+ external APIs (NASA, PokeAPI, Google Translate, Currency Converter, etc.) provide rich, data-driven features.",
+      "github": "https://github.com/KazimFedxD/FeXoBot",
+      "tech": [
+        "Python 3.12",
+        "Discord.py 2.0",
+        "SQLite",
+        "Celery",
+        "Multiple APIs"
+      ],
+      "features": [
+        "Advanced Moderation System",
+        "Interactive Games System",
+        "AI-Powered ChatGPT Integration",
+        "12+ External API Integrations",
+        "Automated Leveling System",
+        "Complete Support Ticketing System",
+        "Advanced Mathematics & Calculator",
+        "Interactive Polls & Voting System",
+        "Custom Embed Builder",
+        "Giveaway System",
+        "Reaction Roles System",
+        "Translation & Multi-Language Support",
+        "Welcome System with Custom Images",
+        "Message & Event Logging",
+        "Currency Converter & Utilities",
+        "Security & Encryption Tools",
+        "NASA API Integration",
+        "AFK (Away From Keyboard) System",
+        "Code Execution & Formatting",
+        "Fun & Entertainment Commands"
+      ],
+      "badge": "100+ Commands",
+      "status": "shipped",
+      "hasLongForm": false
+    },
+    {
+      "slug": "fxquest",
+      "title": "FxQuest - Advanced Discord Gaming & Leveling Bot",
+      "shortDescription": "A feature-rich Discord bot offering 8+ interactive games (UNO, Poker, Blackjack), economy system, XP-based leveling with role rewards, Minecraft-inspired mining mechanics, and comprehensive server management tools.",
+      "description": "FxQuest is an advanced, production-ready Discord bot designed to transform Discord servers into interactive gaming hubs with comprehensive engagement systems. Built with Python 3.12+ and Discord.py 2.0+, FxQuest offers a rich ecosystem of 12 major features including 8+ interactive multiplayer games, a robust economy system with virtual currency, an XP-based leveling mechanism with role rewards, and unique Minecraft-inspired features including mining, crafting, and inventory management. The bot leverages modern Discord UI components (buttons, select menus, modals) to deliver an intuitive, interactive user experience. With its async/await architecture, FxQuest handles concurrent gameplay across multiple servers efficiently, supporting unlimited simultaneous game sessions. The modular cog-based structure allows for easy maintenance and feature expansion, while the custom database abstraction layer provides seamless SQLite integration for persistent data storage.",
+      "github": "https://github.com/KazimFedxD/FxQuest",
+      "tech": [
+        "Python 3.12",
+        "Discord.py 2.0",
+        "SQLite",
+        "PyPokerEngine",
+        "Discord UI"
+      ],
+      "features": [
+        "Multi-Player Interactive Games",
+        "Advanced Economy System",
+        "XP-Based Leveling with Role Rewards",
+        "Minecraft-Inspired Mining & Inventory System",
+        "Automated Chat Games with Rewards",
+        "Comprehensive Server Customization",
+        "Interactive Help System with Command Discovery",
+        "User Feedback & Suggestion System",
+        "Advanced Owner Control Panel",
+        "Profile Statistics & Leaderboards",
+        "Akinator Game Integration (Beta)",
+        "Custom Database Abstraction Layer"
+      ],
+      "badge": "Production Ready",
+      "status": "shipped",
+      "hasLongForm": false
+    },
+    {
+      "slug": "portfolio-website",
+      "title": "Kazim Abbas - Portfolio Website",
+      "shortDescription": "A modern, responsive portfolio website built with React 19, Tailwind CSS, and Framer Motion showcasing award-winning projects and professional experience.",
+      "description": "This is the portfolio website itself - a comprehensive digital showcase of Kazim Abbas's journey as a software developer. Built with modern web technologies including React 19, Tailwind CSS, and Framer Motion, the website provides an immersive and interactive experience for visitors to explore projects, skills, achievements, and professional background. The website demonstrates proficiency in frontend development while maintaining a clean, performant, and accessible user interface. Every component is crafted with attention to detail, from smooth page transitions to responsive layouts that adapt seamlessly across all device sizes.",
+      "github": "https://github.com/KazimFedxD/KazimFedxD.github.io",
+      "tech": [
+        "React 19",
+        "Tailwind CSS",
+        "Framer Motion",
+        "EmailJS",
+        "React Router",
+        "GitHub Pages"
+      ],
+      "features": [
+        "Modern Single Page Application (SPA) with Smooth Page Transitions",
+        "Dynamic Project Showcase with Detailed Project Pages",
+        "Interactive Contact Form with EmailJS Integration",
+        "GitHub Stats Integration with Real-Time Data",
+        "Responsive Design with Mobile-First Approach",
+        "Custom Animation System with Framer Motion & Tailwind",
+        "Tech Stack Icon Visualization System"
+      ],
+      "badge": "Modern UI/UX",
+      "status": "shipped",
+      "hasLongForm": false
+    },
+    {
+      "slug": "fullstack-template",
+      "title": "Full-Stack Web Application Template",
+      "shortDescription": "A production-ready, containerized full-stack template featuring React 19, Django REST Framework, PostgreSQL, Redis, and comprehensive JWT authentication with email verification.",
+      "description": "This is a comprehensive, production-ready full-stack web application template designed to accelerate development by providing a robust, scalable foundation with modern best practices. The template combines React 19's latest features with Django 5.2's powerful backend capabilities, all orchestrated through Docker for seamless deployment across any platform.",
+      "github": "https://github.com/KazimFedxD/FullStack-Template",
+      "tech": [
+        "Django 5.2",
+        "React 19",
+        "PostgreSQL",
+        "Redis",
+        "Nginx",
+        "Docker",
+        "Celery"
+      ],
+      "features": [
+        "Secure JWT Authentication with HttpOnly Cookies",
+        "Automated Email Verification System",
+        "Modern UI with Glassmorphism Design",
+        "Complete Docker Containerization",
+        "Celery Background Task Processing",
+        "Persistent Authentication State",
+        "Email System with HTML Templates",
+        "Data Encryption System",
+        "Centralized Configuration System",
+        "Nginx Reverse Proxy",
+        "Custom User Model with Email Authentication"
+      ],
+      "badge": "Production-Ready",
+      "status": "shipped",
+      "hasLongForm": false
+    },
+    {
+      "slug": "fedxd-pipy",
+      "title": "FedxD-PiPy",
+      "shortDescription": "Quality of life Python package providing converters, utilities, and integrations for openpyxl, discord.py, and pygame.",
+      "description": "Quality of life Python package providing converters, utilities, and integrations for openpyxl, discord.py, and pygame.",
+      "github": "https://github.com/KazimFedxD/FedxD-pypackage",
+      "tech": [
+        "Python",
+        "openpyxl",
+        "discord.py",
+        "pygame"
+      ],
+      "features": [
+        "Color converters (RGB, Hex)",
+        "Unit converters (time, temperature, weight, length)",
+        "Excel utilities (cell formatting, protection)",
+        "Discord.py helpers (swear detection)",
+        "Pygame utilities (collision, rendering)",
+        "Random generators (dates, names, facts)"
+      ],
+      "badge": null,
+      "status": "shipped",
+      "hasLongForm": false
+    },
+    {
+      "slug": "fxchange",
+      "title": "FxChange",
+      "shortDescription": "Demo stock and crypto exchange where users can trade with virtual currency, track portfolios, and grow their profiles.",
+      "description": "Demo stock and crypto exchange where users can trade with virtual currency, track portfolios, and grow their profiles.",
+      "github": "https://github.com/KazimFedxD",
+      "tech": [
+        "Django",
+        "SQLite",
+        "JavaScript",
+        "External APIs",
+        "Email Verification"
+      ],
+      "features": [
+        "Virtual currency trading for stocks and crypto",
+        "Portfolio tracking and profile growth system",
+        "Custom admin panels for management",
+        "Live graphs with real-time data",
+        "Secure email verification",
+        "API integrations for market data"
+      ],
+      "badge": null,
+      "status": "in-development",
+      "hasLongForm": false
+    },
+    {
+      "slug": "webstore",
+      "title": "Webstore",
+      "shortDescription": "Complete e-commerce platform featuring inventory control, discounts, carts, and checkout systems with real-time calculations.",
+      "description": "Complete e-commerce platform featuring inventory control, discounts, carts, and checkout systems with real-time calculations.",
+      "github": "https://github.com/KazimFedxD",
+      "tech": [
+        "Django",
+        "SQLite",
+        "JavaScript",
+        "Admin Panels",
+        "Email Verification"
+      ],
+      "features": [
+        "Inventory control and management",
+        "Discount system and cart functionality",
+        "Checkout with real-time calculations",
+        "Custom admin panels",
+        "Email verification for security",
+        "Search system for smooth UX"
+      ],
+      "badge": null,
+      "status": "in-development",
+      "hasLongForm": false
+    },
+    {
+      "slug": "voicematter",
+      "title": "VoiceMatter",
+      "shortDescription": "Press-to-record Linux voice dictation daemon: Deepgram STT + Anthropic-compatible LLM formatter, with a frameless PySide6 overlay and auto-paste via ydotool.",
+      "description": "VoiceMatter is a Linux desktop daemon that listens when you press a key, transcribes what you said, runs the transcript through an LLM to clean it up, and pastes the polished result into whichever application you're working in. It is a single-user, always-available dictation layer that sits between your microphone and your editor.",
+      "github": "https://github.com/KazimFedxD",
+      "tech": [
+        "Python 3.11+",
+        "PySide6 (Qt 6)",
+        "sounddevice (PortAudio)",
+        "NumPy",
+        "Deepgram Nova-3 SDK",
+        "Anthropic SDK",
+        "wl-copy (Wayland clipboard)",
+        "ydotool (synthetic input)",
+        "PipeWire + WirePlumber",
+        "Unix domain sockets (AF_UNIX)",
+        "python-dotenv",
+        "uv package manager"
+      ],
+      "features": [
+        "Press-to-record hotkey daemon",
+        "Deepgram Nova-3 transcription",
+        "LLM-powered formatter",
+        "Auto-copy + auto-paste",
+        "Floating PySide6 overlay",
+        "KDE global hotkeys"
+      ],
+      "badge": "🚧 Alpha — v0.1.0",
+      "status": "alpha",
+      "hasLongForm": true
+    }
+  ],
+  "skills": {
+    "source": "src/pages/Skills.js",
+    "header": {
+      "title": "Skills & Expertise",
+      "subtitle": "A comprehensive toolkit for building modern, scalable, and impactful applications"
+    },
+    "categories": [
+      {
+        "title": "Languages",
+        "icon": "Code2",
+        "color": "from-purple-600 to-pink-600",
+        "skills": [
+          {
+            "name": "Python",
+            "level": 95,
+            "icon": "🐍"
+          },
+          {
+            "name": "JavaScript",
+            "level": 85,
+            "icon": "⚡"
+          },
+          {
+            "name": "C++",
+            "level": 75,
+            "icon": "⚙️"
+          },
+          {
+            "name": "C",
+            "level": 75,
+            "icon": "💻"
+          },
+          {
+            "name": "SQL",
+            "level": 85,
+            "icon": "🗄️"
+          },
+          {
+            "name": "Bash",
+            "level": 80,
+            "icon": "🐚"
+          }
+        ]
+      },
+      {
+        "title": "Frameworks & Libraries",
+        "icon": "Zap",
+        "color": "from-pink-600 to-purple-600",
+        "skills": [
+          {
+            "name": "Django",
+            "level": 95,
+            "icon": "🎸"
+          },
+          {
+            "name": "Django REST Framework",
+            "level": 90,
+            "icon": "🚀"
+          },
+          {
+            "name": "Django Channels (WebSockets)",
+            "level": 80,
+            "icon": "🔌"
+          },
+          {
+            "name": "React",
+            "level": 85,
+            "icon": "⚛️"
+          },
+          {
+            "name": "Framer Motion",
+            "level": 80,
+            "icon": "🎬"
+          },
+          {
+            "name": "Tailwind CSS",
+            "level": 90,
+            "icon": "🎨"
+          }
+        ]
+      },
+      {
+        "title": "Databases",
+        "icon": "Database",
+        "color": "from-blue-600 to-purple-600",
+        "skills": [
+          {
+            "name": "PostgreSQL",
+            "level": 90,
+            "icon": "🐘"
+          },
+          {
+            "name": "SQLite",
+            "level": 85,
+            "icon": "💾"
+          },
+          {
+            "name": "Redis",
+            "level": 80,
+            "icon": "🔴"
+          },
+          {
+            "name": "MinIO",
+            "level": 70,
+            "icon": "📦"
+          }
+        ]
+      },
+      {
+        "title": "AI / Voice Systems",
+        "icon": "Sparkles",
+        "color": "from-pink-600 to-rose-600",
+        "skills": [
+          {
+            "name": "Deepgram Nova-3 (STT)",
+            "level": 80,
+            "icon": "🎙️"
+          },
+          {
+            "name": "ElevenLabs (TTS)",
+            "level": 75,
+            "icon": "🔊"
+          },
+          {
+            "name": "Groq API",
+            "level": 85,
+            "icon": "⚡"
+          },
+          {
+            "name": "Anthropic API",
+            "level": 75,
+            "icon": "🤖"
+          },
+          {
+            "name": "OpenAI API",
+            "level": 80,
+            "icon": "🧠"
+          }
+        ]
+      },
+      {
+        "title": "Linux & Desktop",
+        "icon": "Terminal",
+        "color": "from-orange-600 to-red-600",
+        "skills": [
+          {
+            "name": "Linux (Arch / KDE Plasma)",
+            "level": 90,
+            "icon": "🐧"
+          },
+          {
+            "name": "PySide6 / Qt 6",
+            "level": 75,
+            "icon": "🪟"
+          },
+          {
+            "name": "Wayland / PipeWire",
+            "level": 75,
+            "icon": "🔊"
+          },
+          {
+            "name": "sounddevice / PortAudio",
+            "level": 70,
+            "icon": "🎤"
+          },
+          {
+            "name": "ydotool / wl-copy",
+            "level": 65,
+            "icon": "📋"
+          }
+        ]
+      },
+      {
+        "title": "DevOps & Tools",
+        "icon": "Server",
+        "color": "from-green-600 to-blue-600",
+        "skills": [
+          {
+            "name": "Docker",
+            "level": 85,
+            "icon": "🐳"
+          },
+          {
+            "name": "Git",
+            "level": 90,
+            "icon": "🌿"
+          },
+          {
+            "name": "GitHub",
+            "level": 90,
+            "icon": "🐙"
+          },
+          {
+            "name": "Nginx",
+            "level": 80,
+            "icon": "🌐"
+          },
+          {
+            "name": "Celery",
+            "level": 80,
+            "icon": "🌱"
+          }
+        ]
+      }
+    ],
+    "stats": [
+      {
+        "value": "6+",
+        "label": "Languages",
+        "icon": "Code2"
+      },
+      {
+        "value": "12+",
+        "label": "Frameworks",
+        "icon": "Zap"
+      },
+      {
+        "value": "4+",
+        "label": "Databases",
+        "icon": "Database"
+      },
+      {
+        "value": "15+",
+        "label": "Tools",
+        "icon": "Award"
+      }
+    ],
+    "proficiencyLegend": [
+      {
+        "range": "90-100%",
+        "label": "Expert",
+        "color": "from-green-500 to-emerald-600"
+      },
+      {
+        "range": "80-89%",
+        "label": "Advanced",
+        "color": "from-blue-500 to-cyan-600"
+      },
+      {
+        "range": "70-79%",
+        "label": "Proficient",
+        "color": "from-yellow-500 to-orange-600"
+      },
+      {
+        "range": "60-69%",
+        "label": "Intermediate",
+        "color": "from-orange-500 to-red-600"
+      }
+    ]
+  },
+  "experience": {
+    "source": "src/pages/Experience.js",
+    "header": {
+      "title": "Experience",
+      "subtitle": "My professional journey and growth as a developer and content creator"
+    },
+    "experiences": [
+      {
+        "period": "July 2024 - Present",
+        "role": "Manager & Content Creator",
+        "company": "KayzBlog",
+        "type": "Medical Blog Platform",
+        "location": "Karachi, Pakistan",
+        "description": "Managing and maintaining a comprehensive medical blog platform with advanced features and growing audience engagement.",
+        "responsibilities": [
+          "Edited 6-8 videos per month and produced 12-15 research-based articles monthly",
+          "Grew social media page to 4,000+ followers with strategic content planning",
+          "Achieved over 40,000+ views and 1,200+ likes on top-performing videos",
+          "Developed custom admin panels and handled website updates",
+          "Improved SEO visibility and content optimization strategies"
+        ],
+        "achievements": [
+          "40,000+ total views",
+          "4,000+ social media followers",
+          "1,200+ video likes",
+          "12-15 articles/month"
+        ],
+        "tech": [
+          "Content Management",
+          "SEO",
+          "Video Editing",
+          "Social Media",
+          "Admin Panels"
+        ],
+        "icon": "Briefcase",
+        "color": "from-blue-600 to-purple-600",
+        "current": true
+      },
+      {
+        "period": "Nov 2024 - Jan 2025",
+        "role": "Lead Developer",
+        "company": "Disutils",
+        "type": "Discord Gaming Bot",
+        "location": "Remote",
+        "description": "Architected and developed a feature-rich Discord bot with advanced gaming mechanics and virtual economy systems.",
+        "responsibilities": [
+          "Designed database-backed user management and currency systems",
+          "Implemented asynchronous task handling for efficient command processing",
+          "Bot deployed in 10+ servers, executing hundreds of commands daily",
+          "Achieved minimal downtime with robust error handling",
+          "Created engaging game mechanics and virtual economy features"
+        ],
+        "achievements": [
+          "10+ active servers",
+          "Hundreds of daily commands",
+          "99%+ uptime",
+          "Advanced game logic"
+        ],
+        "tech": [
+          "Python",
+          "Discord.py",
+          "SQLite",
+          "Async Programming",
+          "Game Logic",
+          "Database Design"
+        ],
+        "icon": "Target",
+        "color": "from-purple-600 to-pink-600",
+        "current": false
+      }
+    ],
+    "skillsGained": [
+      {
+        "category": "Management",
+        "items": [
+          "Team Leadership",
+          "Content Strategy",
+          "Project Planning"
+        ]
+      },
+      {
+        "category": "Development",
+        "items": [
+          "Backend Systems",
+          "Database Design",
+          "API Development"
+        ]
+      },
+      {
+        "category": "Growth",
+        "items": [
+          "SEO Optimization",
+          "Community Building",
+          "Analytics"
+        ]
+      }
+    ]
+  },
+  "education": {
+    "source": "src/pages/Education.js",
+    "header": {
+      "title": "Education",
+      "subtitle": "My academic journey and continuous learning path"
+    },
+    "formalEducation": [
+      {
+        "degree": "Bachelor of Software Engineering (BSe)",
+        "institution": "Bahria University Karachi Campus",
+        "location": "Karachi, Pakistan",
+        "period": "Aug 2026 - Jun 2030",
+        "status": "Currently in Semester 1",
+        "description": "Four-year undergraduate program in Software Engineering at Bahria University Karachi Campus (BUKC). Engineering program registered with the Pakistan Engineering Council (PEC). Semester 1 coursework spans ICT, Computer Programming, Applied Physics, English, Pakistan Studies, Occupational Health and Safety, and Islamic Studies.",
+        "courses": [
+          "ICT 301 - Applications of ICT",
+          "ICL 301 - Applications of ICT Lab",
+          "CSC 113 - Computer Programming",
+          "CSL 113 - Computer Programming Lab",
+          "ENG 101 - Functional English",
+          "GSC 114 - Applied Physics",
+          "GSL 113 - Applied Physics Lab",
+          "ENV 101 - Occupational Health and Safety",
+          "PAK 105 - Pakistan Studies"
+        ],
+        "icon": "GraduationCap",
+        "color": "from-blue-600 to-cyan-600",
+        "current": true
+      },
+      {
+        "degree": "Intermediate (11-12), Computer Science",
+        "institution": "Fatimiyah Boys College",
+        "location": "Karachi, Pakistan",
+        "period": "2024 - 2026",
+        "status": "Completed",
+        "description": "Completed intermediate coursework in Computer Science with focus on programming fundamentals, algorithms, and software development principles.",
+        "courses": [
+          "Computer Science",
+          "Mathematics",
+          "Physics",
+          "Programming Fundamentals",
+          "Data Structures",
+          "Web Development"
+        ],
+        "icon": "Award",
+        "color": "from-purple-600 to-pink-600",
+        "current": false
+      },
+      {
+        "degree": "Matriculation, Computer Science",
+        "institution": "Happy Home High School (HHS)",
+        "location": "Karachi, Pakistan",
+        "period": "2016 - 2024",
+        "status": "Completed",
+        "description": "Foundation in Computer Science with comprehensive coverage of basic programming concepts and computer fundamentals.",
+        "courses": [
+          "Computer Science",
+          "Mathematics",
+          "Science",
+          "Basic Programming",
+          "Computer Fundamentals",
+          "English"
+        ],
+        "icon": "Award",
+        "color": "from-green-600 to-emerald-600",
+        "current": false
+      }
+    ],
+    "selfLearning": [
+      {
+        "category": "Backend Development",
+        "topics": [
+          "Django & Django REST Framework",
+          "Django Channels (WebSockets)",
+          "Python Advanced Concepts",
+          "PostgreSQL & Database Design",
+          "API Development & Best Practices",
+          "Celery & Task Queues",
+          "MinIO Object Storage",
+          "JWT & Refresh-Token Auth"
+        ],
+        "icon": "🔧",
+        "color": "from-purple-600 to-pink-600"
+      },
+      {
+        "category": "Frontend Development",
+        "topics": [
+          "React 19 & Modern JavaScript",
+          "State Management (Context, Redux)",
+          "Tailwind CSS & Responsive Design",
+          "Framer Motion Animations",
+          "Component Architecture",
+          "Performance Optimization"
+        ],
+        "icon": "🎨",
+        "color": "from-blue-600 to-purple-600"
+      },
+      {
+        "category": "AI / Voice Systems",
+        "topics": [
+          "Deepgram Nova-3 STT",
+          "ElevenLabs Voice Synthesis",
+          "Anthropic / Groq LLM Tooling",
+          "Voice-First UX Patterns",
+          "Prompt Design & Function Calling"
+        ],
+        "icon": "🤖",
+        "color": "from-pink-600 to-rose-600"
+      },
+      {
+        "category": "Linux & Systems",
+        "topics": [
+          "Wayland + PipeWire + WirePlumber",
+          "PySide6 / Qt 6 Desktop Apps",
+          "KDE Plasma & Global Hotkeys",
+          "sounddevice / PortAudio",
+          "ydotool / wl-copy Integration",
+          "Unix Domain Sockets (AF_UNIX)"
+        ],
+        "icon": "🐧",
+        "color": "from-orange-600 to-red-600"
+      },
+      {
+        "category": "DevOps & Tools",
+        "topics": [
+          "Docker & Containerization",
+          "Git Version Control",
+          "Linux System Administration (Arch)",
+          "CI/CD Pipelines",
+          "Deployment Strategies",
+          "Cloud Platforms"
+        ],
+        "icon": "⚙️",
+        "color": "from-orange-600 to-yellow-600"
+      },
+      {
+        "category": "Computer Science Fundamentals",
+        "topics": [
+          "Data Structures & Algorithms",
+          "Design Patterns",
+          "System Design",
+          "Problem Solving",
+          "Code Optimization",
+          "Software Architecture"
+        ],
+        "icon": "💻",
+        "color": "from-green-600 to-teal-600"
+      }
+    ],
+    "philosophy": {
+      "title": "Continuous Learning",
+      "body": "Beyond formal education, I believe in continuous self-improvement through hands-on projects, online courses, and staying updated with the latest technologies. Every project is an opportunity to learn something new and push the boundaries of what I can create.",
+      "tags": [
+        "Learn by Doing",
+        "Stay Curious",
+        "Never Stop Growing"
+      ]
+    }
+  },
+  "achievements": {
+    "source": "src/pages/Achievements.js",
+    "header": {
+      "title": "Achievements",
+      "subtitle": "Milestones and recognitions in my journey as a developer"
+    },
+    "achievements": [
+      {
+        "year": "2026",
+        "title": "AI Preneur '26 - Best Use of AI",
+        "position": "Best Use of AI",
+        "badge": "AI Preneur '26",
+        "description": "Won Best Use of AI at AI Preneur '26 with TeachBack - a voice-first learning platform where students teach an AI listener and get interrupted by clarifying questions. Real-time STT + LLM + TTS pipeline with multi-dimensional evaluation (clarity, structure, coverage).",
+        "highlights": [
+          "Built voice-first teaching loop: voice in → Deepgram STT → Groq LLM → ElevenLabs TTS → voice out",
+          "Real-time WebSocket dialogue via Django Channels with sub-second interruption latency",
+          "Multi-dimensional evaluation engine scoring clarity, structure, and coverage of explanations",
+          "Full-stack production system: React 19 SPA + Django 5.2 + PostgreSQL + Redis + Celery",
+          "Judged Best Use of AI for the integration depth across STT, LLM, and TTS in a real product"
+        ],
+        "tech": [
+          "React 19",
+          "Django 5.2",
+          "Django Channels",
+          "WebSockets",
+          "PostgreSQL",
+          "Redis",
+          "Celery",
+          "Deepgram Nova-3",
+          "Groq",
+          "ElevenLabs"
+        ],
+        "icon": "Trophy",
+        "color": "from-pink-600 to-purple-600",
+        "link": "https://github.com/KazimFedxD/TeachBack"
+      },
+      {
+        "year": "2025",
+        "title": "NASA Space Apps Challenge - Karachi",
+        "position": "2nd Place",
+        "badge": "Global Competition",
+        "description": "Secured second place in the NASA Space Apps Challenge 2025 Karachi Local Event with Skyntel - an interactive weather app featuring AI query support, personalized alerts, email subscriptions, and live community reports.",
+        "highlights": [
+          "Built full-stack weather application with Django REST Framework backend",
+          "Integrated Groq AI for intelligent weather queries",
+          "Implemented Celery automation and Redis caching for performance",
+          "Deployed using Docker and Nginx reverse proxy",
+          "Presented innovative solution to judges and competed against local teams"
+        ],
+        "tech": [
+          "Django",
+          "React",
+          "PostgreSQL",
+          "Redis",
+          "Celery",
+          "Docker",
+          "Nginx",
+          "Groq AI"
+        ],
+        "icon": "Trophy",
+        "color": "from-yellow-600 to-orange-600",
+        "link": "https://github.com/KazimFedxD/Skyntel"
+      }
+    ],
+    "certifications": [
+      {
+        "title": "Self-Taught Developer Journey",
+        "issuer": "Independent Learning",
+        "year": "2023-Present",
+        "description": "Comprehensive self-education in modern web technologies through projects and hands-on experience",
+        "skills": [
+          "Python",
+          "Django",
+          "React",
+          "PostgreSQL",
+          "Docker",
+          "REST APIs"
+        ],
+        "icon": "Star",
+        "color": "from-purple-600 to-pink-600"
+      }
+    ],
+    "stats": [
+      {
+        "value": "2nd",
+        "label": "NASA Space Apps '25",
+        "icon": "Trophy"
+      },
+      {
+        "value": "AI",
+        "label": "Best Use of AI '26",
+        "icon": "Award"
+      },
+      {
+        "value": "12+",
+        "label": "Projects shipped",
+        "icon": "Star"
+      },
+      {
+        "value": "40K+",
+        "label": "Blog views",
+        "icon": "Sparkles"
+      }
+    ]
+  },
+  "contact": {
+    "source": "src/pages/Contact.jsx",
+    "header": {
+      "title": "Get in touch",
+      "subtitle": "BSe Software Engineering student at Bahria University Karachi Campus. Open to remote backend roles, freelance work, and interesting collaborations. Drop a message - I reply within 24-48 hours."
+    },
+    "contactInfo": [
+      {
+        "title": "Email",
+        "icon": "Mail",
+        "value": "fedxdofficial@gmail.com",
+        "link": "mailto:fedxdofficial@gmail.com"
+      },
+      {
+        "title": "GitHub",
+        "icon": "Github",
+        "value": "github.com/KazimFedxD",
+        "link": "https://github.com/KazimFedxD"
+      },
+      {
+        "title": "LinkedIn",
+        "icon": "Linkedin",
+        "value": "linkedin.com/in/kazim-abbas-60b1b5257",
+        "link": "https://www.linkedin.com/in/kazim-abbas-60b1b5257/"
+      }
+    ],
+    "responseTime": "Replies within 24-48 hours",
+    "tags": [
+      "Backend",
+      "Django",
+      "Python",
+      "PostgreSQL",
+      "AI / Voice",
+      "Linux",
+      "Remote",
+      "Full-time",
+      "Contract",
+      "Freelance"
+    ]
+  },
+  "pages": {
+    "home": "https://fedxd.net/",
+    "portfolio": "https://fedxd.net/portfolio",
+    "about": "https://fedxd.net/about",
+    "projects": "https://fedxd.net/projects",
+    "skills": "https://fedxd.net/skills",
+    "experience": "https://fedxd.net/experience",
+    "education": "https://fedxd.net/education",
+    "achievements": "https://fedxd.net/achievements",
+    "contact": "https://fedxd.net/contact"
+  },
+  "machineReadables": {
+    "content_json": "https://fedxd.net/content.json",
+    "content_txt": "https://fedxd.net/content.txt",
+    "llms_txt": "https://fedxd.net/llms.txt",
+    "llms_full_txt": "https://fedxd.net/llms-full.txt"
+  }
+}

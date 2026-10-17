@@ -1,0 +1,47 @@
+# Kazim Abbas — Portfolio
+
+> Kazim Abbas (FedxD) is a backend and applied-AI engineer based in Karachi, Pakistan. Builds production systems in Python, Django, and PostgreSQL; ships voice-first and AI-driven interfaces.
+
+Also indexed as: Kasim Abbas, FedxD, FedXD, Kazim FedxD, Kasim Abbas FedxD.
+
+## About
+- [About](https://fedxd.net/about) — biography, identity, experience, achievements
+- [Accessible Portfolio Hub](https://fedxd.net/portfolio) — semantic, no-JS-required map of the entire site
+
+## Projects
+A curated list of 13 open-source projects. Each project has its own URL.
+- [All Projects](https://fedxd.net/projects)
+
+- [TeachBack](https://fedxd.net/projects/teachback) — A revolutionary learning platform where students learn by teaching AI
+- [Skyntel](https://fedxd.net/projects/skyntel) — Interactive weather app with AI query support, personalized alerts, daily email subscriptions, and live weather reports from users
+- [FinCore - Personal Finance & Islamic Wealth Management System](https://fedxd.net/projects/fincore) — A full-stack finance management application that helps users track income, expenses, and assets with upcoming Islamic financial principles integration (Khums & Zakat)
+- [FedxD Data Container (FxDC)](https://fedxd.net/projects/fedxd-data-container-fxdc) — A lightweight, human-readable data serialization format for Python with native support for custom classes, type hints, and nested structures—cleaner than JSON, more Pythonic than YAML
+- [FxPy - Custom Programming Language](https://fedxd.net/projects/fxpy) — A dynamically-typed, interpreted programming language built from scratch in Python with support for functions, control flow, modules, and comprehensive error reporting
+- [FeXoBot - Feature-Rich Discord Bot](https://fedxd.net/projects/fexobot) — A comprehensive, multi-purpose Discord bot with 100+ commands, advanced moderation, interactive games, AI integration, and extensive API integrations for enhanced server management
+- [FxQuest - Advanced Discord Gaming & Leveling Bot](https://fedxd.net/projects/fxquest) — A feature-rich Discord bot offering 8+ interactive games (UNO, Poker, Blackjack), economy system, XP-based leveling with role rewards, Minecraft-inspired mining mechanics, and comprehensive server management tools
+- [Kazim Abbas - Portfolio Website](https://fedxd.net/projects/portfolio-website) — A modern, responsive portfolio website built with React 19, Tailwind CSS, and Framer Motion showcasing award-winning projects and professional experience
+- [Full-Stack Web Application Template](https://fedxd.net/projects/fullstack-template) — A production-ready, containerized full-stack template featuring React 19, Django REST Framework, PostgreSQL, Redis, and comprehensive JWT authentication with email verification
+- [FedxD-PiPy](https://fedxd.net/projects/fedxd-pipy) — Quality of life Python package providing converters, utilities, and integrations for openpyxl, discord
+- [FxChange](https://fedxd.net/projects/fxchange) — Demo stock and crypto exchange where users can trade with virtual currency, track portfolios, and grow their profiles
+- [Webstore](https://fedxd.net/projects/webstore) — Complete e-commerce platform featuring inventory control, discounts, carts, and checkout systems with real-time calculations
+- [VoiceMatter](https://fedxd.net/projects/voicematter) — Press-to-record Linux voice dictation daemon: Deepgram STT + Anthropic-compatible LLM formatter, with a frameless PySide6 overlay and auto-paste via ydotool
+
+## Skills, Experience, Achievements, Education, Contact
+- [Skills](https://fedxd.net/skills)
+- [Experience](https://fedxd.net/experience)
+- [Education](https://fedxd.net/education)
+- [Achievements](https://fedxd.net/achievements)
+- [Contact](https://fedxd.net/contact)
+
+## Optional machine-readable resources
+- [content.json](https://fedxd.net/content.json)
+- [content.txt](https://fedxd.net/content.txt)
+- [llms-full.txt](https://fedxd.net/llms-full.txt)
+
+## Top-level identity
+- Canonical name: Kazim Abbas
+- Role: Backend Engineer · Applied AI
+- Location: Karachi, PK
+- Email: kazim@fedxd.net
+- GitHub: https://github.com/KazimFedxD
+- LinkedIn: https://www.linkedin.com/in/kazim-abbas-60b1b5257/

@@ -1,0 +1,119 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: Google-InspectionTool
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: Slurp
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: DuckDuckBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: Baiduspider
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: YandexBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: Perplexity
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: DuckAssistBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: YouBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /500-test/
+
+User-Agent: GPTBot
+Disallow: /
+
+User-Agent: ClaudeBot
+Disallow: /
+
+User-Agent: Claude-Web
+Disallow: /
+
+User-Agent: anthropic-ai
+Disallow: /
+
+User-Agent: Applebot-Extended
+Disallow: /
+
+User-Agent: Google-Extended
+Disallow: /
+
+User-Agent: CCBot
+Disallow: /
+
+User-Agent: cohere-ai
+Disallow: /
+
+User-Agent: cohere-training-data-crawler
+Disallow: /
+
+User-Agent: ImagesiftBot
+Disallow: /
+
+User-Agent: Diffbot
+Disallow: /
+
+Host: https://fedxd.net
+Sitemap: https://fedxd.net/sitemap.xml

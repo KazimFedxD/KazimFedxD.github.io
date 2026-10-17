@@ -1,0 +1,631 @@
+FEDXD.NET — PORTFOLIO CONTENT
+============================================================
+
+Site URL: https://fedxd.net
+
+Canonical name: Kazim Abbas
+
+Alternate names: Kasim Abbas, FedxD, FedXD, Kazim FedxD, Kasim Abbas FedxD
+
+Role: Backend Engineer · Applied AI
+
+Location: Karachi, PK
+
+Email: kazim@fedxd.net
+
+SameAs:
+
+  - https://github.com/KazimFedxD
+
+  - https://www.linkedin.com/in/kazim-abbas-60b1b5257/
+
+Knows about:
+
+  - Python
+
+  - Django
+
+  - Django REST Framework
+
+  - PostgreSQL
+
+  - Redis
+
+  - Celery
+
+  - Docker
+
+  - TypeScript
+
+  - React
+
+  - WebSockets
+
+  - Deepgram STT
+
+  - ElevenLabs TTS
+
+  - Anthropic / Groq LLM Tooling
+
+  - Linux (Arch / KDE Plasma)
+
+  - PySide6 / Qt 6
+
+  - Backend Engineering
+
+  - Applied AI
+
+Biography
+
+------------------------------------------------------------
+
+# About - Content Extract
+
+> Source: `src/pages/About.js` (extracted verbatim - no rewriting or improvements).
+
+## Bio (Who I Am)
+
+I'm a **Software Engineering** student at **Bahria University Karachi Campus**, specializing in backend engineering and full-stack development. Currently in Semester 1 of the BSe program (Aug 2026 - June 2030), I combine academic coursework with hands-on experience shipping production systems.
+
+My journey in tech is driven by curiosity and a desire to create solutions that make a difference. From winning **2nd place at NASA Space Apps Challenge 2025** with Skyntel, to **Best Use of AI at AI Preneur '26** with TeachBack, to shipping **VoiceMatter** (a Linux voice-dictation daemon) - I thrive on challenges that push me to learn and grow.
+
+As a **self-taught developer** running in parallel with formal education, I've built a strong foundation in modern web, AI, and systems technologies, with a particular focus on Python, Django, and building scalable systems.
+
+Status banner: "Open to Remote Backend Development Opportunities"
+
+## What I Do (Interests)
+
+- **Backend Development** - Building robust and scalable server-side applications
+- **AI & Voice Systems** - STT/LLM/TTS pipelines, voice-first UX, real-time WebSocket dialogue
+- **Linux & Systems** - Wayland, PipeWire, PySide6, low-level desktop tooling
+- **Automation** - Creating efficient workflows and automated solutions
+- **Hardware-Software Integration** - Bridging physical and digital worlds
+
+## Core Values
+
+- **Problem Solver** - Analytical approach to complex challenges
+- **Passionate Learner** - Constantly expanding my skillset
+- **Professional** - Committed to quality and best practices
+- **Team Player** - Collaborative and communicative
+
+## My Journey (Timeline)
+
+- **2026** - Locked into Bahria University Karachi Campus (BSe Software Engineering); won Best Use of AI at AI Preneur '26 with TeachBack; shipped VoiceMatter v0.1.0 (Linux voice-dictation daemon)
+- **2025** - NASA Space Apps Challenge Karachi - 2nd Place (Skyntel)
+- **2024** - Started KayzBlog Management
+- **2023** - Began Self-Taught Developer Journey
+
+## GitHub Stats (component)
+
+`src/components/GitHubStats.js` renders:
+- GitHub contribution heatmap for user `KazimFedxD` (react-github-calendar with custom purple theme).
+- Stat cards:
+  - Total Contributions: 1,500+
+  - Public Repos: 50+
+  - Current Streak: Active
+  - Languages: 10+
+
+
+Projects
+
+------------------------------------------------------------
+
+TeachBack — 🏆 Best Use Of AI - AI Preneur '26
+
+URL: https://fedxd.net/projects/teachback
+
+Description: A revolutionary learning platform where students learn by teaching AI. Explain topics verbally, get interrupted with questions, and receive detailed evaluations on your understanding.
+
+Repository: https://github.com/KazimFedxD/TeachBack
+
+Tech: React 19, Django 5.2, Django Channels, WebSockets, PostgreSQL, Redis, Deepgram, Groq, ElevenLabs
+
+Features:
+
+  - Voice-First Learning with Multi-Language Support
+
+  - AI as Curious Student
+
+  - Real-Time WebSocket Communication
+
+  - Multi-Dimensional Evaluation
+
+  - Natural Text-to-Speech
+
+  - Secure Authentication System
+
+
+Skyntel — 🏆 2nd Place - NASA Space Apps Challenge 2025
+
+URL: https://fedxd.net/projects/skyntel
+
+Description: Interactive weather app with AI query support, personalized alerts, daily email subscriptions, and live weather reports from users.
+
+Repository: https://github.com/KazimFedxD/Skyntel
+
+Tech: Django REST Framework, Celery, PostgreSQL, Redis, Docker, Nginx, Groq AI
+
+Features:
+
+  - AI-powered weather queries using Groq AI
+
+  - Personalized weather alerts and notifications
+
+  - Daily email subscriptions with weather updates
+
+  - Live weather reports from community users
+
+  - Backend powered by Django REST Framework with Celery automation
+
+  - Deployed using Docker and Nginx reverse proxy
+
+
+FinCore - Personal Finance & Islamic Wealth Management System — In Active Development
+
+URL: https://fedxd.net/projects/fincore
+
+Description: A full-stack finance management application that helps users track income, expenses, and assets with upcoming Islamic financial principles integration (Khums & Zakat).
+
+Repository: https://github.com/KazimFedxD/FinCore
+
+Tech: Django 5.2, React 19, PostgreSQL, Redis, Celery, Docker, Tailwind CSS
+
+Features:
+
+  - JWT-Based Authentication with Email Verification
+
+  - Hierarchical Category System
+
+  - Real-Time Financial Dashboard
+
+  - Comprehensive Income & Expense Tracking
+
+  - Detailed Financial Reporting
+
+  - Responsive Modern UI
+
+
+FedxD Data Container (FxDC) — Published on PyPI
+
+URL: https://fedxd.net/projects/fedxd-data-container-fxdc
+
+Description: A lightweight, human-readable data serialization format for Python with native support for custom classes, type hints, and nested structures—cleaner than JSON, more Pythonic than YAML.
+
+Repository: https://github.com/KazimFedxD/FedxD-Data-Container
+
+Tech: Python, Lexer, Parser, Custom Object System, Decorators
+
+Features:
+
+  - Custom Lexer & Parser Implementation
+
+  - Type-Safe Serialization with FxDCField
+
+  - Automatic Class Mapping & Serialization
+
+  - Direct JSON Conversion
+
+  - Pre-Built Support for Common Python Types
+
+  - Configuration Export & Import System
+
+
+FxPy - Custom Programming Language — Pure Python Implementation
+
+URL: https://fedxd.net/projects/fxpy
+
+Description: A dynamically-typed, interpreted programming language built from scratch in Python with support for functions, control flow, modules, and comprehensive error reporting.
+
+Repository: https://github.com/KazimFedxD/FxPy
+
+Tech: Python, Lexer, Parser, Interpreter, AST
+
+Features:
+
+  - Dynamic Type System with Runtime Checking
+
+  - First-Class Functions with Closures
+
+  - Advanced Module System with Import Resolution
+
+  - Variadic Functions with *args and **kwargs
+
+  - Rich Error Reporting with Visual Context
+
+  - Interactive REPL with Live Feedback
+
+
+FeXoBot - Feature-Rich Discord Bot — 100+ Commands
+
+URL: https://fedxd.net/projects/fexobot
+
+Description: A comprehensive, multi-purpose Discord bot with 100+ commands, advanced moderation, interactive games, AI integration, and extensive API integrations for enhanced server management.
+
+Repository: https://github.com/KazimFedxD/FeXoBot
+
+Tech: Python 3.12, Discord.py 2.0, SQLite, Celery, Multiple APIs
+
+Features:
+
+  - Advanced Moderation System
+
+  - Interactive Games System
+
+  - AI-Powered ChatGPT Integration
+
+  - 12+ External API Integrations
+
+  - Automated Leveling System
+
+  - Complete Support Ticketing System
+
+
+FxQuest - Advanced Discord Gaming & Leveling Bot — Production Ready
+
+URL: https://fedxd.net/projects/fxquest
+
+Description: A feature-rich Discord bot offering 8+ interactive games (UNO, Poker, Blackjack), economy system, XP-based leveling with role rewards, Minecraft-inspired mining mechanics, and comprehensive server management tools.
+
+Repository: https://github.com/KazimFedxD/FxQuest
+
+Tech: Python 3.12, Discord.py 2.0, SQLite, PyPokerEngine, Discord UI
+
+Features:
+
+  - Multi-Player Interactive Games
+
+  - Advanced Economy System
+
+  - XP-Based Leveling with Role Rewards
+
+  - Minecraft-Inspired Mining & Inventory System
+
+  - Automated Chat Games with Rewards
+
+  - Comprehensive Server Customization
+
+
+Kazim Abbas - Portfolio Website — Modern UI/UX
+
+URL: https://fedxd.net/projects/portfolio-website
+
+Description: A modern, responsive portfolio website built with React 19, Tailwind CSS, and Framer Motion showcasing award-winning projects and professional experience.
+
+Repository: https://github.com/KazimFedxD/KazimFedxD.github.io
+
+Tech: React 19, Tailwind CSS, Framer Motion, EmailJS, React Router, GitHub Pages
+
+Features:
+
+  - Modern Single Page Application (SPA) with Smooth Page Transitions
+
+  - Dynamic Project Showcase with Detailed Project Pages
+
+  - Interactive Contact Form with EmailJS Integration
+
+  - GitHub Stats Integration with Real-Time Data
+
+  - Responsive Design with Mobile-First Approach
+
+  - Custom Animation System with Framer Motion & Tailwind
+
+
+Full-Stack Web Application Template — Production-Ready
+
+URL: https://fedxd.net/projects/fullstack-template
+
+Description: A production-ready, containerized full-stack template featuring React 19, Django REST Framework, PostgreSQL, Redis, and comprehensive JWT authentication with email verification.
+
+Repository: https://github.com/KazimFedxD/FullStack-Template
+
+Tech: Django 5.2, React 19, PostgreSQL, Redis, Nginx, Docker, Celery
+
+Features:
+
+  - Secure JWT Authentication with HttpOnly Cookies
+
+  - Automated Email Verification System
+
+  - Modern UI with Glassmorphism Design
+
+  - Complete Docker Containerization
+
+  - Celery Background Task Processing
+
+  - Persistent Authentication State
+
+
+FedxD-PiPy
+
+URL: https://fedxd.net/projects/fedxd-pipy
+
+Description: Quality of life Python package providing converters, utilities, and integrations for openpyxl, discord.py, and pygame.
+
+Repository: https://github.com/KazimFedxD/FedxD-pypackage
+
+Tech: Python, openpyxl, discord.py, pygame
+
+Features:
+
+  - Color converters (RGB, Hex)
+
+  - Unit converters (time, temperature, weight, length)
+
+  - Excel utilities (cell formatting, protection)
+
+  - Discord.py helpers (swear detection)
+
+  - Pygame utilities (collision, rendering)
+
+  - Random generators (dates, names, facts)
+
+
+FxChange
+
+URL: https://fedxd.net/projects/fxchange
+
+Description: Demo stock and crypto exchange where users can trade with virtual currency, track portfolios, and grow their profiles.
+
+Repository: https://github.com/KazimFedxD
+
+Tech: Django, SQLite, JavaScript, External APIs, Email Verification
+
+Features:
+
+  - Virtual currency trading for stocks and crypto
+
+  - Portfolio tracking and profile growth system
+
+  - Custom admin panels for management
+
+  - Live graphs with real-time data
+
+  - Secure email verification
+
+  - API integrations for market data
+
+
+Webstore
+
+URL: https://fedxd.net/projects/webstore
+
+Description: Complete e-commerce platform featuring inventory control, discounts, carts, and checkout systems with real-time calculations.
+
+Repository: https://github.com/KazimFedxD
+
+Tech: Django, SQLite, JavaScript, Admin Panels, Email Verification
+
+Features:
+
+  - Inventory control and management
+
+  - Discount system and cart functionality
+
+  - Checkout with real-time calculations
+
+  - Custom admin panels
+
+  - Email verification for security
+
+  - Search system for smooth UX
+
+
+VoiceMatter — 🚧 Alpha — v0.1.0
+
+URL: https://fedxd.net/projects/voicematter
+
+Description: Press-to-record Linux voice dictation daemon: Deepgram STT + Anthropic-compatible LLM formatter, with a frameless PySide6 overlay and auto-paste via ydotool.
+
+Repository: https://github.com/KazimFedxD
+
+Tech: Python 3.11+, PySide6 (Qt 6), sounddevice (PortAudio), NumPy, Deepgram Nova-3 SDK, Anthropic SDK, wl-copy (Wayland clipboard), ydotool (synthetic input), PipeWire + WirePlumber, Unix domain sockets (AF_UNIX), python-dotenv, uv package manager
+
+Features:
+
+  - Press-to-record hotkey daemon
+
+  - Deepgram Nova-3 transcription
+
+  - LLM-powered formatter
+
+  - Auto-copy + auto-paste
+
+  - Floating PySide6 overlay
+
+  - KDE global hotkeys
+
+
+Skills
+
+------------------------------------------------------------
+
+Languages:
+
+  - Python (95%)
+
+  - JavaScript (85%)
+
+  - C++ (75%)
+
+  - C (75%)
+
+  - SQL (85%)
+
+  - Bash (80%)
+
+
+Frameworks & Libraries:
+
+  - Django (95%)
+
+  - Django REST Framework (90%)
+
+  - Django Channels (WebSockets) (80%)
+
+  - React (85%)
+
+  - Framer Motion (80%)
+
+  - Tailwind CSS (90%)
+
+
+Databases:
+
+  - PostgreSQL (90%)
+
+  - SQLite (85%)
+
+  - Redis (80%)
+
+  - MinIO (70%)
+
+
+AI / Voice Systems:
+
+  - Deepgram Nova-3 (STT) (80%)
+
+  - ElevenLabs (TTS) (75%)
+
+  - Groq API (85%)
+
+  - Anthropic API (75%)
+
+  - OpenAI API (80%)
+
+
+Linux & Desktop:
+
+  - Linux (Arch / KDE Plasma) (90%)
+
+  - PySide6 / Qt 6 (75%)
+
+  - Wayland / PipeWire (75%)
+
+  - sounddevice / PortAudio (70%)
+
+  - ydotool / wl-copy (65%)
+
+
+DevOps & Tools:
+
+  - Docker (85%)
+
+  - Git (90%)
+
+  - GitHub (90%)
+
+  - Nginx (80%)
+
+  - Celery (80%)
+
+
+Experience
+
+------------------------------------------------------------
+
+July 2024 - Present — Manager & Content Creator, KayzBlog
+
+Type: Medical Blog Platform · Karachi, Pakistan
+
+Managing and maintaining a comprehensive medical blog platform with advanced features and growing audience engagement.
+
+Achievements:
+
+  - 40,000+ total views
+
+  - 4,000+ social media followers
+
+  - 1,200+ video likes
+
+  - 12-15 articles/month
+
+
+Nov 2024 - Jan 2025 — Lead Developer, Disutils
+
+Type: Discord Gaming Bot · Remote
+
+Architected and developed a feature-rich Discord bot with advanced gaming mechanics and virtual economy systems.
+
+Achievements:
+
+  - 10+ active servers
+
+  - Hundreds of daily commands
+
+  - 99%+ uptime
+
+  - Advanced game logic
+
+
+Education
+
+------------------------------------------------------------
+
+Aug 2026 - Jun 2030 — Bachelor of Software Engineering (BSe) (Bahria University Karachi Campus, Karachi, Pakistan)
+
+Status: Currently in Semester 1
+
+Four-year undergraduate program in Software Engineering at Bahria University Karachi Campus (BUKC). Engineering program registered with the Pakistan Engineering Council (PEC). Semester 1 coursework spans ICT, Computer Programming, Applied Physics, English, Pakistan Studies, Occupational Health and Safety, and Islamic Studies.
+
+
+2024 - 2026 — Intermediate (11-12), Computer Science (Fatimiyah Boys College, Karachi, Pakistan)
+
+Status: Completed
+
+Completed intermediate coursework in Computer Science with focus on programming fundamentals, algorithms, and software development principles.
+
+
+2016 - 2024 — Matriculation, Computer Science (Happy Home High School (HHS), Karachi, Pakistan)
+
+Status: Completed
+
+Foundation in Computer Science with comprehensive coverage of basic programming concepts and computer fundamentals.
+
+
+Achievements
+
+------------------------------------------------------------
+
+2026 — AI Preneur '26 - Best Use of AI
+
+Position: Best Use of AI · AI Preneur '26
+
+Won Best Use of AI at AI Preneur '26 with TeachBack - a voice-first learning platform where students teach an AI listener and get interrupted by clarifying questions. Real-time STT + LLM + TTS pipeline with multi-dimensional evaluation (clarity, structure, coverage).
+
+Link: https://github.com/KazimFedxD/TeachBack
+
+
+2025 — NASA Space Apps Challenge - Karachi
+
+Position: 2nd Place · Global Competition
+
+Secured second place in the NASA Space Apps Challenge 2025 Karachi Local Event with Skyntel - an interactive weather app featuring AI query support, personalized alerts, email subscriptions, and live community reports.
+
+Link: https://github.com/KazimFedxD/Skyntel
+
+
+Contact
+
+------------------------------------------------------------
+
+Email: fedxdofficial@gmail.com (mailto:fedxdofficial@gmail.com)
+
+GitHub: github.com/KazimFedxD (https://github.com/KazimFedxD)
+
+LinkedIn: linkedin.com/in/kazim-abbas-60b1b5257 (https://www.linkedin.com/in/kazim-abbas-60b1b5257/)
+
+Response time: Replies within 24-48 hours
+
+Tags: Backend, Django, Python, PostgreSQL, AI / Voice, Linux, Remote, Full-time, Contract, Freelance
+
+Machine-readable endpoints
+
+------------------------------------------------------------
+
+/content.json — Structured JSON
+
+/content.txt  — This file
+
+/llms.txt      — Concise AI site index
+
+/llms-full.txt — Extended AI site description
