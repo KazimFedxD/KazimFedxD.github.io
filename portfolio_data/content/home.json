@@ -1,0 +1,41 @@
+{
+  "source": "src/pages/Home.jsx",
+  "header": {
+    "name": "Kazim Abbas"
+  },
+  "summary": "BSe Software Engineering student at Bahria University Karachi Campus. Backend developer shipping production systems in Django, Python, and PostgreSQL. NASA Space Apps '25 runner-up (Skyntel, 2nd place) and Best Use of AI at AI Preneur '26 (TeachBack). Open to remote backend roles.",
+  "typingAnimation": {
+    "sequences": [
+      { "text": "Backend Engineer · Django / Python" },
+      { "text": "BSe Software Eng. · BUKC '30" },
+      { "text": "NASA Space Apps '25 · 2nd Place" },
+      { "text": "AI Preneur '26 · Best Use of AI" }
+    ]
+  },
+  "quickLinks": [
+    {
+      "title": "Projects",
+      "description": "Twelve case studies spanning Django backends, Discord bots, custom languages, and Linux daemons.",
+      "link": "/projects",
+      "icon": "Code2"
+    },
+    {
+      "title": "Skills",
+      "description": "Python, Django, React, PostgreSQL, Docker, Voice/AI stack. The full toolkit in one place.",
+      "link": "/skills",
+      "icon": "Sparkles"
+    },
+    {
+      "title": "Timeline",
+      "description": "From self-taught in 2023 to NASA winner in 2025 to Best Use of AI in 2026 - the path in order.",
+      "link": "/experience",
+      "icon": "Rocket"
+    }
+  ],
+  "stats": [
+    { "value": "2nd",   "label": "NASA Space Apps '25" },
+    { "value": "AI",    "label": "Best Use of AI '26" },
+    { "value": "12+",   "label": "Projects shipped" },
+    { "value": "40K+",  "label": "Blog views" }
+  ]
+}

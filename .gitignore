@@ -1,40 +1,15 @@
-# OS Files
-.DS_Store
-Thumbs.db
-desktop.ini
+# v0 runtime files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
 
-# Editor Files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Logs
-*.log
-npm-debug.log*
-
-# Temporary Files
-*.tmp
-*.temp
-
-# Personal Files (if any)
-*.personal
-notes.txt
-
-# Implementation Documentation (internal use only)
-.implementation-docs/
-
-#OLD
-old_site/
-./portfolio_data/
-
-# Build Files
+# Common ignores
 node_modules/
+.next/
+.env*.local
+.DS_Store
+.env
+tsconfig.tsbuildinfo
 
-.github/instructions/
-
-deploy.sh
-
-# Website documentation folder (keep private)
-.website/
+# IDE
+.idea/

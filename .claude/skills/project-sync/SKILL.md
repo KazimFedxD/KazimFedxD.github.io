@@ -5,7 +5,7 @@ description: Sync portfolio data from projects/<Name>/.website/ bundles to the r
 
 # project-sync
 
-Inverse of `project-documentor`. Reads `projects/<Name>/.website/metadata.json` (and the `.md` files) and writes to the React runtime data layer.
+Inverse of `project-documentor`. Reads `projects/<Name>/metadata.json` (and the `.md` files) and writes to the React runtime data layer.
 
 ## When to use
 
@@ -108,11 +108,11 @@ One line. No prose. If errors, list them in a compact bullet block right before 
 
 ## Anti-patterns
 
-- Overwriting `overview.description` from `.website/overview.md` (it's hand-authored)
+- Overwriting `overview.description` from `overview.md` (it's hand-authored)
 - Writing to only ONE of the two `links.json` files
 - Using title form (`"Full-Stack Template"`) in `SCREENSHOT_FOLDER` instead of slug form
 - Adding slug prefix to `data.screenshots[]#filename` (bare filenames only)
 - Silent slug mismatch — always flag and ask
 - Auto-deleting orphan slugs (report only)
-- Generating rich content from `.website/*.md` (text extraction too fragile — leave TODO placeholders)
+- Generating rich content from `*.md` (text extraction too fragile — leave TODO placeholders)
 - Writing a NEW `projectsData.js` entry without an `order` (uses end-of-list default)

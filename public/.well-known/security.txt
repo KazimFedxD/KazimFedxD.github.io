@@ -1,0 +1,5 @@
+Contact: mailto:kazim@fedxd.net
+Expires: 2027-01-01T00:00:00z
+Preferred-Languages: en
+Canonical: https://fedxd.net/.well-known/security.txt
+
